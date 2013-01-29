@@ -4,7 +4,7 @@ International in scope and free for public use, OVAL is an information security 
 
 This GitHub project hosts the OVAL Language Schemas and Specifications during development to improve transparency and the community's ability to track changes before an official release. Official releases will still be published on the [OVAL Web Site](http://oval.mitre.org).
 
-Development: [OVAL 5.11] (https://github.com/djhaynes/language)<br>
+Development: [OVAL 5.11] (https://github.com/OVALProject/Language)<br>
 Official: [OVAL 5.10.1] (http://oval.mitre.org/language/latest)<br>
 Previous: [OVAL Archives] (http://oval.mitre.org/archive/)<br>
 
