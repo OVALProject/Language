@@ -871,17 +871,17 @@
                                     </xsd:element>
                                     <xsd:element name="server_arguments" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation/>
+                                                <xsd:documentation>The arguments passed to the server program starting with argv[0].</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="endpoint_type" type="unix-def:EntityStateEndpointType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation/>
+                                                <xsd:documentation>The type of socket established by the service for communications.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="exec_as_user" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation/>
+                                                <xsd:documentation>The user name, and optional group name, that the server will run as when it starts up.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="wait_status" type="unix-def:EntityStateWaitStatusType" minOccurs="0" maxOccurs="1">
