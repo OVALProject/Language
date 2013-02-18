@@ -696,7 +696,7 @@
                               </xsd:element>
                               <xsd:element name="version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 21.11.4.</xsd:documentation>
+                                        <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 2.0.40.</xsd:documentation>
                                    </xsd:annotation>
                                    <xsd:complexType>
                                         <xsd:simpleContent>
@@ -1130,7 +1130,7 @@
                                         </xsd:element>
                                         <xsd:element name="version">
                                              <xsd:annotation>
-                                                  <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 21.11.4.</xsd:documentation>
+                                                  <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 2.0.40.</xsd:documentation>
                                              </xsd:annotation>
                                              <xsd:complexType>
                                                   <xsd:simpleContent>
@@ -1218,7 +1218,7 @@
                               </xsd:element>
                               <xsd:element name="version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 21.11.4.</xsd:documentation>
+                                        <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 2.0.40.</xsd:documentation>
                                    </xsd:annotation>
                                    <xsd:complexType>
                                         <xsd:simpleContent>
@@ -1486,7 +1486,7 @@
                                         </xsd:element>
                                         <xsd:element name="version">
                                              <xsd:annotation>
-                                                  <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 21.11.4.</xsd:documentation>
+                                                  <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 2.0.40.</xsd:documentation>
                                              </xsd:annotation>
                                              <xsd:complexType>
                                                   <xsd:simpleContent>
@@ -1569,7 +1569,7 @@
                               </xsd:element>
                               <xsd:element name="version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 21.11.4.</xsd:documentation>
+                                        <xsd:documentation>This is the version number of the build. In the case of an apache rpm named httpd-2.0.40-21.11.4.i686.rpm, this value would be 2.0.40.</xsd:documentation>
                                    </xsd:annotation>
                                    <xsd:complexType>
                                         <xsd:simpleContent>
