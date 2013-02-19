@@ -1990,14 +1990,7 @@
                               </xsd:element>
                               <xsd:element name="key" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1" nillable="true">
                                    <xsd:annotation>
-                                        <xsd:documentation>This element describes a registry key to be gathered. Note that the hive portion of the string should not be inclueded, as this data can be found under the hive element. If the xsi:nil attribute is set to true, then the item being represented is the higher level hive. Using xsi:nil here will result in a status of 'does not exist' for the type, and value entities since these entities are not associated with a hive by itself. Note that when xsi:nil is used for the key element, the name element should also be nilled.</xsd:documentation>
-                                        <xsd:appinfo>
-                                             <sch:pattern id="win-sc_regitemkey">
-                                                  <sch:rule context="win-sc:registry_item/win-sc:key[@xsi:nil='true' or @xsi:nil='1']">
-                                                       <sch:assert test="../win-sc:name/@xsi:nil='true' or ../win-sc:name/@xsi:nil='1'"><sch:value-of select="../@id"/> - name entity must be nil when key is nil</sch:assert>
-                                                  </sch:rule>
-                                             </sch:pattern>
-                                        </xsd:appinfo>
+                                        <xsd:documentation>This element describes a registry key to be gathered. Note that the hive portion of the string should not be inclueded, as this data can be found under the hive element. If the xsi:nil attribute is set to true, then the item being represented is the higher level hive. Using xsi:nil here will result in a status of 'does not exist' for the type, and value entities since these entities are not associated with a hive by itself.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1" nillable="true">

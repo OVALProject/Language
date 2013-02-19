@@ -4593,13 +4593,8 @@
                                                 </xsd:element>
                                                 <xsd:element name="key" type="oval-def:EntityObjectStringType" nillable="true">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The key element describes a registry key to be collected. Note that the hive portion of the string should not be included, as this data should be found under the hive element. If the xsi:nil attribute is set to true, then the object being specified is the higher level hive. In this case, the key element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match. A .* pattern match says to collect every key under a given hive. Note that when xsi:nil is used for the key element, the name element should also be nilled.</xsd:documentation>
+                                                            <xsd:documentation>The key element describes a registry key to be collected. Note that the hive portion of the string should not be included, as this data should be found under the hive element. If the xsi:nil attribute is set to true, then the object being specified is the higher level hive. In this case, the key element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match. A .* pattern match says to collect every key under a given hive.</xsd:documentation>
                                                             <xsd:appinfo>
-                                                                  <sch:pattern id="win-def_regobjkey">
-                                                                        <sch:rule context="win-def:registry_object/win-def:key[@xsi:nil='true' or @xsi:nil='1']">
-                                                                              <sch:assert test="../win-def:name/@xsi:nil='true' or ../win-def:name/@xsi:nil='1'"><sch:value-of select="../@id"/> - name entity must be nil when key is nil</sch:assert>
-                                                                        </sch:rule>
-                                                                  </sch:pattern>
                                                                   <sch:pattern id="win-def_regobjkey2">
                                                                         <sch:rule context="win-def:registry_object/win-def:key[not(@operation='equals' or not(@operation))]">
                                                                               <sch:assert test="not(preceding-sibling::win-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a key entity.</sch:assert>
