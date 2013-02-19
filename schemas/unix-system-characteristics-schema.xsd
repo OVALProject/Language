@@ -169,7 +169,7 @@
                               </xsd:element>
                               <xsd:element name="has_extended_acl" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>Does the file or directory have ACL permissions applied to it? If the file or directory doesn't have an ACL, or it matches the standard UNIX permissions, the value will be 'false'. Otherwise, if a file or directory has an ACL, the value will be 'true'. If the system does not support ACLs, the status will be 'does not exist' and if the system supports ACLs, the status will be 'exists'.</xsd:documentation>
+                                        <xsd:documentation>Does the file or directory have ACL permissions applied to it? If a system supports ACLs and the file or directory doesn't have an ACL, or it matches the standard UNIX permissions, the entity will have a status of 'exists' and a value of 'false'. If the system supports ACLs and the file or directory has an ACL, the entity will have a status of 'exists' and a value of 'true'. Lastly, if a system doesn't support ACLs, the entity will have a status of 'does not exist'. </xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
