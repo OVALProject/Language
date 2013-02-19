@@ -554,7 +554,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="environmentvariable58_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The environmentvariable_test element is used to check an environment variable for the specified process, which is identified by its process ID, on the system . It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a environmentvariable_object and the optional state element specifies the metadata to check.</xsd:documentation>
+                  <xsd:documentation>The environmentvariable58_test element is used to check an environment variable for the specified process, which is identified by its process ID, on the system . It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a environmentvariable_object and the optional state element specifies the metadata to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>environmentvariable58_test</oval:test>
@@ -587,7 +587,7 @@
       </xsd:element>
       <xsd:element name="environmentvariable58_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The environmentvariable58_object element is used by an environmentvariable_test to define the specific environment variable(s) and process IDs to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>The environmentvariable58_object element is used by an environmentvariable58_test to define the specific environment variable(s) and process IDs to be evaluated. If a tool is unable to collect the environment variables of another process, an error must be reported.  Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="ind-def_environmentvariable58_object_verify_filter_state">
                               <sch:rule context="ind-def:environmentvariable58_object//oval-def:filter">
@@ -629,7 +629,7 @@
       </xsd:element>
       <xsd:element name="environmentvariable58_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The environmentvariable_state element contains three entities that are used to check the name of the specified environment variable, the process ID of the process from which the environment variable was retrieved, and the value associated with the environment variable.</xsd:documentation>
+                  <xsd:documentation>The environmentvariable58_state element contains three entities that are used to check the name of the specified environment variable, the process ID of the process from which the environment variable was retrieved, and the value associated with the environment variable.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
