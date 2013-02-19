@@ -199,7 +199,7 @@
                     <xsd:field xpath="@family"/>
                 </xsd:unique>            
             </xsd:element>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="notes" type="oval:NotesType" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="criteria" type="oval-def:CriteriaType" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:DefinitionIDPattern" use="required"/>
@@ -262,14 +262,6 @@
         <xsd:attribute name="source" type="xsd:string" use="required"/>
         <xsd:attribute name="ref_id" type="xsd:string" use="required"/>
         <xsd:attribute name="ref_url" type="xsd:anyURI" use="optional"/>
-    </xsd:complexType>
-    <xsd:complexType name="NotesType">
-        <xsd:annotation>
-            <xsd:documentation>The NotesType complex type is a container for one or more note child elements. Each note contains some information about the definition or tests that it references. A note may record an unresolved question about the definition or test or present the reason as to why a particular approach was taken.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element name="note" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
-        </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="CriteriaType">
         <xsd:annotation>
@@ -343,7 +335,7 @@
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element ref="ds:Signature" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="notes" type="oval:NotesType" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:TestIDPattern" use="required"/>
         <xsd:attribute name="version" type="xsd:nonNegativeInteger" use="required"/>
@@ -390,7 +382,7 @@
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element ref="ds:Signature" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="notes" type="oval:NotesType" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:ObjectIDPattern" use="required"/>
         <xsd:attribute name="version" type="xsd:nonNegativeInteger" use="required"/>
@@ -467,7 +459,7 @@
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element ref="ds:Signature" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="notes" type="oval:NotesType" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:StateIDPattern" use="required"/>
         <xsd:attribute name="version" type="xsd:nonNegativeInteger" use="required"/>
@@ -496,10 +488,11 @@
         <xsd:annotation>
             <xsd:documentation>The VariableType complex type defines attributes associated with each OVAL Variable. The required id attribute uniquely identifies each variable, and must conform to the format specified by the VariableIDPattern simple type. The required version attribute holds the current version of the variable. Versions are integers, starting at 1 and incrementing every time a variable is modified.  The required comment attribute provides a short description of the variable. The optional deprecated attribute signifies that an id is no longer to be used or referenced but the information has been kept around for historic purposes.</xsd:documentation>
             <xsd:documentation>The required datatype attribute specifies the type of value being defined.  The set of values identified by a variable must comply with the specified datatype, otherwise an error should be reported.  Please see the DatatypeEnumeration for details about each valid datatype.  For example, if the datatype of the variable is specified as boolean then the value(s) returned by the component / function should be "true", "false", "1", or "0".</xsd:documentation>
-            <xsd:documentation>Note that the 'record' datatype is not permitted on variables.</xsd:documentation>
+            <xsd:documentation>Note that the 'record' datatype is not permitted on variables. The notes section of a variable should be used to hold information that might be helpful to someone examining the technical aspects of the variable. Please refer to the description of the NotesType complex type for more information about the notes element.</xsd:documentation>
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element ref="ds:Signature" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="notes" type="oval:NotesType" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:VariableIDPattern" use="required"/>
         <xsd:attribute name="version" type="xsd:nonNegativeInteger" use="required"/>

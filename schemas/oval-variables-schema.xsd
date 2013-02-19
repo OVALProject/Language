@@ -57,9 +57,11 @@
      <xsd:complexType name="VariableType">
           <xsd:annotation>
                <xsd:documentation>Each variable element contains the associated datatype and value which will be substituted into the OVAL Definition that is referencing this specific variable.</xsd:documentation>
+               <xsd:documentation>The notes section of a variable should be used to hold information that might be helpful to someone examining the technical aspects of the variable. Please refer to the description of the NotesType complex type for more information about the notes element.</xsd:documentation>
           </xsd:annotation>
           <xsd:sequence>
                <xsd:element name="value" type="xsd:anySimpleType" minOccurs="1" maxOccurs="unbounded"/>
+               <xsd:element name="notes" type="oval:NotesType" minOccurs="0" maxOccurs="1"/>
           </xsd:sequence>
           <xsd:attribute name="id" type="oval:VariableIDPattern" use="required"/>
           <xsd:attribute name="datatype" use="required" type="oval:SimpleDatatypeEnumeration">
