@@ -1623,6 +1623,18 @@
                               <xsd:element name="digest_check_passed" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The digest_check_passed entity indicates whether or not the verification of the package or header digests passed. If the digest check is not performed, due to the 'nodigest' behavior, this entity must not be collected.</xsd:documentation>
+                                        <xsd:appinfo>
+                                             <oval:deprecated_info>
+                                                  <oval:version>5.11</oval:version>
+                                                  <oval:reason>The digest_check_passed entity can not be collected as implemented, and has become irrelevant.</oval:reason>
+                                                  <oval:comment>This entity has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                                             </oval:deprecated_info>
+                                             <sch:pattern id="linux-def_rpmverifypackage_dicp_dep">
+                                                  <sch:rule context="linux-def:rpmverifypackage_state/linux-def:digest_check_passed">
+                                                       <sch:report test="true()">DEPRECATED ELEMENT: <sch:value-of select="name()"/> ID: <sch:value-of select="../@id"/></sch:report>
+                                                  </sch:rule>
+                                             </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="verification_script_successful" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
@@ -1633,6 +1645,18 @@
                               <xsd:element name="signature_check_passed" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The signature_check_passed entity indicates whether or not the verification of the package or header signatures passed. If the signature check is not performed, due to the 'nosignature' behavior, this entity must not be collected.</xsd:documentation>
+                                        <xsd:appinfo>
+                                             <oval:deprecated_info>
+                                                  <oval:version>5.11</oval:version>
+                                                  <oval:reason>The signature_check_passed entity can not be collected as implemented, and has become irrelevant.</oval:reason>
+                                                  <oval:comment>This entity has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                                             </oval:deprecated_info>
+                                             <sch:pattern id="linux-def_rpmverifypackage_scp_dep">
+                                                  <sch:rule context="linux-def:rpmverifypackage_state/linux-def:signature_check_passed">
+                                                       <sch:report test="true()">DEPRECATED ELEMENT: <sch:value-of select="name()"/> ID: <sch:value-of select="../@id"/></sch:report>
+                                                  </sch:rule>
+                                             </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
@@ -1652,6 +1676,18 @@
           <xsd:attribute name="nodigest" use="optional" type="xsd:boolean" default="false">
                <xsd:annotation>
                     <xsd:documentation>'nodigest' when true this behavior means, don't verify package or header digests when reading.</xsd:documentation>
+                    <xsd:appinfo>
+                         <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The nodigest behavior has become irrelevant since the element it impacts has been deprecated.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                         </oval:deprecated_info>
+                         <sch:pattern id="linux-def_rpmverifypackage_nodi_beh_dep">
+                              <sch:rule context="linux-def:rpmverifypackage_object/linux-def:behaviors/@nodigest">
+                                   <sch:report test="true()">DEPRECATED BEHAVIOR: <sch:value-of select="name()"/> ID: <sch:value-of select="../../@id"/></sch:report>
+                              </sch:rule>
+                         </sch:pattern>
+                    </xsd:appinfo>
                </xsd:annotation>
           </xsd:attribute>
           <xsd:attribute name="noscripts" use="optional" type="xsd:boolean" default="false">
@@ -1662,6 +1698,18 @@
           <xsd:attribute name="nosignature" use="optional" type="xsd:boolean" default="false">
                <xsd:annotation>
                     <xsd:documentation>'nosignature' when true this behavior means, don't verify package or header signatures when reading.</xsd:documentation>
+                    <xsd:appinfo>
+                         <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>The nosignature behavior has become irrelevant since the element it impacts has been deprecated.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                         </oval:deprecated_info>
+                         <sch:pattern id="linux-def_rpmverifypackage_nosi_beh_dep">
+                              <sch:rule context="linux-def:rpmverifypackage_object/linux-def:behaviors/@nosignature">
+                                   <sch:report test="true()">DEPRECATED BEHAVIOR: <sch:value-of select="name()"/> ID: <sch:value-of select="../../@id"/></sch:report>
+                              </sch:rule>
+                         </sch:pattern>
+                    </xsd:appinfo>
                </xsd:annotation>
           </xsd:attribute>
      </xsd:complexType>
