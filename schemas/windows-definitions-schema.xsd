@@ -7523,7 +7523,7 @@
                                     </xsd:element>
                                     <xsd:element name="file_supports_remote_storage" type="oval-def:EntityStateBoolType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The specified volume is a compressed volume; for example, a DoubleSpace volume.</xsd:documentation>
+                                                <xsd:documentation>The file system supports remote storage.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="file_volume_is_compressed" type="oval-def:EntityStateBoolType" minOccurs="0">
