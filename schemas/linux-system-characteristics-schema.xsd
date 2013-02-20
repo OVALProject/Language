@@ -736,6 +736,18 @@
                               <xsd:element name="digest_check_passed" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The digest_check_passed entity indicates whether or not the verification of the package or header digests passed. If the digest check is not performed, due to the 'nodigest' behavior, this entity must not be collected.</xsd:documentation>
+                                        <xsd:appinfo>
+                                             <oval:deprecated_info>
+                                                  <oval:version>5.11</oval:version>
+                                                  <oval:reason>The digest_check_passed item entity can not be collected as implemented, and has become irrelevant.</oval:reason>
+                                                  <oval:comment>This item entity has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                                             </oval:deprecated_info>
+                                             <sch:pattern id="linux-sc_rpmverifypackage_dicp_dep">
+                                                  <sch:rule context="linux-sc:rpmverifypackage_item/linux-sc:digest_check_passed">
+                                                       <sch:report test="true()">DEPRECATED ELEMENT: <sch:value-of select="name()"/> ID: <sch:value-of select="../@id"/></sch:report>
+                                                  </sch:rule>
+                                             </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="verification_script_successful" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
@@ -746,6 +758,18 @@
                               <xsd:element name="signature_check_passed" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The signature_check_passed entity indicates whether or not the verification of the package or header signatures passed. If the signature check is not performed, due to the 'nosignature' behavior, this entity must not be collected.</xsd:documentation>
+                                        <xsd:appinfo>
+                                             <oval:deprecated_info>
+                                                  <oval:version>5.11</oval:version>
+                                                  <oval:reason>The signature_check_passed item entity can not be collected as implemented, and has become irrelevant.</oval:reason>
+                                                  <oval:comment>This item entity has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                                             </oval:deprecated_info>
+                                             <sch:pattern id="linux-sc_rpmverifypackage_dicp_dep">
+                                                  <sch:rule context="linux-sc:rpmverifypackage_item/linux-sc:signature_check_passed">
+                                                       <sch:report test="true()">DEPRECATED ELEMENT: <sch:value-of select="name()"/> ID: <sch:value-of select="../@id"/></sch:report>
+                                                  </sch:rule>
+                                             </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
