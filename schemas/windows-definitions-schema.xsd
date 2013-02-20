@@ -3651,6 +3651,29 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
+                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The filepath element specifies the absolute path for a PE file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The path element specifies the directory component of the absolute path to a PE file on the machine.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="filename" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The filename element specifies the name of a PE file to evaluate.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="win-def_peheaderstefilename">
+                                                            <sch:rule context="win-def:peheader_state/win-def:filename">
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')">
+                                                                        <sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
+                                          </xsd:annotation>
+                                    </xsd:element>
                                     <xsd:element name="header_signature" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The header_signature entity is the signature of the header.</xsd:documentation>
