@@ -798,7 +798,7 @@
      </xsd:element>
      <xsd:element name="rpmverify_object" substitutionGroup="oval-def:object">
           <xsd:annotation>
-               <xsd:documentation>The rpmverify_object element is used by a rpmverity_test to define a set of files within a set of RPMs to verify. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+               <xsd:documentation>The rpmverify_object element is used by a rpmverify_test to define a set of files within a set of RPMs to verify. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                <xsd:appinfo>
                     <sch:pattern id="linux-def_rpmverify_object_verify_filter_state">
                          <sch:rule context="linux-def:rpmverify_object//oval-def:filter">
@@ -1437,7 +1437,7 @@
      </xsd:element>
      <xsd:element name="rpmverifypackage_object" substitutionGroup="oval-def:object">
           <xsd:annotation>
-               <xsd:documentation>The rpmverifypackage_object element is used by a rpmverity_test to define a set of RPMs to verify. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+               <xsd:documentation>The rpmverifypackage_object element is used by a rpmverify_test to define a set of RPMs to verify. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                <xsd:appinfo>
                     <sch:pattern id="linux-def_rpmverifypackage_object_verify_filter_state">
                          <sch:rule context="linux-def:rpmverifypackage_object//oval-def:filter">
