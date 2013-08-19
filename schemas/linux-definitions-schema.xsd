@@ -1885,7 +1885,7 @@
                                                                       <sch:assert test="not(preceding-sibling::linux-def:behaviors[@max_depth or @recurse or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth, recurse, and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
                                                                  </sch:rule>
                                                             </sch:pattern>
-                                                            <sch:pattern id="unix-def_selinuxsecuritycontext_objectfilepath2">
+                                                            <sch:pattern id="linux-def_selinuxsecuritycontext_objectfilepath2">
                                                                  <sch:rule context="linux-def:selinuxsecuritycontext_object/linux-def:filepath[not(@operation='equals' or not(@operation))]">
                                                                       <sch:assert test="not(preceding-sibling::linux-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity.</sch:assert>
                                                                  </sch:rule>
