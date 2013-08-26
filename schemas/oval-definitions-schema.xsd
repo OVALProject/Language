@@ -1140,7 +1140,13 @@
         </xsd:attribute>
         <xsd:attribute name="mask" type="xsd:boolean" use="optional" default="false">
             <xsd:annotation>
-                <xsd:documentation>The optional mask attribute is used to identify values that have been hidden for sensitivity concerns. This is used by the result file which uses the system characteristic schema to format the information found on a specific system. If the mask attribute is set to 'true', then the observed value of this field must not be presented in the results file. A system characteristics file that is not held within a results file must not use the mask attribute.  It is possible for masking conflicts to occur where one entity has mask set to true and another entity has mask set to false. A conflict will occur when the mask attribute is set differently on an OVAL Object and matching OVAL State or when more than one OVAL Objects identify the same OVAL Item(s). When such a conflict occurs the result is always to mask the entity.</xsd:documentation>
+                <xsd:documentation>The optional mask attribute is used to identify values that have been hidden for sensitivity concerns.
+                    This is used by the Result document which uses the System Characteristics schema to format the information found on a specific system.
+                    When the mask attribute is set to ‘true’ on an OVAL Entity or an OVAL Field, the corresponding collected value of that OVAL Entity or OVAL Field MUST NOT be present in the "results" section of the OVAL Results document; the "oval_definitions" section must not be altered and must be an exact copy of the definitions evaluated.
+                    Values MUST NOT be masked in OVAL System Characteristics documents that are not contained within an OVAL Results document.
+                    It is possible for masking conflicts to occur where one entity has mask set to true and another entity has mask set to false.
+                    A conflict will occur when the mask attribute is set differently on an OVAL Object and matching OVAL State or when more than one OVAL Objects identify the same OVAL Item(s).
+                    When such a conflict occurs the result is always to mask the entity.</xsd:documentation>
             </xsd:annotation>
         </xsd:attribute>
         <xsd:attribute name="var_ref" type="oval:VariableIDPattern" use="optional">
