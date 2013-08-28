@@ -40,10 +40,24 @@
                                         <xsd:documentation/>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="version" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation/>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="string">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="string"/>
+                                                                 <xsd:enumeration value="version"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>                                                  
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>                                        
+                                   </xsd:complexType>                                                                      
                               </xsd:element>
                               <xsd:element name="vendor" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
