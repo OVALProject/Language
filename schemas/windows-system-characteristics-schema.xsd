@@ -3838,9 +3838,24 @@
                               <xsd:documentation>The reg_dword type is used by registry keys that specify a 32-bit number.</xsd:documentation>
                          </xsd:annotation>
                     </xsd:enumeration>
+                    <xsd:enumeration value="reg_dword_little_endian">
+                         <xsd:annotation>
+                              <xsd:documentation>The reg_dword_little_endian type is used by registry keys that specify a 32-bit little-endian number. It is designed to run on little-endian computer architectures.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="reg_dword_big_endian">
+                         <xsd:annotation>
+                              <xsd:documentation>The reg_dword_big_endian type is used by registry keys that specify a 32-bit big-endian number. It is designed to run on big-endian computer architectures.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
                     <xsd:enumeration value="reg_expand_sz">
                          <xsd:annotation>
                               <xsd:documentation>The reg_expand_sz type is used by registry keys to specify a null-terminated string that contains unexpanded references to environment variables (for example, "%PATH%").</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="reg_link">
+                         <xsd:annotation>
+                              <xsd:documentation>The reg_link type is used by the registry keys for null-terminated unicode strings.  It is related to target path of a symbolic link created by the RegCreateKeyEx function.</xsd:documentation>
                          </xsd:annotation>
                     </xsd:enumeration>
                     <xsd:enumeration value="reg_multi_sz">
@@ -3856,6 +3871,11 @@
                     <xsd:enumeration value="reg_qword">
                          <xsd:annotation>
                               <xsd:documentation>The reg_qword type is used by registry keys that specify a 64-bit number.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="reg_qword_little_endian">
+                         <xsd:annotation>
+                              <xsd:documentation>The reg_qword_little_endian type is used by registry keys that specify a 64-bit number in little-endian computer architectures.</xsd:documentation>
                          </xsd:annotation>
                     </xsd:enumeration>
                     <xsd:enumeration value="reg_sz">
