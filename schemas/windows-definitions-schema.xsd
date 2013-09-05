@@ -4675,7 +4675,7 @@
                                     </xsd:element>
                                     <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The value entity allows a test to be written against the value held within the specified registry key(s). If the value being tested is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD or REG_QWORD, then the datatype attribute should be set to 'int' and the value entity should represent the data as an integer. If the value being tested is of type REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity. If the value being tested is of type REG_MULTI_SZ, then only a single string (one of the multiple strings) should be tested using the value entity with the datatype attribute set to 'string'. In order to test multiple values, multiple OVAL registry tests should be used. If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.</xsd:documentation>
+                                                <xsd:documentation>The value entity allows a test to be written against the value held within the specified registry key(s). If the value being tested is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD, REG_QWORD, REG_DWORD_LITTLE_ENDIAN, REG_DWORD_BIG_ENDIAN, and REG_QWORD_LITTLE_ENDIAN then the datatype attribute should be set to 'int' and the value entity should represent the data as an integer. If the value being tested is of type REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity.  If the value being tested is of type REG_MULTI_SZ, then only a single string (one of the multiple strings) should be tested using the value entity with the datatype attribute set to 'string'. In order to test multiple values, multiple OVAL registry tests should be used.  If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.  If the value being tested is of type REG_LINK, then the datatype attribute should be set to 'string' and the null-terminated Unicode string should be represented by the value entity.</xsd:documentation>
                                                 <xsd:documentation>Note that if the intent is to test a version number held in the registry (as a reg_sz) then instead of setting the datatype to 'string', the datatype can be set to 'version'. This allows tools performing the evaluation to know how to perform less than and greater than operations correctly.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
@@ -8696,9 +8696,24 @@
                                     <xsd:documentation>The reg_dword type is used by registry keys that specify a 32-bit number.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
+                        <xsd:enumeration value="reg_dword_little_endian">
+                              <xsd:annotation>
+                                    <xsd:documentation>The reg_dword_little_endian type is used by registry keys that specify a 32-bit little-endian number. It is designed to run on little-endian computer architectures.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="reg_dword_big_endian">
+                              <xsd:annotation>
+                                    <xsd:documentation>The reg_dword_big_endian type is used by registry keys that specify a 32-bit big-endian number. It is designed to run on big-endian computer architectures.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                         <xsd:enumeration value="reg_expand_sz">
                               <xsd:annotation>
                                     <xsd:documentation>The reg_expand_sz type is used by registry keys to specify a null-terminated string that contains unexpanded references to environment variables (for example, "%PATH%").</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="reg_link">
+                              <xsd:annotation>
+                                    <xsd:documentation>The reg_link type is used by the registry keys for null-terminated unicode strings.  It is related to target path of a symbolic link created by the RegCreateKeyEx function.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_multi_sz">
@@ -8714,6 +8729,11 @@
                         <xsd:enumeration value="reg_qword">
                               <xsd:annotation>
                                     <xsd:documentation>The reg_qword type is used by registry keys that specify a 64-bit number.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="reg_qword_little_endian">
+                              <xsd:annotation>
+                                    <xsd:documentation>The reg_qword_little_endian type is used by registry keys that specify a 64-bit number in little-endian computer architectures.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_sz">
