@@ -487,7 +487,7 @@
      </xsd:complexType>
      <xsd:complexType name="TestType">
           <xsd:annotation>
-               <xsd:documentation>The TestType complex type provides a reference to every item that matched the object section of the original test as well as providing an overall test result based on those items. The optional message element holds an error message or some other string that the analysis engine wishes to pass along. The optional tested_variable elements hold the value of each variable used by the test during evaluation. This includes the values used in both OVAL Objects and OVAL States. If a variable represents an array of values, then multiple tested_variable elements would exist with the same variable_id attribute. Please refer to the description of oval-res:TestedVariableType for more information.</xsd:documentation>
+               <xsd:documentation>The TestType complex type provides a reference to every item that matched the object section of the original test as well as providing an overall test result based on those items. The optional message element holds an error message or some other string that the analysis engine wishes to pass along. The optional tested_variable elements hold the value of each variable used by the test during evaluation. This includes the values used in both OVAL Objects and OVAL States. If a variable represents a collection of values, then multiple tested_variable elements would exist with the same variable_id attribute. Please refer to the description of oval-res:TestedVariableType for more information.</xsd:documentation>
                <xsd:documentation>The required test_id attribute identifies the test and must conform to the format specified by the oval:TestIDPattern simple type.</xsd:documentation>
                <xsd:documentation>The required version attribute is the specific version of the OVAL Test used during analysis.</xsd:documentation>
                <xsd:documentation>The optional variable_instance attribute differentiates between unique instances of a test. This can happen when a test includes a variable reference and different values for that variable are used by different definitions.</xsd:documentation>
@@ -527,7 +527,7 @@
      </xsd:complexType>
      <xsd:complexType name="TestedVariableType">
           <xsd:annotation>
-               <xsd:documentation>The TestedVariableType complex type holds the value of a variable used during the evaluation of a test. Of special importance are the values of any external variables used since these values are not captured in either the definition or system characteristic documents. If a variable is represented by an array of values, then multiple elements of TestedVariableType, each with the same variable_id attribute, would exist. The required variable_id attribute is the unique id of the variable that was used.</xsd:documentation>
+               <xsd:documentation>The TestedVariableType complex type holds the value of a variable used during the evaluation of a test. Of special importance are the values of any external variables used since these values are not captured in either the definition or system characteristic documents. If a variable is represented by a collection of values, then multiple elements of TestedVariableType, each with the same variable_id attribute, would exist. The required variable_id attribute is the unique id of the variable that was used.</xsd:documentation>
           </xsd:annotation>
           <xsd:simpleContent>
                <xsd:extension base="xsd:anySimpleType">
