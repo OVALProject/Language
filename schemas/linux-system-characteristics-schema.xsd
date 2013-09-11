@@ -249,6 +249,7 @@
                               <xsd:element name="mount_options" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                    <xsd:annotation>
                                         <xsd:documentation>The mount_options element contains a string that represents a mount option associated with a partition on the local system.</xsd:documentation>
+                                        <xsd:documentation>Implementation note: not all mount options are visible in /etc/mtab or /proc/mounts.  A complete source of additional mount options is the f_flag field of 'struct statvfs'.  See statvfs(2).  /etc/fstab may have additional mount options, but it need not contain all mounted filesystems, so it MUST NOT be relied upon.  Implementers MUST be sure to get all mount options in some way.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="total_space" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
