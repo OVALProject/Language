@@ -871,17 +871,17 @@
                                     </xsd:element>
                                     <xsd:element name="server_arguments" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The arguments passed to the server program starting with argv[0].</xsd:documentation>
+                                                <xsd:documentation>The arguments for running the service.  These are either passed to the server program invoked by inetd, or used to configure a service provided by inetd.  In the case of server programs, the arguments shall begin with argv[0], which is typically the name of the program.  In the case of a service provided by inted, the first argument shall be the word "internal".</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="endpoint_type" type="unix-def:EntityStateEndpointType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The type of socket established by the service for communications.</xsd:documentation>
+                                                <xsd:documentation>The endpoint type (aka, socket type) associated with the service.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="exec_as_user" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The user name, and optional group name, that the server will run as when it starts up.</xsd:documentation>
+                                                <xsd:documentation>The user id of the user the server program should run under.  (This allows for running with less permission than root.)</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="wait_status" type="unix-def:EntityStateWaitStatusType" minOccurs="0" maxOccurs="1">
