@@ -463,7 +463,7 @@
             </xsd:annotation>
             <xsd:attribute name="managed_entity_type" use="optional" default="VirtualMachine">
                   <xsd:annotation>
-                        <xsd:documentation>The ViSdkManagedEntityBehaviors complex type defines a number of behaviors that allow a more detailed definition of the visdkmanagedobject_object being specified.  Note that using these behaviors is *highly* encouraged because enumerating all Managed Objects in an inventory hierarchy could cause performance problems.  Interpreters should enumerate only the entities specified by the behavior prior to set/filter logic and evaluation.</xsd:documentation>
+                        <xsd:documentation>The managed_entity_type simple-type specifies the list of defined managed entity object types.</xsd:documentation>
                   </xsd:annotation>
                   <xsd:simpleType>
                         <xsd:restriction base="xsd:string">
