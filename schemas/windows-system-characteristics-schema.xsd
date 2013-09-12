@@ -1952,9 +1952,9 @@
                                         <xsd:documentation>The id given to the parent of the process that is created for the specified command line</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="priority" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="priority" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The base priority of the process.</xsd:documentation>
+                                        <xsd:documentation>The base priority of the process.  The priority value range is from 0 to 31.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="image_path" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
