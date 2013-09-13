@@ -87,7 +87,7 @@
      <!-- =============================================================================== -->
      <xsd:element name="package_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
-               <xsd:documentation>Output of /usr/bin/pkginfo. See pkginfo(1).</xsd:documentation>
+                <xsd:documentation>The package_item holds information about installed SVR4 packages. Output of /usr/bin/pkginfo. See pkginfo(1).</xsd:documentation>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
@@ -133,7 +133,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="packagecheck_item" substitutionGroup="oval-sc:item">
             <xsd:annotation>
-                  <xsd:documentation>The packagecheck_item holds verification information about an individual file that is part of a installed package. Each packagecheck_item contains a package designation, filepath, whether the checksum differs, whether the size differs, whether the modfication time differs, and how the actual permissions differ from the expected permissions. For more information, see pkgchk(1M).  It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
+                  <xsd:documentation>The packagecheck_item holds verification information about an individual file that is part of an installed SVR4 package. Each packagecheck_item contains a package designation, filepath, whether the checksum differs, whether the size differs, whether the modfication time differs, and how the actual permissions differ from the expected permissions. For more information, see pkgchk(1M).  It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -219,7 +219,7 @@
      <!-- =============================================================================== -->
      <xsd:element name="patch_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
-                <xsd:documentation>Patches are identified by unique alphanumeric strings, with the patch base code first, a hyphen, and a number that represents the patch revision number. The information can be obtained using /usr/bin/showrev -p. Please see showrev(1M).</xsd:documentation>
+                <xsd:documentation>Patches for SVR4 packages are identified by unique alphanumeric strings, with the patch base code first, a hyphen, and a number that represents the patch revision number. The information can be obtained using /usr/bin/showrev -p. Please see showrev(1M).</xsd:documentation>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
