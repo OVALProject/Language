@@ -207,7 +207,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="package_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The package test is used to check information associated with different packages installed on the system. The information used by this test is modeled after the /usr/bin/pkginfo command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an inetd_object and the optional state element specifies the information to check.</xsd:documentation>
+                  <xsd:documentation>The package test is used to check information associated with different SVR4 packages installed on the system. Image Packaging System (IPS) packages are not supported by this test. The information used by this test is modeled after the /usr/bin/pkginfo command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an package_object and the optional state element specifies the information to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>package_test</oval:test>
@@ -242,7 +242,7 @@
       </xsd:element>
       <xsd:element name="package_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The package_object element is used by a package test to define the packages to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>The package_object element is used by a package test to define the SVR4 packages to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>A package object consists of a single pkginst entity that identifies the package to be used.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="sol-def_package_object_verify_filter_state">
@@ -280,7 +280,7 @@
       </xsd:element>
       <xsd:element name="package_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The package_state element defines the different information associated with packages installed on the system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The package_state element defines the different information associated with SVR4 packages installed on the system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -326,7 +326,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="packagecheck_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The packagecheck_test is used to verify the integrity of an installed Solaris package.  The information used by this test is modeled after the pkgchk command. For more information, see pkgchk(1M). It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a packagecheck_object and the optional packagecheck_state element specifies the data to check.</xsd:documentation>
+                  <xsd:documentation>The packagecheck_test is used to verify the integrity of an installed Solaris SVR4 package. Image Packaging System (IPS) packages are not supported by this test. The information used by this test is modeled after the pkgchk command. For more information, see pkgchk(1M). It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a packagecheck_object and the optional packagecheck_state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>packagecheck_test</oval:test>
@@ -361,7 +361,7 @@
       </xsd:element>
       <xsd:element name="packagecheck_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The packagecheck_object element is used by a packagecheck_test to define the packages to be verified. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>The packagecheck_object element is used by a packagecheck_test to define the SVR4 packages to be verified. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="sol-def_packagecheck_object_verify_filter_state">
                               <sch:rule context="sol-def:packagecheck_object//oval-def:filter">
@@ -404,7 +404,7 @@
       </xsd:element>
       <xsd:element name="packagecheck_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The package_state element defines the different verification information associated with packages installed on the system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The package_state element defines the different verification information associated with SVR4 packages installed on the system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -487,7 +487,7 @@
       </xsd:element>
       <xsd:complexType name="PackageCheckBehaviors">
             <xsd:annotation>
-                  <xsd:documentation>The PackageCheckBehaviors complex type defines a set of behaviors that for controlling how installed packages are checked. These behaviors align with the options of the pkgchk command (specifically '-a', '-c', and '-n').</xsd:documentation>
+                  <xsd:documentation>The PackageCheckBehaviors complex type defines a set of behaviors that for controlling how installed SVR4 packages are checked. These behaviors align with the options of the pkgchk command (specifically '-a', '-c', and '-n').</xsd:documentation>
             </xsd:annotation>
             <xsd:attribute name="fileattributes_only" use="optional" type="xsd:boolean" default="false">
                   <xsd:annotation>
@@ -510,7 +510,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="patch54_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The patch test is used to check information associated with different patches installed on the system. The information being tested is based off the /usr/bin/showrev -p command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an inetd_object and the optional state element specifies the information to check.</xsd:documentation>
+                  <xsd:documentation>The patch test is used to check information associated with different patches for SVR4 packages installed on the system. Image Packaging System (IPS) packages do not support patches and are not supported by this test. The information being tested is based off the /usr/bin/showrev -p command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an inetd_object and the optional state element specifies the information to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>patch54_test</oval:test>
@@ -670,7 +670,7 @@
       </xsd:element>
       <xsd:element name="patch_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The patch_state element defines the different information associated with a specific patch installed on the system. Patches are identified by unique alphanumeric strings, with the patch base code first, a hyphen, and a number that represents the patch revision number. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The patch_state element defines the different information associated with a specific patch for an SVR4 package installed on the system. Patches are identified by unique alphanumeric strings, with the patch base code first, a hyphen, and a number that represents the patch revision number. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
