@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos" elementFormDefault="qualified" version="5.11">
-      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+      xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+      xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+      xmlns:macos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos"
+      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+      targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#macos"
+      elementFormDefault="qualified" version="5.11">
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+            schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:annotation>
             <xsd:documentation>The following is a description of the elements, types, and attributes that compose the MacOS specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
             <xsd:documentation>The MacOS Definition Schema was initially developed by The Center for Internet Security. Many thanks to their contributions to OVAL and the security community.</xsd:documentation>
@@ -44,8 +51,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -76,12 +84,14 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="username" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>Specifies the user of the account to gather information from.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="username"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Specifies the user of the account to gather information from.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -97,37 +107,49 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="username" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="username"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies the user of the account to gather information from.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="password" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="password"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Obfuscated (*****) or encrypted password for this user.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="uid" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="uid" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The numeric user id, or uid, is the third column of each user's entry in /etc/passwd. This element represents the owner of the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="gid" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="gid" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Group ID of this account.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="realname" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="realname"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>User's real name, aka gecos field of /etc/passwd.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="home_dir" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="home_dir"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The home directory for this user account.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="login_shell" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="login_shell"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The login shell for this user account.</xsd:documentation>
                                           </xsd:annotation>
@@ -168,8 +190,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -199,17 +222,21 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="device" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The device entity is a string that represents the disk on a Mac OS system to verify. Please see diskutil(8) for instructions on how to specify the device.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="device"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The device entity is a string that represents the disk on a Mac OS system to verify. Please see diskutil(8) for instructions on how to specify the device.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="filepath" type="oval-def:EntityObjectStringType" minOccurs="1" maxOccurs="1">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The filepath element specifies the absolute path for a file in the specified package. A directory cannot be specified as a filepath.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="filepath"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  minOccurs="1" maxOccurs="1">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filepath element specifies the absolute path for a file in the specified package. A directory cannot be specified as a filepath.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -225,61 +252,144 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="device" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="device" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The device entity is a string that represents the disk on a Mac OS system to verify. Please see diskutil(8) for instructions on how to specify the device.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="filepath"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filepath element specifies the absolute path for a file or directory on the specified device.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="uread" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="uread"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual user read permission changed from the expected user read permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="uwrite" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="uwrite"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual user write permission changed from the expected user write permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="uexec" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="uexec"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual user exec permission changed from the expected user exec permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="gread" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="gread"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual group read permission changed from the expected group read permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="gwrite" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="gwrite"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual group write permission changed from the expected group write permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="gexec" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="gexec"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual group exec permission changed from the expected group exec permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="oread" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="oread"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual others read permission changed from the expected others read permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="owrite" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="owrite"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual others write permission changed from the expected others write permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="oexec" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="oexec"
+                                          type="macos-def:EntityStatePermissionCompareType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual others exec permission changed from the expected others exec permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="user_differs"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Has the actual user changed from the expected user?</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="actual_user"
+                                          type="oval-def:EntityStateIntType">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The actual user of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="expected_owner"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The expected user of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="group_differs"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Has the actual group changed from the expected group?</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="actual_group"
+                                          type="oval-def:EntityStateIntType">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The actual group of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="expected_group"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The expected group of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="symlink_differs"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Has the actual symlink changed from the expected symlink?</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="actual_symlink"
+                                          type="oval-def:EntityStateStringType">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The actual symlink of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="expected_symlink"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The expected symlink of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+
+
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -325,8 +435,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -367,12 +478,14 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="program_name" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation/>
-                                                      </xsd:annotation>
+                                                <xsd:element name="program_name"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation/>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -399,52 +512,71 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="program_name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="program_name"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the name of the communicating program.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="local_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="local_address"
+                                          type="oval-def:EntityStateIPAddressStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the IP address of the network interface on which the program listens. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="local_full_address" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="local_full_address"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the IP address and network port on which the program listens, equivalent to local_address:local_port. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="local_port" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="local_port"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the TCP or UDP port on which the program listens. Note that this is not a list -- if a program listens on multiple ports, or on a combination of TCP and UDP, each will have its own entry in the table data stored by this test.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="foreign_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="foreign_address"
+                                          type="oval-def:EntityStateIPAddressStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the IP address with which the program is communicating, or with which it will communicate, in the case of a listening server. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="foreign_full_address" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="foreign_full_address"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the IP address and network port to which the program is communicating or will accept communications from, equivalent to foreign_address:foreign_port. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="foreign_port" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="foreign_port"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the TCP or UDP port to which the program communicates. In the case of a listening program accepting new connections, this is usually a *.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="pid" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="pid" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the process ID of the process. The process in question is that of the program communicating on the network.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="protocol" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="protocol"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the transport-layer protocol, in lowercase: tcp or udp.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="user_id" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="user_id"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The numeric user id, or uid, is the third column of each user's entry in /etc/passwd. It represents the owner, and thus privilege level, of the specified program.</xsd:documentation>
                                           </xsd:annotation>
@@ -483,8 +615,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -514,22 +647,26 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="protocol" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The protocol entity defines a certain transport-layer protocol, in lowercase: tcp or udp.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="protocol"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The protocol entity defines a certain transport-layer protocol, in lowercase: tcp or udp.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="local_address" type="oval-def:EntityObjectIPAddressStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>This is the IP address of the network interface on which an application listens. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="local_address"
+                                                  type="oval-def:EntityObjectIPAddressStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>This is the IP address of the network interface on which an application listens. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="local_port" type="oval-def:EntityObjectIntType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>This is the TCP or UDP port on which an application would listen. Note that this is not a list -- if a program listens on multiple ports, or on a combination of TCP and UDP, each will be represented by its own object.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="local_port"
+                                                  type="oval-def:EntityObjectIntType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>This is the TCP or UDP port on which an application would listen. Note that this is not a list -- if a program listens on multiple ports, or on a combination of TCP and UDP, each will be represented by its own object.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -545,52 +682,70 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="protocol" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="protocol"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the transport-layer protocol, in lowercase: tcp or udp.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="local_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="local_address"
+                                          type="oval-def:EntityStateIPAddressStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the IP address of the network interface on which the program listens. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="local_port" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="local_port"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the TCP or UDP port on which the program listens. Note that this is not a list -- if a program listens on multiple ports, or on a combination of TCP and UDP, each will have its own entry in the table data stored by this test.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="local_full_address" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="local_full_address"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the IP address and network port on which the program listens, equivalent to local_address:local_port. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="program_name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="program_name"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the name of the communicating program.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="foreign_address" type="oval-def:EntityStateIPAddressStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="foreign_address"
+                                          type="oval-def:EntityStateIPAddressStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the IP address with which the program is communicating, or with which it will communicate, in the case of a listening server. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="foreign_port" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="foreign_port"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the TCP or UDP port to which the program communicates. In the case of a listening program accepting new connections, this is usually a *.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="foreign_full_address" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="foreign_full_address"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the IP address and network port to which the program is communicating or will accept communications from, equivalent to foreign_address:foreign_port. Note that the IP address can be IPv4 or IPv6.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="pid" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="pid" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the process ID of the process. The process in question is that of the program communicating on the network.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="user_id" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="user_id" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The numeric user id, or uid, is the third column of each user's entry in /etc/passwd. It represents the owner, and thus privilege level, of the specified program.</xsd:documentation>
                                           </xsd:annotation>
@@ -629,8 +784,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -660,12 +816,14 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="nvram_var" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation/>
-                                                      </xsd:annotation>
+                                                <xsd:element name="nvram_var"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation/>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -681,12 +839,16 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="nvram_var" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="nvram_var"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This specifies the nvram variable to check.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="nvram_value" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="nvram_value"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This is the value of the associated nvram variable.</xsd:documentation>
                                           </xsd:annotation>
@@ -737,8 +899,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -782,21 +945,25 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="key" type="oval-def:EntityObjectStringType" nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The preference key to check. If the xsi:nil attribute is set to 'true', the plist does not have any keys associated with it (i.e. it is not a CFDictionary) and the default value of the plist will be collected.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="key"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The preference key to check. If the xsi:nil attribute is set to 'true', the plist does not have any keys associated with it (i.e. it is not a CFDictionary) and the default value of the plist will be collected.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:choice>
-                                                      <xsd:element name="app_id" type="oval-def:EntityObjectStringType">
-                                                            <xsd:annotation>
-                                                                  <xsd:documentation>The unique application identifier that specifies the application to use when looking up the preference key (e.g. com.apple.Safari).</xsd:documentation>
-                                                            </xsd:annotation>
-                                                      </xsd:element>
-                                                      <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
-                                                            <xsd:annotation>
-                                                                  <xsd:documentation>The absolute path to a plist file (e.g. ~/Library/Preferences/com.apple.Safari.plist). A directory cannot be specified as a filepath.</xsd:documentation>
-                                                                  <xsd:appinfo>
+                                                  <xsd:element name="app_id"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The unique application identifier that specifies the application to use when looking up the preference key (e.g. com.apple.Safari).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="filepath"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The absolute path to a plist file (e.g. ~/Library/Preferences/com.apple.Safari.plist). A directory cannot be specified as a filepath.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                         <sch:pattern id="macos-def_plistobjfilepath">
                                                                               <sch:rule context="macos-def:plist_object/macos-def:filepath">
                                                                                     <sch:assert test="not(@operation) or @operation='equals'">
@@ -805,10 +972,11 @@
                                                                               </sch:rule>
                                                                         </sch:pattern>
                                                                   </xsd:appinfo>
-                                                            </xsd:annotation>
-                                                      </xsd:element>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
                                                 </xsd:choice>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -836,32 +1004,41 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="key" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="key" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The preference key to check.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="app_id" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="app_id" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The unique application identifier that specifies the application to use when looking up the preference key (e.g. com.apple.Safari).</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="filepath"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The absolute path to a plist file (e.g. ~/Library/Preferences/com.apple.Safari.plist).</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="instance" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="instance" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The instance of the preference key found in the plist. The first instance of a matching preference key is given the instance value of 1, the second instance of a matching preference key is given the instance value of 2, and so on.  Note that the main purpose of this entity is to provide uniqueness for the different plist_items that result from multiple instances of a given preference key in the same plist file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="type" type="macos-def:EntityStatePlistTypeType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="type"
+                                          type="macos-def:EntityStatePlistTypeType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The type of the preference key.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="value"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The value of the preference key.</xsd:documentation>
                                           </xsd:annotation>
@@ -900,8 +1077,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -931,16 +1109,19 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="key" type="oval-def:EntityObjectStringType" nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The preference key to check. If the xsi:nil attribute is set to 'true', the plist does not have any keys associated with it (i.e. it is not a CFDictionary) and the default value of the plist will be collected.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="key"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The preference key to check. If the xsi:nil attribute is set to 'true', the plist does not have any keys associated with it (i.e. it is not a CFDictionary) and the default value of the plist will be collected.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:choice>
-                                                      <xsd:element name="app_id" type="oval-def:EntityObjectStringType">
-                                                            <xsd:annotation>
-                                                                  <xsd:documentation>The unique application identifier that specifies the application to use when looking up the preference key (e.g. com.apple.Safari).</xsd:documentation>
-                                                                  <xsd:appinfo>
+                                                  <xsd:element name="app_id"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The unique application identifier that specifies the application to use when looking up the preference key (e.g. com.apple.Safari).</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                         <sch:pattern id="macos-def_plist510objappid">
                                                                               <sch:rule context="macos-def:plist510_object/macos-def:app_id">
                                                                                     <sch:assert test="not(../macos-def:key/@xsi:nil='true' or ../macos-def:key/@xsi:nil='1')">
@@ -949,12 +1130,13 @@
                                                                               </sch:rule>
                                                                         </sch:pattern>
                                                                   </xsd:appinfo>
-                                                            </xsd:annotation>
-                                                      </xsd:element>
-                                                      <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
-                                                            <xsd:annotation>
-                                                                  <xsd:documentation>The absolute path to a plist file (e.g. ~/Library/Preferences/com.apple.Safari.plist). A directory cannot be specified as a filepath.</xsd:documentation>
-                                                                  <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="filepath"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The absolute path to a plist file (e.g. ~/Library/Preferences/com.apple.Safari.plist). A directory cannot be specified as a filepath.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                         <sch:pattern id="macos-def_plist510objfilepath">
                                                                               <sch:rule context="macos-def:plist510_object/macos-def:filepath">
                                                                                     <sch:assert test="not(@operation) or @operation='equals'">
@@ -963,15 +1145,17 @@
                                                                               </sch:rule>
                                                                         </sch:pattern>
                                                                   </xsd:appinfo>
-                                                            </xsd:annotation>
-                                                      </xsd:element>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
                                                 </xsd:choice>
-                                                <xsd:element name="instance" type="oval-def:EntityObjectIntType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The instance of the preference key found in the plist. The first instance of a matching preference key is given the instance value of 1, the second instance of a matching preference key is given the instance value of 2, and so on. Instance values must be assigned using a depth-first approach. Note that the main purpose of this entity is to provide uniqueness for the different plist_items that result from multiple instances of a given preference key in the same plist file.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="instance"
+                                                  type="oval-def:EntityObjectIntType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The instance of the preference key found in the plist. The first instance of a matching preference key is given the instance value of 1, the second instance of a matching preference key is given the instance value of 2, and so on. Instance values must be assigned using a depth-first approach. Note that the main purpose of this entity is to provide uniqueness for the different plist_items that result from multiple instances of a given preference key in the same plist file.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -987,32 +1171,41 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="key" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="key" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The preference key to check.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="app_id" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="app_id" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The unique application identifier that specifies the application to use when looking up the preference key (e.g. com.apple.Safari).</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="filepath"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The absolute path to a plist file (e.g. ~/Library/Preferences/com.apple.Safari.plist).</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="instance" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="instance" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The instance of the preference key found in the plist. The first instance of a matching preference key is given the instance value of 1, the second instance of a matching preference key is given the instance value of 2, and so on. Instance values must be assigned using a depth-first approach. Note that the main purpose of this entity is to provide uniqueness for the different plist_items that result from multiple instances of a given preference key in the same plist file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="type" type="macos-def:EntityStatePlistTypeType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="type"
+                                          type="macos-def:EntityStatePlistTypeType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The type of the preference key.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="value"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The value of the preference key.</xsd:documentation>
                                           </xsd:annotation>
@@ -1063,8 +1256,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -1106,29 +1300,33 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="username" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation/>
-                                                      </xsd:annotation>
+                                                <xsd:element name="username"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation/>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="userpass" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation/>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="userpass"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation/>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="macos-def_pwpobjuserpass">
                                                                         <sch:rule context="macos-def:pwpolicy_object/macos-def:userpass">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the userpass entity of a pwpolicy_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="directory_node" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation/>
-                                                      </xsd:annotation>
+                                                <xsd:element name="directory_node"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation/>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -1156,47 +1354,63 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="username" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="username"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation/>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="userpass" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="userpass"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation/>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="directory_node" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="directory_node"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation/>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="maxChars" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="maxChars" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Maximum number of characters allowed in a password.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="maxFailedLoginAttempts" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="maxFailedLoginAttempts"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Maximum number of failed logins before the account is locked.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="minChars" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="minChars" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Minimum number of characters allowed in a password.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="passwordCannotBeName" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="passwordCannotBeName"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Defines if the password is allowed to be the same as the username or not.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="requiresAlpha" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="requiresAlpha"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Defines if the password must contain an alphabetical character or not.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="requiresNumeric" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="requiresNumeric"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Defines if the password must contain an numeric character or not.</xsd:documentation>
                                           </xsd:annotation>
@@ -1235,8 +1449,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -1266,27 +1481,32 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="target_user" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The target_user element specifies the user whose password policy information should be collected. If an operation other than equals is specified, the users on the system should be enumerated and the 'pwpolicy' command should be issued for each user that matches the target_user element.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="target_user"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The target_user element specifies the user whose password policy information should be collected. If an operation other than equals is specified, the users on the system should be enumerated and the 'pwpolicy' command should be issued for each user that matches the target_user element.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="username" type="oval-def:EntityObjectStringType"  nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The username element specifies the username of the authenticator. If the xsi:nil attribute is set to true, authentication to the directory node will not be performed (i.e. the '-a' and '-p' command line options will not be specified when issuing the 'pwpolicy' command) and the xsi:nil attribute of the userpass element should also be set to true.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="username"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The username element specifies the username of the authenticator. If the xsi:nil attribute is set to true, authentication to the directory node will not be performed (i.e. the '-a' and '-p' command line options will not be specified when issuing the 'pwpolicy' command) and the xsi:nil attribute of the userpass element should also be set to true.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="macos-def_pwp59objusername">
                                                                         <sch:rule context="macos-def:pwpolicy59_object/macos-def:username">
                                                                               <sch:assert test="not((@xsi:nil='1' or @xsi:nil='true')) or ../macos-def:userpass/@xsi:nil='true' or ../macos-def:userpass/@xsi:nil='1'"><sch:value-of select="../@id"/> - userpass entity must be nil when username entity is nil</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="userpass" type="oval-def:EntityObjectStringType"  nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The userpass element specifies the password of the authenticator as specified by the username element. If the xsi:nil attribute is set to true, authentication to the directory node will not be performed (i.e. the '-a' and '-p' command line options will not be specified when issuing the 'pwpolicy' command) and the xsi:nil attribute of the username element should also be set to true.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="userpass"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The userpass element specifies the password of the authenticator as specified by the username element. If the xsi:nil attribute is set to true, authentication to the directory node will not be performed (i.e. the '-a' and '-p' command line options will not be specified when issuing the 'pwpolicy' command) and the xsi:nil attribute of the username element should also be set to true.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="macos-def_pwp59objuserpass">
                                                                         <sch:rule context="macos-def:pwpolicy59_object/macos-def:userpass">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the userpass entity of a pwpolicy59_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
@@ -1294,14 +1514,17 @@
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="directory_node" type="oval-def:EntityObjectStringType"  nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The directory_node element specifies the directory node that you would like to retrieve the password policy information from. If the xsi:nil attribute is set to true, the default directory node is used (i.e. the '-n' command line option will not be specified when issuing the 'pwpolicy' command).</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="directory_node"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The directory_node element specifies the directory node that you would like to retrieve the password policy information from. If the xsi:nil attribute is set to true, the default directory node is used (i.e. the '-n' command line option will not be specified when issuing the 'pwpolicy' command).</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -1317,131 +1540,179 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="target_user" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="target_user"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The target_user element specifies the user whose password policy information should be collected.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="username" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="username"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The username element specifies the username of the authenticator.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="userpass" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="userpass"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The userpass element specifies the password of the authenticator as specified by the username element.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="directory_node" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="directory_node"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The directory_node element specifies the directory node that you would like to retrieve the password policy information from.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="maxChars" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="maxChars" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Maximum number of characters allowed in a password.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="maxFailedLoginAttempts" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="maxFailedLoginAttempts"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Maximum number of failed logins before the account is locked.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="minChars" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="minChars" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Minimum number of characters allowed in a password.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="passwordCannotBeName" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="passwordCannotBeName"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Defines if the password is allowed to be the same as the username or not.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="requiresAlpha" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="requiresAlpha"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Defines if the password must contain an alphabetical character or not.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="requiresNumeric" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="requiresNumeric"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Defines if the password must contain an numeric character or not.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="maxMinutesUntilChangePassword" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="maxMinutesUntilChangePassword"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Maximum number of minutes until the password must be changed.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="minMinutesUntilChangePassword" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="minMinutesUntilChangePassword"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Minimum number of minutes between password changes.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="requiresMixedCase" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="requiresMixedCase"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Defines if the password must contain upper and lower case characters or not.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="requiresSymbol" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="requiresSymbol"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Defines if the password must contain a symbol character or not.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="minutesUntilFailedLoginReset" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="minutesUntilFailedLoginReset"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Number of minutes after login has been disabled due to too many failed login attempts to wait before reenabling login.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="usingHistory" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="usingHistory"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>0 = user can reuse the current pass-word, 1 = user cannot reuse the current password, 2-15 = user cannot reuse the last n passwords.</xsd:documentation>
                                           </xsd:annotation>
-                                    </xsd:element>                                    
-                                    <xsd:element name="canModifyPasswordforSelf" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    </xsd:element>
+                                    <xsd:element name="canModifyPasswordforSelf"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>If true, the user can change the password.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="usingExpirationDate" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="usingExpirationDate"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>If true, user is required to change password on the date in expirationDateGMT</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="usingHardExpirationDate" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="usingHardExpirationDate"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>If true, user's account is disabled on the date in hardExpireDateGMT</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="expirationDateGMT" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="expirationDateGMT"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Date for the password to expire, format is: mm/dd/yyyy. NOTE: The pwpolicy command returns the year as a two digit value, but OVAL uses four digit years; the pwpolicy value is converted to an OVAL compatible value.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="hardExpireDateGMT" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="hardExpireDateGMT"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Date for the user's account to be disabled, format is: mm/dd/yyyy. NOTE: The pwpolicy command returns the year as a two digit value, but OVAL uses four digit years; the pwpolicy value is converted to an OVAL compatible value.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="maxMinutesUntilDisabled" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="maxMinutesUntilDisabled"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>User's account is disabled after this interval</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="maxMinutesOfNonUse" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="maxMinutesOfNonUse"
+                                          type="oval-def:EntityStateIntType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>User's account is disabled if it is not accessed by this interval</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="newPasswordRequired" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="newPasswordRequired"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>If true, the user will be prompted for a new password at the next authentication.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="notGuessablePattern" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="notGuessablePattern"
+                                          type="oval-def:EntityStateBoolType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation></xsd:documentation>
+                                                <xsd:documentation/>
                                           </xsd:annotation>
-                                    </xsd:element>                                    
+                                    </xsd:element>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
