@@ -1021,9 +1021,8 @@
       <!-- =============================================================================== -->
       <xsd:element name="password_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>This test gets information from /etc/passwd.  See passwd(5).</xsd:documentation>
-                  <xsd:documentation>The password test is used to check metadata associated with the UNIX password file.  Implementations are not allowed to search any other sources of account information.</xsd:documentation>
-                  <xsd:documentation>It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a password_object and the optional state element specifies the metadata to check.</xsd:documentation>
+                  <xsd:documentation>/etc/passwd. See passwd(4).</xsd:documentation>
+                  <xsd:documentation>The password test is used to check metadata associated with the UNIX password file, of the sort returned by the passwd command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a password_object and the optional state element specifies the metadata to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>password_test</oval:test>
