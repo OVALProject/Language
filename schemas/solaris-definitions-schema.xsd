@@ -803,9 +803,9 @@
                                                 <xsd:documentation>The service_state entity describes a possible state that the service may be in. Each service instance is always in a well-defined state based on its dependencies, the results of the execution of its methods, and its potential receipt of events from the contracts filesystem. The service_state values are UNINITIALIZED, OFFLINE, ONLINE, DEGRADED, MAINTENANCE, DISABLED, and LEGACY-RUN.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="protocol" type="sol-def:EntityStateSmfProtocolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="protocol" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The protocol entity describes a possible protocol supported by the service. Possible values are tcp, tcp6, tcp6only, udp, udp6, and udp6only</xsd:documentation>
+                                                <xsd:documentation>The protocol entity describes a possible protocol supported by the service.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="server_executable" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
@@ -850,50 +850,6 @@
                         <xsd:enumeration value="same">
                               <xsd:annotation>
                                     <xsd:documentation>The actual permission is the same as the expected permission.</xsd:documentation>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="">
-                              <xsd:annotation>
-                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                  </xsd:restriction>
-            </xsd:simpleContent>
-      </xsd:complexType>
-      <xsd:complexType name="EntityStateSmfProtocolType">
-            <xsd:annotation>
-                  <xsd:documentation>The EntityStateSmfProtocolType complex type defines the different values that are valid for the protocol entity of a smf_state. The empty string is also allowed as a valid value to support an empty element that is found when a variable reference is used within the type entity. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:simpleContent>
-                  <xsd:restriction base="oval-def:EntityStateStringType">
-                        <xsd:enumeration value="tcp">
-                              <xsd:annotation>
-                                    <xsd:documentation/>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="tcp6">
-                              <xsd:annotation>
-                                    <xsd:documentation/>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="tcp6only">
-                              <xsd:annotation>
-                                    <xsd:documentation>Request that service listen only for and pass on true IPv6 requests (not IPv4 mapped ones).</xsd:documentation>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="udp">
-                              <xsd:annotation>
-                                    <xsd:documentation/>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="udp6">
-                              <xsd:annotation>
-                                    <xsd:documentation/>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="udp6only">
-                              <xsd:annotation>
-                                    <xsd:documentation>Request that service listen only for and pass on true IPv6 requests (not IPv4 mapped ones).</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="">
