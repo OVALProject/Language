@@ -1021,9 +1021,8 @@
       <!-- =============================================================================== -->
       <xsd:element name="password_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>This test gets information from /etc/passwd.  See passwd(5).</xsd:documentation>
-                  <xsd:documentation>The password test is used to check metadata associated with the UNIX password file.  Implementations are not allowed to search any other sources of account information.</xsd:documentation>
-                  <xsd:documentation>It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a password_object and the optional state element specifies the metadata to check.</xsd:documentation>
+                  <xsd:documentation>/etc/passwd. See passwd(4).</xsd:documentation>
+                  <xsd:documentation>The password test is used to check metadata associated with the UNIX password file, of the sort returned by the passwd command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a password_object and the optional state element specifies the metadata to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>password_test</oval:test>
@@ -1903,8 +1902,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="shadow_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The shadow test is used to check information associated with /etc/shadow.  See shadow(5).  Implementations are not allowed to search any other sources of account information.  This file contains account passwords, password aging, and lockout information.</xsd:documentation>
-                  <xsd:documentation>It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an shadow_object and the optional state element specifies the information to check.</xsd:documentation>
+                  <xsd:documentation>The shadow test is used to check information from the /etc/shadow file for a specific user. This file contains a user's password, but also their password aging and lockout information. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an shadow_object and the optional state element specifies the information to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>shadow_test</oval:test>

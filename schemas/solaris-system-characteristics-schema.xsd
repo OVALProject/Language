@@ -266,7 +266,7 @@
                                                 <xsd:documentation>The service_state entity describes the state that the service is in.  Each service instance is always in a well-defined state based on its dependencies, the results of the execution of its methods, and its potential receipt of events from the contracts filesystem.  The service_state values are UNINITIALIZED, OFFLINE, ONLINE, DEGRADED, MAINTENANCE, DISABLED, and LEGACY-RUN.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="protocol" type="sol-sc:EntityItemSmfProtocolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="protocol" type="sol-sc:EntityItemSmfProtocolType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>The protocol entity describes the protocol supported by the service.  Possible values are tcp, tcp6, tcp6only, udp, udp6, and udp6only</xsd:documentation>
                                           </xsd:annotation>
