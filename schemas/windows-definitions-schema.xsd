@@ -7243,6 +7243,11 @@
                                 <xsd:documentation>A string the represents the SID of a particular group.  The group_sid element can be included multiple times in a system characteristic item in order to record that a user can be a member of a number of different groups. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like group that refer to items that can occur an unbounded number of times.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
+                        <xsd:element name="last_logon" type="oval-def:EntityStateIntType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
+                            </xsd:annotation>                                          
+                        </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
