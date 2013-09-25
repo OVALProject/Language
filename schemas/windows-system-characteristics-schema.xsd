@@ -2957,6 +2957,11 @@
                                                <xsd:documentation>A string that represents the SID of a particular group.  If the specified user belongs to more than one group, then multiple group_sid elements should exist. If the specified user is not a member of a single group, then a single group_sid element should exist with a status of 'does not exist'. If there is an error determining the groups that the user belongs to, then a single group_sid element should be included with a status of 'error'.</xsd:documentation>
                                          </xsd:annotation>
                                    </xsd:element>
+                                  <xsd:element name="last_logon" type="oval-sc:EntityItemIntType" minOccurs="0">
+                                       <xsd:annotation>
+                                            <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
+                                       </xsd:annotation>                                          
+                                  </xsd:element>
                              </xsd:sequence>
                        </xsd:extension>
                  </xsd:complexContent>
