@@ -547,11 +547,12 @@
     </xsd:complexType>
     <xsd:complexType name="PossibleRestrictionType">
         <xsd:annotation>
-            <xsd:documentation>The PossibleRestrictionType complex type outlines a range of possible expected value of an external variable. Each possible_restriction element contains an unbounded list of child restriction elements that each specify a range that an actual value may fall in. For example, a restriction element may specify that a value must be less than 10. When multiple restriction elements are present, a valid possible value would have to meet every restriction. One can think of the possible_value and possible_restriction elements as an OR'd list of possible values, and the restriction elements as an AND'd list of value descriptions. Please refer to the description of the RestrictionType complex type for more information. The required hint attribute gives a short description of what the value means or represents.</xsd:documentation>
+            <xsd:documentation>The PossibleRestrictionType complex type outlines a range of possible expected value of an external variable. Each possible_restriction element contains an unbounded list of child restriction elements that each specify a range that an actual value may fall in. For example, a restriction element may specify that a value must be less than 10. When multiple restriction elements are present, a valid possible value's evaluation is based on the operator attribute. The operator attribute is set to AND by default. Other valid operation values are explained in the description of the OperatorEnumeration simple type. One can think of the possible_value and possible_restriction elements as an OR'd list of possible values, with the restriction elements as using the selected operation to evaluate its own list of value descriptions. Please refer to the description of the RestrictionType complex type for more information. The required hint attribute gives a short description of what the value means or represents.</xsd:documentation>
         </xsd:annotation>
         <xsd:choice>
             <xsd:element name="restriction" type="oval-def:RestrictionType" minOccurs="1" maxOccurs="unbounded"/>
         </xsd:choice>
+        <xsd:attribute name="operator" type="oval:OperatorEnumeration" use="optional" default="AND"/>
         <xsd:attribute name="hint" type="xsd:string" use="required"/>
     </xsd:complexType>
     <xsd:complexType name="RestrictionType">
