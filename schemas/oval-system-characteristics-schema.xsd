@@ -349,7 +349,7 @@
             <xsd:appinfo>
                 <sch:pattern id="oval-sc_entity_rules">
                     <sch:rule context="oval-sc:system_data/*/*|oval-sc:system_data/*/*/*">
-                        <sch:assert test="not(@status) or @status='exists' or .=''">item <sch:value-of select="../@id"/> - a value for the <sch:value-of select="name()"/> entity should only be supplied if the status attribute is 'exists'</sch:assert>
+                        <sch:assert flag="WARNING" test="not(@status) or @status='exists' or .=''">Warning: item <sch:value-of select="../@id"/> - a value for the <sch:value-of select="name()"/> entity should only be supplied if the status attribute is 'exists'</sch:assert>
                         <!--<sch:assert test="if (@datatype='binary') then (matches(., '^[0-9a-fA-F]*$')) else (1=1)"><sch:value-of select="../@id"/> - A value of '<sch:value-of select="."/>' for the <sch:value-of select="name()"/> entity is not valid given a datatype of binary.</sch:assert>-->
                         <!--<sch:assert test="if (@datatype='boolean') then (matches(., '^true$|^false$|^1$|^0$')) else (1=1)"><sch:value-of select="../@id"/> - A value of '<sch:value-of select="."/>' for the <sch:value-of select="name()"/> entity is not valid given a datatype of boolean.</sch:assert>-->
                         <!--<sch:assert test="if (@datatype='evr_string') then (matches(., '^[^:\-]*:[^:\-]*-[^:\-]*$')) else (1=1)"><sch:value-of select="../@id"/> - A value of '<sch:value-of select="."/>' for the <sch:value-of select="name()"/> entity is not valid given a datatype of evr_string.</sch:assert>-->
