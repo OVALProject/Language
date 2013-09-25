@@ -1779,6 +1779,11 @@
                                         <xsd:documentation>The real_number_of_directory_entries entity is the real number of data directory entries in the remainder of the optional header calculated by enumerating the directory entries.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
+                              <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The windows view value from which this OVAL Item was collected. This is used to indicate from which view (32-bit or 64-bit), the associated Item was collected. A value of '32_bit' indicates the Item was collected from the 32-bit view.  A value of '64-bit' indicates the Item was collected from the 64-bit view. Omitting this entity removes any assertion about which view the Item was collected from, and therefore it is strongly suggested that this entity be set.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
