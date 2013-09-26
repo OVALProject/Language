@@ -3934,11 +3934,6 @@
                                                 <xsd:documentation>The real_number_of_directory_entries entity is the real number of data directory entries in the remainder of the optional header calculated by enumerating the directory entries.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="windows_view" type="win-def:EntityStateWindowsViewType" minOccurs="0">
-                                          <xsd:annotation>
-                                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.</xsd:documentation>
-                                          </xsd:annotation>
-                                    </xsd:element>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
