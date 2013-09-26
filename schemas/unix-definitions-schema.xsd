@@ -2021,7 +2021,7 @@
                                     </xsd:element>
                                     <xsd:element name="flag" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation> Flag is used for failed login count.  The low order four bits are used and the remainder is  reserved  for shadow file  future use.</xsd:documentation>
+                                                <xsd:documentation>This is a reserved field that the shadow file may use in the future.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="encrypt_method" type="unix-def:EntityStateEncryptMethodType" minOccurs="0" maxOccurs="1">
