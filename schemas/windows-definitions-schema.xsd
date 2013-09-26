@@ -3560,15 +3560,6 @@
       <xsd:element name="peheader_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
                   <xsd:documentation>The peheader_test is used to check data from a Portable Executable file header. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a peheader_object and the optional state element specifies the metadata to check.</xsd:documentation>
-                  <xsd:documentation>The peheader_state defines the different metadata associated with the header of a PE file. Please refer to the individual elements in the schema for more details about what each represents. For more information, please see the documentation for the IMAGE_FILE_HEADER and IMAGE_OPTIONAL_HEADER structures.</xsd:documentation>
-                  <xsd:appinfo>
-                        <oval:element_mapping>
-                              <oval:test>peheader_test</oval:test>
-                              <oval:object>peheader_object</oval:object>
-                              <oval:state>peheader_state</oval:state>
-                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">peheader_item</oval:item>
-                        </oval:element_mapping>
-                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -3654,6 +3645,7 @@
       </xsd:element>
       <xsd:element name="peheader_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
+                  <xsd:documentation>The peheader_state defines the different metadata associated with the header of a PE file. Please refer to the individual elements in the schema for more details about what each represents. For more information, please see the documentation for the IMAGE_FILE_HEADER and IMAGE_OPTIONAL_HEADER structures.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -3952,24 +3944,6 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
-      <xsd:complexType name="PeheaderBehaviors">
-            <xsd:annotation>
-                  <xsd:documentation>The RegistryBehaviors complex type defines a number of behaviors that allow a more detailed definition of the registry_object being specified.  Note that using these behaviors may result in some unique results.  For example, a double negative type condition might be created where an object entity says include everything except a specific item, but a behavior is used that might then add that item back in.</xsd:documentation>
-            </xsd:annotation>
-
-            <xsd:attribute name="windows_view" use="optional" default="64_bit">
-                  <xsd:annotation>
-                        <xsd:documentation>64-bit versions of Windows provide an alternate Peheader views to 32-bit applications. This behavior allows the OVAL Object to specify which view should be examined. This behavior only applies to 64-bit Windows, and must not be applied on other platforms. </xsd:documentation>
-                        <xsd:documentation>Note that the values have the following meaning: '64_bit' - Indicates that the 64-bit view on 64-bit Windows operating systems must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. '32_bit' - Indicates that the 32-bit view must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. It is recommended that the corresponding 'windows_view' entity be set on the OVAL Items that are collected when this behavior is used to distinguish between the OVAL Items that are collected in the 32-bit or 64-bit views.</xsd:documentation>
-                  </xsd:annotation>
-                  <xsd:simpleType>
-                        <xsd:restriction base="xsd:string">
-                              <xsd:enumeration value="32_bit"/>
-                              <xsd:enumeration value="64_bit"/>
-                        </xsd:restriction>
-                  </xsd:simpleType>
-            </xsd:attribute>
-      </xsd:complexType>
       <!-- =============================================================================== -->
       <!-- =================================  PORT TEST  ================================= -->
       <!-- =============================================================================== -->
