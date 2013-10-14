@@ -7558,7 +7558,7 @@
                                     </xsd:element>
                                     <xsd:element name="file_sequential_write_once" type="oval-def:EntityStateBoolType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The file system supports one time writes in dequential order.</xsd:documentation>
+                                                <xsd:documentation>The file system supports one time writes in sequential order.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="file_supports_transactions" type="oval-def:EntityStateBoolType" minOccurs="0">

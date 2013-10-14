@@ -3075,7 +3075,7 @@
                               </xsd:element>
                               <xsd:element name="file_sequential_write_once" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The file system supports one time writes in dequential order.</xsd:documentation>
+                                        <xsd:documentation>The file system supports one time writes in sequential order.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="file_supports_transactions" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
