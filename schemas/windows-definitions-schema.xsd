@@ -7556,6 +7556,36 @@
                                                 <xsd:documentation>The specified volume is read-only.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="file_sequential_write_once" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports one time writes in sequential order.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_transactions" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports transaction processing.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_hard_links" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports direct links to other devices and partitions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_extended_attributes" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports extended attributes.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_open_by_file_id" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports fileID.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_usn_journal" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports update sequence number journals.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
