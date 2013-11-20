@@ -800,9 +800,9 @@
                                         <xsd:documentation>This specifies when will the account's password expire, in days since 1/1/1970.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="flag" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="flag" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This is a reserved field that the shadow file may use in the future.  An numeric value should be used for this field.</xsd:documentation>
+                                        <xsd:documentation>This is a reserved field that the shadow file may use in the future.  A numeric value should be used for this field.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="encrypt_method" type="unix-sc:EntityItemEncryptMethodType" minOccurs="0" maxOccurs="1">
