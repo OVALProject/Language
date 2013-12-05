@@ -328,14 +328,14 @@
                                                 <xsd:documentation>Has the actual others exec permission changed from the expected others exec permission?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="user_differs"
+                                    <xsd:element name="owner_differs"
                                           type="oval-def:EntityStateBoolType" minOccurs="0"
                                           maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual user changed from the expected user?</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element minOccurs="0" maxOccurs="1" name="actual_user"
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="actual_owner"
                                           type="oval-def:EntityStateIntType">
                                           <xsd:annotation>
                                                 <xsd:documentation>The actual user of the file/directory.</xsd:documentation>
