@@ -341,7 +341,7 @@
                                                 <xsd:documentation>The actual user of the file/directory.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="expected_owner"
+                                    <xsd:element name="expected_user"
                                           type="oval-def:EntityStateIntType" minOccurs="0"
                                           maxOccurs="1">
                                           <xsd:annotation>
