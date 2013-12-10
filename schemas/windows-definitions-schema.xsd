@@ -4611,7 +4611,7 @@
                                                 <xsd:element name="behaviors" type="win-def:RegistryBehaviors" minOccurs="0"/>
                                                 <xsd:element name="hive" type="win-def:EntityObjectRegistryHiveType">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS.</xsd:documentation>
+                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_USER_LOCAL_SETTINGS.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="key" type="oval-def:EntityObjectStringType" nillable="true">
@@ -4650,7 +4650,7 @@
                               <xsd:sequence>
                                     <xsd:element name="hive" type="win-def:EntityStateRegistryHiveType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS.</xsd:documentation>
+                                                <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_USER_LOCAL_SETTINGS.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="key" type="oval-def:EntityStateStringType" minOccurs="0">
@@ -4796,7 +4796,7 @@
                                                 <xsd:element name="behaviors" type="win-def:RegkeyAuditPermissions53Behaviors" minOccurs="0"/>
                                                 <xsd:element name="hive" type="win-def:EntityObjectRegistryHiveType">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS.</xsd:documentation>
+                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_USER_LOCAL_SETTINGS.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="key" type="oval-def:EntityObjectStringType" nillable="true">
@@ -5083,7 +5083,7 @@
                                                 <xsd:element name="behaviors" type="win-def:RegkeyAuditPermissionsBehaviors" minOccurs="0"/>
                                                 <xsd:element name="hive" type="win-def:EntityObjectRegistryHiveType">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS.</xsd:documentation>
+                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_USER_LOCAL_SETTINGS.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="key" type="oval-def:EntityObjectStringType">
@@ -5366,7 +5366,7 @@
                                                 <xsd:element name="behaviors" type="win-def:RegkeyEffectiveRights53Behaviors" minOccurs="0"/>
                                                 <xsd:element name="hive" type="win-def:EntityObjectRegistryHiveType">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS.</xsd:documentation>
+                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_USER_LOCAL_SETTINGS.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="key" type="oval-def:EntityObjectStringType" nillable="true">
@@ -5651,7 +5651,7 @@
                                                 <xsd:element name="behaviors" type="win-def:RegkeyEffectiveRightsBehaviors" minOccurs="0"/>
                                                 <xsd:element name="hive" type="win-def:EntityObjectRegistryHiveType">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS.</xsd:documentation>
+                                                            <xsd:documentation>The hive that the registry key belongs to. This is restricted to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_USER_LOCAL_SETTINGS.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="key" type="oval-def:EntityObjectStringType">
@@ -8639,7 +8639,7 @@
       </xsd:complexType>
       <xsd:complexType name="EntityObjectRegistryHiveType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityObjectRegistryHiveType restricts a string value to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS. These values describe the possible hives in the registry. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+                  <xsd:documentation>The EntityObjectRegistryHiveType restricts a string value to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_USER_LOCAL_SETTINGS. These values describe the possible hives in the registry. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-def:EntityObjectStringType">
@@ -8668,6 +8668,11 @@
                                     <xsd:documentation>This registry subtree contains user-specific data.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
+                        <xsd:enumeration value="HKEY_CURRENT_USER_LOCAL_SETTINGS">
+                              <xsd:annotation>
+                                    <xsd:documentation>Registry entries subordinate to this key define preferences of the current user that are local to the machine. These entries are not included in the per-user registry portion of a roaming user profile. This key is supported starting with Windows 7 and Windows Server 2008 R2.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                         <xsd:enumeration value="">
                               <xsd:annotation>
                                     <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
@@ -8678,7 +8683,7 @@
       </xsd:complexType>
       <xsd:complexType name="EntityStateRegistryHiveType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityStateRegistryHiveType restricts a string value to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, and HKEY_USERS. These values describe the possible hives in the registry. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+                  <xsd:documentation>The EntityStateRegistryHiveType restricts a string value to a specific set of values: HKEY_CLASSES_ROOT, HKEY_CURRENT_CONFIG, HKEY_CURRENT_USER, HKEY_LOCAL_MACHINE, HKEY_USERS, and HKEY_CURRENT_USER_LOCAL_SETTINGS. These values describe the possible hives in the registry. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-def:EntityStateStringType">
@@ -8705,6 +8710,11 @@
                         <xsd:enumeration value="HKEY_USERS">
                               <xsd:annotation>
                                     <xsd:documentation>This registry subtree contains user-specific data.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="HKEY_CURRENT_USER_LOCAL_SETTINGS">
+                              <xsd:annotation>
+                                    <xsd:documentation>Registry entries subordinate to this key define preferences of the current user that are local to the machine. These entries are not included in the per-user registry portion of a roaming user profile. This key is supported starting with Windows 7 and Windows Server 2008 R2.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="">
