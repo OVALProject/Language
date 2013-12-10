@@ -6,8 +6,8 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>UNIX Definition</schema>
-                  <version>5.11 Draft 1</version>
-                  <date>2/20/2013 5:18:14 PM</date>
+                  <version>5.11 Draft 2</version>
+                  <date>9/25/2013 3:41:26 PM</date>
                   <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="unix-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix"/>
@@ -451,7 +451,7 @@
             </xsd:attribute>
             <xsd:attribute name="recurse_file_system" use="optional" default="all">
                   <xsd:annotation>
-                        <xsd:documentation>'recurse_file_system' defines the file system limitation of any searching and applies to all operations as specified on the path or filepath entity. The value of 'local' limits the search scope to local file systems (as opposed to file systems mounted from an external system). The value of 'defined' keeps any recursion within the file system that the file_object (path+filename or filepath) has specified. The value of 'defined' only applies when an equality operation is used for searching because the path or filepath entity must explicitly define a file system. The default value is 'all' meaning to search all available file systems for data collection.</xsd:documentation>
+                        <xsd:documentation>'recurse_file_system' defines the file system limitation of any searching and applies to all operations as specified on the path or filepath entity. The value of 'local' limits the search scope to local file systems (as opposed to file systems mounted from an external system). The value of 'defined' keeps any recursion within the file system that the file_object (path+filename or filepath) has specified. For example, if the path specified was "/", you would search only the filesystem mounted there, not other filesystems mounted to descendant paths. The value of 'defined' only applies when an equality operation is used for searching because the path or filepath entity must explicitly define a file system. The default value is 'all' meaning to search all available file systems for data collection.</xsd:documentation>
                         <xsd:documentation>Note that in most cases it is recommended that the value of 'local' be used to ensure that file system searching is limited to only the local file systems. Searching 'all' file systems may have performance implications.</xsd:documentation>
                   </xsd:annotation>
                   <xsd:simpleType>
@@ -871,17 +871,17 @@
                                     </xsd:element>
                                     <xsd:element name="server_arguments" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The arguments passed to the server program starting with argv[0].</xsd:documentation>
+                                                <xsd:documentation>The arguments for running the service.  These are either passed to the server program invoked by inetd, or used to configure a service provided by inetd.  In the case of server programs, the arguments shall begin with argv[0], which is typically the name of the program.  In the case of a service provided by inted, the first argument shall be the word "internal".</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="endpoint_type" type="unix-def:EntityStateEndpointType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The type of socket established by the service for communications.</xsd:documentation>
+                                                <xsd:documentation>The endpoint type (aka, socket type) associated with the service.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="exec_as_user" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The user name, and optional group name, that the server will run as when it starts up.</xsd:documentation>
+                                                <xsd:documentation>The user id of the user the server program should run under.  (This allows for running with less permission than root.)</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="wait_status" type="unix-def:EntityStateWaitStatusType" minOccurs="0" maxOccurs="1">

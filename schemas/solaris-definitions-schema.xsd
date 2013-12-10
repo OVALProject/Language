@@ -6,8 +6,8 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Solaris Definition</schema>
-                  <version>5.11 Draft 1</version>
-                  <date>2/20/2013 5:18:14 PM</date>
+                  <version>5.11 Draft 2</version>
+                  <date>9/25/2013 3:41:26 PM</date>
                   <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="sol-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris"/>
@@ -207,7 +207,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="package_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The package test is used to check information associated with different packages installed on the system. The information used by this test is modeled after the /usr/bin/pkginfo command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an inetd_object and the optional state element specifies the information to check.</xsd:documentation>
+                  <xsd:documentation>The package test is used to check information associated with different SVR4 packages installed on the system. Image Packaging System (IPS) packages are not supported by this test. The information used by this test is modeled after the /usr/bin/pkginfo command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an package_object and the optional state element specifies the information to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>package_test</oval:test>
@@ -242,7 +242,7 @@
       </xsd:element>
       <xsd:element name="package_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The package_object element is used by a package test to define the packages to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>The package_object element is used by a package test to define the SVR4 packages to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>A package object consists of a single pkginst entity that identifies the package to be used.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="sol-def_package_object_verify_filter_state">
@@ -280,7 +280,7 @@
       </xsd:element>
       <xsd:element name="package_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The package_state element defines the different information associated with packages installed on the system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The package_state element defines the different information associated with SVR4 packages installed on the system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -326,7 +326,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="packagecheck_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The packagecheck_test is used to verify the integrity of an installed Solaris package.  The information used by this test is modeled after the pkgchk command. For more information, see pkgchk(1M). It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a packagecheck_object and the optional packagecheck_state element specifies the data to check.</xsd:documentation>
+                  <xsd:documentation>The packagecheck_test is used to verify the integrity of an installed Solaris SVR4 package. Image Packaging System (IPS) packages are not supported by this test. The information used by this test is modeled after the pkgchk command. For more information, see pkgchk(1M). It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a packagecheck_object and the optional packagecheck_state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>packagecheck_test</oval:test>
@@ -361,7 +361,7 @@
       </xsd:element>
       <xsd:element name="packagecheck_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The packagecheck_object element is used by a packagecheck_test to define the packages to be verified. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>The packagecheck_object element is used by a packagecheck_test to define the SVR4 packages to be verified. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="sol-def_packagecheck_object_verify_filter_state">
                               <sch:rule context="sol-def:packagecheck_object//oval-def:filter">
@@ -404,7 +404,7 @@
       </xsd:element>
       <xsd:element name="packagecheck_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The package_state element defines the different verification information associated with packages installed on the system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The package_state element defines the different verification information associated with SVR4 packages installed on the system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -487,7 +487,7 @@
       </xsd:element>
       <xsd:complexType name="PackageCheckBehaviors">
             <xsd:annotation>
-                  <xsd:documentation>The PackageCheckBehaviors complex type defines a set of behaviors that for controlling how installed packages are checked. These behaviors align with the options of the pkgchk command (specifically '-a', '-c', and '-n').</xsd:documentation>
+                  <xsd:documentation>The PackageCheckBehaviors complex type defines a set of behaviors that for controlling how installed SVR4 packages are checked. These behaviors align with the options of the pkgchk command (specifically '-a', '-c', and '-n').</xsd:documentation>
             </xsd:annotation>
             <xsd:attribute name="fileattributes_only" use="optional" type="xsd:boolean" default="false">
                   <xsd:annotation>
@@ -510,7 +510,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="patch54_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The patch test is used to check information associated with different patches installed on the system. The information being tested is based off the /usr/bin/showrev -p command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an inetd_object and the optional state element specifies the information to check.</xsd:documentation>
+                  <xsd:documentation>The patch test is used to check information associated with different patches for SVR4 packages installed on the system. Image Packaging System (IPS) packages do not support patches and are not supported by this test. The information being tested is based off the /usr/bin/showrev -p command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an inetd_object and the optional state element specifies the information to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>patch54_test</oval:test>
@@ -670,7 +670,7 @@
       </xsd:element>
       <xsd:element name="patch_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The patch_state element defines the different information associated with a specific patch installed on the system. Patches are identified by unique alphanumeric strings, with the patch base code first, a hyphen, and a number that represents the patch revision number. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The patch_state element defines the different information associated with a specific patch for an SVR4 package installed on the system. Patches are identified by unique alphanumeric strings, with the patch base code first, a hyphen, and a number that represents the patch revision number. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -803,9 +803,9 @@
                                                 <xsd:documentation>The service_state entity describes a possible state that the service may be in. Each service instance is always in a well-defined state based on its dependencies, the results of the execution of its methods, and its potential receipt of events from the contracts filesystem. The service_state values are UNINITIALIZED, OFFLINE, ONLINE, DEGRADED, MAINTENANCE, DISABLED, and LEGACY-RUN.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="protocol" type="sol-def:EntityStateSmfProtocolType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="protocol" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The protocol entity describes a possible protocol supported by the service. Possible values are tcp, tcp6, tcp6only, udp, udp6, and udp6only</xsd:documentation>
+                                                <xsd:documentation>The protocol entity describes a possible protocol supported by the service.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="server_executable" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
@@ -850,50 +850,6 @@
                         <xsd:enumeration value="same">
                               <xsd:annotation>
                                     <xsd:documentation>The actual permission is the same as the expected permission.</xsd:documentation>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="">
-                              <xsd:annotation>
-                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                  </xsd:restriction>
-            </xsd:simpleContent>
-      </xsd:complexType>
-      <xsd:complexType name="EntityStateSmfProtocolType">
-            <xsd:annotation>
-                  <xsd:documentation>The EntityStateSmfProtocolType complex type defines the different values that are valid for the protocol entity of a smf_state. The empty string is also allowed as a valid value to support an empty element that is found when a variable reference is used within the type entity. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
-            </xsd:annotation>
-            <xsd:simpleContent>
-                  <xsd:restriction base="oval-def:EntityStateStringType">
-                        <xsd:enumeration value="tcp">
-                              <xsd:annotation>
-                                    <xsd:documentation/>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="tcp6">
-                              <xsd:annotation>
-                                    <xsd:documentation/>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="tcp6only">
-                              <xsd:annotation>
-                                    <xsd:documentation>Request that service listen only for and pass on true IPv6 requests (not IPv4 mapped ones).</xsd:documentation>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="udp">
-                              <xsd:annotation>
-                                    <xsd:documentation/>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="udp6">
-                              <xsd:annotation>
-                                    <xsd:documentation/>
-                              </xsd:annotation>
-                        </xsd:enumeration>
-                        <xsd:enumeration value="udp6only">
-                              <xsd:annotation>
-                                    <xsd:documentation>Request that service listen only for and pass on true IPv6 requests (not IPv4 mapped ones).</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="">

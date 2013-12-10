@@ -6,8 +6,8 @@
           <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Windows System Characteristics</schema>
-               <version>5.11 Draft 1</version>
-               <date>2/20/2013 5:18:14 PM</date>
+               <version>5.11 Draft 2</version>
+               <date>9/25/2013 3:41:26 PM</date>
                 <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="win-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"/>
@@ -1419,7 +1419,7 @@
                               </xsd:element>
                               <xsd:element name="id" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1" nillable="true">
                                    <xsd:annotation>
-                                        <xsd:documentation>The id element specifies a particular object under the metabase key. If the xsi:nil attribute is set to true, then the item being represented is the higher level metabase key. Using xsi:nil here will result in a status of 'does not exist' for the other entities associated with this item since these entities are not associated with a key by itself.</xsd:documentation>
+                                        <xsd:documentation>The id element specifies a particular object under the metabase key. If the xsi:nil attribute is set to true, then the item being represented is the higher level metabase key. Using xsi:nil here will result in a status of 'not collected' for the other entities associated with this item since these entities are not associated with a key by itself.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
@@ -1429,7 +1429,7 @@
                               </xsd:element>
                               <xsd:element name="user_type" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The user_type element is a DWORD that specifies the user type of the data. See the METADATA_RECORD structure.</xsd:documentation>
+                                        <xsd:documentation>The user_type element is an unsigned 32-bit integer (DWORD) that specifies the user type of the data. See the METADATA_RECORD structure.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="data_type" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
@@ -1526,32 +1526,32 @@
                               </xsd:element>
                               <xsd:element name="target_machine_type" type="win-sc:EntityItemPeTargetMachineType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The target_machine_type entity is a WORD that specifies the target architecture that the file is intended for.</xsd:documentation>
+                                        <xsd:documentation>The target_machine_type entity is an unsigned 16-bit integer (WORD) that specifies the target architecture that the file is intended for.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="number_of_sections" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The number_of_sections entity is a WORD that specifies the number of sections in the file.</xsd:documentation>
+                                        <xsd:documentation>The number_of_sections entity is an unsigned 16-bit integer (WORD) that specifies the number of sections in the file.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="time_date_stamp" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the time that the linker produced the file. The value is represented as the number of seconds since January 1, 1970, 00:00:00.</xsd:documentation>
+                                        <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the time that the linker produced the file. The value is represented as the number of seconds since January 1, 1970, 00:00:00.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="pointer_to_symbol_table" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The pointer_to_symbol_table entity is a DWORD that specifies the file offset of the COFF symbol table.</xsd:documentation>
+                                        <xsd:documentation>The pointer_to_symbol_table entity is an unsigned 32-bit integer (DWORD) that specifies the file offset of the COFF symbol table.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="number_of_symbols" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The number_of_symbols entity is a DWORD that specifies the number of symbols in the COFF symbol table.</xsd:documentation>
+                                        <xsd:documentation>The number_of_symbols entity is an unsigned 32-bit integer (DWORD) that specifies the number of symbols in the COFF symbol table.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_optional_header" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The size_of_optional_header entity is a DWORD that specifies the size of an optional header in bytes.</xsd:documentation>
+                                        <xsd:documentation>The size_of_optional_header entity is an unsigned 32-bit integer (DWORD) that specifies the size of an optional header in bytes.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="image_file_relocs_stripped" type="oval-sc:EntityItemBoolType" default="false" minOccurs="0" maxOccurs="1">
@@ -1631,7 +1631,7 @@
                               </xsd:element>
                               <xsd:element name="magic_number" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The magic_number entity is a WORD that specifies the state of the image file.</xsd:documentation>
+                                        <xsd:documentation>The magic_number entity is an unsigned 16-bit integer (WORD) that specifies the state of the image file.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="major_linker_version" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -1646,132 +1646,132 @@
                               </xsd:element>
                               <xsd:element name="size_of_code" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The size_of_code entity is a DWORD that specifies the total size of all of the code sections.</xsd:documentation>
+                                        <xsd:documentation>The size_of_code entity is an unsigned 32-bit integer (DWORD) that specifies the total size of all of the code sections.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_initialized_data" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The size_of_initialized_data entity is a DWORD that specifies the total size of all of the sections that are composed of initialized data.</xsd:documentation>
+                                        <xsd:documentation>The size_of_initialized_data entity is an unsigned 32-bit integer (DWORD) that specifies the total size of all of the sections that are composed of initialized data.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_uninitialized_data" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The size_of_uninitialized_data entity is a DWORD that specifies the total size of all of the sections that are composed of uninitialized data.</xsd:documentation>
+                                        <xsd:documentation>The size_of_uninitialized_data entity is an unsigned 32-bit integer (DWORD) that specifies the total size of all of the sections that are composed of uninitialized data.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="address_of_entry_point" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The address_of_entry_point entity is a DWORD that specifies the address where the loader will begin execution.</xsd:documentation>
+                                        <xsd:documentation>The address_of_entry_point entity is an unsigned 32-bit integer (DWORD) that specifies the address where the loader will begin execution.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="base_of_code" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The base_of_code entity is a DWORD that specifies the relative virtual address where the file's code section begins.</xsd:documentation>
+                                        <xsd:documentation>The base_of_code entity is an unsigned 32-bit integer (DWORD) that specifies the relative virtual address where the file's code section begins.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="base_of_data" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The base_of_data entity is a DWORD that specifies the relative virtual address where the file's data section begins.</xsd:documentation>
+                                        <xsd:documentation>The base_of_data entity is an unsigned 32-bit integer (DWORD) that specifies the relative virtual address where the file's data section begins.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="image_base_address" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The image_base_address entity is a DWORD that specifies the preferred address fo the first byte of the image when it is loaded into memory.</xsd:documentation>
+                                        <xsd:documentation>The image_base_address entity is an unsigned 32-bit integer (DWORD) that specifies the preferred address fo the first byte of the image when it is loaded into memory.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="section_alignment" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The section_alignment entity is a DWORD that specifies the alignment of the sections loaded into memory.</xsd:documentation>
+                                        <xsd:documentation>The section_alignment entity is an unsigned 32-bit integer (DWORD) that specifies the alignment of the sections loaded into memory.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="file_alignment" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The file_alignment entity is a DWORD that specifies the alignment of the raw data of sections in the image file.</xsd:documentation>
+                                        <xsd:documentation>The file_alignment entity is an unsigned 32-bit integer (DWORD) that specifies the alignment of the raw data of sections in the image file.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="major_operating_system_version" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The major_operating_system_version entity is a WORD that specifies the major version of the operating system required to use this executable.</xsd:documentation>
+                                        <xsd:documentation>The major_operating_system_version entity is an unsigned 16-bit integer (WORD) that specifies the major version of the operating system required to use this executable.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="minor_operating_system_version" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The minor_operating_system_version entity is a WORD that specifies the minor version of the operating system required to use this executable.</xsd:documentation>
+                                        <xsd:documentation>The minor_operating_system_version entity is an unsigned 16-bit integer (WORD) that specifies the minor version of the operating system required to use this executable.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="major_image_version" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The major_image_version entity is a WORD that specifies the major version number of the image.</xsd:documentation>
+                                        <xsd:documentation>The major_image_version entity is an unsigned 16-bit integer (WORD) that specifies the major version number of the image.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="minor_image_version" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The minor_image_version entity is a DWORD that specifies the minor version number of the image.</xsd:documentation>
+                                        <xsd:documentation>The minor_image_version entity is an unsigned 32-bit integer (DWORD) that specifies the minor version number of the image.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="major_subsystem_version" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The major_subsystem_version entity is a WORD that specifies the major version of the subsystem required to run the executable.</xsd:documentation>
+                                        <xsd:documentation>The major_subsystem_version entity is an unsigned 16-bit integer (WORD) that specifies the major version of the subsystem required to run the executable.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="minor_susbsystem_version" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The minor_subsystem_version entity is a WORD that specifies the minor version of the subsystem required to run the executable.</xsd:documentation>
+                                        <xsd:documentation>The minor_subsystem_version entity is an unsigned 16-bit integer (WORD) that specifies the minor version of the subsystem required to run the executable.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_image" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The size_of_image entity is a DWORD that specifies the total size of the image including all of the headers.</xsd:documentation>
+                                        <xsd:documentation>The size_of_image entity is an unsigned 32-bit integer (DWORD) that specifies the total size of the image including all of the headers.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_headers" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The size_of_headers entity is a DWORD that specifies the total combined size of the MS-DOS stub, PE header, and the section headers.</xsd:documentation>
+                                        <xsd:documentation>The size_of_headers entity is an unsigned 32-bit integer (DWORD) that specifies the total combined size of the MS-DOS stub, PE header, and the section headers.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="checksum" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The checksum entity is a DWORD that specifies the checksum of the image file.</xsd:documentation>
+                                        <xsd:documentation>The checksum entity is an unsigned 32-bit integer (DWORD) that specifies the checksum of the image file.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="subsystem" type="win-sc:EntityItemPeSubsystemType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The subsystem entity is a DWORD that specifies the type of subsystem that the executable uses for its user interface.</xsd:documentation>
+                                        <xsd:documentation>The subsystem entity is an unsigned 32-bit integer (DWORD) that specifies the type of subsystem that the executable uses for its user interface.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="dll_characteristics" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="unbounded">
                                    <xsd:annotation>
-                                        <xsd:documentation>The dll_characteristics entity is a DWORD that specifies the set of flags indicating the circumstances under which a DLL's initialization function will be called..</xsd:documentation>
+                                        <xsd:documentation>The dll_characteristics entity is an unsigned 32-bit integer (DWORD) that specifies the set of flags indicating the circumstances under which a DLL's initialization function will be called..</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_stack_reserve" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the number of bytes to reserve for the stack.</xsd:documentation>
+                                        <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the number of bytes to reserve for the stack.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_stack_commit" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the number of bytes to commit for the stack.</xsd:documentation>
+                                        <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the number of bytes to commit for the stack.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_heap_reserve" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the number of bytes to reserve for the local heap.</xsd:documentation>
+                                        <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the number of bytes to reserve for the local heap.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="size_of_heap_commit" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the number of bytes to commit for the local heap.</xsd:documentation>
+                                        <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the number of bytes to commit for the local heap.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="loader_flags" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The loader_flags entity is a DWORD that specifies the loader flags of the header.</xsd:documentation>
+                                        <xsd:documentation>The loader_flags entity is an unsigned 32-bit integer (DWORD) that specifies the loader flags of the header.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="number_of_rva_and_sizes" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The number_of_rva_and_sizes entity is a DWORD that specifies the number of directory entries in the remainder of the optional header.</xsd:documentation>
+                                        <xsd:documentation>The number_of_rva_and_sizes entity is an unsigned 32-bit integer (DWORD) that specifies the number of directory entries in the remainder of the optional header.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="real_number_of_directory_entries" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -2005,12 +2005,12 @@
                               </xsd:element>
                               <xsd:element name="key" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1" nillable="true">
                                    <xsd:annotation>
-                                        <xsd:documentation>This element describes a registry key to be gathered. Note that the hive portion of the string should not be inclueded, as this data can be found under the hive element. If the xsi:nil attribute is set to true, then the item being represented is the higher level hive. Using xsi:nil here will result in a status of 'does not exist' for the type, and value entities since these entities are not associated with a hive by itself.</xsd:documentation>
+                                        <xsd:documentation>This element describes a registry key to be gathered. Note that the hive portion of the string should not be included, as this data can be found under the hive element. If the xsi:nil attribute is set to true, then the item being represented is the higher level hive or lower level name. Using xsi:nil here will result in a status of 'not collected' for this entity since the item is specific to a hive or name.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1" nillable="true">
                                    <xsd:annotation>
-                                        <xsd:documentation>This element describes the name of a registry key. If the xsi:nil attribute is set to true, then the item being represented is the higher level key. Using xsi:nil here will result in a status of 'does not exist' for the type, and value entities since these entities are not associated with a key by itself.</xsd:documentation>
+                                        <xsd:documentation>This element describes the name of a registry key. If the xsi:nil attribute is set to true, then the item being represented is the higher level key or hive. Using xsi:nil here will result in a status of 'not collected' since the item is specific to a key or hive.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="last_write_time" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -2025,7 +2025,7 @@
                               </xsd:element>
                               <xsd:element name="value" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
                                    <xsd:annotation>
-                                        <xsd:documentation>The value entity holds the actual value of the specified registry key. The representation of the value as well as the associated datatype attribute depends on type of data stored in the registry key. If the specified registry key is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the registry key is of type REG_DWORD or REG_QWORD, then the datatype attribute should be set to 'int' and the value entity should represent the data as an integer. If the specified registry key is of type REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity. If the specified registry key is of type REG_MULTI_SZ, then multiple value entities should exist to describe the array of strings, with each value element holds a single string. In the end, there should be the same number of value entities as there are strings in the reg_multi_sz array. If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.</xsd:documentation>
+                                        <xsd:documentation>The value entity holds the actual value of the specified registry key. The representation of the value as well as the associated datatype attribute depends on type of data stored in the registry key. If the value being tested is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD, REG_QWORD, REG_DWORD_LITTLE_ENDIAN, REG_DWORD_BIG_ENDIAN, or REG_QWORD_LITTLE_ENDIAN then the datatype attribute should be set to 'int' and the value entity should represent the data as an unsigned integer. DWORD and QWORD values represnt unsigned 32-bit and 64-bit integers, respectively. If the value being tested is of type REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity.  If the value being tested is of type REG_MULTI_SZ, then only a single string (one of the multiple strings) should be tested using the value entity with the datatype attribute set to 'string'. In order to test multiple values, multiple OVAL registry tests should be used.  If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.  If the value being tested is of type REG_LINK, then the datatype attribute should be set to 'string' and the null-terminated Unicode string should be represented by the value entity.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
@@ -2957,6 +2957,11 @@
                                                <xsd:documentation>A string that represents the SID of a particular group.  If the specified user belongs to more than one group, then multiple group_sid elements should exist. If the specified user is not a member of a single group, then a single group_sid element should exist with a status of 'does not exist'. If there is an error determining the groups that the user belongs to, then a single group_sid element should be included with a status of 'error'.</xsd:documentation>
                                          </xsd:annotation>
                                    </xsd:element>
+                                  <xsd:element name="last_logon" type="oval-sc:EntityItemIntType" minOccurs="0">
+                                       <xsd:annotation>
+                                            <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
+                                       </xsd:annotation>                                          
+                                  </xsd:element>
                              </xsd:sequence>
                        </xsd:extension>
                  </xsd:complexContent>
@@ -3071,6 +3076,36 @@
                               <xsd:element name="file_read_only_volume" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The specified volume is read-only.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="file_sequential_write_once" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The file system supports one time writes in sequential order.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="file_supports_transactions" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The file system supports transaction processing.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="file_supports_hard_links" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The file system supports direct links to other devices and partitions.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="file_supports_extended_attributes" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The file system supports extended attributes.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="file_supports_open_by_file_id" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The file system supports fileID.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="file_supports_usn_journal" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The file system supports update sequence number journals.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
@@ -3835,12 +3870,27 @@
                     </xsd:enumeration>
                     <xsd:enumeration value="reg_dword">
                          <xsd:annotation>
-                              <xsd:documentation>The reg_dword type is used by registry keys that specify a 32-bit number.</xsd:documentation>
+                              <xsd:documentation>The reg_dword type is used by registry keys that specify an unsigned 32-bit integer.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="reg_dword_little_endian">
+                         <xsd:annotation>
+                              <xsd:documentation>The reg_dword_little_endian type is used by registry keys that specify an unsigned 32-bit little-endian integer. It is designed to run on little-endian computer architectures.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="reg_dword_big_endian">
+                         <xsd:annotation>
+                              <xsd:documentation>The reg_dword_big_endian type is used by registry keys that specify an unsigned 32-bit big-endian integer. It is designed to run on big-endian computer architectures.</xsd:documentation>
                          </xsd:annotation>
                     </xsd:enumeration>
                     <xsd:enumeration value="reg_expand_sz">
                          <xsd:annotation>
                               <xsd:documentation>The reg_expand_sz type is used by registry keys to specify a null-terminated string that contains unexpanded references to environment variables (for example, "%PATH%").</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="reg_link">
+                         <xsd:annotation>
+                              <xsd:documentation>The reg_link type is used by the registry keys for null-terminated unicode strings.  It is related to target path of a symbolic link created by the RegCreateKeyEx function.</xsd:documentation>
                          </xsd:annotation>
                     </xsd:enumeration>
                     <xsd:enumeration value="reg_multi_sz">
@@ -3855,7 +3905,12 @@
                     </xsd:enumeration>
                     <xsd:enumeration value="reg_qword">
                          <xsd:annotation>
-                              <xsd:documentation>The reg_qword type is used by registry keys that specify a 64-bit number.</xsd:documentation>
+                              <xsd:documentation>The reg_qword type is used by registry keys that specify an unsigned 64-bit integer.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="reg_qword_little_endian">
+                         <xsd:annotation>
+                              <xsd:documentation>The reg_qword_little_endian type is used by registry keys that specify an unsigned 64-bit integer in little-endian computer architectures.</xsd:documentation>
                          </xsd:annotation>
                     </xsd:enumeration>
                     <xsd:enumeration value="reg_sz">

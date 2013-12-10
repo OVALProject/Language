@@ -7,8 +7,8 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Windows Definition</schema>
-                  <version>5.11 Draft 1</version>
-                  <date>2/20/2013 5:18:14 PM</date>
+                  <version>5.11 Draft 2</version>
+                  <date>9/25/2013 3:41:26 PM</date>
                   <terms_of_use>Copyright (c) 2002-2013, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="win-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
@@ -1109,7 +1109,7 @@
       </xsd:element>
       <xsd:element name="cmdlet_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The cmdlet_object element is used by a cmdlet_test to identify the set of cmdlets to use and the parameters to provide to them for checking the state of a system. In order to ensure the consistency of PowerShell cmdlet support among OVAL interpreters as well as ensure that the state of a system is not changed, every OVAL interpreter must implement the following requirements.  An OVAL interpreter must only support the processing of the verbs specified in the EntityObjectCmdletVerbType.  If a cmdlet verb that is not defined in this enumeration is discovered, an error should be reported and the cmdlet must not be executed on the system.  While XML Schema validation will enforce this requirement, it is strongly recommended that OVAL interpreters implement a whitelist of allowed cmdlets.  This can be done using constrained runspaces which can limit the PowerShell execution environment.  For more information, please see Microsoft’s documentation on Windows PowerShell Host Application Concepts.  Furthermore, it is strongly recommended that OVAL interpreters also implement PowerShell support with the NoLanguage mode enabled.  The NoLanguage mode ensures that scripts that need to be evaluated are not allowed in the runspace. For more information about the NoLanguage mode, please see Microsoft’s documentation on the PSLanguageMode enumeration.</xsd:documentation>
+                  <xsd:documentation>The cmdlet_object element is used by a cmdlet_test to identify the set of cmdlets to use and the parameters to provide to them for checking the state of a system. In order to ensure the consistency of PowerShell cmdlet support among OVAL interpreters as well as ensure that the state of a system is not changed, every OVAL interpreter must implement the following requirements.  An OVAL interpreter must only support the processing of the verbs specified in the EntityObjectCmdletVerbType.  If a cmdlet verb that is not defined in this enumeration is discovered, an error should be reported and the cmdlet must not be executed on the system.  While XML Schema validation will enforce this requirement, it is strongly recommended that OVAL interpreters implement a whitelist of allowed cmdlets.  This can be done using constrained runspaces which can limit the PowerShell execution environment.  For more information, please see Microsoft's documentation on Windows PowerShell Host Application Concepts.  Furthermore, it is strongly recommended that OVAL interpreters also implement PowerShell support with the NoLanguage mode enabled.  The NoLanguage mode ensures that scripts that need to be evaluated are not allowed in the runspace. For more information about the NoLanguage mode, please see Microsoft's documentation on the PSLanguageMode enumeration.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="win-def_cmdlet_object_verify_filter_state">
                               <sch:rule context="win-def:cmdlet_object//oval-def:filter">
@@ -1521,7 +1521,7 @@
                                                                         <xsd:appinfo>
                                                                               <sch:pattern id="win-def_fileobjfilename">
                                                                                     <sch:rule context="win-def:file_object/win-def:filename">
-                                                                                          <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                                          <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                                                           <sch:assert test="(@var_ref and .='') or ((@xsi:nil='1' or @xsi:nil='true') and .='') or not(@var_ref)"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                                     </sch:rule>
                                                                               </sch:pattern>
@@ -1562,7 +1562,7 @@
                                                 <xsd:appinfo>
                                                       <sch:pattern id="win-def_filestefilename">
                                                             <sch:rule context="win-def:file_state/win-def:filename">
-                                                                <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                             </sch:rule>
                                                       </sch:pattern>
                                                 </xsd:appinfo>
@@ -1686,7 +1686,7 @@
             </xsd:attribute>
             <xsd:attribute name="recurse_file_system" use="optional" default="all">
                   <xsd:annotation>
-                        <xsd:documentation>'recurse_file_system' defines the file system limitation of any searching and applies to all operations as specified on the path or filepath entity. The value of 'local' limits the search scope to local file systems (as opposed to file systems mounted from an external system). The value of 'defined' keeps any recursion within the file system that the file_object (path+filename or filepath) has specified. The value of 'defined' only applies when an equality operation is used for searching because the path or filepath entity must explicitly define a file system. The default value is 'all' meaning to search all available file systems for data collection.</xsd:documentation>
+                        <xsd:documentation>'recurse_file_system' defines the file system limitation of any searching and applies to all operations as specified on the path or filepath entity. The value of 'local' limits the search scope to local file systems (as opposed to file systems mounted from an external system). The value of 'defined' keeps any recursion within the file system that the file_object (path+filename or filepath) has specified. For example, if the path specified was "C:\", you would search only the C: drive, not other filesystems mounted to descendant paths. The value of 'defined' only applies when an equality operation is used for searching because the path or filepath entity must explicitly define a file system. The default value is 'all' meaning to search all available file systems for data collection.</xsd:documentation>
                         <xsd:documentation>Note that in most cases it is recommended that the value of 'local' be used to ensure that file system searching is limited to only the local file systems. Searching 'all' file systems may have performance implications.</xsd:documentation>
                   </xsd:annotation>
                   <xsd:simpleType>
@@ -1700,7 +1700,7 @@
             <xsd:attribute name="windows_view" use="optional" default="64_bit">
                   <xsd:annotation>
                         <xsd:documentation>64-bit versions of Windows provide an alternate file system and registry views to 32-bit applications. This behavior allows the OVAL Object to state which view should be examined. This behavior only applies to 64-bit Windows, and must not be applied on other platforms. </xsd:documentation>
-                        <xsd:documentation>Note that the values have the following meaning: '64_bit' – Indicates that the 64-bit view on 64-bit Windows operating systems must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. '32_bit' – Indicates that the 32-bit view must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. It is recommended that the corresponding 'windows_view' entity be set on the OVAL Items that are collected when this behavior is used to distinguish between OVAL Items that were collected in the 32-bit or 64-bit views.</xsd:documentation>
+                        <xsd:documentation>Note that the values have the following meaning: '64_bit' - Indicates that the 64-bit view on 64-bit Windows operating systems must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. '32_bit' - Indicates that the 32-bit view must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. It is recommended that the corresponding 'windows_view' entity be set on the OVAL Items that are collected when this behavior is used to distinguish between OVAL Items that were collected in the 32-bit or 64-bit views.</xsd:documentation>
                   </xsd:annotation>
                   <xsd:simpleType>
                         <xsd:restriction base="xsd:string">
@@ -1813,7 +1813,7 @@
                                                                         <xsd:appinfo>
                                                                               <sch:pattern id="win-def_fap53objfilename">
                                                                                     <sch:rule context="win-def:fileauditedpermissions53_object/win-def:filename">
-                                                                                          <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                                          <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                                                           <sch:assert test="(@var_ref and .='') or ((@xsi:nil='1' or @xsi:nil='true') and .='') or not(.='') or (.='' and @operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                                     </sch:rule>
                                                                               </sch:pattern>
@@ -1859,7 +1859,7 @@
                                                 <xsd:appinfo>
                                                       <sch:pattern id="win-def_fap53stefilename">
                                                             <sch:rule context="win-def:fileauditedpermissions53_state/win-def:filename">
-                                                                <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                             </sch:rule>
                                                       </sch:pattern>
                                                 </xsd:appinfo>
@@ -2104,7 +2104,7 @@
                                                             <xsd:appinfo>
                                                                   <sch:pattern id="win-def_fapobjfilename">
                                                                         <sch:rule context="win-def:fileauditedpermissions_object/win-def:filename">
-                                                                            <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                              <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                                             <sch:assert test="(@var_ref and .='') or ((@xsi:nil='1' or @xsi:nil='true') and .='') or not(.='') or (.='' and @operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
@@ -2154,7 +2154,7 @@
                                                 <xsd:appinfo>
                                                       <sch:pattern id="win-def_fapstefilename">
                                                             <sch:rule context="win-def:fileauditedpermissions_state/win-def:filename">
-                                                                <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                             </sch:rule>
                                                       </sch:pattern>
                                                 </xsd:appinfo>
@@ -2424,7 +2424,7 @@
                                                                       <xsd:appinfo>
                                                                             <sch:pattern id="win-def_fer53objfilename">
                                                                                   <sch:rule context="win-def:fileeffectiverights53_object/win-def:filename">
-                                                                                      <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                                        <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                                                         <sch:assert test="(@var_ref and .='') or ((@xsi:nil='1' or @xsi:nil='true') and .='') or not(.='') or (.='' and @operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                                   </sch:rule>
                                                                             </sch:pattern>
@@ -2470,7 +2470,7 @@
                                                 <xsd:appinfo>
                                                       <sch:pattern id="win-def_fer53stefilename">
                                                             <sch:rule context="win-def:fileeffectiverights53_state/win-def:filename">
-                                                                <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                             </sch:rule>
                                                       </sch:pattern>
                                                 </xsd:appinfo>
@@ -2715,7 +2715,7 @@
                                                             <xsd:appinfo>
                                                                   <sch:pattern id="win-def_fefobjfilename">
                                                                         <sch:rule context="win-def:fileeffectiverights_object/win-def:filename">
-                                                                            <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                              <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                                               <sch:assert test="(@var_ref and .='') or ((@xsi:nil='1' or @xsi:nil='true') and .='') or not(.='') or (.='' and @operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
@@ -2765,7 +2765,7 @@
                                                 <xsd:appinfo>
                                                       <sch:pattern id="win-def_ferstefilename">
                                                             <sch:rule context="win-def:fileeffectiverights_state/win-def:filename">
-                                                                <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')"><sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                             </sch:rule>
                                                       </sch:pattern>
                                                 </xsd:appinfo>
@@ -3446,7 +3446,7 @@
                                     </xsd:element>
                                     <xsd:element name="user_type" type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The user_type element is a DWORD that specifies the user type of the data. See the METADATA_RECORD structure.</xsd:documentation>
+                                                <xsd:documentation>The user_type element is an unsigned 32-bit integer (DWORD) that specifies the user type of the data. See the METADATA_RECORD structure.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="data_type" type="oval-def:EntityStateStringType" minOccurs="0">
@@ -3626,8 +3626,8 @@
                                                                         <xsd:appinfo>
                                                                               <sch:pattern id="win-def_peheaderobjfilename">
                                                                                     <sch:rule context="win-def:peheader_object/win-def:filename">
-                                                                                          <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')">
-                                                                                                <sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                                          <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')">
+                                                                                                <sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                                                     </sch:rule>
                                                                               </sch:pattern>
                                                                         </xsd:appinfo>
@@ -3667,8 +3667,8 @@
                                                 <xsd:appinfo>
                                                       <sch:pattern id="win-def_peheaderstefilename">
                                                             <sch:rule context="win-def:peheader_state/win-def:filename">
-                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|'))) or (@operation='pattern match')">
-                                                                        <sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | </sch:assert>
+                                                                  <sch:assert test="(not(contains(.,'\') or contains(.,'/') or contains(.,':') or contains(.,'*') or contains(.,'?') or contains(.,'>') or contains(.,'|') or contains(.,'&lt;') or contains(.,'&quot;'))) or (@operation='pattern match')">
+                                                                        <sch:value-of select="../@id"/> - filename entity cannot contain the characters / \ : * ? > | &lt; &quot;</sch:assert>
                                                             </sch:rule>
                                                       </sch:pattern>
                                                 </xsd:appinfo>
@@ -3681,32 +3681,32 @@
                                     </xsd:element>
                                     <xsd:element name="target_machine_type" type="win-def:EntityStatePeTargetMachineType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The target_machine_type entity is a WORD that specifies the target architecture that the file is intended for.</xsd:documentation>
+                                                <xsd:documentation>The target_machine_type entity is an unsigned 16-bit integer (WORD) that specifies the target architecture that the file is intended for.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="number_of_sections" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The number_of_sections entity is a WORD that specifies the number of sections in the file.</xsd:documentation>
+                                                <xsd:documentation>The number_of_sections entity is an unsigned 16-bit integer (WORD) that specifies the number of sections in the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="time_date_stamp" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the time that the linker produced the file. The value is represented as the number of seconds since January 1, 1970, 00:00:00.</xsd:documentation>
+                                                <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the time that the linker produced the file. The value is represented as the number of seconds since January 1, 1970, 00:00:00.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="pointer_to_symbol_table" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The pointer_to_symbol_table entity is a DWORD that specifies the file offset of the COFF symbol table.</xsd:documentation>
+                                                <xsd:documentation>The pointer_to_symbol_table entity is an unsigned 32-bit integer (DWORD) that specifies the file offset of the COFF symbol table.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="number_of_symbols" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The number_of_symbols entity is a DWORD that specifies the number of symbols in the COFF symbol table.</xsd:documentation>
+                                                <xsd:documentation>The number_of_symbols entity is an unsigned 32-bit integer (DWORD) that specifies the number of symbols in the COFF symbol table.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_optional_header" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The size_of_optional_header entity is a DWORD that specifies the size of an optional header in bytes.</xsd:documentation>
+                                                <xsd:documentation>The size_of_optional_header entity is an unsigned 32-bit integer (DWORD) that specifies the size of an optional header in bytes.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="image_file_relocs_stripped" type="oval-def:EntityStateBoolType" default="false" minOccurs="0" maxOccurs="1">
@@ -3786,7 +3786,7 @@
                                     </xsd:element>
                                     <xsd:element name="magic_number" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The magic_number entity is a WORD that specifies the state of the image file.</xsd:documentation>
+                                                <xsd:documentation>The magic_number entity is an unsigned 16-bit integer (WORD) that specifies the state of the image file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="major_linker_version" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
@@ -3801,132 +3801,132 @@
                                     </xsd:element>
                                     <xsd:element name="size_of_code" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The size_of_code entity is a DWORD that specifies the total size of all of the code sections.</xsd:documentation>
+                                                <xsd:documentation>The size_of_code entity is an unsigned 32-bit integer (DWORD) that specifies the total size of all of the code sections.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_initialized_data" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The size_of_initialized_data entity is a DWORD that specifies the total size of all of the sections that are composed of initialized data.</xsd:documentation>
+                                                <xsd:documentation>The size_of_initialized_data entity is an unsigned 32-bit integer (DWORD) that specifies the total size of all of the sections that are composed of initialized data.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_uninitialized_data" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The size_of_uninitialized_data entity is a DWORD that specifies the total size of all of the sections that are composed of uninitialized data.</xsd:documentation>
+                                                <xsd:documentation>The size_of_uninitialized_data entity is an unsigned 32-bit integer (DWORD) that specifies the total size of all of the sections that are composed of uninitialized data.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="address_of_entry_point" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The address_of_entry_point entity is a DWORD that specifies the address where the loader will begin execution.</xsd:documentation>
+                                                <xsd:documentation>The address_of_entry_point entity is an unsigned 32-bit integer (DWORD) that specifies the address where the loader will begin execution.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="base_of_code" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The base_of_code entity is a DWORD that specifies the relative virtual address where the file's code section begins.</xsd:documentation>
+                                                <xsd:documentation>The base_of_code entity is an unsigned 32-bit integer (DWORD) that specifies the relative virtual address where the file's code section begins.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="base_of_data" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The base_of_data entity is a DWORD that specifies the relative virtual address where the file's data section begins.</xsd:documentation>
+                                                <xsd:documentation>The base_of_data entity is an unsigned 32-bit integer (DWORD) that specifies the relative virtual address where the file's data section begins.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="image_base_address" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The image_base_address entity is a DWORD that specifies the preferred address fo the first byte of the image when it is loaded into memory.</xsd:documentation>
+                                                <xsd:documentation>The image_base_address entity is an unsigned 32-bit integer (DWORD) that specifies the preferred address fo the first byte of the image when it is loaded into memory.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="section_alignment" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The section_alignment entity is a DWORD that specifies the alignment of the sections loaded into memory.</xsd:documentation>
+                                                <xsd:documentation>The section_alignment entity is an unsigned 32-bit integer (DWORD) that specifies the alignment of the sections loaded into memory.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="file_alignment" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The file_alignment entity is a DWORD that specifies the alignment of the raw data of sections in the image file.</xsd:documentation>
+                                                <xsd:documentation>The file_alignment entity is an unsigned 32-bit integer (DWORD) that specifies the alignment of the raw data of sections in the image file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="major_operating_system_version" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The major_operating_system_version entity is a WORD that specifies the major version of the operating system required to use this executable.</xsd:documentation>
+                                                <xsd:documentation>The major_operating_system_version entity is an unsigned 16-bit integer (WORD) that specifies the major version of the operating system required to use this executable.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="minor_operating_system_version" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The minor_operating_system_version entity is a WORD that specifies the minor version of the operating system required to use this executable.</xsd:documentation>
+                                                <xsd:documentation>The minor_operating_system_version entity is an unsigned 16-bit integer (WORD) that specifies the minor version of the operating system required to use this executable.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="major_image_version" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The major_image_version entity is a WORD that specifies the major version number of the image.</xsd:documentation>
+                                                <xsd:documentation>The major_image_version entity is an unsigned 16-bit integer (WORD) that specifies the major version number of the image.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="minor_image_version" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The minor_image_version entity is a DWORD that specifies the minor version number of the image.</xsd:documentation>
+                                                <xsd:documentation>The minor_image_version entity is an unsigned 32-bit integer (DWORD) that specifies the minor version number of the image.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="major_subsystem_version" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The major_subsystem_version entity is a WORD that specifies the major version of the subsystem required to run the executable.</xsd:documentation>
+                                                <xsd:documentation>The major_subsystem_version entity is an unsigned 16-bit integer (WORD) that specifies the major version of the subsystem required to run the executable.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="minor_susbsystem_version" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The minor_subsystem_version entity is a WORD that specifies the minor version of the subsystem required to run the executable.</xsd:documentation>
+                                                <xsd:documentation>The minor_subsystem_version entity is an unsigned 16-bit integer (WORD) that specifies the minor version of the subsystem required to run the executable.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_image" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The size_of_image entity is a DWORD that specifies the total size of the image including all of the headers.</xsd:documentation>
+                                                <xsd:documentation>The size_of_image entity is an unsigned 32-bit integer (DWORD) that specifies the total size of the image including all of the headers.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_headers" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The size_of_headers entity is a DWORD that specifies the total combined size of the MS-DOS stub, PE header, and the section headers.</xsd:documentation>
+                                                <xsd:documentation>The size_of_headers entity is an unsigned 32-bit integer (DWORD) that specifies the total combined size of the MS-DOS stub, PE header, and the section headers.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="checksum" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The checksum entity is a DWORD that specifies the checksum of the image file.</xsd:documentation>
+                                                <xsd:documentation>The checksum entity is an unsigned 32-bit integer (DWORD) that specifies the checksum of the image file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="subsystem" type="win-def:EntityStatePeSubsystemType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The subsystem entity is a DWORD that specifies the type of subsystem that the executable uses for its user interface.</xsd:documentation>
+                                                <xsd:documentation>The subsystem entity is an unsigned 32-bit integer (DWORD) that specifies the type of subsystem that the executable uses for its user interface.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="dll_characteristics" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The dll_characteristics entity is a DWORD that specifies the set of flags indicating the circumstances under which a DLL's initialization function will be called..</xsd:documentation>
+                                                <xsd:documentation>The dll_characteristics entity is an unsigned 32-bit integer (DWORD) that specifies the set of flags indicating the circumstances under which a DLL's initialization function will be called..</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_stack_reserve" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the number of bytes to reserve for the stack.</xsd:documentation>
+                                                <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the number of bytes to reserve for the stack.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_stack_commit" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the number of bytes to commit for the stack.</xsd:documentation>
+                                                <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the number of bytes to commit for the stack.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_heap_reserve" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the number of bytes to reserve for the local heap.</xsd:documentation>
+                                                <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the number of bytes to reserve for the local heap.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="size_of_heap_commit" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The time_date_stamp entity is a DWORD that specifies the number of bytes to commit for the local heap.</xsd:documentation>
+                                                <xsd:documentation>The time_date_stamp entity is an unsigned 32-bit integer (DWORD) that specifies the number of bytes to commit for the local heap.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="loader_flags" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The loader_flags entity is a DWORD that specifies the loader flags of the header.</xsd:documentation>
+                                                <xsd:documentation>The loader_flags entity is an unsigned 32-bit integer (DWORD) that specifies the loader flags of the header.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="number_of_rva_and_sizes" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The number_of_rva_and_sizes entity is a DWORD that specifies the number of directory entries in the remainder of the optional header.</xsd:documentation>
+                                                <xsd:documentation>The number_of_rva_and_sizes entity is an unsigned 32-bit integer (DWORD) that specifies the number of directory entries in the remainder of the optional header.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="real_number_of_directory_entries" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
@@ -4675,7 +4675,7 @@
                                     </xsd:element>
                                     <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The value entity allows a test to be written against the value held within the specified registry key(s). If the value being tested is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD or REG_QWORD, then the datatype attribute should be set to 'int' and the value entity should represent the data as an integer. If the value being tested is of type REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity. If the value being tested is of type REG_MULTI_SZ, then only a single string (one of the multiple strings) should be tested using the value entity with the datatype attribute set to 'string'. In order to test multiple values, multiple OVAL registry tests should be used. If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.</xsd:documentation>
+                                                <xsd:documentation>The value entity allows a test to be written against the value held within the specified registry key(s). If the value being tested is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD, REG_QWORD, REG_DWORD_LITTLE_ENDIAN, REG_DWORD_BIG_ENDIAN, and REG_QWORD_LITTLE_ENDIAN then the datatype attribute should be set to 'int' and the value entity should represent the data as an unsigned integer. DWORD and QWORD values represnt unsigned 32-bit and 64-bit integers, respectively. If the value being tested is of type REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity.  If the value being tested is of type REG_MULTI_SZ, then only a single string (one of the multiple strings) should be tested using the value entity with the datatype attribute set to 'string'. In order to test multiple values, multiple OVAL registry tests should be used.  If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.  If the value being tested is of type REG_LINK, then the datatype attribute should be set to 'string' and the null-terminated Unicode string should be represented by the value entity.</xsd:documentation>
                                                 <xsd:documentation>Note that if the intent is to test a version number held in the registry (as a reg_sz) then instead of setting the datatype to 'string', the datatype can be set to 'version'. This allows tools performing the evaluation to know how to perform less than and greater than operations correctly.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
@@ -4722,7 +4722,7 @@
             <xsd:attribute name="windows_view" use="optional" default="64_bit">
                   <xsd:annotation>
                         <xsd:documentation>64-bit versions of Windows provide an alternate file system and registry views to 32-bit applications. This behavior allows the OVAL Object to specify which view should be examined. This behavior only applies to 64-bit Windows, and must not be applied on other platforms. </xsd:documentation>
-                        <xsd:documentation>Note that the values have the following meaning: '64_bit' – Indicates that the 64-bit view on 64-bit Windows operating systems must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. '32_bit' – Indicates that the 32-bit view must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. It is recommended that the corresponding 'windows_view' entity be set on the OVAL Items that are collected when this behavior is used to distinguish between the OVAL Items that are collected in the 32-bit or 64-bit views.</xsd:documentation>
+                        <xsd:documentation>Note that the values have the following meaning: '64_bit' - Indicates that the 64-bit view on 64-bit Windows operating systems must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. '32_bit' - Indicates that the 32-bit view must be examined. On a 32-bit system, the Object must be evaluated without applying the behavior. It is recommended that the corresponding 'windows_view' entity be set on the OVAL Items that are collected when this behavior is used to distinguish between the OVAL Items that are collected in the 32-bit or 64-bit views.</xsd:documentation>
                   </xsd:annotation>
                   <xsd:simpleType>
                         <xsd:restriction base="xsd:string">
@@ -7243,6 +7243,11 @@
                                 <xsd:documentation>A string the represents the SID of a particular group.  The group_sid element can be included multiple times in a system characteristic item in order to record that a user can be a member of a number of different groups. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like group that refer to items that can occur an unbounded number of times.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
+                        <xsd:element name="last_logon" type="oval-def:EntityStateIntType" minOccurs="0">
+                            <xsd:annotation>
+                                <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
+                            </xsd:annotation>                                          
+                        </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
@@ -7549,6 +7554,36 @@
                                     <xsd:element name="file_read_only_volume" type="oval-def:EntityStateBoolType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The specified volume is read-only.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_sequential_write_once" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports one time writes in sequential order.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_transactions" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports transaction processing.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_hard_links" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports direct links to other devices and partitions.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_extended_attributes" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports extended attributes.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_open_by_file_id" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports fileID.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="file_supports_usn_journal" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The file system supports update sequence number journals.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
@@ -8693,12 +8728,27 @@
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_dword">
                               <xsd:annotation>
-                                    <xsd:documentation>The reg_dword type is used by registry keys that specify a 32-bit number.</xsd:documentation>
+                                    <xsd:documentation>The reg_dword type is used by registry keys that specify an unsigned 32-bit integer.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="reg_dword_little_endian">
+                              <xsd:annotation>
+                                    <xsd:documentation>The reg_dword_little_endian type is used by registry keys that specify an unsigned 32-bit little-endian integer. It is designed to run on little-endian computer architectures.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="reg_dword_big_endian">
+                              <xsd:annotation>
+                                    <xsd:documentation>The reg_dword_big_endian type is used by registry keys that specify an unsigned 32-bit big-endian integer. It is designed to run on big-endian computer architectures.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_expand_sz">
                               <xsd:annotation>
                                     <xsd:documentation>The reg_expand_sz type is used by registry keys to specify a null-terminated string that contains unexpanded references to environment variables (for example, "%PATH%").</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="reg_link">
+                              <xsd:annotation>
+                                    <xsd:documentation>The reg_link type is used by the registry keys for null-terminated unicode strings.  It is related to target path of a symbolic link created by the RegCreateKeyEx function.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_multi_sz">
@@ -8713,7 +8763,12 @@
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_qword">
                               <xsd:annotation>
-                                    <xsd:documentation>The reg_qword type is used by registry keys that specify a 64-bit number.</xsd:documentation>
+                                    <xsd:documentation>The reg_qword type is used by registry keys that specify an unsigned 64-bit integer.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="reg_qword_little_endian">
+                              <xsd:annotation>
+                                    <xsd:documentation>The reg_qword_little_endian type is used by registry keys that specify an unsigned 64-bit integer in little-endian computer architectures.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_sz">
