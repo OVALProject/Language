@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent" elementFormDefault="qualified" version="5.11">
-      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
-      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+      xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+      xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+      xmlns:ind-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"
+      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+      targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"
+      elementFormDefault="qualified" version="5.11">
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5"
+            schemaLocation="oval-common-schema.xsd"/>
+      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+            schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:annotation>
             <xsd:documentation>The following is a description of the elements, types, and attributes that compose the tests found in Open Vulnerability and Assessment Language (OVAL) that are independent of a specific piece of software. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
@@ -15,7 +23,7 @@
                   <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
             </xsd:appinfo>
       </xsd:annotation>
-      
+
       <!-- =============================================================================== -->
       <!-- ================================  FAMILY TEST  ================================ -->
       <!-- =============================================================================== -->
@@ -45,8 +53,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -70,7 +79,8 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="family" type="ind-def:EntityStateFamilyType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="family" type="ind-def:EntityStateFamilyType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This element describes the high-level system OS type to test against. Please refer to the definition of the EntityFamilyType for more information about the possible values..</xsd:documentation>
                                           </xsd:annotation>
@@ -121,8 +131,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -154,12 +165,15 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="behaviors" type="ind-def:FileBehaviors" minOccurs="0" maxOccurs="1"/>
+                                                <xsd:element name="behaviors"
+                                                  type="ind-def:FileBehaviors" minOccurs="0"
+                                                  maxOccurs="1"/>
                                                 <xsd:choice>
-                                                      <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
-                                                            <xsd:annotation>
-                                                                  <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
-                                                                  <xsd:appinfo>
+                                                  <xsd:element name="filepath"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                         <sch:pattern id="ind-def_hashobjfilepath">
                                                                               <sch:rule context="ind-def:filehash_object/ind-def:filepath">
                                                                                     <sch:assert test="not(preceding-sibling::ind-def:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
@@ -171,13 +185,14 @@
                                                                               </sch:rule>
                                                                         </sch:pattern>
                                                                   </xsd:appinfo>
-                                                            </xsd:annotation>
-                                                      </xsd:element>
-                                                      <xsd:sequence>
-                                                          <xsd:element name="path" type="oval-def:EntityObjectStringType">
-                                                                <xsd:annotation>
-                                                                      <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
-                                                                      <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:sequence>
+                                                  <xsd:element name="path"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                             <sch:pattern id="ind-def_hashobjpath">
                                                                                   <sch:rule context="ind-def:filehash_object/ind-def:path[not(@operation='equals' or not(@operation))]">
                                                                                         <sch:assert test="not(preceding-sibling::ind-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
@@ -187,21 +202,22 @@
                                                                                   </sch:rule>
                                                                             </sch:pattern>
                                                                       </xsd:appinfo>
-                                                                </xsd:annotation>
-                                                          </xsd:element>
-                                                          <xsd:element name="filename" type="oval-def:EntityObjectStringType">
-                                                                <xsd:annotation>
-                                                                      <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
-                                                                      <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="filename"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                             <sch:pattern id="ind-def_hashobjfilename">
                                                                                   <sch:rule context="ind-def:filehash_object/ind-def:filename">
                                                                                         <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                                   </sch:rule>
                                                                             </sch:pattern>
                                                                       </xsd:appinfo>
-                                                                </xsd:annotation>
-                                                          </xsd:element>
-                                                      </xsd:sequence>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
                                                 </xsd:choice>
                                           </xsd:sequence>
                                     </xsd:choice>
@@ -230,32 +246,39 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="filepath"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="filename" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="filename"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="md5" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="md5" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The md5 element is the md5 hash of the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="sha1" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="sha1" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The sha1 element is the sha1 hash of the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="windows_view" type="ind-def:EntityStateWindowsViewType" minOccurs="0">
+                                    <xsd:element name="windows_view"
+                                          type="ind-def:EntityStateWindowsViewType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.  This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
                                           </xsd:annotation>
@@ -294,8 +317,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -328,12 +352,15 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="behaviors" type="ind-def:FileBehaviors" minOccurs="0" maxOccurs="1"/>
+                                                <xsd:element name="behaviors"
+                                                  type="ind-def:FileBehaviors" minOccurs="0"
+                                                  maxOccurs="1"/>
                                                 <xsd:choice>
-                                                      <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
-                                                            <xsd:annotation>
-                                                                  <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
-                                                                  <xsd:appinfo>
+                                                  <xsd:element name="filepath"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                         <sch:pattern id="ind-def_hash58objfilepath">
                                                                               <sch:rule context="ind-def:filehash58_object/ind-def:filepath">
                                                                                     <sch:assert test="not(preceding-sibling::ind-def:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
@@ -345,13 +372,14 @@
                                                                               </sch:rule>
                                                                         </sch:pattern>
                                                                   </xsd:appinfo>
-                                                            </xsd:annotation>
-                                                      </xsd:element>
-                                                      <xsd:sequence>
-                                                            <xsd:element name="path" type="oval-def:EntityObjectStringType">
-                                                                  <xsd:annotation>
-                                                                        <xsd:documentation>The path entity specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
-                                                                        <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:sequence>
+                                                  <xsd:element name="path"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The path entity specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                               <sch:pattern id="ind-def_hash58objpath">
                                                                                     <sch:rule context="ind-def:filehash58_object/ind-def:path[not(@operation='equals' or not(@operation))]">
                                                                                           <sch:assert test="not(preceding-sibling::ind-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
@@ -361,28 +389,31 @@
                                                                                     </sch:rule>
                                                                               </sch:pattern>
                                                                         </xsd:appinfo>
-                                                                  </xsd:annotation>
-                                                            </xsd:element>
-                                                            <xsd:element name="filename" type="oval-def:EntityObjectStringType">
-                                                                  <xsd:annotation>
-                                                                        <xsd:documentation>The filename entity specifies the name of the file.</xsd:documentation>
-                                                                        <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="filename"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filename entity specifies the name of the file.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                               <sch:pattern id="ind-def_hash58objfilename">
                                                                                     <sch:rule context="ind-def:filehash58_object/ind-def:filename">
                                                                                           <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                                     </sch:rule>
                                                                               </sch:pattern>
                                                                         </xsd:appinfo>
-                                                                  </xsd:annotation>
-                                                            </xsd:element>
-                                                      </xsd:sequence>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
                                                 </xsd:choice>
-                                                <xsd:element name="hash_type" type="ind-def:EntityObjectHashTypeType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The hash_type entity specifies the hash algorithm to use when collecting the hash for each of the specifed files.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="hash_type"
+                                                  type="ind-def:EntityObjectHashTypeType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The hash_type entity specifies the hash algorithm to use when collecting the hash for each of the specifed files.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -398,32 +429,40 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="filepath"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filepath entity specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The path entity specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="filename" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="filename"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filename entity specifies the name of the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="hash_type" type="ind-def:EntityStateHashTypeType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="hash_type"
+                                          type="ind-def:EntityStateHashTypeType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The hash_type entity specifies the hash algorithm to use when collecting the hash for each of the specifed files.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="hash" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="hash" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The hash entity specifies the result of applying the hash algorithm to the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="windows_view" type="ind-def:EntityStateWindowsViewType" minOccurs="0">
+                                    <xsd:element name="windows_view"
+                                          type="ind-def:EntityStateWindowsViewType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.  This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
                                           </xsd:annotation>
@@ -474,8 +513,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -503,9 +543,10 @@
                               <xsd:sequence>
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
-                                          <xsd:element name="name" type="oval-def:EntityObjectStringType">
+                                          <xsd:element name="name"
+                                                type="oval-def:EntityObjectStringType">
                                                 <xsd:annotation>
-                                                      <xsd:documentation>This element describes the name of an environment variable.</xsd:documentation>
+                                                  <xsd:documentation>This element describes the name of an environment variable.</xsd:documentation>
                                                 </xsd:annotation>
                                           </xsd:element>
                                     </xsd:choice>
@@ -534,12 +575,15 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="name" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This element describes the name of an environment variable.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="value"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The actual value of the specified environment variable.</xsd:documentation>
                                           </xsd:annotation>
@@ -578,8 +622,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -609,17 +654,21 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="pid" type="oval-def:EntityObjectIntType"  nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The process ID of the process from which the environment variable should be retrieved. If the xsi:nil attribute is set to true, the process ID shall be the tool's running process.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="pid"
+                                                  type="oval-def:EntityObjectIntType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The process ID of the process from which the environment variable should be retrieved. If the xsi:nil attribute is set to true, the process ID shall be the tool's running process.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="name" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>This element describes the name of an environment variable.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="name"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>This element describes the name of an environment variable.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -635,17 +684,21 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="pid" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="pid" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The process ID of the process from which the environment variable was retrieved.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="name" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>This element describes the name of an environment variable.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="value"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The actual value of the specified environment variable.</xsd:documentation>
                                           </xsd:annotation>
@@ -686,7 +739,8 @@
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
                                     <xsd:element name="object" type="oval-def:ObjectRefType"/>
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -704,21 +758,28 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="behaviors" type="ind-def:LdapBehaviors" minOccurs="0" maxOccurs="1"/>
-                                                <xsd:element name="suffix" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>Each object in an LDAP directory exists under a certain suffix (also known as a naming context). A suffix is defined as a single object in the Directory Information Tree (DIT) with every object in the tree subordinate to it.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="behaviors"
+                                                  type="ind-def:LdapBehaviors" minOccurs="0"
+                                                  maxOccurs="1"/>
+                                                <xsd:element name="suffix"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Each object in an LDAP directory exists under a certain suffix (also known as a naming context). A suffix is defined as a single object in the Directory Information Tree (DIT) with every object in the tree subordinate to it.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="relative_dn" type="oval-def:EntityObjectStringType" nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The relative_dn field is used to uniquely identify an object inside the specified suffix. It contains all of the parts of the object's distinguished name except those outlined by the suffix. If the xsi:nil attribute is set to true, then the object being specified is the higher level suffix. In this case, the relative_dn element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every relative distinguished name under a given suffix.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="relative_dn"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The relative_dn field is used to uniquely identify an object inside the specified suffix. It contains all of the parts of the object's distinguished name except those outlined by the suffix. If the xsi:nil attribute is set to true, then the object being specified is the higher level suffix. In this case, the relative_dn element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every relative distinguished name under a given suffix.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="attribute" type="oval-def:EntityObjectStringType" nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>Specifies a named value contained by the object. If the xsi:nil attribute is set to true, the attribute element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every attribute under a given relative distinguished name.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="attribute"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Specifies a named value contained by the object. If the xsi:nil attribute is set to true, the attribute element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every attribute under a given relative distinguished name.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
                                           </xsd:sequence>
                                     </xsd:choice>
@@ -736,32 +797,38 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="suffix" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="suffix" type="oval-def:EntityStateStringType"
+                                          minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Each object in an LDAP directory exists under a certain suffix (also known as a naming context). A suffix is defined as a single object in the Directory Information Tree (DIT) with every object in the tree subordinate to it.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="relative_dn" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="relative_dn"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The relative_dn field is used to uniquely identify an object inside the specified suffix. It contains all of the parts of the object's distinguished name except those outlined by the suffix.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="attribute" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="attribute"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies a named value contained by the object.</xsd:documentation>
                                           </xsd:annotation>
-                                    </xsd:element>  
-                                    <xsd:element name="object_class" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    </xsd:element>
+                                    <xsd:element name="object_class"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The name of the class of which the object is an instance.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="ldaptype" type="ind-def:EntityStateLdaptypeType" minOccurs="0">
+                                    <xsd:element name="ldaptype"
+                                          type="ind-def:EntityStateLdaptypeType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies the type of information that the specified attribute represents.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0">
+                                    <xsd:element name="value"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The actual value of the specified LDAP attribute.</xsd:documentation>
                                           </xsd:annotation>
@@ -819,7 +886,8 @@
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
                                     <xsd:element name="object" type="oval-def:ObjectRefType"/>
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -850,23 +918,31 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="behaviors" type="ind-def:LdapBehaviors" minOccurs="0" maxOccurs="1"/>
-                                                <xsd:element name="suffix" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>Each object in an LDAP directory exists under a certain suffix (also known as a naming context). A suffix is defined as a single object in the Directory Information Tree (DIT) with every object in the tree subordinate to it.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="behaviors"
+                                                  type="ind-def:LdapBehaviors" minOccurs="0"
+                                                  maxOccurs="1"/>
+                                                <xsd:element name="suffix"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Each object in an LDAP directory exists under a certain suffix (also known as a naming context). A suffix is defined as a single object in the Directory Information Tree (DIT) with every object in the tree subordinate to it.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="relative_dn" type="oval-def:EntityObjectStringType" nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The relative_dn field is used to uniquely identify an object inside the specified suffix. It contains all of the parts of the object's distinguished name except those outlined by the suffix. If the xsi:nil attribute is set to true, then the object being specified is the higher level suffix. In this case, the relative_dn element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every relative distinguished name under a given suffix.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="relative_dn"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The relative_dn field is used to uniquely identify an object inside the specified suffix. It contains all of the parts of the object's distinguished name except those outlined by the suffix. If the xsi:nil attribute is set to true, then the object being specified is the higher level suffix. In this case, the relative_dn element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every relative distinguished name under a given suffix.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="attribute" type="oval-def:EntityObjectStringType" nillable="true">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>Specifies a named value contained by the object. If the xsi:nil attribute is set to true, the attribute element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every attribute under a given relative distinguished name.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="attribute"
+                                                  type="oval-def:EntityObjectStringType"
+                                                  nillable="true">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Specifies a named value contained by the object. If the xsi:nil attribute is set to true, the attribute element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match, which says to collect every attribute under a given relative distinguished name.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -883,32 +959,38 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="suffix" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="suffix" type="oval-def:EntityStateStringType"
+                                          minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Each object in an LDAP directory exists under a certain suffix (also known as a naming context). A suffix is defined as a single object in the Directory Information Tree (DIT) with every object in the tree subordinate to it.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="relative_dn" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="relative_dn"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The relative_dn field is used to uniquely identify an object inside the specified suffix. It contains all of the parts of the object's distinguished name except those outlined by the suffix.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="attribute" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="attribute"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies a named value contained by the object.</xsd:documentation>
                                           </xsd:annotation>
-                                    </xsd:element>  
-                                    <xsd:element name="object_class" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    </xsd:element>
+                                    <xsd:element name="object_class"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The name of the class of which the object is an instance.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="ldaptype" type="ind-def:EntityStateLdaptypeType" minOccurs="0">
+                                    <xsd:element name="ldaptype"
+                                          type="ind-def:EntityStateLdaptypeType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies the type of information that the specified attribute represents.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="value" type="oval-def:EntityStateRecordType" minOccurs="0">
+                                    <xsd:element name="value" type="oval-def:EntityStateRecordType"
+                                          minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The actual value of the specified LDAP attribute. Note that while an LDAP attribute can contain structured data where it is necessary to collect multiple related fields that can be described by the 'record' datatype, it is not always the case.  It also is possible that an LDAP attribute can contain only a single value or an array of values. In these cases, there is not a name to uniquely identify the corresponding field which is a requirement for fields in the 'record' datatype.  As a result, the name of the LDAP attribute will be used to uniquely identify the field and satisfy this requirement.</xsd:documentation>
                                                 <xsd:appinfo>
@@ -928,7 +1010,7 @@
                         </xsd:extension>
                   </xsd:complexContent>
             </xsd:complexType>
-      </xsd:element>   
+      </xsd:element>
       <!-- =============================================================================== -->
       <!-- =================================  SQL TEST  ================================== -->
       <!-- =============================================================================== -->
@@ -971,7 +1053,8 @@
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
                                     <xsd:element name="object" type="oval-def:ObjectRefType"/>
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -1000,53 +1083,57 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="engine" type="ind-def:EntityObjectEngineType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The engine entity defines the specific database engine to use. Any tool looking to collect information about this object will need to know the engine in order to use the appropriate drivers to establish a connection.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="engine"
+                                                  type="ind-def:EntityObjectEngineType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The engine entity defines the specific database engine to use. Any tool looking to collect information about this object will need to know the engine in order to use the appropriate drivers to establish a connection.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_sqlobjdengine">
                                                                         <sch:rule context="ind-def:sql_object/ind-def:engine">
                                                                             <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the engine entity of an sql_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="version" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The version entity defines the specific version of the database engine to use. This is also important in determining the correct driver to use for establishing a connection.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="version"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The version entity defines the specific version of the database engine to use. This is also important in determining the correct driver to use for establishing a connection.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_sqlobjversion">
                                                                         <sch:rule context="ind-def:sql_object/ind-def:version">
                                                                             <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the version entity of an sql_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="connection_string" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The connection_string entity defines specific connection parameters to be used in connecting to the database. This will help a tool connect to the correct database.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="connection_string"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The connection_string entity defines specific connection parameters to be used in connecting to the database. This will help a tool connect to the correct database.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_sqlobjconnection_string">
                                                                         <sch:rule context="ind-def:sql_object/ind-def:connection_string">
                                                                             <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the connection_string entity of an sql_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="sql" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The sql entity defines a query used to identify the object(s) to test against. Any valid SQL query is usable with one exception, at most one field is allowed in the SELECT portion of the query. For example SELECT name FROM ... is valid, as is SELECT 'true' FROM ..., but SELECT name, number FROM ... is not valid. This is because the result element in the data section is only designed to work against a single field.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="sql"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The sql entity defines a query used to identify the object(s) to test against. Any valid SQL query is usable with one exception, at most one field is allowed in the SELECT portion of the query. For example SELECT name FROM ... is valid, as is SELECT 'true' FROM ..., but SELECT name, number FROM ... is not valid. This is because the result element in the data section is only designed to work against a single field.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_sqlobjsql">
                                                                         <sch:rule context="ind-def:sql_object/ind-def:sql">
                                                                             <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the sql entity of an sql_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
                                           </xsd:sequence>
                                     </xsd:choice>
@@ -1075,27 +1162,32 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="engine" type="ind-def:EntityStateEngineType" minOccurs="0">
+                                    <xsd:element name="engine" type="ind-def:EntityStateEngineType"
+                                          minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The engine entity defines a specific database engine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="version" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="version"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The version entity defines a specific version of a given database engine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="connection_string" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="connection_string"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The connection_string entity defines a set of parameters that help identify the connection to the database.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="sql" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="sql" type="oval-def:EntityStateStringType"
+                                          minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>the sql entity defines a query used to identify the object(s) to test against.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="result" type="oval-def:EntityStateAnySimpleType" minOccurs="0">
+                                    <xsd:element name="result"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The result entity specifies how to test objects in the result set of the specified SQL statement. Only one comparable field is allowed. So if the SQL statement look like 'SELECT name FROM ...', then a result entity with a value of 'Fred' would test the set of 'name' values returned by the SQL statement against the value 'Fred'.</xsd:documentation>
                                           </xsd:annotation>
@@ -1135,7 +1227,8 @@
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
                                     <xsd:element name="object" type="oval-def:ObjectRefType"/>
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -1165,55 +1258,60 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="engine" type="ind-def:EntityObjectEngineType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The engine entity defines the specific database engine to use. Any tool looking to collect information about this object will need to know the engine in order to use the appropriate drivers to establish a connection.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="engine"
+                                                  type="ind-def:EntityObjectEngineType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The engine entity defines the specific database engine to use. Any tool looking to collect information about this object will need to know the engine in order to use the appropriate drivers to establish a connection.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_sql57_object_dengine">
                                                                         <sch:rule context="ind-def:sql57_object/ind-def:engine">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the engine entity of an sql57_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="version" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The version entity defines the specific version of the database engine to use. This is also important in determining the correct driver to use for establishing a connection.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="version"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The version entity defines the specific version of the database engine to use. This is also important in determining the correct driver to use for establishing a connection.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_sql57_object_version">
                                                                         <sch:rule context="ind-def:sql57_object/ind-def:version">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the version entity of an sql57_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="connection_string" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The connection_string entity defines specific connection parameters to be used in connecting to the database. This will help a tool connect to the correct database.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="connection_string"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The connection_string entity defines specific connection parameters to be used in connecting to the database. This will help a tool connect to the correct database.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_sql57_object_connection_string">
                                                                         <sch:rule context="ind-def:sql57_object/ind-def:connection_string">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the connection_string entity of an sql57_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="sql" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The sql entity defines a query used to identify the object(s) to test against. Any valid SQL query is usable with one exception, all fields must be named in the SELECT portion of the query. For example, SELECT name, number FROM ... is valid. However, SELECT * FROM ... is not valid. This is because the record element in the state and item require a unique field name value to ensure that any query results can be evaluated consistently.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="sql"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The sql entity defines a query used to identify the object(s) to test against. Any valid SQL query is usable with one exception, all fields must be named in the SELECT portion of the query. For example, SELECT name, number FROM ... is valid. However, SELECT * FROM ... is not valid. This is because the record element in the state and item require a unique field name value to ensure that any query results can be evaluated consistently.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_sql57_object_sql">
                                                                         <sch:rule context="ind-def:sql57_object/ind-def:sql">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the sql entity of an sql57_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -1229,27 +1327,32 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="engine" type="ind-def:EntityStateEngineType" minOccurs="0">
+                                    <xsd:element name="engine" type="ind-def:EntityStateEngineType"
+                                          minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The engine entity defines a specific database engine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="version" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="version"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The version entity defines a specific version of a given database engine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="connection_string" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="connection_string"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The connection_string entity defines a set of parameters that help identify the connection to the database.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="sql" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="sql" type="oval-def:EntityStateStringType"
+                                          minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>the sql entity defines a query used to identify the object(s) to test against.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="result" type="oval-def:EntityStateRecordType" minOccurs="0">
+                                    <xsd:element name="result" type="oval-def:EntityStateRecordType"
+                                          minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The result entity specifies how to test objects in the result set of the specified SQL statement.</xsd:documentation>
                                                 <xsd:appinfo>
@@ -1299,8 +1402,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -1332,12 +1436,15 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="behaviors" type="ind-def:Textfilecontent54Behaviors" minOccurs="0" maxOccurs="1"/>
+                                                <xsd:element name="behaviors"
+                                                  type="ind-def:Textfilecontent54Behaviors"
+                                                  minOccurs="0" maxOccurs="1"/>
                                                 <xsd:choice>
-                                                      <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
-                                                            <xsd:annotation>
-                                                                  <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
-                                                                  <xsd:appinfo>
+                                                  <xsd:element name="filepath"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                         <sch:pattern id="ind-def_txt54objfilepath">
                                                                               <sch:rule context="ind-def:textfilecontent54_object/ind-def:filepath">
                                                                                     <sch:assert test="not(preceding-sibling::ind-def:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
@@ -1349,13 +1456,14 @@
                                                                               </sch:rule>
                                                                         </sch:pattern>
                                                                   </xsd:appinfo>
-                                                            </xsd:annotation>
-                                                      </xsd:element>
-                                                      <xsd:sequence>
-                                                          <xsd:element name="path" type="oval-def:EntityObjectStringType">
-                                                                <xsd:annotation>
-                                                                      <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
-                                                                      <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:sequence>
+                                                  <xsd:element name="path"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                             <sch:pattern id="ind-def_txt54objpath">
                                                                                   <sch:rule context="ind-def:textfilecontent54_object/ind-def:path[not(@operation='equals' or not(@operation))]">
                                                                                         <sch:assert test="not(preceding-sibling::ind-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
@@ -1365,41 +1473,45 @@
                                                                                   </sch:rule>
                                                                             </sch:pattern>
                                                                       </xsd:appinfo>
-                                                                </xsd:annotation>
-                                                          </xsd:element>
-                                                          <xsd:element name="filename" type="oval-def:EntityObjectStringType">
-                                                                <xsd:annotation>
-                                                                      <xsd:documentation>The filename entity specifies the name of a file.</xsd:documentation>
-                                                                      <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="filename"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filename entity specifies the name of a file.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                             <sch:pattern id="ind-def_txt54objfilename">
                                                                                   <sch:rule context="ind-def:textfilecontent54_object/ind-def:filename">
                                                                                         <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                                   </sch:rule>
                                                                             </sch:pattern>
                                                                       </xsd:appinfo>
-                                                                </xsd:annotation>
-                                                          </xsd:element>
-                                                      </xsd:sequence>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
                                                 </xsd:choice>
-                                                <xsd:element name="pattern" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The pattern entity defines a chunk of text in a file and is represented using a regular expression. A subexpression (using parentheses) can call out a piece of the text block to test. For example, the pattern abc(.*)xyz would look for a block of text in the file that starts with abc and ends with xyz, with the subexpression being all the characters that exist in between. The value of the subexpression can then be tested using the subexpression entity of a textfilecontent54_state. Note that if the pattern, starting at the same point in the file, matches more than one block of text, then it matches the longest. For example, given a file with abcdefxyzxyzabc, then the pattern abc(.*)xyz would match the block abcdefxyzxyz. Subexpressions also match the longest possible substrings, subject to the constraint that the whole match be as long as possible, with subexpressions starting earlier in the pattern taking priority over ones starting later.</xsd:documentation>
-                                                            <xsd:documentation>Note that when using regular expressions, OVAL supports a common subset of the regular expression character classes, operations, expressions and other lexical tokens defined within Perl 5's regular expression specification. For more information on the supported regular expression syntax in OVAL see: http://oval.mitre.org/language/about/re_support_5.6.html.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="pattern"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The pattern entity defines a chunk of text in a file and is represented using a regular expression. A subexpression (using parentheses) can call out a piece of the text block to test. For example, the pattern abc(.*)xyz would look for a block of text in the file that starts with abc and ends with xyz, with the subexpression being all the characters that exist in between. The value of the subexpression can then be tested using the subexpression entity of a textfilecontent54_state. Note that if the pattern, starting at the same point in the file, matches more than one block of text, then it matches the longest. For example, given a file with abcdefxyzxyzabc, then the pattern abc(.*)xyz would match the block abcdefxyzxyz. Subexpressions also match the longest possible substrings, subject to the constraint that the whole match be as long as possible, with subexpressions starting earlier in the pattern taking priority over ones starting later.</xsd:documentation>
+                                                  <xsd:documentation>Note that when using regular expressions, OVAL supports a common subset of the regular expression character classes, operations, expressions and other lexical tokens defined within Perl 5's regular expression specification. For more information on the supported regular expression syntax in OVAL see: http://oval.mitre.org/language/about/re_support_5.6.html.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_txt54objpattern">
                                                                         <sch:rule context="ind-def:textfilecontent54_object/ind-def:pattern">
-                                                                              <sch:assert test="@operation='pattern match'"><sch:value-of select="../@id" /> - operation attribute for the pattern entity of a textfilecontent54_object should be 'pattern match'</sch:assert>
+                                                                              <sch:assert test="@operation='pattern match'"><sch:value-of select="../@id"/> - operation attribute for the pattern entity of a textfilecontent54_object should be 'pattern match'</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="instance" type="oval-def:EntityObjectIntType">
-                                                      <xsd:annotation>
-                                                          <xsd:documentation>The instance entity calls out a specific match of the pattern.  The first match is given an instance value of 1, the second match is given an instance value of 2, and so on.  Note that the main purpose of this entity is to provide uniqueness for different textfilecontent_items that results from multiple matches of a given pattern against the same file. Most likely this entity will be defined as greater than or equal to 1 which would result in the object representing the set of all matches of the pattern.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="instance"
+                                                  type="oval-def:EntityObjectIntType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The instance entity calls out a specific match of the pattern.  The first match is given an instance value of 1, the second match is given an instance value of 2, and so on.  Note that the main purpose of this entity is to provide uniqueness for different textfilecontent_items that results from multiple matches of a given pattern against the same file. Most likely this entity will be defined as greater than or equal to 1 which would result in the object representing the set of all matches of the pattern.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -1415,42 +1527,54 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="filepath"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="filename" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="filename"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filename entity represents the name of a file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="pattern" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="pattern"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The pattern entity represents a regular expression that is used to define a block of text.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="instance" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="instance" type="oval-def:EntityStateIntType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The instance entity calls out a specific match of the pattern.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="text" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="text"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The text entity represents the block of text that matched the specified pattern.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="subexpression" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="subexpression"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The subexpression entity represents a value to test against the subexpression in the specified pattern. If multiple subexpressions are specified in the pattern, this value is tested against all of them. For example, if the pattern abc(.*)mno(.*)xyp was supplied, and the state specifies a subexpression value of enabled, then the test would check that both (or at least one, none, etc. depending on the entity_check attribute) of the subexpressions have a value of enabled. </xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="windows_view" type="ind-def:EntityStateWindowsViewType" minOccurs="0">
+                                    <xsd:element name="windows_view"
+                                          type="ind-def:EntityStateWindowsViewType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.  This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
                                           </xsd:annotation>
@@ -1468,20 +1592,23 @@
             </xsd:annotation>
             <xsd:complexContent>
                   <xsd:extension base="ind-def:FileBehaviors">
-                        <xsd:attribute name="ignore_case" type="xsd:boolean" use="optional" default="false">
+                        <xsd:attribute name="ignore_case" type="xsd:boolean" use="optional"
+                              default="false">
                               <xsd:annotation>
                                     <xsd:documentation>'ignore_case' indicates whether case should be considered when matching system values against the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'i' modifier: if true, case will be ignored.  If false, case will not be ignored. The default is false.</xsd:documentation>
-                              </xsd:annotation>                  
+                              </xsd:annotation>
                         </xsd:attribute>
-                        <xsd:attribute name="multiline" type="xsd:boolean" use="optional" default="true">
+                        <xsd:attribute name="multiline" type="xsd:boolean" use="optional"
+                              default="true">
                               <xsd:annotation>
                                     <xsd:documentation>'multiline' enables multiple line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'm' modifier: if true, the '^' and '$' metacharacters will match both at the beginning/end of a string, and immediately after/before newline characters.  If false, they will match only at the beginning/end of a string.  The default is true.</xsd:documentation>
-                              </xsd:annotation>                  
+                              </xsd:annotation>
                         </xsd:attribute>
-                        <xsd:attribute name="singleline" type="xsd:boolean" use="optional" default="false">
+                        <xsd:attribute name="singleline" type="xsd:boolean" use="optional"
+                              default="false">
                               <xsd:annotation>
                                     <xsd:documentation>'singleline' enables single line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 's' modifier: if true, the '.' metacharacter will match newlines. If false, it will not.  The default is false.</xsd:documentation>
-                              </xsd:annotation>                  
+                              </xsd:annotation>
                         </xsd:attribute>
                   </xsd:extension>
             </xsd:complexContent>
@@ -1527,8 +1654,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -1557,36 +1685,41 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="behaviors" type="ind-def:FileBehaviors" minOccurs="0" maxOccurs="1"/>
-                                                <xsd:element name="path" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
-                                                      </xsd:annotation>
+                                                <xsd:element name="behaviors"
+                                                  type="ind-def:FileBehaviors" minOccurs="0"
+                                                  maxOccurs="1"/>
+                                                <xsd:element name="path"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="filename" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="filename"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_txtobjfilename">
                                                                         <sch:rule context="ind-def:textfilecontent_object/ind-def:filename">
                                                                               <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element name="line" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The line element represents a line in the file and is represented using a regular expression. A single subexpression can be called out using parentheses. The value of this subexpression can then be checked using a textfilecontent_state.</xsd:documentation>
-                                                            <xsd:documentation>Note that when using regular expressions, OVAL supports a common subset of the regular expression character classes, operations, expressions and other lexical tokens defined within Perl 5's regular expression specification. For more information on the supported regular expression syntax in OVAL see: http://oval.mitre.org/language/about/re_support_5.6.html.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="line"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The line element represents a line in the file and is represented using a regular expression. A single subexpression can be called out using parentheses. The value of this subexpression can then be checked using a textfilecontent_state.</xsd:documentation>
+                                                  <xsd:documentation>Note that when using regular expressions, OVAL supports a common subset of the regular expression character classes, operations, expressions and other lexical tokens defined within Perl 5's regular expression specification. For more information on the supported regular expression syntax in OVAL see: http://oval.mitre.org/language/about/re_support_5.6.html.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_txtobjline">
                                                                         <sch:rule context="ind-def:textfilecontent_object/ind-def:line">
-                                                                              <sch:assert test="@operation='pattern match'"><sch:value-of select="../@id" /> - operation attribute for the line entity of a textfilecontent_object should be 'pattern match'</sch:assert>
+                                                                              <sch:assert test="@operation='pattern match'"><sch:value-of select="../@id"/> - operation attribute for the line entity of a textfilecontent_object should be 'pattern match'</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
                                           </xsd:sequence>
                                     </xsd:choice>
@@ -1615,27 +1748,34 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="filename" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="filename"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The name of the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="line" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="line" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The line element represents a line in the file that was collected.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="subexpression" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="subexpression"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Each subexpression in the regular expression of the line element is then tested against the value specified in the subexpression element.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="windows_view" type="ind-def:EntityStateWindowsViewType" minOccurs="0">
+                                    <xsd:element name="windows_view"
+                                          type="ind-def:EntityStateWindowsViewType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.  This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
                                           </xsd:annotation>
@@ -1687,8 +1827,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -1718,10 +1859,11 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="var_ref" type="ind-def:EntityObjectVariableRefType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>The id of the variable you want.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="var_ref"
+                                                  type="ind-def:EntityObjectVariableRefType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The id of the variable you want.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_varobjvar_ref">
                                                                         <sch:rule context="ind-def:variable_object/ind-def:var_ref">
                                                                               <sch:assert test="not(@var_ref)"><sch:value-of select="../@id"/> - var_ref attribute for the var_ref entity of a variable_object is prohibited.</sch:assert>
@@ -1734,9 +1876,10 @@
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -1752,7 +1895,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="var_ref" type="ind-def:EntityStateVariableRefType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="var_ref"
+                                          type="ind-def:EntityStateVariableRefType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The id of the variable.</xsd:documentation>
                                                 <xsd:appinfo>
@@ -1770,7 +1915,9 @@
                                                 </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="value"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The value of the variable.</xsd:documentation>
                                           </xsd:annotation>
@@ -1809,8 +1956,9 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
-                                    <xsd:element name="object" type="oval-def:ObjectRefType" />
-                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType"
+                                          minOccurs="0" maxOccurs="unbounded"/>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
@@ -1842,12 +1990,15 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="behaviors" type="ind-def:FileBehaviors" minOccurs="0" maxOccurs="1"/>
+                                                <xsd:element name="behaviors"
+                                                  type="ind-def:FileBehaviors" minOccurs="0"
+                                                  maxOccurs="1"/>
                                                 <xsd:choice>
-                                                      <xsd:element name="filepath" type="oval-def:EntityObjectStringType">
-                                                            <xsd:annotation>
-                                                                  <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
-                                                                  <xsd:appinfo>
+                                                  <xsd:element name="filepath"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                         <sch:pattern id="ind-def_xmlobjfilepath">
                                                                               <sch:rule context="ind-def:xmlfilecontent_object/ind-def:filepath">
                                                                                     <sch:assert test="not(preceding-sibling::ind-def:behaviors[@max_depth or @recurse_direction])"><sch:value-of select="../@id"/> - the max_depth and recurse_direction behaviors are not allowed with a filepath entity</sch:assert>
@@ -1859,13 +2010,14 @@
                                                                               </sch:rule>
                                                                         </sch:pattern>
                                                                   </xsd:appinfo>
-                                                            </xsd:annotation>
-                                                      </xsd:element>
-                                                      <xsd:sequence>
-                                                          <xsd:element name="path" type="oval-def:EntityObjectStringType">
-                                                                <xsd:annotation>
-                                                                      <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
-                                                                      <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:sequence>
+                                                  <xsd:element name="path"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                             <sch:pattern id="ind-def_xmlobjpath">
                                                                                   <sch:rule context="ind-def:xmlfilecontent_object/ind-def:path[not(@operation='equals' or not(@operation))]">
                                                                                         <sch:assert test="not(preceding-sibling::ind-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
@@ -1875,35 +2027,38 @@
                                                                                   </sch:rule>
                                                                             </sch:pattern>
                                                                       </xsd:appinfo>
-                                                                </xsd:annotation>
-                                                          </xsd:element>
-                                                          <xsd:element name="filename" type="oval-def:EntityObjectStringType">
-                                                                <xsd:annotation>
-                                                                      <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
-                                                                      <xsd:appinfo>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="filename"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
+                                                  <xsd:appinfo>
                                                                             <sch:pattern id="ind-def_xmlobjfilename">
                                                                                   <sch:rule context="ind-def:xmlfilecontent_object/ind-def:filename">
                                                                                         <sch:assert test="(@var_ref and .='') or not(.='') or (.='' and @operation = 'pattern match')"><sch:value-of select="../@id"/> - filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used</sch:assert>
                                                                                   </sch:rule>
                                                                             </sch:pattern>
                                                                       </xsd:appinfo>
-                                                                </xsd:annotation>
-                                                          </xsd:element>
-                                                      </xsd:sequence>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
                                                 </xsd:choice>
-                                                <xsd:element name="xpath" type="oval-def:EntityObjectStringType">
-                                                      <xsd:annotation>
-                                                            <xsd:documentation>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at. Any valid Xpath 1.0 statement is usable with one exception, at most one field may be identified in the Xpath. This is because the value_of element in the data section is only designed to work against a single field. The only valid operator for xpath is equals since there is an infinite number of possible xpaths and determinining all those that do not equal a give xpath would be impossible.</xsd:documentation>
-                                                            <xsd:appinfo>
+                                                <xsd:element name="xpath"
+                                                  type="oval-def:EntityObjectStringType">
+                                                  <xsd:annotation>
+                                                  <xsd:appinfo>
                                                                   <sch:pattern id="ind-def_xmlobjxpath">
                                                                         <sch:rule context="ind-def:xmlfilecontent_object/ind-def:xpath">
                                                                             <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the xpath entity of a xmlfilecontent_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
                                                             </xsd:appinfo>
-                                                      </xsd:annotation>
+                                                  <xsd:documentation>Specifies an XPath 1.0 expression to evaluate against the XML file specified by the filename entity.  This XPath 1.0 expression must evaluate to a list of zero or more text values which will be accessible in OVAL via instances of the value_of entity.  Any results from evaluating the XPath 1.0 expression other than a list of text strings (e.g., a nodes set) is considered an error.  The intension is that the text values be drawn from instances of a single, uniquely named element or attribute.  However, an OVAL interpreter is not required to verify this, so the author should define the XPath expression carefully.  Note that "equals" is the only valid operator for the xpath entity.</xsd:documentation>
+                                                  </xsd:annotation>
                                                 </xsd:element>
-                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0"
+                                                  maxOccurs="unbounded"/>
                                           </xsd:sequence>
                                     </xsd:choice>
                               </xsd:sequence>
@@ -1919,32 +2074,40 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                    <xsd:element name="filepath"
+                                          type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="filename" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="filename"
+                                          type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The filename element specifies the name of the file.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="xpath" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="xpath" type="oval-def:EntityStateStringType"
+                                          minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at.</xsd:documentation>
+                                                <xsd:documentation>Specifies an XPath 1.0 expression to evaluate against the XML file specified by the filename entity.  This XPath 1.0 expression must evaluate to a list of zero or more text values which will be accessible in OVAL via instances of the value_of entity.  Any results from evaluating the XPath 1.0 expression other than a list of text strings (e.g., a nodes set) is considered an error.  The intension is that the text values be drawn from instances of a single, uniquely named element or attribute.  However, an OVAL interpreter is not required to verify this, so the author should define the XPath expression carefully.  Note that "equals" is the only valid operator for the xpath entity.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="value_of" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="value_of"
+                                          type="oval-def:EntityStateAnySimpleType" minOccurs="0"
+                                          maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The value_of element checks the value(s) of the text node(s) or attribute(s) found.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="windows_view" type="ind-def:EntityStateWindowsViewType" minOccurs="0">
+                                    <xsd:element name="windows_view"
+                                          type="ind-def:EntityStateWindowsViewType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.  This entity only applies to 64-bit Microsoft Windows operating systems.</xsd:documentation>
                                           </xsd:annotation>
@@ -2147,7 +2310,7 @@
                               <xsd:annotation>
                                     <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
                               </xsd:annotation>
-                        </xsd:enumeration>      
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
@@ -2367,7 +2530,7 @@
                         </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
-      </xsd:complexType>      
+      </xsd:complexType>
       <xsd:complexType name="EntityStateHashTypeType">
             <xsd:annotation>
                   <xsd:documentation>The EntityStateHashTypeType complex type restricts a string value to a specific set of values that specify the different hash algorithms that are supported. The empty string is also allowed to support empty elements associated with variable references.</xsd:documentation>
@@ -2408,10 +2571,10 @@
                               <xsd:annotation>
                                     <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
                               </xsd:annotation>
-                        </xsd:enumeration> 
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
-      </xsd:complexType>      
+      </xsd:complexType>
       <xsd:complexType name="EntityObjectVariableRefType">
             <xsd:annotation>
                   <xsd:documentation>The EntityObjectVariableRefType complex type defines a string object entity that has a valid OVAL variable id as the value. The empty string is also allowed to support empty elements associated with variable references.</xsd:documentation>
