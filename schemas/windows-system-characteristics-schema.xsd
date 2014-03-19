@@ -1378,7 +1378,7 @@
                          <xsd:sequence>
                               <xsd:element name="force_logoff" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>Specifies, in seconds, the amount of time between the end of the valid logon time and the time when the user is forced to log off the network. A value of TIMEQ_FOREVER indicates that the user is never forced to log off. A value of zero indicates that the user will be forced to log off immediately when the valid logon time expires. See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
+                                        <xsd:documentation>Specifies, in seconds (from a DWORD), the amount of time between the end of the valid logon time and the time when the user is forced to log off the network.  A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the user is never forced to log off. A value of zero indicates that the user will be forced to log off immediately when the valid logon time expires. See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="lockout_duration" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -1460,7 +1460,7 @@
                          <xsd:sequence>
                               <xsd:element name="max_passwd_age" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>Specifies, in seconds, the maximum allowable password age. A value of TIMEQ_FOREVER (-1) indicates that the password never expires. The minimum valid value for this element is ONE_DAY (86400).</xsd:documentation>
+                                        <xsd:documentation>Specifies, in seconds (from a DWORD), the maximum allowable password age.  A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the password never expires. The minimum valid value for this element is ONE_DAY (86400).  See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="min_passwd_age" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
