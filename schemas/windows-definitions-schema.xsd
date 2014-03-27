@@ -6937,6 +6937,71 @@
             </xsd:attribute>
       </xsd:complexType>
       <!-- =============================================================================== -->
+      <!-- ===============================  SYSTEM METRIC TEST  ========================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="systemmetric_test" substitutionGroup="oval-def:test">
+            <xsd:complexType>
+                  <xsd:annotation>
+                        <xsd:documentation>The system metric test is used to check the value of a particular Windows system metric. Access to this information is exposed by the GetSystemMetrics function in User32.dll.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="systemmetric_object" substitutionGroup="oval-def:object">
+            <xsd:complexType>
+                  <xsd:annotation>
+                        <xsd:documentation>The system metric object element is used by a system metric test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="index" type="win-def:EntityObjectSystemMetricIndexType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The index entity provides the system metric index value that is desired.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="systemmetric_state" substitutionGroup="oval-def:state">
+            <xsd:complexType>
+                  <xsd:annotation>
+                        <xsd:documentation>The system metric state element defines the different information that can be found in a Windows system metric value. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="index" type="win-def:EntityStateSystemMetricIndexType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The index entity corresponds to the systemmetric_object index entity.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="value" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The optional value entity provides the value of the system metric that is expected.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
       <!-- =========================  USER ACCESS CONTROL TEST  ========================== -->
       <!-- =============================================================================== -->
       <xsd:element name="uac_test" substitutionGroup="oval-def:test">
@@ -9113,7 +9178,964 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-
+      <xsd:complexType name="EntityObjectSystemMetricIndexType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityObjectSystemMetricIndexType complex type defines the different values that are valid for the index entity of a system metric object. These values describe the system metric or configuration setting to be retrieved. The empty string is also allowed as a valid value to support an empty element that is found when a variable reference is used within the index entity. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values. Please note that the values identified are for the index entity and are not valid values for the datatype attribute.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityObjectStringType">
+                        <xsd:enumeration value="SM_ARRANGE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The flags that specify how the system arranged minimized windows.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CLEANBOOT">
+                              <xsd:annotation>
+                                    <xsd:documentation>The value that specifies how the system is started.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CMONITORS">
+                              <xsd:annotation>
+                                    <xsd:documentation>The number of display monitors on a desktop.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CMOUSEBUTTONS">
+                              <xsd:annotation>
+                                    <xsd:documentation>The number of buttons on a mouse, or zero if no mouse is installed.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a window border, in pixels. This is equivalent to the SM_CXEDGE value for windows with the 3-D look.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXCURSOR">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a cursor, in pixels. The system cannot create cursors of other sizes.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXDLGFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This value is the same as SM_CXFIXEDFRAME.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXDOUBLECLK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the rectangle around the location of a first click in a double-click sequence, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXDRAG">
+                              <xsd:annotation>
+                                    <xsd:documentation>The number of pixels on either side of a mouse-down point that the mouse pointer can move before a drag operation begins.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXEDGE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a 3-D border, in pixels. This metric is the 3-D counterpart of SM_CXBORDER.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXFIXEDFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>The thickness of the frame around the perimeter of a window that has a caption but is not sizable, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXFOCUSBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the left and right edges of the focus rectangle that the DrawFocusRect draws.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This value is the same as SM_CXSIZEFRAME.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXFULLSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the client area for a full-screen window on the primary display monitor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXHSCROLL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the arrow bitmap on a horizontal scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXHTHUMB">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the thumb box in a horizontal scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXICON">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default width of an icon, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXICONSPACING">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a grid cell for items in large icon view, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMAXIMIZED">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default width, in pixels, of a maximized top-level window on the primary display monitor.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMAXTRACK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default maximum width of a window that has a caption and sizing borders, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMENUCHECK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the default menu check-mark bitmap, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMENUSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of menu bar buttons, such as the child window close button that is used in the multiple document interface, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMIN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The minimum width of a window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMINIMIZED">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a minimized window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMINSPACING">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a grid cell for a minimized window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMINTRACK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The minimum tracking width of a window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXPADDEDBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The amount of border padding for captioned windows, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the screen of the primary display monitor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a button in a window caption or title bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSIZEFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>The thickness of the sizing border around the perimeter of a window that can be resized, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSMICON">
+                              <xsd:annotation>
+                                    <xsd:documentation>The recommended width of a small icon, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSMSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of small caption buttons, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXVIRTUALSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the virtual screen, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXVSCROLL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a vertical scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a window border, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYCAPTION">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a caption area, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYCURSOR">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a cursor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYDLGFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This value is the same as SM_CYFIXEDFRAME.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYDOUBLECLK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the rectangle around the location of a first click in a double-click sequence, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYDRAG">
+                              <xsd:annotation>
+                                    <xsd:documentation>The number of pixels above and below a mouse-down point that the mouse pointer can move before a drag operation begins.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYEDGE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a 3-D border, in pixels. This is the 3-D counterpart of SM_CYBORDER.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYFIXEDFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>The thickness of the frame around the perimeter of a window that has a caption but is not sizable, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYFOCUSBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the top and bottom edges of the focus rectangle drawn by DrawFocusRect. This value is in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This value is the same as SM_CYSIZEFRAME.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYFULLSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the client area for a full-screen window on the primary display monitor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYHSCROLL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a horizontal scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYICON">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default height of an icon, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYICONSPACING">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a grid cell for items in large icon view, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYKANJIWINDOW">
+                              <xsd:annotation>
+                                    <xsd:documentation>For double byte character set versions of the system, this is the height of the Kanji window at the bottom of the screen, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMAXIMIZED">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default height, in pixels, of a maximized top-level window on the primary display monitor.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMAXTRACK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default maximum height of a window that has a caption and sizing borders, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMENU">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a single-line menu bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMENUCHECK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the default menu check-mark bitmap, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMENUSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of menu bar buttons, such as the child window close button that is used in the multiple document interface, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMIN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The minimum height of a window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMINIMIZED">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a minimized window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMINSPACING">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a grid cell for a minimized window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMINTRACK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The minimum tracking height of a window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the screen of the primary display monitor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a button in a window caption or title bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSIZEFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>The thickness of the sizing border around the perimeter of a window that can be resized, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSMCAPTION">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a small caption, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSMICON">
+                              <xsd:annotation>
+                                    <xsd:documentation>The recommended height of a small icon, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSMSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of small caption buttons, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYVIRTUALSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the virtual screen, in pixels. The virtual screen is the bounding rectangle of all display monitors.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYVSCROLL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the arrow bitmap on a vertical scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYVTHUMB">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the thumb box in a vertical scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_DBCSENABLED">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if User32.dll supports DBCS; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_DEBUG">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the debug version of User.exe is installed; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_DIGITIZER">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current operating system is Windows 7 or Windows Server 2008 R2 and the Tablet PC Input service is started; otherwise, 0. The return value is a bitmask that specifies the type of digitizer input supported by the device.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_IMMENABLED">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if Input Method Manager/Input Method Editor features are enabled; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MAXIMUMTOUCHES">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if there are digitizers in the system; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MEDIACENTER">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current operating system is the Windows XP, Media Center Edition, 0 if not.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MENUDROPALIGNMENT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if drop-down menus are right-aligned with the corresponding menu-bar item; 0 if the menus are left-aligned.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MIDEASTENABLED">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the system is enabled for Hebrew and Arabic languages, 0 if not.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MOUSEPRESENT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if a mouse is installed; otherwise, 0. </xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MOUSEHORIZONTALWHEELPRESENT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if a mouse with a horizontal scroll wheel is installed; otherwise 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MOUSEWHEELPRESENT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if a mouse with a vertical scroll wheel is installed; otherwise 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_NETWORK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The least significant bit is set if a network is present; otherwise, it is cleared.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_PENWINDOWS">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the Microsoft Windows for Pen computing extensions are installed; zero otherwise.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_REMOTECONTROL">
+                              <xsd:annotation>
+                                    <xsd:documentation>This system metric is used in a Terminal Services environment to determine if the current Terminal Server session is being remotely controlled. Its value is nonzero if the current session is remotely controlled; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_REMOTESESSION">
+                              <xsd:annotation>
+                                    <xsd:documentation>This system metric is used in a Terminal Services environment. If the calling process is associated with a Terminal Services client session, the return value is nonzero. If the calling process is associated with the Terminal Services console session, the return value is 0. </xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SAMEDISPLAYFORMAT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if all the display monitors have the same color format, otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SECURE">
+                              <xsd:annotation>
+                                    <xsd:documentation>This system metric should be ignored; it always returns 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SERVERR2">
+                              <xsd:annotation>
+                                    <xsd:documentation>The build number if the system is Windows Server 2003 R2; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SHOWSOUNDS">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the user requires an application to present information visually in situations where it would otherwise present the information only in audible form; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SHUTTINGDOWN">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current session is shutting down; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SLOWMACHINE">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the computer has a low-end (slow) processor; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_STARTER">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current operating system is Windows 7 Starter Edition, Windows Vista Starter, or Windows XP Starter Edition; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SWAPBUTTON">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the meanings of the left and right mouse buttons are swapped; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_TABLETPC">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current operating system is the Windows XP Tablet PC edition or if the current operating system is Windows Vista or Windows 7 and the Tablet PC Input service is started; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_XVIRTUALSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The coordinates for the left side of the virtual screen.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_YVIRTUALSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The coordinates for the top of the virtual screen.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:complexType name="EntityStateSystemMetricIndexType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateSystemMetricIndexType complex type defines the different values that are valid for the index entity of a systemmetric_state. These values describe the system metric or configuration setting to be retrieved. The empty string is also allowed as a valid value to support an empty element that is found when a variable reference is used within the index entity. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values. Please note that the values identified are for the index entity and are not valid values for the datatype attribute.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="SM_ARRANGE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The flags that specify how the system arranged minimized windows.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CLEANBOOT">
+                              <xsd:annotation>
+                                    <xsd:documentation>The value that specifies how the system is started.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CMONITORS">
+                              <xsd:annotation>
+                                    <xsd:documentation>The number of display monitors on a desktop.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CMOUSEBUTTONS">
+                              <xsd:annotation>
+                                    <xsd:documentation>The number of buttons on a mouse, or zero if no mouse is installed.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a window border, in pixels. This is equivalent to the SM_CXEDGE value for windows with the 3-D look.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXCURSOR">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a cursor, in pixels. The system cannot create cursors of other sizes.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXDLGFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This value is the same as SM_CXFIXEDFRAME.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXDOUBLECLK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the rectangle around the location of a first click in a double-click sequence, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXDRAG">
+                              <xsd:annotation>
+                                    <xsd:documentation>The number of pixels on either side of a mouse-down point that the mouse pointer can move before a drag operation begins.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXEDGE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a 3-D border, in pixels. This metric is the 3-D counterpart of SM_CXBORDER.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXFIXEDFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>The thickness of the frame around the perimeter of a window that has a caption but is not sizable, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXFOCUSBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the left and right edges of the focus rectangle that the DrawFocusRect draws.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This value is the same as SM_CXSIZEFRAME.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXFULLSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the client area for a full-screen window on the primary display monitor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXHSCROLL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the arrow bitmap on a horizontal scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXHTHUMB">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the thumb box in a horizontal scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXICON">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default width of an icon, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXICONSPACING">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a grid cell for items in large icon view, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMAXIMIZED">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default width, in pixels, of a maximized top-level window on the primary display monitor.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMAXTRACK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default maximum width of a window that has a caption and sizing borders, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMENUCHECK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the default menu check-mark bitmap, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMENUSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of menu bar buttons, such as the child window close button that is used in the multiple document interface, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMIN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The minimum width of a window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMINIMIZED">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a minimized window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMINSPACING">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a grid cell for a minimized window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXMINTRACK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The minimum tracking width of a window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXPADDEDBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The amount of border padding for captioned windows, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the screen of the primary display monitor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a button in a window caption or title bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSIZEFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>The thickness of the sizing border around the perimeter of a window that can be resized, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSMICON">
+                              <xsd:annotation>
+                                    <xsd:documentation>The recommended width of a small icon, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXSMSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of small caption buttons, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXVIRTUALSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of the virtual screen, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CXVSCROLL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The width of a vertical scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a window border, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYCAPTION">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a caption area, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYCURSOR">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a cursor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYDLGFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This value is the same as SM_CYFIXEDFRAME.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYDOUBLECLK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the rectangle around the location of a first click in a double-click sequence, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYDRAG">
+                              <xsd:annotation>
+                                    <xsd:documentation>The number of pixels above and below a mouse-down point that the mouse pointer can move before a drag operation begins.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYEDGE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a 3-D border, in pixels. This is the 3-D counterpart of SM_CYBORDER.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYFIXEDFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>The thickness of the frame around the perimeter of a window that has a caption but is not sizable, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYFOCUSBORDER">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the top and bottom edges of the focus rectangle drawn by DrawFocusRect. This value is in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This value is the same as SM_CYSIZEFRAME.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYFULLSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the client area for a full-screen window on the primary display monitor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYHSCROLL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a horizontal scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYICON">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default height of an icon, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYICONSPACING">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a grid cell for items in large icon view, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYKANJIWINDOW">
+                              <xsd:annotation>
+                                    <xsd:documentation>For double byte character set versions of the system, this is the height of the Kanji window at the bottom of the screen, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMAXIMIZED">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default height, in pixels, of a maximized top-level window on the primary display monitor.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMAXTRACK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The default maximum height of a window that has a caption and sizing borders, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMENU">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a single-line menu bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMENUCHECK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the default menu check-mark bitmap, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMENUSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of menu bar buttons, such as the child window close button that is used in the multiple document interface, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMIN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The minimum height of a window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMINIMIZED">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a minimized window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMINSPACING">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a grid cell for a minimized window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYMINTRACK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The minimum tracking height of a window, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the screen of the primary display monitor, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a button in a window caption or title bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSIZEFRAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>The thickness of the sizing border around the perimeter of a window that can be resized, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSMCAPTION">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of a small caption, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSMICON">
+                              <xsd:annotation>
+                                    <xsd:documentation>The recommended height of a small icon, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYSMSIZE">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of small caption buttons, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYVIRTUALSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the virtual screen, in pixels. The virtual screen is the bounding rectangle of all display monitors.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYVSCROLL">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the arrow bitmap on a vertical scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_CYVTHUMB">
+                              <xsd:annotation>
+                                    <xsd:documentation>The height of the thumb box in a vertical scroll bar, in pixels.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_DBCSENABLED">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if User32.dll supports DBCS; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_DEBUG">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the debug version of User.exe is installed; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_DIGITIZER">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current operating system is Windows 7 or Windows Server 2008 R2 and the Tablet PC Input service is started; otherwise, 0. The return value is a bitmask that specifies the type of digitizer input supported by the device.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_IMMENABLED">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if Input Method Manager/Input Method Editor features are enabled; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MAXIMUMTOUCHES">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if there are digitizers in the system; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MEDIACENTER">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current operating system is the Windows XP, Media Center Edition, 0 if not.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MENUDROPALIGNMENT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if drop-down menus are right-aligned with the corresponding menu-bar item; 0 if the menus are left-aligned.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MIDEASTENABLED">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the system is enabled for Hebrew and Arabic languages, 0 if not.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MOUSEPRESENT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if a mouse is installed; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MOUSEHORIZONTALWHEELPRESENT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if a mouse with a horizontal scroll wheel is installed; otherwise 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_MOUSEWHEELPRESENT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if a mouse with a vertical scroll wheel is installed; otherwise 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_NETWORK">
+                              <xsd:annotation>
+                                    <xsd:documentation>The least significant bit is set if a network is present; otherwise, it is cleared.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_PENWINDOWS">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the Microsoft Windows for Pen computing extensions are installed; zero otherwise.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_REMOTECONTROL">
+                              <xsd:annotation>
+                                    <xsd:documentation>This system metric is used in a Terminal Services environment to determine if the current Terminal Server session is being remotely controlled. Its value is nonzero if the current session is remotely controlled; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_REMOTESESSION">
+                              <xsd:annotation>
+                                    <xsd:documentation>This system metric is used in a Terminal Services environment. If the calling process is associated with a Terminal Services client session, the return value is nonzero. If the calling process is associated with the Terminal Services console session, the return value is 0. </xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SAMEDISPLAYFORMAT">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if all the display monitors have the same color format, otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SECURE">
+                              <xsd:annotation>
+                                    <xsd:documentation>This system metric should be ignored; it always returns 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SERVERR2">
+                              <xsd:annotation>
+                                    <xsd:documentation>The build number if the system is Windows Server 2003 R2; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SHOWSOUNDS">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the user requires an application to present information visually in situations where it would otherwise present the information only in audible form; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SHUTTINGDOWN">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current session is shutting down; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SLOWMACHINE">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the computer has a low-end (slow) processor; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_STARTER">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current operating system is Windows 7 Starter Edition, Windows Vista Starter, or Windows XP Starter Edition; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_SWAPBUTTON">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the meanings of the left and right mouse buttons are swapped; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_TABLETPC">
+                              <xsd:annotation>
+                                    <xsd:documentation>Nonzero if the current operating system is the Windows XP Tablet PC edition or if the current operating system is Windows Vista or Windows 7 and the Tablet PC Input service is started; otherwise, 0.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_XVIRTUALSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The coordinates for the left side of the virtual screen.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SM_YVIRTUALSCREEN">
+                              <xsd:annotation>
+                                    <xsd:documentation>The coordinates for the top of the virtual screen.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
       
       <xsd:complexType name="EntityObjectGUIDType">
             <xsd:annotation>
