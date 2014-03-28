@@ -6940,10 +6940,10 @@
       <!-- ===============================  SYSTEM METRIC TEST  ========================== -->
       <!-- =============================================================================== -->
       <xsd:element name="systemmetric_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The system metric test is used to check the value of a particular Windows system metric. Access to this information is exposed by the GetSystemMetrics function in User32.dll.</xsd:documentation>
+            </xsd:annotation>
             <xsd:complexType>
-                  <xsd:annotation>
-                        <xsd:documentation>The system metric test is used to check the value of a particular Windows system metric. Access to this information is exposed by the GetSystemMetrics function in User32.dll.</xsd:documentation>
-                  </xsd:annotation>
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:TestType">
                               <xsd:sequence>
@@ -6955,10 +6955,10 @@
             </xsd:complexType>
       </xsd:element>
       <xsd:element name="systemmetric_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The system metric object element is used by a system metric test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+            </xsd:annotation>
             <xsd:complexType>
-                  <xsd:annotation>
-                        <xsd:documentation>The system metric object element is used by a system metric test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
-                  </xsd:annotation>
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:ObjectType">
                               <xsd:sequence>
@@ -6979,10 +6979,10 @@
             </xsd:complexType>
       </xsd:element>
       <xsd:element name="systemmetric_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The system metric state element defines the different information that can be found in a Windows system metric value. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+            </xsd:annotation>
             <xsd:complexType>
-                  <xsd:annotation>
-                        <xsd:documentation>The system metric state element defines the different information that can be found in a Windows system metric value. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
-                  </xsd:annotation>
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
