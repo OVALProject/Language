@@ -3738,17 +3738,11 @@
                         behaviors may result in some unique results. For example, a double negative type condition might be created where an object entity says include everything except a specific
                         item, but a behavior is used that might then add that item back in.</xsd:documentation>
             </xsd:annotation>
-            <xsd:attribute name="include_default" use="optional" default="false">
+            <xsd:attribute name="include_default" type="xsd:boolean" use="optional" default="false">
                   <xsd:annotation>
                         <xsd:documentation>'include_default' defines if the Window's local Default ntuser.dat file is included in the results.  By default, this file is not included in the results.</xsd:documentation>
                         <xsd:documentation>The Default User's directory which contains the ntuser.dat file is stored in the registry at 'HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Windows NT/CurrentVersion/ProfileList/Default'.</xsd:documentation>
                   </xsd:annotation>
-                  <xsd:simpleType>
-                        <xsd:restriction base="xsd:string">
-                              <xsd:enumeration value="true"/>
-                              <xsd:enumeration value="false"/>
-                        </xsd:restriction>
-                  </xsd:simpleType>
             </xsd:attribute>
             <xsd:attribute name="max_depth" use="optional" default="-1">
                   <xsd:annotation>
