@@ -2032,7 +2032,7 @@
                   <xsd:documentation>The EntityObjectEngineType complex type defines a string entity value that is restricted to a set of enumerations. Each valid enumeration is a valid database engine. The empty string is also allowed to support empty elements associated with variable references.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
-                  <xsd:restriction base="oval-def:EntityStateStringType">
+                  <xsd:restriction base="oval-def:EntityObjectStringType">
                         <xsd:enumeration value="access">
                               <xsd:annotation>
                                     <xsd:documentation>The access value describes the Microsoft Access database engine.</xsd:documentation>
@@ -2220,6 +2220,11 @@
                         <xsd:enumeration value="mimer">
                               <xsd:annotation>
                                     <xsd:documentation>The mimer value describes the Mimer SQL database engine.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="mysql">
+                              <xsd:annotation>
+                                    <xsd:documentation>The mysql value describes the MySQL database engine.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="oracle">
