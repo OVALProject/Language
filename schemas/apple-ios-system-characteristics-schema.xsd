@@ -19,7 +19,7 @@
   <!-- =============================================================================== -->
   <!-- ==========================  GLOBAL RESTRICTIONS  ============================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="global_restrictions_item" substitutionGroup="oval-sc:item">
+  <xsd:element name="globalrestrictions_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
       <xsd:documentation>Information on global restrictions in place on the device derived from Apple's public Configuration Profile reference documentation</xsd:documentation>
     </xsd:annotation>
@@ -235,7 +235,7 @@
   <!-- =============================================================================== -->
   <!-- =========================  PASSCODE POLICY ==================================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="passcode_policy_item" substitutionGroup="oval-sc:item">
+  <xsd:element name="passcodepolicy_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
       <xsd:documentation>Passcode Policy Items from public Apple Configuration Profile Reference</xsd:documentation>
     </xsd:annotation>

@@ -19,24 +19,24 @@
   <!-- =============================================================================== -->
   <!--==========================  GLOBAL RESTRICTIONS TEST  ==========================-->
   <!-- =============================================================================== -->
-  <xsd:element name="global_restrictions_test" substitutionGroup="oval-def:test">
+  <xsd:element name="globalrestrictions_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The global_restrictions_test is used to check the status of the global restrictions in place on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a bluetooth_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The globalrestrictions_test is used to check the status of the global restrictions in place on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a globalrestrictions_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
-          <oval:test>global_restrictions_test</oval:test>
-          <oval:object>global_restrictions_object</oval:object>
-          <oval:state>global_restrictions_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apple_ios">global_restrictions_item</oval:item>
+          <oval:test>globalrestrictions_test</oval:test>
+          <oval:object>globalrestrictions_object</oval:object>
+          <oval:state>globalrestrictions_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apple_ios">globalrestrictions_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="apple-ios-def_global_restrictions_test">
-          <sch:rule context="apple-ios-def:global_restrictions_test/apple-ios-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/apple-ios-def:global_restrictions_object/@id"><sch:value-of select="../@id"/> - the object child element of a global_restrictions_test must reference a global_restrictions_object</sch:assert>
+        <sch:pattern id="apple-ios-def_globalrestrictions_test">
+          <sch:rule context="apple-ios-def:globalrestrictions_test/apple-ios-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/apple-ios-def:globalrestrictions_object/@id"><sch:value-of select="../@id"/> - the object child element of a globalrestrictions_test must reference a globalrestrictions_object</sch:assert>
           </sch:rule>
-          <sch:rule context="apple-ios-def:global_restrictions_test/apple-ios-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/apple-ios-def:global_restrictions_state/@id"><sch:value-of select="../@id"/> - the state child element of a global_restrictions_test must reference a global_restrictions_state</sch:assert>
+          <sch:rule context="apple-ios-def:globalrestrictions_test/apple-ios-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/apple-ios-def:globalrestrictions_state/@id"><sch:value-of select="../@id"/> - the state child element of a globalrestrictions_test must reference a globalrestrictions_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -52,9 +52,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="global_restrictions_object" substitutionGroup="oval-def:object">
+  <xsd:element name="globalrestrictions_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The global_restrictions_object element is used by a global restrictions test to define those objects to be evaluated based on a specified state. Any OVAL Test written to check global restrictions status will reference the same global_restrictions_object which is basically an empty object element.</xsd:documentation>
+      <xsd:documentation>The globalrestrictions_object element is used by a global restrictions test to define those objects to be evaluated based on a specified state. Any OVAL Test written to check global restrictions status will reference the same globalrestrictions_object which is basically an empty object element.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -62,7 +62,7 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="global_restrictions_state" substitutionGroup="oval-def:state">
+  <xsd:element name="globalrestrictions_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
       <xsd:documentation>Information on global restrictions in place on the device</xsd:documentation>
     </xsd:annotation>
@@ -278,24 +278,24 @@
   <!-- =============================================================================== -->
   <!-- ===========================  PASSCODE POLICY TEST  ============================ -->
   <!-- =============================================================================== -->
-  <xsd:element name="passcode_policy_test" substitutionGroup="oval-def:test">
+  <xsd:element name="passcodepolicy_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The passcode_policy_test is used to check the status of the passcode policy in place on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a passcode_policy_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The passcodepolicy_test is used to check the status of the passcode policy in place on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a passcodepolicy_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
-          <oval:test>passcode_policy_test</oval:test>
-          <oval:object>passcode_policy_object</oval:object>
-          <oval:state>passcode_policy_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apple_ios">passcode_policy_item</oval:item>
+          <oval:test>passcodepolicy_test</oval:test>
+          <oval:object>passcodepolicy_object</oval:object>
+          <oval:state>passcodepolicy_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#apple_ios">passcodepolicy_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="apple-ios-def_passcode_policy_test">
-          <sch:rule context="apple-ios-def:passcode_policy_test/apple-ios-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/apple-ios-def:passcode_policy_object/@id"><sch:value-of select="../@id"/> - the object child element of a passcode_policy_test must reference a passcode_policy_object</sch:assert>
+        <sch:pattern id="apple-ios-def_passcodepolicy_test">
+          <sch:rule context="apple-ios-def:passcodepolicy_test/apple-ios-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/apple-ios-def:passcodepolicy_object/@id"><sch:value-of select="../@id"/> - the object child element of a passcodepolicy_test must reference a passcodepolicy_object</sch:assert>
           </sch:rule>
-          <sch:rule context="apple-ios-def:passcode_policy_test/apple-ios-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/apple-ios-def:passcode_policy_state/@id"><sch:value-of select="../@id"/> - the state child element of a passcode_policy_test must reference a passcode_policy_state</sch:assert>
+          <sch:rule context="apple-ios-def:passcodepolicy_test/apple-ios-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/apple-ios-def:passcodepolicy_state/@id"><sch:value-of select="../@id"/> - the state child element of a passcodepolicy_test must reference a passcodepolicy_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -311,9 +311,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="passcode_policy_object" substitutionGroup="oval-def:object">
+  <xsd:element name="passcodepolicy_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The passcode_policy_object element is used by a passcode policy test to define those objects to be evaluated based on a specified state. Any OVAL Test written to check passcode policy status will reference the same passcode_policy_object which is basically an empty object element.</xsd:documentation>
+      <xsd:documentation>The passcodepolicy_object element is used by a passcode policy test to define those objects to be evaluated based on a specified state. Any OVAL Test written to check passcode policy status will reference the same passcodepolicy_object which is basically an empty object element.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -321,7 +321,7 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="passcode_policy_state" substitutionGroup="oval-def:state">
+  <xsd:element name="passcodepolicy_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
       <xsd:documentation>Passcode Policy Items from public Apple Configuration Profile Reference</xsd:documentation>
     </xsd:annotation>
