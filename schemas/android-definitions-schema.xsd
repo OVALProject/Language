@@ -18,24 +18,24 @@
   <!-- =============================================================================== -->
   <!-- =============================== APPLICATION MANAGER TEST  ===================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="app_manager_test" substitutionGroup="oval-def:test">
+  <xsd:element name="appmanager_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The app_manager_test is used to verify the applications installed on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a app_manager_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The appmanager_test is used to verify the applications installed on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a appmanager_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
-          <oval:test>app_manager_test</oval:test>
-          <oval:object>app_manager_object</oval:object>
-          <oval:state>app_manager_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">app_manager_item</oval:item>
+          <oval:test>appmanager_test</oval:test>
+          <oval:object>appmanager_object</oval:object>
+          <oval:state>appmanager_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">appmanager_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_app_manager_test">
-          <sch:rule context="android-def:app_manager_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:app_manager_object/@id"><sch:value-of select="../@id"/> - the object child element of an app_manager_test must reference an app_manager_object</sch:assert>
+        <sch:pattern id="android-def_appmanager_test">
+          <sch:rule context="android-def:appmanager_test/android-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:appmanager_object/@id"><sch:value-of select="../@id"/> - the object child element of an appmanager_test must reference an appmanager_object</sch:assert>
           </sch:rule>
-          <sch:rule context="android-def:app_manager_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:app_manager_state/@id"><sch:value-of select="../@id"/> - the state child element of an app_manager_test must reference an app_manager_state</sch:assert>
+          <sch:rule context="android-def:appmanager_test/android-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:appmanager_state/@id"><sch:value-of select="../@id"/> - the state child element of an appmanager_test must reference an appmanager_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -51,19 +51,19 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="app_manager_object" substitutionGroup="oval-def:object">
+  <xsd:element name="appmanager_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The app_manager_object element is used by a app_manager_test to define the required application properties to verify. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information.</xsd:documentation>
+      <xsd:documentation>The appmanager_object element is used by a appmanager_test to define the required application properties to verify. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information.</xsd:documentation>
       <xsd:appinfo>
-        <sch:pattern id="android-def_app_manager_object_verify_filter_state">
-          <sch:rule context="android-def:app_manager_object//oval-def:filter">
-            <sch:let name="parent_object" value="ancestor::android-def:app_manager_object"/>
+        <sch:pattern id="android-def_appmanager_object_verify_filter_state">
+          <sch:rule context="android-def:appmanager_object//oval-def:filter">
+            <sch:let name="parent_object" value="ancestor::android-def:appmanager_object"/>
             <sch:let name="parent_object_id" value="$parent_object/@id"/>
             <sch:let name="state_ref" value="."/>
             <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
             <sch:let name="state_name" value="local-name($reffed_state)"/>
             <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
-            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='app_manager_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='appmanager_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -93,9 +93,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="app_manager_state" substitutionGroup="oval-def:state">
+  <xsd:element name="appmanager_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
-      <xsd:documentation>The app_manager_state element defines the application settings.</xsd:documentation>
+      <xsd:documentation>The appmanager_state element defines the application settings.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -371,24 +371,24 @@
   <!-- =============================================================================== -->
   <!-- =============================== DEVICE SETTINGS TEST  ========================= -->
   <!-- =============================================================================== -->
-  <xsd:element name="device_settings_test" substitutionGroup="oval-def:test">
+  <xsd:element name="devicesettings_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The device_settings_test is used to check the status of various settings on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a device_settings_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The devicesettings_test is used to check the status of various settings on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a devicesettings_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
-          <oval:test>device_settings_test</oval:test>
-          <oval:object>device_settings_object</oval:object>
-          <oval:state>device_settings_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">device_settings_item</oval:item>
+          <oval:test>devicesettings_test</oval:test>
+          <oval:object>devicesettings_object</oval:object>
+          <oval:state>devicesettings_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">devicesettings_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_device_settings_test">
-          <sch:rule context="android-def:device_settings_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:device_settings_object/@id"><sch:value-of select="../@id"/> - the object child element of an device_settings_test must reference an device_settings_object</sch:assert>
+        <sch:pattern id="android-def_devicesettings_test">
+          <sch:rule context="android-def:devicesettings_test/android-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:devicesettings_object/@id"><sch:value-of select="../@id"/> - the object child element of an devicesettings_test must reference an devicesettings_object</sch:assert>
           </sch:rule>
-          <sch:rule context="android-def:device_settings_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:device_settings_state/@id"><sch:value-of select="../@id"/> - the state child element of an network_test must reference an network_state</sch:assert>
+          <sch:rule context="android-def:devicesettings_test/android-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:devicesettings_state/@id"><sch:value-of select="../@id"/> - the state child element of an devicesettings_test must reference an devicesettings_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -404,9 +404,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="device_settings_object" substitutionGroup="oval-def:object">
+  <xsd:element name="devicesettings_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The device_settings_object element is used by a device settings test to define those objects to be evaluated based on a specified state. Any OVAL Test written to check device settings will reference the same device_settings_object which is basically an empty object element.</xsd:documentation>
+      <xsd:documentation>The devicesettings_object element is used by a device settings test to define those objects to be evaluated based on a specified state. Any OVAL Test written to check device settings will reference the same devicesettings_object which is basically an empty object element.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -414,9 +414,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="device_settings_state" substitutionGroup="oval-def:state">
+  <xsd:element name="devicesettings_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
-      <xsd:documentation>The device_settings_state element defines the device settings.</xsd:documentation>
+      <xsd:documentation>The devicesettings_state element defines the device settings.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -534,24 +534,24 @@
   <!-- =============================================================================== -->
   <!-- ===============================  LOCATION SERVICE TEST  ======================= -->
   <!-- =============================================================================== -->
-  <xsd:element name="location_service_test" substitutionGroup="oval-def:test">
+  <xsd:element name="locationservice_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The location_service_test is used to check the status of location based services. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a location_service_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The locationservice_test is used to check the status of location based services. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a locationservice_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
-          <oval:test>location_service_test</oval:test>
-          <oval:object>location_service_object</oval:object>
-          <oval:state>location_service_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">location_service_item</oval:item>
+          <oval:test>locationservice_test</oval:test>
+          <oval:object>locationservice_object</oval:object>
+          <oval:state>locationservice_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">locationservice_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_location_service_test">
-          <sch:rule context="android-def:location_service_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:location_service_object/@id"><sch:value-of select="../@id"/> - the object child element of an location_service_test must reference an location_service_object</sch:assert>
+        <sch:pattern id="android-def_locationservice_test">
+          <sch:rule context="android-def:locationservice_test/android-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:locationservice_object/@id"><sch:value-of select="../@id"/> - the object child element of an locationservice_test must reference an locationservice_object</sch:assert>
           </sch:rule>
-          <sch:rule context="android-def:location_service_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:location_service_state/@id"><sch:value-of select="../@id"/> - the state child element of an location_service_test must reference an location_service_state</sch:assert>
+          <sch:rule context="android-def:locationservice_test/android-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:locationservice_state/@id"><sch:value-of select="../@id"/> - the state child element of an locationservice_test must reference an locationservice_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -567,9 +567,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="location_service_object" substitutionGroup="oval-def:object">
+  <xsd:element name="locationservice_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The location_service_object element is used by a location service test to define those objects to evaluated based on a specified state. Any OVAL Test written to check location based services status will reference the same location_service_object which is basically an empty object element.</xsd:documentation>
+      <xsd:documentation>The locationservice_object element is used by a location service test to define those objects to evaluated based on a specified state. Any OVAL Test written to check location based services status will reference the same locationservice_object which is basically an empty object element.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -577,9 +577,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="location_service_state" substitutionGroup="oval-def:state">
+  <xsd:element name="locationservice_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
-      <xsd:documentation>The location_service_state element defines the location based services status.</xsd:documentation>
+      <xsd:documentation>The locationservice_state element defines the location based services status.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -811,24 +811,24 @@
   <!-- =============================================================================== -->
   <!-- ==============================  SYSTEM DETAILS TEST =========================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="system_details_test" substitutionGroup="oval-def:test">
+  <xsd:element name="systemdetails_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The syste_details test is used to get system hardware and operating system information. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a system_details_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The syste_details test is used to get system hardware and operating system information. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a systemdetails_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
-          <oval:test>system_details_test</oval:test>
-          <oval:object>system_details_object</oval:object>
-          <oval:state>system_details_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">system_details_item</oval:item>
+          <oval:test>systemdetails_test</oval:test>
+          <oval:object>systemdetails_object</oval:object>
+          <oval:state>systemdetails_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">systemdetails_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_system_details_test">
-          <sch:rule context="android-def:system_details_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:system_details_object/@id"><sch:value-of select="../@id"/> - the object child element of system_details_test must reference system_details_object</sch:assert>
+        <sch:pattern id="android-def_systemdetails_test">
+          <sch:rule context="android-def:systemdetails_test/android-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:systemdetails_object/@id"><sch:value-of select="../@id"/> - the object child element of systemdetails_test must reference systemdetails_object</sch:assert>
           </sch:rule>
-          <sch:rule context="android-def:system_details_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:system_details_state/@id"><sch:value-of select="../@id"/> - the state child element of an system_details_test must reference an system_details_state</sch:assert>
+          <sch:rule context="android-def:systemdetails_test/android-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:systemdetails_state/@id"><sch:value-of select="../@id"/> - the state child element of an systemdetails_test must reference an systemdetails_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -844,9 +844,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="system_details_object" substitutionGroup="oval-def:object">
+  <xsd:element name="systemdetails_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The system_details_object element is used by a system_details test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information.</xsd:documentation>
+      <xsd:documentation>The systemdetails_object element is used by a systemdetails test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -854,9 +854,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="system_details_state" substitutionGroup="oval-def:state">
+  <xsd:element name="systemdetails_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
-      <xsd:documentation>The system_details_state element defines the information about the hardware and the operating system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+      <xsd:documentation>The systemdetails_state element defines the information about the hardware and the operating system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -999,24 +999,24 @@
   <!-- =============================================================================== -->
   <!-- =============================== WIFI SECURITY TEST  =========================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="wifi_network_test" substitutionGroup="oval-def:test">
+  <xsd:element name="wifinetwork_test" substitutionGroup="oval-def:test">
     <xsd:annotation>
-      <xsd:documentation>The wifi_network_test is used to check information about the configured Wi-Fi networks on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a wifi_network_object and the optional state element specifies the data to check.</xsd:documentation>
+      <xsd:documentation>The wifinetwork_test is used to check information about the configured Wi-Fi networks on the device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a wifinetwork_object and the optional state element specifies the data to check.</xsd:documentation>
       <xsd:appinfo>
         <oval:element_mapping>
-          <oval:test>wifi_network_test</oval:test>
-          <oval:object>wifi_network_object</oval:object>
-          <oval:state>wifi_network_state</oval:state>
-          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">wifi_network_item</oval:item>
+          <oval:test>wifinetwork_test</oval:test>
+          <oval:object>wifinetwork_object</oval:object>
+          <oval:state>wifinetwork_state</oval:state>
+          <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#android">wifinetwork_item</oval:item>
         </oval:element_mapping>
       </xsd:appinfo>
       <xsd:appinfo>
-        <sch:pattern id="android-def_wifi_network_test">
-          <sch:rule context="android-def:wifi_network_test/android-def:object">
-            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:wifi_network_object/@id"><sch:value-of select="../@id"/> - the object child element of an wifi_network_test must reference an wifi_network_object</sch:assert>
+        <sch:pattern id="android-def_wifinetwork_test">
+          <sch:rule context="android-def:wifinetwork_test/android-def:object">
+            <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/android-def:wifinetwork_object/@id"><sch:value-of select="../@id"/> - the object child element of an wifinetwork_test must reference an wifinetwork_object</sch:assert>
           </sch:rule>
-          <sch:rule context="android-def:wifi_network_test/android-def:state">
-            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:wifi_network_state/@id"><sch:value-of select="../@id"/> - the state child element of an wifi_network_test must reference an wifi_network_state</sch:assert>
+          <sch:rule context="android-def:wifinetwork_test/android-def:state">
+            <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/android-def:wifinetwork_state/@id"><sch:value-of select="../@id"/> - the state child element of an wifinetwork_test must reference an wifinetwork_state</sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1032,19 +1032,19 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="wifi_network_object" substitutionGroup="oval-def:object">
+  <xsd:element name="wifinetwork_object" substitutionGroup="oval-def:object">
     <xsd:annotation>
-      <xsd:documentation>The wifi_network_object element is used by a wifi_network_test to define the SSID of the Wi-Fi to verify security settings. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information.</xsd:documentation>
+      <xsd:documentation>The wifinetwork_object element is used by a wifinetwork_test to define the SSID of the Wi-Fi to verify security settings. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information.</xsd:documentation>
       <xsd:appinfo>
-        <sch:pattern id="android-def_wifi_network_object_verify_filter_state">
-          <sch:rule context="android-def:wifi_network_object//oval-def:filter">
-            <sch:let name="parent_object" value="ancestor::android-def:wifi_network_object"/>
+        <sch:pattern id="android-def_wifinetwork_object_verify_filter_state">
+          <sch:rule context="android-def:wifinetwork_object//oval-def:filter">
+            <sch:let name="parent_object" value="ancestor::android-def:wifinetwork_object"/>
             <sch:let name="parent_object_id" value="$parent_object/@id"/>
             <sch:let name="state_ref" value="."/>
             <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
             <sch:let name="state_name" value="local-name($reffed_state)"/>
             <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
-            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='wifi_network_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+            <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#android') and ($state_name='wifinetwork_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
           </sch:rule>
         </sch:pattern>
       </xsd:appinfo>
@@ -1069,9 +1069,9 @@
       </xsd:complexContent>
     </xsd:complexType>
   </xsd:element>
-  <xsd:element name="wifi_network_state" substitutionGroup="oval-def:state">
+  <xsd:element name="wifinetwork_state" substitutionGroup="oval-def:state">
     <xsd:annotation>
-      <xsd:documentation>The wifi_network_state element defines the Wi-Fi network settings status.</xsd:documentation>
+      <xsd:documentation>The wifinetwork_state element defines the Wi-Fi network settings status.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexType>
       <xsd:complexContent>
@@ -1216,7 +1216,7 @@
   <!-- =============================================================================== -->
   <xsd:complexType name="EntityStateEncryptionStatusType">
     <xsd:annotation>
-      <xsd:documentation>The EntityStateEncryptionStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityStateEncryptionStatusType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-def:EntityStateStringType">
@@ -1240,12 +1240,17 @@
             <xsd:documentation>Encryption is not currently active, but is currently being activated.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityStateKeyguardDisabledFeaturesType">
     <xsd:annotation>
-      <xsd:documentation>The EntityStateKeyguardDisabledFeaturesType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityStateKeyguardDisabledFeaturesType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-def:EntityStateStringType">
@@ -1269,12 +1274,17 @@
             <xsd:documentation>Disable all current and future keyguard customizations</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityStateNetworkType">
     <xsd:annotation>
-      <xsd:documentation>The EntityStateNetworkType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityStateNetworkType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-def:EntityStateStringType">
@@ -1358,12 +1368,17 @@
             <xsd:documentation>Current network is HSPAP</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityStatePasswordQualityType">
     <xsd:annotation>
-      <xsd:documentation>The EntityStatePasswordQualityType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityStatePasswordQualityType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-def:EntityStateStringType">
@@ -1402,6 +1417,11 @@
             <xsd:documentation>There are no password policy requirements</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1427,12 +1447,17 @@
             <xsd:documentation>Shared Key authentication (requires static WEP keys)</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityStateWifiCurrentStatusType">
     <xsd:annotation>
-      <xsd:documentation>The EntityStateWifiCurrentStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityStateWifiCurrentStatusType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-def:EntityStateStringType">
@@ -1449,6 +1474,11 @@
         <xsd:enumeration value="DISABLED">
           <xsd:annotation>
             <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -1480,6 +1510,11 @@
             <xsd:documentation>WEP (Wired Equivalent Privacy) with 40-bit key (original 802.11); Constant Value: 0 (0x00000000)</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1509,6 +1544,11 @@
             <xsd:documentation>WPA pre-shared key.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1533,6 +1573,11 @@
             <xsd:documentation>Temporal Key Integrity Protocol [IEEE802.11i/D7.0]</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -1550,6 +1595,11 @@
         <xsd:enumeration value="WPA">
           <xsd:annotation>
             <xsd:documentation>WPA/IEEE 802.11i/D3.0</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>

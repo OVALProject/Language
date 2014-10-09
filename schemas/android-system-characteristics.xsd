@@ -18,7 +18,7 @@
   <!-- =============================================================================== -->
   <!-- =======================  APPLICATION MANAGER ITEM  ============================ -->
   <!-- =============================================================================== -->
-  <xsd:element name="app_manager_item" substitutionGroup="oval-sc:item">
+  <xsd:element name="appmanager_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
       <xsd:documentation>This item stores information about applications installed on the device.</xsd:documentation>
     </xsd:annotation>
@@ -167,7 +167,7 @@
   <!-- =============================================================================== -->
   <!-- ========================== DEVICE SETTINGS ITEM =============================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="device_settings_item" substitutionGroup="oval-sc:item">
+  <xsd:element name="devicesettings_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
       <xsd:documentation>This holds information about miscellaneous device settings.</xsd:documentation>
     </xsd:annotation>
@@ -244,7 +244,7 @@
   <!-- =============================================================================== -->
   <!-- ============================  LOCATION SERVICE ITEM  ========================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="location_service_item" substitutionGroup="oval-sc:item">
+  <xsd:element name="locationservice_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
       <xsd:documentation>This holds information about location based service status.</xsd:documentation>
     </xsd:annotation>
@@ -392,7 +392,7 @@
   <!-- =============================================================================== -->
   <!-- =========================  SYSTEM DETAILS ITEM  =============================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="system_details_item" substitutionGroup="oval-sc:item">
+  <xsd:element name="systemdetails_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
       <xsd:documentation>This item stores information about the Operating System and hardware.</xsd:documentation>
     </xsd:annotation>
@@ -494,7 +494,7 @@
   <!-- =============================================================================== -->
   <!-- ===========================  WIFI SECURITY ITEM  ============================== -->
   <!-- =============================================================================== -->
-  <xsd:element name="wifi_network_item" substitutionGroup="oval-sc:item">
+  <xsd:element name="wifinetwork_item" substitutionGroup="oval-sc:item">
     <xsd:annotation>
       <xsd:documentation>This item holds information about the configured Wi-Fi networks on the device.</xsd:documentation>
     </xsd:annotation>
@@ -598,7 +598,7 @@
   <!-- =============================================================================== -->
   <xsd:complexType name="EntityItemEncryptionStatusType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemEncryptionStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityItemEncryptionStatusType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -622,12 +622,17 @@
             <xsd:documentation>Encryption is not currently active, but is currently being activated.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityItemKeyguardDisabledFeaturesType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemKeyguardDisabledFeaturesType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityItemKeyguardDisabledFeaturesType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -651,12 +656,17 @@
             <xsd:documentation>Disable all current and future keyguard customizations</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityItemNetworkType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemNetworkType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityItemNetworkType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -740,12 +750,17 @@
             <xsd:documentation>Current network is HSPAP</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityItemPasswordQualityType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemPasswordQualityType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityItemPasswordQualityType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -784,6 +799,11 @@
             <xsd:documentation>There are no password policy requirements</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -809,12 +829,17 @@
             <xsd:documentation>Shared Key authentication (requires static WEP keys)</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
   <xsd:complexType name="EntityItemWifiCurrentStatusType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemWifiCurrentStatusType complex type restricts a string value to a specific set of values.</xsd:documentation>
+      <xsd:documentation>The EntityItemWifiCurrentStatusType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -831,6 +856,11 @@
         <xsd:enumeration value="DISABLED">
           <xsd:annotation>
             <xsd:documentation>Supplicant will consider this network available for association</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -862,6 +892,11 @@
             <xsd:documentation>WEP (Wired Equivalent Privacy) with 40-bit key (original 802.11); Constant Value: 0 (0x00000000)</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -891,6 +926,11 @@
             <xsd:documentation>WPA pre-shared key.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -915,6 +955,11 @@
             <xsd:documentation>Temporal Key Integrity Protocol [IEEE802.11i/D7.0]</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
@@ -932,6 +977,11 @@
         <xsd:enumeration value="WPA">
           <xsd:annotation>
             <xsd:documentation>WPA/IEEE 802.11i/D3.0</xsd:documentation>
+          </xsd:annotation>
+        </xsd:enumeration>
+        <xsd:enumeration value="">
+          <xsd:annotation>
+            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
