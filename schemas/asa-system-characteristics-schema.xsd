@@ -471,19 +471,24 @@
       <!-- =============================================================================== -->
       <xsd:complexType name="EntityItemAccessListIPVersionType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemAccessListIPVersionType complex type restricts a string value to a specific set of values: IPV4, IPV6 or IPV4_V6 (both). These values describe if an ACL is for IPv4 or both for UACLs or IPv6 in a Cisco asa configuration.</xsd:documentation>
+                  <xsd:documentation>The EntityItemAccessListIPVersionType complex type restricts a string value to a specific set of values: IPV4, IPV6 or IPV4_V6 (both). These values describe if an ACL is for IPv4 or both for UACLs or IPv6 in a Cisco asa configuration. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
                         <xsd:enumeration value="IPV4" />
                         <xsd:enumeration value="IPV6" />
                         <xsd:enumeration value="IPV4_V6" />
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemAccessListUseType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemAccessListUseType complex type restricts a string value to a specific set of values: INTERFACE, INTERFACE_CP (control plane interface ACL), CRYPTO_MAP_MATCH, CLASS_MAP_MATCH, ROUTE_MAP_MATCH, IGMP_FILTER, NONE. These values describe the ACL use in a Cisco asa configuration.</xsd:documentation>
+                  <xsd:documentation>The EntityItemAccessListUseType complex type restricts a string value to a specific set of values: INTERFACE, INTERFACE_CP (control plane interface ACL), CRYPTO_MAP_MATCH, CLASS_MAP_MATCH, ROUTE_MAP_MATCH, IGMP_FILTER, NONE. These values describe the ACL use in a Cisco asa configuration. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -494,35 +499,50 @@
                         <xsd:enumeration value="ROUTE_MAP_MATCH" />
                         <xsd:enumeration value="IGMP_FILTER" />
                         <xsd:enumeration value="NONE" />
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemAccessListInterfaceDirectionType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemAccessListInterfaceDirectionType complex type restricts a string value to a specific set of values: IN, OUT. These values describe the inbound or outbound ACL direction on an interface in a Cisco ASA configuration.</xsd:documentation>
+                  <xsd:documentation>The EntityItemAccessListInterfaceDirectionType complex type restricts a string value to a specific set of values: IN, OUT. These values describe the inbound or outbound ACL direction on an interface in a Cisco ASA configuration. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
                         <xsd:enumeration value="IN" />
                         <xsd:enumeration value="OUT" />
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemClassMapType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemClassMapType complex type restricts a string value to a specific set of values: INSPECT, REGEX, MANAGEMENT. These values describe the MPF class-map types in Cisco ASA MPF configurations.</xsd:documentation>
+                  <xsd:documentation>The EntityItemClassMapType complex type restricts a string value to a specific set of values: INSPECT, REGEX, MANAGEMENT. These values describe the MPF class-map types in Cisco ASA MPF configurations. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
                         <xsd:enumeration value="INSPECT"/>
                         <xsd:enumeration value="REGEX"/>
                         <xsd:enumeration value="MANAGEMENT"/>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemInpsectionType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemInpsectionType complex type restricts a string value to a specific set of values. These values describe the MPF inspection types of class-map and policy-map configurations in Cisco ASA MPF configurations.</xsd:documentation>
+                  <xsd:documentation>The EntityItemInpsectionType complex type restricts a string value to a specific set of values. These values describe the MPF inspection types of class-map and policy-map configurations in Cisco ASA MPF configurations. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -543,69 +563,99 @@
                         <xsd:enumeration value="SIP"/>
                         <xsd:enumeration value="SKINNY"/>
                         <xsd:enumeration value="SNMP"/>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemApplyServicePolicyType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemApplyServicePolicyType complex type restricts a string value to a specific set of values: GLOBAL, INTERFACE. These values describe where a service-policy is applied in a Cisco ASA MPF configuration.</xsd:documentation>
+                  <xsd:documentation>The EntityItemApplyServicePolicyType complex type restricts a string value to a specific set of values: GLOBAL, INTERFACE. These values describe where a service-policy is applied in a Cisco ASA MPF configuration. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
                         <xsd:enumeration value="GLOBAL"/>
                         <xsd:enumeration value="INTERFACE"/>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemMatchType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemMatchType complex type restricts a string value to a specific set of values: ANY, ALL. These values describe the match type of a class-map in a Cisco ASA MPF configuration.</xsd:documentation>
+                  <xsd:documentation>The EntityItemMatchType complex type restricts a string value to a specific set of values: ANY, ALL. These values describe the match type of a class-map in a Cisco ASA MPF configuration. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
                         <xsd:enumeration value="ANY"/>
                         <xsd:enumeration value="ALL"/>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemSNMPVersionStringType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemSNMPVersionStringType complex type restricts a string value to a specific set of values: 1, 2c, 3. These values describe the SNMP version in a Cisco ASA configuration.</xsd:documentation>
+                  <xsd:documentation>The EntityItemSNMPVersionStringType complex type restricts a string value to a specific set of values: 1, 2c, 3. These values describe the SNMP version in a Cisco ASA configuration. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
                         <xsd:enumeration value="1"/>
                         <xsd:enumeration value="2C"/>
                         <xsd:enumeration value="3"/>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemSNMPSecLevelStringType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemSNMPSecLevelStringType complex type restricts a string value to a specific set of values: PRIV, AUTH, NO_AUTH. These values describe the SNMP security level (encryption, Authentication, None) in a Cisco ASA SNMPv3 related configurations.</xsd:documentation>
+                  <xsd:documentation>The EntityItemSNMPSecLevelStringType complex type restricts a string value to a specific set of values: PRIV, AUTH, NO_AUTH. These values describe the SNMP security level (encryption, Authentication, None) in a Cisco ASA SNMPv3 related configurations. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
                         <xsd:enumeration value="PRIV"/>
                         <xsd:enumeration value="AUTH"/>
                         <xsd:enumeration value="NO_AUTH"/>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemSNMPAuthStringType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemSNMPAuthStringType complex type restricts a string value to a specific set of values: MD5, SHA. These values describe the authentication algorithm in a Cisco ASA SNMPv3 related configurations.</xsd:documentation>
+                  <xsd:documentation>The EntityItemSNMPAuthStringType complex type restricts a string value to a specific set of values: MD5, SHA. These values describe the authentication algorithm in a Cisco ASA SNMPv3 related configurations. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
                         <xsd:enumeration value="MD5"/>
                         <xsd:enumeration value="SHA"/>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityItemSNMPPrivStringType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemSNMPPrivStringType complex type restricts a string value to a specific set of values: DES, 3DES, AES128, AES192, and AES256. These values describe the encryption algorithm in a Cisco ASA SNMPv3 related configurations.</xsd:documentation>
+                  <xsd:documentation>The EntityItemSNMPPrivStringType complex type restricts a string value to a specific set of values: DES, 3DES, AES128, AES192, and AES256. These values describe the encryption algorithm in a Cisco ASA SNMPv3 related configurations. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -614,6 +664,11 @@
                         <xsd:enumeration value="AES128"/>
                         <xsd:enumeration value="AES192"/>
                         <xsd:enumeration value="AES256"/>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
