@@ -1719,6 +1719,103 @@
             </xsd:complexType>
       </xsd:element>
       <!-- =============================================================================== -->
+      <!-- ========================  VIRTUALIZATION INFO TEST  =========================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="virtualizationinfo_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The virtualizationinfo_test provides support for checking the metadata associated with the current virtualization environment this instance of Solaris is running on. The test extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a virtualizationinfo_object and the optional state elements reference virtualizationinfo_states that specify the metadata to check the current virtualization environment.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>virtualizationinfo_test</oval:test>
+                              <oval:object>virtualizationinfo_object</oval:object>
+                              <oval:state>virtualizationinfo_state</oval:state>
+                              <oval:item>virtualizationinfo_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="sol-def_virtualizationinfo_test">
+                              <sch:rule context="sol-def:virtualizationinfo_test/sol-def:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/sol-def:virtualizationinfo_object/@id"><sch:value-of select="../@id"/> - the object child element of an virtualizationinfo_test must reference a virtualizationinfo_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="sol-def:virtualizationinfo_test/sol-def:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/sol-def:virtualizationinfo_state/@id"><sch:value-of select="../@id"/> - the state child element of an virtualizationinfo_test must reference a virtualizationinfo_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="virtualizationinfo_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The virtualizationinfo_object element is used by a virtualizationinfo_test to identify the current virtualization environment this instance of Solaris is running on. Given that this object only retrieves the current virtualization environment for the system, there are no child entities to specify in the object.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="sol-def_virtualizationinfo_object_verify_filter_state">
+                              <sch:rule context="sol-def:virtualizationinfo_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::sol-def:virtualizationinfo_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#solaris') and ($state_name='virtualizationinfo_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType"/>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="virtualizationinfo_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The virtualizationinfo_state element defines the different information that can be used to evaluate the current virtualization environment this instance of Solaris is running on.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="current" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The name of the current environment.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="supported" type="sol-def:EntityStateV12NEnvType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The list of virtualization environments that this node supports as children.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="parent" type="sol-def:EntityStateV12NEnvType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The parent environment of the current environment.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ldom-role" type="sol-def:EntityStateLDOMRoleType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The logical domain roles associated with the current environment.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="properties" type="oval-def:EntityStateRecordType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The properties associated with the current environment.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
       <!-- =============================================================================== -->
       <!-- =============================================================================== -->
       <xsd:complexType name="EntityObjectPublisherTypeType">
@@ -1868,4 +1965,95 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
+      
+      
+      <xsd:complexType name="EntityStateV12NEnvType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateV12NEnvType complex type restricts a string value to a specific set of values that describe the virtalization environment. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="unknown">
+                              <xsd:annotation>
+                                    <xsd:documentation>The virtualization environment is unknown. This could mean it is a bare metal virtualization environment.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="kvm">
+                              <xsd:annotation>
+                                    <xsd:documentation>The virtualization environment is a Kernel-based Virtual Machine (KVM).</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="logical-domain">
+                              <xsd:annotation>
+                                    <xsd:documentation>The virtualization environment is a logical domain.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="non-global-zone">
+                              <xsd:annotation>
+                                    <xsd:documentation>The virtualization environment is a non-global zone.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="kernel-zone">
+                              <xsd:annotation>
+                                    <xsd:documentation>The virtualization environment is a kernel zone.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="vmware">
+                              <xsd:annotation>
+                                    <xsd:documentation>The virtualization environment is VMware.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="virtualbox">
+                              <xsd:annotation>
+                                    <xsd:documentation>The virtualization environment is Oracle VirtualBox.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="xen">
+                              <xsd:annotation>
+                                    <xsd:documentation>The virtualization environment is Xen.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:complexType name="EntityStateLDOMRoleType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateLDOMRoleType complex type restricts a string value to a specific set of roles for the current virtualization environment. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="control-role">
+                              <xsd:annotation>
+                                    <xsd:documentation>The current virtualization environment is a control domain.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="io-role">
+                              <xsd:annotation>
+                                    <xsd:documentation>The current virtualization environment is an I/O domain.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="root-role">
+                              <xsd:annotation>
+                                    <xsd:documentation>The current virtualization environment is a root I/O domain.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="service-role">
+                              <xsd:annotation>
+                                    <xsd:documentation>The current virtualization environment is a service domain.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      
 </xsd:schema>
