@@ -598,7 +598,7 @@
   <!-- =============================================================================== -->
   <xsd:complexType name="EntityItemEncryptionStatusType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemEncryptionStatusType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemEncryptionStatusType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -624,7 +624,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -632,7 +632,7 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemKeyguardDisabledFeaturesType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemKeyguardDisabledFeaturesType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemKeyguardDisabledFeaturesType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -658,7 +658,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -666,7 +666,7 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemNetworkType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemNetworkType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemNetworkType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -752,7 +752,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -760,7 +760,7 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemPasswordQualityType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemPasswordQualityType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemPasswordQualityType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -801,7 +801,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -810,7 +810,7 @@
   
   <xsd:complexType name="EntityItemWifiAuthAlgorithmType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemWifiAuthAlgorithmType complex type restricts a string value to a specific set of values that name WiFi authentication algorithms. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemWifiAuthAlgorithmType complex type restricts a string value to a specific set of values that name WiFi authentication algorithms. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -831,7 +831,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -839,7 +839,7 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemWifiCurrentStatusType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemWifiCurrentStatusType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemWifiCurrentStatusType complex type restricts a string value to a specific set of values. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -860,7 +860,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -868,7 +868,7 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemWifiGroupCipherType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemWifiGroupCipherType complex type restricts a string value to a specific set of values that name Wi-Fi group ciphers. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemWifiGroupCipherType complex type restricts a string value to a specific set of values that name Wi-Fi group ciphers. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -894,7 +894,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -902,7 +902,7 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemWifiKeyMgmtType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemWifiKeyMgmtType complex type restricts a string value to a specific set of values that name Wi-Fi key management schemes (from android.net.wifi.WifiConfiguration.KeyMgmt). The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemWifiKeyMgmtType complex type restricts a string value to a specific set of values that name Wi-Fi key management schemes (from android.net.wifi.WifiConfiguration.KeyMgmt). The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -928,7 +928,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -936,7 +936,7 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemWifiPairwiseCipherType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemWifiPairwiseCipherType complex type restricts a string value to a specific set of values that name Wi-Fi recognized pairwise ciphers for WPA (from android.net.wifi.WifiConfiguration.PairwiseCipher). The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemWifiPairwiseCipherType complex type restricts a string value to a specific set of values that name Wi-Fi recognized pairwise ciphers for WPA (from android.net.wifi.WifiConfiguration.PairwiseCipher). The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -957,7 +957,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
@@ -965,7 +965,7 @@
   </xsd:complexType>
   <xsd:complexType name="EntityItemWifiProtocolType">
     <xsd:annotation>
-      <xsd:documentation>The EntityItemWifiProtocolType complex type restricts a string value to a specific set of values that name Wi-Fi recognized security protocols (from android.net.wifi.WifiConfiguration.Protocol). The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+      <xsd:documentation>The EntityItemWifiProtocolType complex type restricts a string value to a specific set of values that name Wi-Fi recognized security protocols (from android.net.wifi.WifiConfiguration.Protocol). The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
     </xsd:annotation>
     <xsd:simpleContent>
       <xsd:restriction base="oval-sc:EntityItemStringType">
@@ -981,7 +981,7 @@
         </xsd:enumeration>
         <xsd:enumeration value="">
           <xsd:annotation>
-            <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+            <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
           </xsd:annotation>
         </xsd:enumeration>
       </xsd:restriction>
