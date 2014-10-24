@@ -128,7 +128,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="interface_item" substitutionGroup="oval-sc:item">
             <xsd:annotation>
-                  <xsd:documentation/>
+                  <xsd:documentation>Stores information about interfaces on an Cisco ASA device.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>

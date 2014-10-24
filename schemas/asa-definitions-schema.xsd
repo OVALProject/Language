@@ -276,7 +276,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="interface_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation/>
+                  <xsd:documentation>The interface test is used to check for the existence of a particular interface on the Cisco ASA device. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a interface_object and the optional state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>interface_test</oval:test>
@@ -309,7 +309,8 @@
       </xsd:element>
       <xsd:element name="interface_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                <xsd:documentation/>
+                  <xsd:documentation>The interface_object element is used by an interface_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>An interface_object consists of a name entity that is the name of the ASA interface to be tested.</xsd:documentation>
                 <xsd:appinfo>
                     <sch:pattern id="asa_interface_object_verify_filter_state">
                         <sch:rule context="asa-def:interface_object//oval-def:filter">
@@ -346,7 +347,7 @@
       </xsd:element>
       <xsd:element name="interface_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation/>
+                  <xsd:documentation>The interface_state element defines the different information that can be used to evaluate the result of a specific ASA interface. This includes the name, status, and address information about the interface. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
