@@ -1425,7 +1425,6 @@
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
-  
   <xsd:complexType name="EntityStateWifiAuthAlgorithmType">
     <xsd:annotation>
       <xsd:documentation>The EntityStateWifiAuthAlgorithmType complex type restricts a string value to a specific set of values that name WiFi authentication algorithms. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>

@@ -807,7 +807,6 @@
       </xsd:restriction>
     </xsd:simpleContent>
   </xsd:complexType>
-  
   <xsd:complexType name="EntityItemWifiAuthAlgorithmType">
     <xsd:annotation>
       <xsd:documentation>The EntityItemWifiAuthAlgorithmType complex type restricts a string value to a specific set of values that name WiFi authentication algorithms. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
