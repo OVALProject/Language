@@ -760,7 +760,6 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-      
       <xsd:complexType name="EntityItemV12NEnvType">
             <xsd:annotation>
                   <xsd:documentation>The EntityItemV12NEnvypeType complex type restricts a string value to a specific set of values that describe the virtalization environment. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
@@ -849,5 +848,4 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-      
 </xsd:schema>

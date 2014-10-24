@@ -25,7 +25,7 @@
                               <oval:test>facet_test</oval:test>
                               <oval:object>facet_object</oval:object>
                               <oval:state>facet_state</oval:state>
-                              <oval:item>facet_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">facet_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -131,7 +131,7 @@
                               <oval:test>image_test</oval:test>
                               <oval:object>image_object</oval:object>
                               <oval:state>image_state</oval:state>
-                              <oval:item>image_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">image_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -544,7 +544,7 @@
                               <oval:test>package511_test</oval:test>
                               <oval:object>package511_object</oval:object>
                               <oval:state>package511_state</oval:state>
-                              <oval:item>package511_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">package511_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -690,7 +690,7 @@
                               <oval:test>packageavoidlist_test</oval:test>
                               <oval:object>packageavoidlist_object</oval:object>
                               <oval:state>packageavoidlist_state</oval:state>
-                              <oval:item>packageavoidlist_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">packageavoidlist_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -951,7 +951,7 @@
                               <oval:test>packagefreezelist_test</oval:test>
                               <oval:object>packagefreezelist_object</oval:object>
                               <oval:state>packagefreezelist_state</oval:state>
-                              <oval:item>packagefreezelist_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">packagefreezelist_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -1028,7 +1028,7 @@
                               <oval:test>packagepublisher_test</oval:test>
                               <oval:object>packagepublisher_object</oval:object>
                               <oval:state>packagepublisher_state</oval:state>
-                              <oval:item>packagepublisher_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">packagepublisher_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -1502,7 +1502,7 @@
                               <oval:test>smfproperty_test</oval:test>
                               <oval:object>smfproperty_object</oval:object>
                               <oval:state>smfproperty_state</oval:state>
-                              <oval:item>smfproperty_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">smfproperty_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -1623,7 +1623,7 @@
                               <oval:test>variant_test</oval:test>
                               <oval:object>variant_object</oval:object>
                               <oval:state>variant_state</oval:state>
-                              <oval:item>variant_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">variant_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -1729,7 +1729,7 @@
                               <oval:test>virtualizationinfo_test</oval:test>
                               <oval:object>virtualizationinfo_object</oval:object>
                               <oval:state>virtualizationinfo_state</oval:state>
-                              <oval:item>virtualizationinfo_item</oval:item>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#solaris">virtualizationinfo_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
@@ -1847,7 +1847,6 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-      
       <xsd:complexType name="EntityStateClientUUIDType">
             <xsd:annotation>
                   <xsd:documentation>The EntityStateClientUUIDType restricts a string value to a representation of a client UUID, used to identify an image to its IPS package publisher. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the specified pattern restriction.</xsd:documentation>
@@ -2055,5 +2054,4 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-      
 </xsd:schema>
