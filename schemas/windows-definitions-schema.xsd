@@ -8840,7 +8840,7 @@
       </xsd:complexType>
       <xsd:complexType name="EntityStatePeTargetMachineType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityStatePeTargetMachineType enumeration identifies the valid machine targets that can be specified in the PE file header.</xsd:documentation>
+                  <xsd:documentation>The EntityStatePeTargetMachineType enumeration identifies the valid machine targets that can be specified in the PE file header. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-def:EntityStateStringType">
@@ -8929,13 +8929,18 @@
                                     <xsd:documentation>The IMAGE_FILE_MACHINE_THUMB type is used to indicate an ARM or Thumb ("interworking") machine.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       
       <xsd:complexType name="EntityStatePeSubsystemType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityStatePeSubsystemType enumeration identifies the valid subsystem types that can be specified in the PE file header</xsd:documentation>
+                  <xsd:documentation>The EntityStatePeSubsystemType enumeration identifies the valid subsystem types that can be specified in the PE file header. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-def:EntityStateStringType">
@@ -9002,6 +9007,11 @@
                         <xsd:enumeration value="IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION">
                               <xsd:annotation>
                                     <xsd:documentation>The IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION type is used to indicate a boot application.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                   </xsd:restriction>
