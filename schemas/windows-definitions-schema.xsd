@@ -3264,6 +3264,77 @@
             </xsd:complexType>
       </xsd:element>
       <!-- =============================================================================== -->
+      <!-- ===============================  LICENSE TEST  ================================ -->
+      <!-- =============================================================================== -->
+      <xsd:element name="license_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The license_test is used to check the content of a particular entry in the Windows registry HKLM\SYSTEM\CurrentControlSet\Control\ProductOptions key, ProductPolicy value. Access to this data is exposed by the functions NtQueryLicenseValue (and also, in version 6.0 and higher, ZwQueryLicenseValue) in NTDLL.DLL.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="license_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The license_object element is used by a license_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="name" type="oval-def:EntityObjectStringType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The name entity provides the address of a UNICODE_STRING structure for the name of the value for which data is desired, for example, TabletPCPlatformInput-core-EnableTouchUI.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="license_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The license_state element defines the different information that can be found in the Windows license registry value. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The name entity corresponds to the license_object name entity.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="type" type="win-def:EntityStateRegistryTypeType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The optional type entity provides the type of data that is expected: REG_SZ (0x01) for a string; REG_BINARY (0x03) for binary data; REG_DWORD (0x04) for a dword.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The value entity allows a test to be written against the value held within the specified license entry(-ies). If the value being tested is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD, then the datatype attribute should be set to 'int' and the value entity should represent the data as an integer. If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.</xsd:documentation>
+                                                <xsd:documentation>Note that if the intent is to test a version number held in the license entry (as a reg_sz) then instead of setting the datatype to 'string', the datatype can be set to 'version'. This allows tools performing the evaluation to know how to perform less than and greater than operations correctly.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
       <!-- ============================  LOCKOUT POLICY TEST  ============================ -->
       <!-- =============================================================================== -->
       <xsd:element name="lockoutpolicy_test" substitutionGroup="oval-def:test">
@@ -3464,6 +3535,263 @@
                   </xsd:complexContent>
             </xsd:complexType>
       </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ===============================  NTUSER TEST  =============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="ntuser_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The ntuser test is used to check metadata associated with Windows ntuser.dat files. It extends the standard TestType as defined in the oval-definitions-schema and
+                        one should refer to the TestType description for more information. The required object element references a ntuser_object and the optional state element specifies the ntuser
+                        data to check.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>ntuser_test</oval:test>
+                              <oval:object>ntuser_object</oval:object>
+                              <oval:state>ntuser_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">ntuser_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="win-def_ntusertst">
+                              <sch:rule context="win-def:ntuser_test/win-def:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/win-def:ntuser_object/@id"><sch:value-of select="../@id"/> - the object child
+                                          element of a ntuser_test must reference a ntuser_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="win-def:ntuser_test/win-def:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/win-def:ntuser_state/@id"><sch:value-of select="../@id"/> - the state child element
+                                          of a ntuser_test must reference a ntuser_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ntuser_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The ntuser_object element is used to specify which metadata should be collected from a Windows ntuser.dat file.  Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="win-def_ntuser_object_verify_filter_state">
+                              <sch:rule context="win-def:ntuser_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::win-def:ntuser_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#windows') and ($state_name='ntuser_state'))">State referenced in filter for
+                                          <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="behaviors" type="win-def:NTUserBehaviors" minOccurs="0"/>
+                                                <xsd:element name="key" type="oval-def:EntityObjectStringType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The key element describes a registry key to be collected. Note that the hive portion of the string should not be
+                                                                  included, as this data is not neccessary for the ntuser test and would normally reside in the HKCU hive.</xsd:documentation>
+                                                            <xsd:appinfo>
+                                                                  <sch:pattern id="win-def_ntuserobjkey2">
+                                                                        <sch:rule context="win-def:ntuser_object/win-def:key[not(@operation='equals' or not(@operation))]">
+                                                                              <sch:assert test="not(preceding-sibling::win-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth
+                                                                                    behavior MUST not be used when a pattern match is used with a key entity.</sch:assert>
+                                                                              <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the
+                                                                                    recurse_direction behavior MUST not be used when a pattern match is used with a key entity.</sch:assert>
+                                                                        </sch:rule>
+                                                                  </sch:pattern>
+                                                            </xsd:appinfo>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element name="name" type="oval-def:EntityObjectStringType" nillable="true">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>The name element describes the name assigned to a value associated with a specific registry key. If an empty string is
+                                                                  specified for the name element, the registry key's default value should be collected. If the xsi:nil attribute is set to true, then
+                                                                  the object being specified is the higher level key. In this case, the name element should not be collected or used in analysis.
+                                                                  Setting xsi:nil equal to true on an element is different than using a .* pattern match. A .* pattern match says to collect every name
+                                                                  under a given hive/key. The most likely use for xsi:nil within a registry object is when checking for the existence of a particular
+                                                                  key, without regards to the different names associated with it.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ntuser_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The ntuser_state element defines the different metadata associated with a ntuser.dat file. This includes the key, name, type, and value. Please refer to the
+                        individual elements in the schema for more details about what each represents.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="key" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This element describes a registry key normally found in the HKCU hive to be tested.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This element describes the name of a value of a registry key.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="sid" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This element holds a string that represents the SID of a particular user.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="username" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The username entity holds a string that represents the name of a particular user. In Windows, user names are case-insensitive. As a
+                                                      result, it is recommended that the case-insensitive operations are used for this entity. In a domain environment, users should be identified in
+                                                      the form: "domain\user name". For local users use: "computer name\user name".</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="account_type" type="win-def:EntityStateNTUserAccountTypeType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The account_type element describes if the user account is a local account or domain account.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="logged_on" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The logged_on element describes if the user account is currently logged on to the computer.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="enabled" type="oval-def:EntityStateBoolType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The enabled element describes if the user account is enabled or disabled.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="date_modified" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Time of last modification of file. The integer should represent the FILETIME structure which is a 64-bit value representing the number
+                                                      of 100-nanosecond intervals since January 1, 1601 (UTC).</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="days_since_modified" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The number of days since the ntuser.dat file was last modified.  The value should be rounded up to the next whole integer.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This element describes the filepath of the ntuser.dat file.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="last_write_time" type="oval-def:EntityStateIntType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The last time that the key or any of its value entries was modified. The value of this entity represents the FILETIME structure which
+                                                      is a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC). Last write time can be queried on a key or
+                                                      name. When collecting only information about a registry key the last write time will be the time the key or any of its entiries was written to.
+                                                      When collecting only information about a registry name the last write time will be the time the name was written to. See the RegQueryInfoKey
+                                                      function lpftLastWriteTime.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="type" type="win-def:EntityStateRegistryTypeType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The type entity allows a test to be written against the registy type associated with the specified registry key(s). Please refer to
+                                                      the documentation on the EntityStateRegistryTypeType for more information about the different valid individual types.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="value" type="oval-def:EntityStateAnySimpleType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The value entity allows a test to be written against the value held within the specified registry key(s). If the value being tested
+                                                      is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the
+                                                      xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD or REG_QWORD, then the
+                                                      datatype attribute should be set to 'int' and the value entity should represent the data as an integer. If the value being tested is of type
+                                                      REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity. If the
+                                                      value being tested is of type REG_MULTI_SZ, then only a single string (one of the multiple strings) should be tested using the value entity with
+                                                      the datatype attribute set to 'string'. In order to test multiple values, multiple OVAL registry tests should be used. If the specified registry
+                                                      key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.</xsd:documentation>
+                                                <xsd:documentation>Note that if the intent is to test a version number held in the registry (as a reg_sz) then instead of setting the datatype to
+                                                      'string', the datatype can be set to 'version'. This allows tools performing the evaluation to know how to perform less than and greater than
+                                                      operations correctly.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="NTUserBehaviors">
+            <xsd:annotation>
+                  <xsd:documentation>The NTUserBehaviors complex type defines a number of behaviors that allow a more detailed definition of the ntuser_object being specified. Note that using these
+                        behaviors may result in some unique results. For example, a double negative type condition might be created where an object entity says include everything except a specific
+                        item, but a behavior is used that might then add that item back in.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:attribute name="include_default" type="xsd:boolean" use="optional" default="false">
+                  <xsd:annotation>
+                        <xsd:documentation>'include_default' defines if the Window's local Default ntuser.dat file is included in the results.  By default, this file is not included in the results.</xsd:documentation>
+                        <xsd:documentation>The Default User's directory which contains the ntuser.dat file is stored in the registry at 'HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Windows NT/CurrentVersion/ProfileList/Default'.</xsd:documentation>
+                  </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="max_depth" use="optional" default="-1">
+                  <xsd:annotation>
+                        <xsd:documentation>'max_depth' defines the maximum depth of recursion to perform when a recurse_direction is specified. A value of '0' is equivalent to no recursion, '1' means
+                              to step only one directory level up/down, and so on. The default value is '-1' meaning no limitation. For a 'max_depth' of -1 or any value of 1 or more the starting key
+                              must be considered in the recursive search.</xsd:documentation>
+                        <xsd:documentation>Note that the default recurse_direction behavior is 'none' so even though max_depth specifies no limitation by default, the recurse_direction behavior turns
+                              recursion off.</xsd:documentation>
+                        <xsd:documentation>Note that this behavior only applies with the equality operation on the key entity.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                        <xsd:restriction base="xsd:integer">
+                              <xsd:fractionDigits value="0"/>
+                              <xsd:minInclusive value="-1"/>
+                        </xsd:restriction>
+                  </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="recurse_direction" use="optional" default="none">
+                  <xsd:annotation>
+                        <xsd:documentation>'recurse_direction' defines the direction, either 'up' to parent keys, or 'down' into child keys to recursively search for registry keys. When recursing up
+                              or down, one is limited by the max_depth behavior. Note that it is not an error if max_depth specifies a certain level of recursion and that level does not exist.
+                              Recursing should only go as deep as available. The default value is 'none' for no recursion.</xsd:documentation>
+                        <xsd:documentation>Note that this behavior only applies with the equality operation on the key entity.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                              <xsd:enumeration value="none"/>
+                              <xsd:enumeration value="up"/>
+                              <xsd:enumeration value="down"/>
+                        </xsd:restriction>
+                  </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="windows_view" use="optional" default="64_bit">
+                  <xsd:annotation>
+                        <xsd:documentation>64-bit versions of Windows provide an alternate file system and registry views to 32-bit applications. This behavior allows the OVAL Object to specify which
+                              view should be examined. This behavior only applies to 64-bit Windows, and must not be applied on other platforms. </xsd:documentation>
+                        <xsd:documentation>Note that the values have the following meaning: '64_bit' – Indicates that the 64-bit view on 64-bit Windows operating systems must be examined. On a 32-bit
+                              system, the Object must be evaluated without applying the behavior. '32_bit' – Indicates that the 32-bit view must be examined. On a 32-bit system, the Object must be
+                              evaluated without applying the behavior. It is recommended that the corresponding 'windows_view' entity be set on the OVAL Items that are collected when this behavior is
+                              used to distinguish between the OVAL Items that are collected in the 32-bit or 64-bit views.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                              <xsd:enumeration value="32_bit"/>
+                              <xsd:enumeration value="64_bit"/>
+                        </xsd:restriction>
+                  </xsd:simpleType>
+            </xsd:attribute>
+      </xsd:complexType>
       <!-- =============================================================================== -->
       <!-- ===========================  PASSWORD POLICY TEST  ============================ -->
       <!-- =============================================================================== -->
@@ -8485,9 +8813,34 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
+      <xsd:complexType name="EntityStateNTUserAccountTypeType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateNTUserAccountTypeType restricts a string value to a specific set of values that describe the different types of accounts. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="local">
+                              <xsd:annotation>
+                                    <xsd:documentation>Local accounts are accounts that were created directly on the machine being tested and should be in the form of
+                                          machinename\username</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="domain">
+                              <xsd:annotation>
+                                    <xsd:documentation>Domain accounts are accounts that were created on a domain controller and should be in the form of domain\username</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
       <xsd:complexType name="EntityStatePeTargetMachineType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityStatePeTargetMachineType enumeration identifies the valid machine targets that can be specified in the PE file header.</xsd:documentation>
+                  <xsd:documentation>The EntityStatePeTargetMachineType enumeration identifies the valid machine targets that can be specified in the PE file header. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-def:EntityStateStringType">
@@ -8576,13 +8929,18 @@
                                     <xsd:documentation>The IMAGE_FILE_MACHINE_THUMB type is used to indicate an ARM or Thumb ("interworking") machine.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
       
       <xsd:complexType name="EntityStatePeSubsystemType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityStatePeSubsystemType enumeration identifies the valid subsystem types that can be specified in the PE file header</xsd:documentation>
+                  <xsd:documentation>The EntityStatePeSubsystemType enumeration identifies the valid subsystem types that can be specified in the PE file header. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-def:EntityStateStringType">
@@ -8649,6 +9007,11 @@
                         <xsd:enumeration value="IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION">
                               <xsd:annotation>
                                     <xsd:documentation>The IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION type is used to indicate a boot application.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                   </xsd:restriction>
