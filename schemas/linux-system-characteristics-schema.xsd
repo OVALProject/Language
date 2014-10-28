@@ -937,6 +937,63 @@
           </xsd:complexType>
      </xsd:element>
      <!-- =============================================================================== -->
+     <!-- =======================  SYSTEMD UNIT DEPENDENCY ITEM  ======================== -->
+     <!-- =============================================================================== -->
+     <xsd:element name="systemdunitdependency_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>This item stores the dependencies of the systemd unit. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="unit" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The unit entity refers to the full systemd unit name, which has a form of "$name.$type". For example "cupsd.service". This name is usually also the filename of the unit configuration file located in the /etc/systemd/ and /usr/lib/systemd/ directories.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="dependency" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The dependency entity refers to the name of a unit that was confirmed to be a dependency of the given unit.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
+     <!-- =======================  SYSTEMD UNIT PROPERTY ITEM  ========================== -->
+     <!-- =============================================================================== -->
+     <xsd:element name="systemdunitproperty_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>This item stores the properties and values of a systemd unit.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="unit" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The unit entity refers to the full systemd unit name, which has a form of "$name.$type". For example "cupsd.service". This name is usually also the filename of the unit configuration file located in the /etc/systemd/ and /usr/lib/systemd/ directories.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="property" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The name of the property associated with a systemd unit.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="value" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The value of the property associated with a systemd unit. Exactly one value shall be used for all property types except dbus arrays - each array element shall be represented by one value.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
      <!-- =============================================================================== -->
      <!-- =============================================================================== -->
      <xsd:complexType name="EntityItemRpmVerifyResultType">
