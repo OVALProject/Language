@@ -1251,6 +1251,18 @@
      <xsd:element name="group_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
                <xsd:documentation>The Windows group_item allows the different users and subgroups, that directly belong to specific groups (identified by name), to be collected. The collected subgroups will not be resolved to find indirect user or subgroup members. If the subgroups need to be resolved, it should be done using the sid_object. Note that the user and subgroup elements can appear an unlimited number of times. If a user is not found in the specified group, a single user element should exist with a status of 'does not exist'. If there is an error determining the users of a group, a single user element should exist with a status of 'error'. If a subgroup is not found in the specified group, a single subgroup element should exist with a status of 'does not exist'. If there is an error determining the subgroups of a group, a single subgroup element should exist with a status of 'error'.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:deprecated_info>
+                         <oval:version>5.11</oval:version>
+                         <oval:reason>Replaced by the group_sid_item. This item uses trustee names for identifying accounts on the system.  Trustee names are not unique and the group_sid_item, which uses trustee SIDs which are unique, should be used instead. See the group_sid_item.</oval:reason>
+                         <oval:comment>This object has been deprecated and may be removed in a future version of the language.</oval:comment>
+                    </oval:deprecated_info>
+                    <sch:pattern id="win-sc_group_item_dep">
+                         <sch:rule context="win-sc:group_item">
+                              <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                         </sch:rule>
+                    </sch:pattern>                        
+               </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
@@ -2111,6 +2123,11 @@
                               <xsd:element name="primary_window_text" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The primary_window_text entity represents the title of the primary window of the process. See the GetWindowText function.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The name of the process.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
@@ -3057,6 +3074,18 @@
      <xsd:element name="user_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
                <xsd:documentation>The windows user_item allows the different groups (identified by name) that a user belongs to be collected.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:deprecated_info>
+                         <oval:version>5.11</oval:version>
+                         <oval:reason>Replaced by the user_sid_item. This item uses trustee names for identifying accounts on the system. Trustee names are not unique and the user_sid_item, which uses trustee SIDs which are unique, should be used instead. See the user_sid_item.</oval:reason>
+                         <oval:comment>This object has been deprecated and may be removed in a future version of the language.</oval:comment>
+                    </oval:deprecated_info>
+                    <sch:pattern id="win-sc_user_item_dep">
+                         <sch:rule context="win-sc:user_item">
+                              <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                         </sch:rule>
+                    </sch:pattern>                        
+               </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>

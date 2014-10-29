@@ -2947,6 +2947,18 @@
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>Replaced by the group_sid_test. This test uses trustee names for identifying accounts on the system. Trustee names are not unique and the group_sid_test, which uses trustee SIDs which are unique, should be used instead. See the group_sid_test.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_grouptst_dep">
+                              <sch:rule context="win-def:group_test">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
                         <sch:pattern id="win-def_grouptst">
                               <sch:rule context="win-def:group_test/win-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/win-def:group_object/@id"><sch:value-of select="../@id"/> - the object child element of a group_test must reference a group_object</sch:assert>
@@ -2971,6 +2983,18 @@
       <xsd:element name="group_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation>The group_object element is used by a group test to define the specific group(s) (identified by name) to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>Replaced by the group_sid_object. This object uses trustee names for identifying accounts on the system. Trustee names are not unique and the group_sid_object, which uses trustee SIDs which are unique, should be used instead. See the group_sid_object.</oval:reason>
+                              <oval:comment>This object has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_groupobj_dep">
+                              <sch:rule context="win-def:group_object">
+                                    <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="win-def_group_object_verify_filter_state">
                               <sch:rule context="win-def:group_object//oval-def:filter">
@@ -3008,6 +3032,18 @@
       <xsd:element name="group_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation>The group_state element enumerates the different users and subgroups directly associated with a Windows group. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>Replaced by the group_sid_state. This state uses trustee names for identifying accounts on the system. Trustee names are not unique and the group_sid_state, which uses trustee SIDs which are unique, should be used instead. See the group_sid_state.</oval:reason>
+                              <oval:comment>This state has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_groupste_dep">
+                              <sch:rule context="win-def:group_state">
+                                    <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -4869,6 +4905,11 @@
                                     <xsd:element name="primary_window_text" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The primary_window_text entity represents the title of the primary window of the process. See the GetWindowText function.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The name of the process.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
@@ -7448,6 +7489,18 @@
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>Replaced by the user_sid55_test. This test uses trustee names for identifying accounts on the system. Trustee names are not unique and the user_sid55_test, which uses trustee SIDs which are unique, should be used instead. See the user_sid55_test.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_usertst_dep">
+                              <sch:rule context="win-def:user_test">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
                         <sch:pattern id="win-def_usertst">
                               <sch:rule context="win-def:user_test/win-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/win-def:user_object/@id"><sch:value-of select="../@id"/> - the object child element of a user_test must reference a user_object</sch:assert>
@@ -7472,6 +7525,18 @@
       <xsd:element name="user_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation/>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>Replaced by the user_sid55_object. This object uses trustee names for identifying accounts on the system. Trustee names are not unique and the user_sid55_object, which uses trustee SIDs which are unique, should be used instead. See the user_sid55_object.</oval:reason>
+                              <oval:comment>This object has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_userobj_dep">
+                              <sch:rule context="win-def:user_object">
+                                    <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="win-def_user_object_verify_filter_state">
                               <sch:rule context="win-def:user_object//oval-def:filter">
@@ -7509,6 +7574,18 @@
       <xsd:element name="user_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation>The user_state element enumerates the different groups (identified by name) that a Windows user might belong to. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11</oval:version>
+                              <oval:reason>Replaced by the user_sid55_state. This state uses trustee names for identifying accounts on the system. Trustee names are not unique and the user_sid55_state, which uses trustee SIDs which are unique, should be used instead. See the user_sid55_state.</oval:reason>
+                              <oval:comment>This state has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_userste_dep">
+                              <sch:rule context="win-def:user_state">
+                                    <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>                        
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -7579,20 +7656,20 @@
       <xsd:element name="user_sid55_object" substitutionGroup="oval-def:object">
         <xsd:annotation>
             <xsd:documentation>The user_sid55_object represents a set of users on a Windows system.  This set (which might contain only one user) is identified by a SID.</xsd:documentation>
-              <xsd:appinfo>
-                    <sch:pattern id="win-def_user_sid55_object_verify_filter_state">
-                          <sch:rule context="win-def:user_sid55_object//oval-def:filter">
-                                <sch:let name="parent_object" value="ancestor::win-def:user_sid55_object"/>
-                                <sch:let name="parent_object_id" value="$parent_object/@id"/>
-                                <sch:let name="state_ref" value="."/>
-                                <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
-                                <sch:let name="state_name" value="local-name($reffed_state)"/>
-                                <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
-                                <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#windows') and ($state_name='user_sid55_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
-                          </sch:rule>
-                    </sch:pattern>
-              </xsd:appinfo>
-        </xsd:annotation>
+            <xsd:appinfo>
+              <sch:pattern id="win-def_user_sid55_object_verify_filter_state">
+                    <sch:rule context="win-def:user_sid55_object//oval-def:filter">
+                          <sch:let name="parent_object" value="ancestor::win-def:user_sid55_object"/>
+                          <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                          <sch:let name="state_ref" value="."/>
+                          <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                          <sch:let name="state_name" value="local-name($reffed_state)"/>
+                          <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                          <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#windows') and ($state_name='user_sid55_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                    </sch:rule>
+              </sch:pattern>
+            </xsd:appinfo>
+      </xsd:annotation>
         <xsd:complexType>
             <xsd:complexContent>
                 <xsd:extension base="oval-def:ObjectType">
