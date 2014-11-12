@@ -79,9 +79,7 @@
                          <xsd:documentation>The required version child element details the version of OVAL in which the construct became deprecated.</xsd:documentation>
                     </xsd:annotation>
                     <xsd:simpleType>
-                         <xsd:restriction base="xsd:string">
-                              <xsd:pattern value="[0-9]+\.[0-9]+(\.[0-9]+)?"/>
-                         </xsd:restriction>
+                         <xsd:restriction base="oval:SchemaVersionPattern"/>
                     </xsd:simpleType>
                </xsd:element>
                <xsd:element name="reason" type="xsd:string">
@@ -112,14 +110,13 @@
                          <xsd:documentation>The optional product_version specifies the version of the application used to generate the file.</xsd:documentation>
                     </xsd:annotation>
                </xsd:element>
-               <xsd:element name="schema_version">
+               <xsd:element name="schema_version" maxOccurs="unbounded">
                     <xsd:annotation>
-                         <xsd:documentation>The required schema_version specifies the version of the OVAL Schema that the document has been written in and that should be used for validation.</xsd:documentation>
+                         <xsd:documentation>The required schema_version specifies the version of the OVAL Schema that the document has been written in and that should be used for validation. The versions for both the Core and any Platform Extensions used should be specified in subsequent schema_version elements.</xsd:documentation>
+                         <xsd:documentation>The core version MUST match on all platform schema versions. It does not require an xmlns attribute. Each Platform Extension version MUST include an xmlns attribute.</xsd:documentation>
                     </xsd:annotation>
                     <xsd:simpleType>
-                         <xsd:restriction base="xsd:string">
-                              <xsd:pattern value="[0-9]+\.[0-9]+(\.[0-9]+)?"/>
-                         </xsd:restriction>
+                         <xsd:restriction base="oval:SchemaVersionPattern"/>
                     </xsd:simpleType>
                </xsd:element>
                <xsd:element name="timestamp" type="xsd:dateTime">
@@ -796,6 +793,14 @@ at_least_one_exists  ||  0   |  0+  |  1+  |  0+  ||  Error
                <xsd:documentation>Define the format for acceptable OVAL Item ids. The format is an integer. An item id is used to identify the different items found in an OVAL System Characteristics file.</xsd:documentation>
           </xsd:annotation>
           <xsd:restriction base="xsd:integer"/>
+     </xsd:simpleType>
+     <xsd:simpleType name="SchemaVersionPattern">
+          <xsd:annotation>
+               <xsd:documentation>Define the format for acceptable OVAL Language version strings.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:restriction base="xsd:string">
+               <xsd:pattern value="[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?"/>
+          </xsd:restriction>
      </xsd:simpleType>
      <!-- =============================================================================== -->
      <!-- ================================  OTHER TYPES  ================================ -->
