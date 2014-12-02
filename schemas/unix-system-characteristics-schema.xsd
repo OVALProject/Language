@@ -816,6 +816,32 @@
           </xsd:complexType>
      </xsd:element>
      <!-- =============================================================================== -->
+     <!-- ===========================  SYMLINK ITEM  ==================================== -->
+     <!-- =============================================================================== -->
+     <xsd:element name="symlink_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>The symlink_item element identifies the result generated for a symlink_object.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="filepath" type="oval-sc:EntityItemStringType" minOccurs="1" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Specifies the filepath to the subject symbolic link file, specified by the symlink_object.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="canonical_path" type="oval-sc:EntityItemStringType" minOccurs="1" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Specifies the canonical path for the target of the symbolic link file specified by the filepath.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
      <!-- ===============================  SYSCTL ITEM  ================================= -->
      <!-- =============================================================================== -->
      <xsd:element name="sysctl_item" substitutionGroup="oval-sc:item">
