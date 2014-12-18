@@ -7,8 +7,8 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Windows Definition</schema>
-                  <version>5.11:5.11 Release Candidate 2</version>
-                  <date>12/01/2014 11:00:00 PM</date>
+                  <version>5.11:5.11</version>
+                  <date>12/18/2014 09:00:00 AM</date>
                   <terms_of_use>Copyright (c) 2002-2014, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="win-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
@@ -849,6 +849,18 @@
                                     <xsd:element name="kerberos_ticket_events" type="win-def:EntityStateAuditType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Audit the events produced during the validation of Kerberos tickets provided for a user account logon request.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <oval:deprecated_info>
+                                                            <oval:version>5.11</oval:version>
+                                                            <oval:reason>This entity does not map to any known audit event policy subcategory.</oval:reason>
+                                                            <oval:comment>This entity has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                                                      </oval:deprecated_info>
+                                                      <sch:pattern id="win-def_auditeventpolicysubcategoriesstatekerberos_ticket_events">
+                                                            <sch:rule context="win-def:auditeventpolicysubcategories_state/win-def:kerberos_ticket_events">
+                                                                  <sch:report test="true()">DEPRECATED ELEMENT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="other_account_logon_events" type="win-def:EntityStateAuditType" minOccurs="0">
