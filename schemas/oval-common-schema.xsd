@@ -5,9 +5,9 @@
           <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Core Common</schema>
-               <version>5.11</version>
-               <date>12/18/2014 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2014, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <version>5.11.1</version>
+               <date>3/30/2015 09:00:00 AM</date>
+                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
               <sch:ns prefix="oval" uri="http://oval.mitre.org/XMLSchema/oval-common-5"/>
               <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
           </xsd:appinfo>
@@ -110,14 +110,10 @@
                          <xsd:documentation>The optional product_version specifies the version of the application used to generate the file.</xsd:documentation>
                     </xsd:annotation>
                </xsd:element>
-               <xsd:element name="schema_version" maxOccurs="unbounded">
+               <xsd:element name="schema_version" maxOccurs="unbounded" type="oval:SchemaVersionType">
                     <xsd:annotation>
-                         <xsd:documentation>The required schema_version specifies the version of the OVAL Schema that the document has been written in and that should be used for validation. The versions for both the Core and any Platform Extensions used should be specified in subsequent schema_version elements.</xsd:documentation>
-                         <xsd:documentation>The core version MUST match on all platform schema versions. It does not require an xmlns attribute. Each Platform Extension version MUST include an xmlns attribute.</xsd:documentation>
+                         <xsd:documentation>The required schema_version specifies the version of the OVAL Schema that the document has been written in and that should be used for validation. The versions for both the Core and any platform extensions used should be declared in separate schema_version elements.</xsd:documentation>
                     </xsd:annotation>
-                    <xsd:simpleType>
-                         <xsd:restriction base="oval:SchemaVersionPattern"/>
-                    </xsd:simpleType>
                </xsd:element>
                <xsd:element name="timestamp" type="xsd:dateTime">
                     <xsd:annotation>
@@ -133,6 +129,38 @@
                </xsd:annotation>
                </xsd:any>
           </xsd:sequence>
+     </xsd:complexType>
+     <xsd:complexType name="SchemaVersionType">
+          <xsd:annotation>
+               <xsd:documentation>The core version MUST match on all platform schema versions.</xsd:documentation>
+               <xsd:appinfo>
+                    <sch:pattern id="oval_schema_version_one_core_element">
+                         <sch:rule context="oval-def:oval_definitions/oval-def:generator">
+                              <sch:assert test="count(oval:schema_version[not(@platform)]) = 1">One (and only one) schema_version element MUST be present and omit the platform attribute to represent the core version.</sch:assert>
+                         </sch:rule>
+                    </sch:pattern>
+                    <sch:pattern id="oval_schema_version_empty_platform">
+                         <sch:rule context="oval-def:oval_definitions/oval-def:generator/oval:schema_version[@platform]">
+                              <sch:report test="@platform = ''">Warning: The platform attribute should be set to the URI of the target namespace for this platform extension.</sch:report>
+                         </sch:rule>
+                    </sch:pattern>
+                    <sch:pattern id="oval_schema_version_core_matches_platforms">
+                         <sch:rule context="oval-def:oval_definitions/oval-def:generator/oval:schema_version[@platform]">
+                              <sch:let name="core_version_portion" value="parent::oval-def:generator/oval:schema_version[not(@platform)]"/>
+                              <sch:assert test="starts-with(.,$core_version_portion)">This platform's version (<sch:value-of select="."/>) MUST match the core version being used: <sch:value-of select="$core_version_portion"/>.</sch:assert>
+                         </sch:rule>
+                    </sch:pattern>
+               </xsd:appinfo>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:extension base="oval:SchemaVersionPattern">
+                    <xsd:attribute name="platform" type="xsd:anyURI" use="optional" >
+                         <xsd:annotation>
+                              <xsd:documentation>The platform attribute is available to indicate the URI of the target namespace for any platform extension being included. This platform attribute is to be omitted when specifying the core schema version.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:attribute>
+               </xsd:extension>
+          </xsd:simpleContent>
      </xsd:complexType>
      <xsd:complexType name="MessageType">
           <xsd:annotation>
