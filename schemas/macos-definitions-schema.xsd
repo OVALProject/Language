@@ -7,7 +7,7 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>MacOS Definition</schema>
-                  <version>5.11.1:1.0</version>
+                  <version>5.11.1:1.1</version>
                   <date>3/30/2015 09:00:00 AM</date>
                   <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
@@ -178,8 +178,8 @@
                   <xsd:documentation>The authorizationdb_object element is used by an authorizationdb_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>An authorizationdb_object consists of a right_name entity that contains the name of the right to be read from the authorization dabatase. The resulting plist data can be queried using the xpath entity.</xsd:documentation>
                   <xsd:appinfo>
-                        <sch:pattern id="macos-def_macos_object_verify_filter_state">
-                              <sch:rule context="macos-def:macos_object//oval-def:filter">
+                        <sch:pattern id="macos-def_authorizationdb_object_verify_filter_state">
+                              <sch:rule context="macos-def:authorizationdb_object//oval-def:filter">
                                     <sch:let name="parent_object" value="ancestor::macos-def:authorizationdb_object"/>
                                     <sch:let name="parent_object_id" value="$parent_object/@id"/>
                                     <sch:let name="state_ref" value="."/>
@@ -207,8 +207,8 @@
                                                       <xsd:annotation>
                                                             <xsd:documentation>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at. Any valid Xpath 1.0 statement is usable with one exception, at most one field may be identified in the Xpath. This is because the value_of element in the data section is only designed to work against a single field. The only valid operator for xpath is equals since there is an infinite number of possible xpaths and determinining all those that do not equal a given xpath would be impossible.</xsd:documentation>
                                                             <xsd:appinfo>
-                                                                  <sch:pattern id="x-maxos-def_xmlobjxpath">
-                                                                        <sch:rule context="macos-def:config_object/macos-def:xpath">
+                                                                  <sch:pattern id="macos-def_authdbobjxpath">
+                                                                        <sch:rule context="macos-def:authorizationdb_object/macos-def:xpath">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the xpath entity of an authorizationdb_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
@@ -292,8 +292,8 @@
                   <xsd:documentation>The corestorage_object element is used by an corestorage_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>An corestorage_object consists of a uuid entity that contains the UUID of the volume whose information should be read (i.e., 'diskutil cs info -plist [UUID]'). The resulting plist data can be queried using the xpath entity.</xsd:documentation>
                   <xsd:appinfo>
-                        <sch:pattern id="macos-def_macos_object_verify_filter_state">
-                              <sch:rule context="macos-def:macos_object//oval-def:filter">
+                        <sch:pattern id="macos-def_corestorage_object_verify_filter_state">
+                              <sch:rule context="macos-def:corestorage_object//oval-def:filter">
                                     <sch:let name="parent_object" value="ancestor::macos-def:corestorage_object"/>
                                     <sch:let name="parent_object_id" value="$parent_object/@id"/>
                                     <sch:let name="state_ref" value="."/>
@@ -321,8 +321,8 @@
                                                       <xsd:annotation>
                                                             <xsd:documentation>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at. Any valid Xpath 1.0 statement is usable with one exception, at most one field may be identified in the Xpath. This is because the value_of element in the data section is only designed to work against a single field. The only valid operator for xpath is equals since there is an infinite number of possible xpaths and determinining all those that do not equal a given xpath would be impossible.</xsd:documentation>
                                                             <xsd:appinfo>
-                                                                  <sch:pattern id="x-maxos-def_xmlobjxpath">
-                                                                        <sch:rule context="macos-def:config_object/macos-def:xpath">
+                                                                  <sch:pattern id="macos-def_corestorageobjxpath">
+                                                                        <sch:rule context="macos-def:corestorage_object/macos-def:xpath">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the xpath entity of an corestorage_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
@@ -938,8 +938,8 @@
                   <xsd:documentation>The keychain_object element is used by an corestorage_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>A keychain_object consists of a keychain (name) entity that contains the name of the keychain whose settings will be queried.</xsd:documentation>
                   <xsd:appinfo>
-                        <sch:pattern id="macos-def_macos_object_verify_filter_state">
-                              <sch:rule context="macos-def:macos_object//oval-def:filter">
+                        <sch:pattern id="macos-def_keychain_object_verify_filter_state">
+                              <sch:rule context="macos-def:keychain_object//oval-def:filter">
                                     <sch:let name="parent_object" value="ancestor::macos-def:keychain_object"/>
                                     <sch:let name="parent_object_id" value="$parent_object/@id"/>
                                     <sch:let name="state_ref" value="."/>
@@ -1040,7 +1040,7 @@
                   <xsd:documentation>The launchd_object element is used by a launchd_test to define the daemon/agent to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>A launchd_object consists of a label (name) entity that contains the name of the agent/daemon whose attributes will be queried.</xsd:documentation>
                   <xsd:appinfo>
-                        <sch:pattern id="macos-def_macos_object_verify_filter_state">
+                        <sch:pattern id="macos-def_launchd_object_verify_filter_state">
                               <sch:rule context="macos-def:macos_object//oval-def:filter">
                                     <sch:let name="parent_object" value="ancestor::macos-def:launchd_object"/>
                                     <sch:let name="parent_object_id" value="$parent_object/@id"/>
@@ -2205,8 +2205,8 @@
                   <xsd:documentation>The systemprofiler_object element is used by an systemprofiler_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>An systemprofiler_object consists of a data_type entity that contains the name of the datatype that was probed by the system_profiler utility. The resulting plist data can be queried using the xpath entity.</xsd:documentation>
                   <xsd:appinfo>
-                        <sch:pattern id="macos-def_macos_object_verify_filter_state">
-                              <sch:rule context="macos-def:macos_object//oval-def:filter">
+                        <sch:pattern id="macos-def_systemprofiler_object_verify_filter_state">
+                              <sch:rule context="macos-def:systemprofiler_object//oval-def:filter">
                                     <sch:let name="parent_object" value="ancestor::macos-def:systemprofiler_object"/>
                                     <sch:let name="parent_object_id" value="$parent_object/@id"/>
                                     <sch:let name="state_ref" value="."/>
@@ -2234,8 +2234,8 @@
                                                       <xsd:annotation>
                                                             <xsd:documentation>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at. Any valid Xpath 1.0 statement is usable with one exception, at most one field may be identified in the Xpath. This is because the value_of element in the data section is only designed to work against a single field. The only valid operator for xpath is equals since there is an infinite number of possible xpaths and determinining all those that do not equal a given xpath would be impossible.</xsd:documentation>
                                                             <xsd:appinfo>
-                                                                  <sch:pattern id="x-maxos-def_xmlobjxpath">
-                                                                        <sch:rule context="macos-def:config_object/macos-def:xpath">
+                                                                  <sch:pattern id="macos-def_systemprofilerobjxpath">
+                                                                        <sch:rule context="macos-def:systemprofiler_object/macos-def:xpath">
                                                                               <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the xpath entity of an systemprofiler_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
                                                                         </sch:rule>
                                                                   </sch:pattern>
