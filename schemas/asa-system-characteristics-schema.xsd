@@ -7,7 +7,7 @@
             <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing these tests.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Cisco ASA System Characteristics</schema>
-                  <version>5.11.1:1.0</version>
+                  <version>5.11.1:1.1</version>
                   <date>3/30/2015 09:00:00 AM</date>
                   <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
@@ -98,17 +98,17 @@
                                                 <xsd:documentation>Element with the 'match-all' or 'match-any' type of the class-map. ASA's defaults to 'match-any'.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="match" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="match" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the match commands in the class-map.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="used_in_class_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="used_in_class_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the name of the class-map (for nested class-maps) that this class-map is used in.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="used_in_policy_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="used_in_policy_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the name of the policy-map that this class-map is used in.</xsd:documentation>
                                           </xsd:annotation>
@@ -154,7 +154,7 @@
                                                 <xsd:documentation>Element with the interface hardware (MAC) address.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="ipv4_address" type="oval-sc:EntityItemIPAddressStringType" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="ipv4_address" type="oval-sc:EntityItemIPAddressStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the interface IPv4 address and mask. This element should only allow 'ipv4_address' of the oval:SimpleDatatypeEnumeration.</xsd:documentation>
                                           </xsd:annotation>
@@ -184,9 +184,30 @@
                                                 <xsd:documentation>Element with the crypto map name applied to the interface.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="ipv4_urpf_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the uRPF command for IPv4 under the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="ipv6_urpf_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Element with the uRPF command for IPv6 under the interface.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
                                     <xsd:element name="urpf_command" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the uRPF command under the interface.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <oval:deprecated_info>
+                                                            <oval:version>5.11.1:1.1</oval:version>
+                                                            <oval:reason>This entity has been deprecated because it was replaced by the ipv4_urpf_command and ipv6_urpf_command entities.</oval:reason>
+                                                      </oval:deprecated_info>
+                                                      <sch:pattern id="asa-sc_interfaceitem_urpf_command_dep">
+                                                            <sch:rule context="asa-sc:interface_item/asa-sc:urpf_command">
+                                                                  <sch:report test="true()">Warning: DEPRECATED ENTITY: <sch:value-of select="name()"/>. This entity has been deprecated because it was replaced by the ipv4_urpf_command and ipv6_urpf_command entities.</sch:report>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
@@ -246,7 +267,7 @@
                                                 <xsd:documentation>Element with the parameter commands of the policy-map.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="match_action" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="match_action" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the in-line match command and the action in the policy-map seperated by delimeter '_-_'. For example an http inspect policy-map could have 'match body regex regexnameX' and the action be 'drop'. Then this element would be 'body regex regexnameX_-_drop'.</xsd:documentation>
                                           </xsd:annotation>
