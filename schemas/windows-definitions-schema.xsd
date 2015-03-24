@@ -7,7 +7,7 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Windows Definition</schema>
-                  <version>5.11.1:1.0</version>
+                  <version>5.11.1:1.1</version>
                   <date>3/30/2015 09:00:00 AM</date>
                   <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
@@ -3496,7 +3496,7 @@
                               <xsd:sequence>
                                     <xsd:element name="force_logoff" type="oval-def:EntityStateIntType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>Specifies, in seconds, the amount of time between the end of the valid logon time and the time when the user is forced to log off the network. A value of TIMEQ_FOREVER (-1) indicates that the user is never forced to log off. A value of zero indicates that the user will be forced to log off immediately when the valid logon time expires. See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
+                                                <xsd:documentation>Specifies, in seconds (from a DWORD), the amount of time between the end of the valid logon time and the time when the user is forced to log off the network.  A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the user is never forced to log off. A value of zero indicates that the user will be forced to log off immediately when the valid logon time expires. See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="lockout_duration" type="oval-def:EntityStateIntType" minOccurs="0">
@@ -3955,7 +3955,7 @@
                               <xsd:sequence>
                                     <xsd:element name="max_passwd_age" type="oval-def:EntityStateIntType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>Specifies, in seconds, the maximum allowable password age. A value of TIMEQ_FOREVER (-1) indicates that the password never expires. The minimum valid value for this element is ONE_DAY (86400).</xsd:documentation>
+                                                <xsd:documentation>Specifies, in seconds (from a DWORD), the maximum allowable password age.  A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the password never expires. The minimum valid value for this element is ONE_DAY (86400).  See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="min_passwd_age" type="oval-def:EntityStateIntType" minOccurs="0">
@@ -9405,6 +9405,13 @@
                         <xsd:enumeration value="reg_dword_little_endian">
                               <xsd:annotation>
                                     <xsd:documentation>The reg_dword_little_endian type is used by registry keys that specify an unsigned 32-bit little-endian integer. It is designed to run on little-endian computer architectures.</xsd:documentation>
+                                    <xsd:appinfo>
+                                          <oval:deprecated_info>
+                                                <oval:version>5.11.1:1.1</oval:version>
+                                                <oval:reason>Defined to have same value as reg_dword.</oval:reason>
+                                                <oval:comment>This registry type enumeration value has been deprecated and may be removed in a future version of the language.</oval:comment>
+                                          </oval:deprecated_info>
+                                    </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_dword_big_endian">
@@ -9440,6 +9447,13 @@
                         <xsd:enumeration value="reg_qword_little_endian">
                               <xsd:annotation>
                                     <xsd:documentation>The reg_qword_little_endian type is used by registry keys that specify an unsigned 64-bit integer in little-endian computer architectures.</xsd:documentation>
+                                    <xsd:appinfo>
+                                          <oval:deprecated_info>
+                                                <oval:version>5.11.1:1.1</oval:version>
+                                                <oval:reason>Defined to have same value as reg_qword.</oval:reason>
+                                                <oval:comment>This registry type enumeration value has been deprecated and may be removed in a future version of the language.</oval:comment>
+                                          </oval:deprecated_info>
+                                    </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="reg_sz">
