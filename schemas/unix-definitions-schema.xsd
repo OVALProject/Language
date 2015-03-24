@@ -6,7 +6,7 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>UNIX Definition</schema>
-                  <version>5.11.1:1.0</version>
+                  <version>5.11.1:1.1</version>
                   <date>3/30/2015 09:00:00 AM</date>
                   <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
@@ -2053,7 +2053,7 @@
                               <sch:rule context="unix-def:symlink_test/unix-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/unix-def:symlink_object/@id"><sch:value-of select="../@id"/> - the object child element of a symlink_test must reference a symlink_object</sch:assert>
                               </sch:rule>
-                              <sch:rule context="x-macos-def:authorizationdb_test/x-macos-def:state">
+                              <sch:rule context="unix-def:symlink_test/unix-def:state">
                                     <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/unix-def:symlink_state/@id"><sch:value-of select="../@id"/> - the state child element of a symlink_test must reference a symlink_state</sch:assert>
                               </sch:rule>
                         </sch:pattern>
@@ -2075,8 +2075,8 @@
                   <xsd:documentation>The symlink_object element is used by a symlink_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>A symlink_object consists of a filepath entity that contains the path to a symbolic link file.  The resulting item identifies the canonical path of the link target (followed to its final destination, if there are intermediate links), an error if the link target does not exist or is a circular link (e.g., a link to itself).  If the file located at filepath is not a symlink, or if there is no file located at the filepath, then any resulting item would itself have a status of does not exist.</xsd:documentation>
                   <xsd:appinfo>
-                        <sch:pattern id="unix-def_unix_object_verify_filter_state">
-                              <sch:rule context="unix-def:unix_object//oval-def:filter">
+                        <sch:pattern id="unix-def_symlink_object_verify_filter_state">
+                              <sch:rule context="unix-def:symlink_object//oval-def:filter">
                                     <sch:let name="parent_object" value="ancestor::unix-def:symlink_object"/>
                                     <sch:let name="parent_object_id" value="$parent_object/@id"/>
                                     <sch:let name="state_ref" value="."/>
@@ -2709,6 +2709,16 @@
                         <xsd:enumeration value="tli">
                               <xsd:annotation>
                                     <xsd:documentation>The tli value is used to describe all TLI endpoints.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="sunrpc_tcp">
+                              <xsd:annotation>
+                                    <xsd:documentation>The sunrpc_tcp value is used to describe all SUNRPC TCP endpoints.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="sunrpc_udp">
+                              <xsd:annotation>
+                                    <xsd:documentation>The sunrpc_udp value is used to describe all SUNRPC UDP endpoints.</xsd:documentation>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="">
