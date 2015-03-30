@@ -164,9 +164,16 @@
                                         </xsd:simpleContent>
                                    </xsd:complexType>
                               </xsd:element>
-                              <xsd:element name="evr" type="oval-def:EntityStateEVRStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="evr" type="oval-def:EntityStateDebianRPMEVRStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This represents the epoch, version, and release fields as a single version string. It has the form "EPOCH:VERSION-RELEASE".</xsd:documentation>
+                                        <xsd:documentation>This represents the epoch, upstream_version, and debian_revision fields, for a Debian package, as a single version string. It has the form "EPOCH:UPSTREAM_VERSION-DEBIAN_REVISION". Note that a null epoch (or '(none)' as returned by dpkg) is equivalent to '0' and would hence have the form 0:UPSTREAM_VERSION-DEBIAN_REVISION.</xsd:documentation>
+                                        <xsd:appinfo>
+                                             <sch:pattern id="linux-def_dpkginfosteevr_id">
+                                                  <sch:rule context="linux-def:dpkginfo_state/linux-def:evr">
+                                                       <sch:report test="@datatype='evr_string'"><sch:value-of select="../@id"/> WARNING: There are differences in the algorithms for how the version strings of Debian and RPM packages are compared. As a result, a new debian_evr_string datatype was added to the OVAL Language and should be used, for this entity, instead of the evr_string datatype.</sch:report>
+                                                  </sch:rule>
+                                             </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
