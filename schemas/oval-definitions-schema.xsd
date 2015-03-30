@@ -152,6 +152,32 @@
             <xsd:field xpath="."/>
         </xsd:keyref>
     </xsd:element>
+    <xsd:element name="notes" substitutionGroup="oval:notes">
+        <xsd:annotation>
+            <xsd:documentation>The notes element is a container for one or more note child elements. It exists for backwards-compatibility purposes, for the pre-5.11.0 oval-def:NotesType, which has been replaced by the oval:notes element in 5.11.1.</xsd:documentation>
+            <xsd:appinfo>
+                <oval:deprecated_info>
+                    <oval:version>5.11.1</oval:version>
+                    <oval:reason>Replaced by the oval:notes element.</oval:reason>
+                    <oval:comment>This object has been deprecated and may be removed in a future version of the language.</oval:comment>
+                </oval:deprecated_info>
+                <sch:pattern id="oval_def_notes_dep">
+                    <sch:rule context="oval-def:notes">
+                        <sch:report test="true()">DEPRECATED ELEMENT: <sch:value-of select="name()"/> parent ID: <sch:value-of select="../@id"/></sch:report>
+                    </sch:rule>
+                </sch:pattern>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="oval:NotesType">
+                    <xsd:sequence>
+                        <xsd:element name="note" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
     <!-- =============================================================================== -->
     <!-- =================================  GENERATOR  ================================= -->
     <!-- =============================================================================== -->
@@ -199,7 +225,7 @@
                     <xsd:field xpath="@family"/>
                 </xsd:unique>            
             </xsd:element>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="oval:notes" minOccurs="0" maxOccurs="1"/>
             <xsd:element name="criteria" type="oval-def:CriteriaType" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:DefinitionIDPattern" use="required"/>
@@ -262,14 +288,6 @@
         <xsd:attribute name="source" type="xsd:string" use="required"/>
         <xsd:attribute name="ref_id" type="xsd:string" use="required"/>
         <xsd:attribute name="ref_url" type="xsd:anyURI" use="optional"/>
-    </xsd:complexType>
-    <xsd:complexType name="NotesType">
-        <xsd:annotation>
-            <xsd:documentation>The NotesType complex type is a container for one or more note child elements. Each note contains some information about the definition or tests that it references. A note may record an unresolved question about the definition or test or present the reason as to why a particular approach was taken.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:sequence>
-            <xsd:element name="note" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
-        </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="CriteriaType">
         <xsd:annotation>
@@ -343,7 +361,7 @@
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element ref="ds:Signature" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="oval:notes" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:TestIDPattern" use="required"/>
         <xsd:attribute name="version" type="xsd:nonNegativeInteger" use="required"/>
@@ -390,7 +408,7 @@
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element ref="ds:Signature" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="oval:notes" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:ObjectIDPattern" use="required"/>
         <xsd:attribute name="version" type="xsd:nonNegativeInteger" use="required"/>
@@ -467,7 +485,7 @@
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element ref="ds:Signature" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="oval:notes" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:StateIDPattern" use="required"/>
         <xsd:attribute name="version" type="xsd:nonNegativeInteger" use="required"/>
@@ -512,7 +530,7 @@
         </xsd:annotation>
         <xsd:sequence>
             <xsd:element ref="ds:Signature" minOccurs="0" maxOccurs="1"/>
-            <xsd:element name="notes" type="oval-def:NotesType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="oval:notes" minOccurs="0" maxOccurs="1"/>
         </xsd:sequence>
         <xsd:attribute name="id" type="oval:VariableIDPattern" use="required"/>
         <xsd:attribute name="version" type="xsd:nonNegativeInteger" use="required"/>
@@ -1163,6 +1181,9 @@
                         <sch:assert test="not(@operation) or @operation='equals' or @operation='not equal' or  @operation='greater than' or @operation='greater than or equal' or @operation='less than' or @operation='less than or equal'"><sch:value-of select="../@id"/> - The use of '<sch:value-of select="@operation"/>' for the operation attribute of the <sch:value-of select="name()"/> entity is not valid given a datatype of evr_string.</sch:assert>
                         <!--<sch:assert test="matches(., '^[^:\-]*:[^:\-]*-[^:\-]*$')"><sch:value-of select="../@id"/> - A value of '<sch:value-of select="."/>' for the <sch:value-of select="name()"/> entity is not valid given a datatype of evr_string.</sch:assert>-->
                     </sch:rule>
+                    <sch:rule context="oval-def:objects/*/*[@datatype='debian_evr_string']|oval-def:objects/*/*/*[@datatype='debian_evr_string']|oval-def:states/*/*[@datatype='debian_evr_string']|oval-def:states/*/*/*[@datatype='debian_evr_string']">
+                        <sch:assert test="not(@operation) or @operation='equals' or @operation='not equal' or  @operation='greater than' or @operation='greater than or equal' or @operation='less than' or @operation='less than or equal'"><sch:value-of select="../@id"/> - The use of '<sch:value-of select="@operation"/>' for the operation attribute of the <sch:value-of select="name()"/> entity is not valid given a datatype of debian_evr_string.</sch:assert>
+                    </sch:rule>
                     <sch:rule context="oval-def:objects/*/*[@datatype='fileset_revision']|oval-def:objects/*/*/*[@datatype='fileset_revision']|oval-def:states/*/*[@datatype='fileset_revision']|oval-def:states/*/*/*[@datatype='fileset_revision']">
                         <sch:assert test="not(@operation) or @operation='equals' or @operation='not equal' or  @operation='greater than' or @operation='greater than or equal' or @operation='less than' or @operation='less than or equal'"><sch:value-of select="../@id"/> - The use of '<sch:value-of select="@operation"/>' for the operation attribute of the <sch:value-of select="name()"/> entity is not valid given a datatype of fileset_revision.</sch:assert>
                     </sch:rule>
@@ -1570,7 +1591,7 @@
     </xsd:complexType>
     <xsd:complexType name="EntityStateEVRStringType">
         <xsd:annotation>
-            <xsd:documentation>The EntityStateEVRStringType type is extended by the entities of an individual OVAL State. This type provides uniformity to each state entity by including the attributes found in the EntityStateSimpleBaseType. This type represents the epoch, version, and release fields as a single version string. It has the form "EPOCH:VERSION-RELEASE". Note that a null epoch (or '(none)' as returned by rpm) is equivalent to '0' and would hence have the form 0:VERSION-RELEASE. Comparisons involving this datatype should follow the algorithm of librpm's rpmvercmp() function.</xsd:documentation>
+            <xsd:documentation>The EntityStateEVRStringType type is extended by the entities of an individual OVAL State. This type provides uniformity to each state entity by including the attributes found in the EntityStateSimpleBaseType. This type represents the epoch, version, and release fields, for an RPM package, as a single version string. It has the form "EPOCH:VERSION-RELEASE". Note that a null epoch (or '(none)' as returned by rpm) is equivalent to '0' and would hence have the form 0:VERSION-RELEASE. Comparisons involving this datatype should follow the algorithm of librpm's rpmvercmp() function.</xsd:documentation>
         </xsd:annotation>
         <xsd:simpleContent>
             <xsd:restriction base="oval-def:EntityStateSimpleBaseType">
@@ -1579,6 +1600,40 @@
                     <!-- TODO: Should there be a pattern restriction here to enforce the pattern mentioned above? -->
                 </xsd:simpleType>
                 <xsd:attribute name="datatype" type="oval:SimpleDatatypeEnumeration" use="required" fixed="evr_string"/>                
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityStateDebianEVRStringType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityStateDebianEVRStringType type is extended by the entities of an individual OVAL State. This type provides uniformity to each state entity by including the attributes found in the EntityStateSimpleBaseType. This type represents the epoch, upstream_version, and debian_revision fields, for a Debian package, as a single version string. It has the form "EPOCH:UPSTREAM_VERSION-DEBIAN_REVISION". Note that a null epoch (or '(none)' as returned by dpkg) is equivalent to '0' and would hence have the form 0:UPSTREAM_VERSION-DEBIAN_REVISION. Comparisons involving this datatype should follow the algorithm outlined in Chapter 5 of the "Debian Policy Manual" (https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Version). An implementation of this is the cmpversions() function in dpkg's enquiry.c.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-def:EntityStateSimpleBaseType">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string"/>
+                    <!-- TODO: Should there be a pattern restriction here to enforce the pattern mentioned above? -->
+                </xsd:simpleType>
+                <xsd:attribute name="datatype" type="oval:SimpleDatatypeEnumeration" use="required" fixed="debian_evr_string"/>                
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityStateDebianRPMEVRStringType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityStateDebianRPMEVRStringType type is extended by the entities of an individual OVAL State. This type provides uniformity to each object entity by including the attributes found in the EntityStateSimpleBaseType. This specific type describes the EVR string value for any Debian or RPM package.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-def:EntityStateSimpleBaseType">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string"/>
+                </xsd:simpleType>
+                <xsd:attribute name="datatype" use="required">
+                    <xsd:simpleType>
+                        <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                            <xsd:enumeration value="evr_string"/>
+                            <xsd:enumeration value="debian_evr_string"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
             </xsd:restriction>
         </xsd:simpleContent>
     </xsd:complexType>

@@ -25,6 +25,11 @@
                <xsd:documentation>The element_mapping element is used in documenting which tests, objects, states, and system characteristic items are associated with each other. It provides a way to explicitly and programatically associate the test, object, state, and item definitions.</xsd:documentation>
           </xsd:annotation>
      </xsd:element>
+     <xsd:element name="notes" type="oval:NotesType">
+          <xsd:annotation>
+               <xsd:documentation>Element for containing notes; can be replaced using a substitution group.</xsd:documentation>
+          </xsd:annotation>
+     </xsd:element>
      <!-- =============================================================================== -->
      <!-- ===============================  GLOBAL TYPES  ================================ -->
      <!-- =============================================================================== -->
@@ -177,7 +182,7 @@
                <xsd:documentation>The NotesType complex type is a container for one or more note child elements. Each note contains some information about the definition or tests that it references. A note may record an unresolved question about the definition or test or present the reason as to why a particular approach was taken.</xsd:documentation>
           </xsd:annotation>
           <xsd:sequence>
-               <xsd:element name="note" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+               <xsd:element name="note" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
           </xsd:sequence>
      </xsd:complexType>
      <!-- =============================================================================== -->
@@ -335,6 +340,11 @@
                <xsd:enumeration value="evr_string">
                     <xsd:annotation>
                          <xsd:documentation>The evr_string datatype represents the epoch, version, and release fields as a single version string. It has the form "EPOCH:VERSION-RELEASE". Comparisons involving this datatype should follow the algorithm of librpm's rpmvercmp() function. Expected operations within OVAL for evr_string values are 'equals', 'not equal', 'greater than', 'greater than or equal', 'less than', and 'less than or equal'.</xsd:documentation>
+                    </xsd:annotation>
+               </xsd:enumeration>
+               <xsd:enumeration value="debian_evr_string">
+                    <xsd:annotation>
+                         <xsd:documentation>The debian_evr_string datatype represents the epoch, upstream_version, and debian_revision fields, for a Debian package, as a single version string. It has the form "EPOCH:UPSTREAM_VERSION-DEBIAN_REVISION". Comparisons involving this datatype should follow the algorithm outlined in Chapter 5 of the "Debian Policy Manual" (https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Version). An implementation of this is the cmpversions() function in dpkg's enquiry.c. Expected operations within OVAL for debian_evr_string values are 'equals', 'not equal', 'greater than', 'greater than or equal', 'less than', and 'less than or equal'.</xsd:documentation>
                     </xsd:annotation>
                </xsd:enumeration>
                <xsd:enumeration value="fileset_revision">
