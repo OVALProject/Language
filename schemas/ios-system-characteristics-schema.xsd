@@ -8,7 +8,7 @@
           <xsd:appinfo>
                <schema>IOS System Characteristics</schema>
                <version>5.11.1:1.1</version>
-               <date>3/30/2015 09:00:00 AM</date>
+               <date>4/13/2015 09:00:00 AM</date>
                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="ios-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#ios"/>
@@ -269,15 +269,43 @@
                                         <xsd:documentation>Element with the switchport mode option configured on the interface (if applicable).</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="switchport_native_vlan" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="switchport_native_vlan" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>Element with the trunk native vlan configured on the interface (if applicable).</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="string">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="string"/>
+                                                                 <xsd:enumeration value="int"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
-                              <xsd:element name="switchport_access_vlan" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="switchport_access_vlan" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>Element with the access vlan configured on the interface (if applicable).</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="string">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="string"/>
+                                                                 <xsd:enumeration value="int"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="switchport_trunked_vlans" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
