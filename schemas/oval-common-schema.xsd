@@ -6,7 +6,7 @@
           <xsd:appinfo>
                <schema>Core Common</schema>
                <version>5.11.1</version>
-               <date>3/30/2015 09:00:00 AM</date>
+               <date>4/13/2015 09:00:00 AM</date>
                 <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
               <sch:ns prefix="oval" uri="http://oval.mitre.org/XMLSchema/oval-common-5"/>
               <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
