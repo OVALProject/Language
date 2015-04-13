@@ -8,7 +8,7 @@
           <xsd:appinfo>
                <schema>Linux System Characteristics</schema>
                <version>5.11.1:1.1</version>
-               <date>3/30/2015 09:00:00 AM</date>
+               <date>4/13/2015 09:00:00 AM</date>
                 <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="linux-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux"/>
@@ -93,17 +93,31 @@
                                         </xsd:simpleContent>
                                    </xsd:complexType>
                               </xsd:element>
-                              <xsd:element name="evr" type="oval-sc:EntityItemDebianRPMEVRStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="evr" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>This type represents the epoch, upstream_version, and debian_revision fields, for a Debian package, as a single version string. It has the form "EPOCH:UPSTREAM_VERSION-DEBIAN_REVISION". Note that a null epoch (or '(none)' as returned by dpkg) is equivalent to '0' and would hence have the form 0:UPSTREAM_VERSION-DEBIAN_REVISION.</xsd:documentation>
                                         <xsd:appinfo>
                                              <sch:pattern id="linux-sc_dpkginfoitemevrstring_id">
                                                   <sch:rule context="linux-sc:dpkginfo_item/linux-sc:evr">
-                                                       <sch:report test="@datatype='evr_string'"><sch:value-of select="../@id"/> WARNING: There are differences in the algorithms for how the version strings of Debian and RPM packages are compared. As a result, a new debian_evr_string datatype was added to the OVAL Language and should be used, for this entity, instead of the evr_string datatype.</sch:report>
+                                                       <sch:report test="@datatype='evr_string'"><sch:value-of select="../@id"/> Warning: There are differences in the algorithms for how the version strings of Debian and RPM packages are compared. As a result, a new debian_evr_string datatype was added to the OVAL Language and should be used, for this entity, instead of the evr_string datatype.</sch:report>
                                                   </sch:rule>
                                              </sch:pattern>
                                         </xsd:appinfo>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="required">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="evr_string"/>
+                                                                 <xsd:enumeration value="debian_evr_string"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
