@@ -1621,26 +1621,6 @@
             </xsd:restriction>
         </xsd:simpleContent>
     </xsd:complexType>
-    <xsd:complexType name="EntityStateDebianRPMEVRStringType">
-        <xsd:annotation>
-            <xsd:documentation>The EntityStateDebianRPMEVRStringType type is extended by the entities of an individual OVAL State. This type provides uniformity to each object entity by including the attributes found in the EntityStateSimpleBaseType. This specific type describes the EVR string value for any Debian or RPM package.</xsd:documentation>
-        </xsd:annotation>
-        <xsd:simpleContent>
-            <xsd:restriction base="oval-def:EntityStateSimpleBaseType">
-                <xsd:simpleType>
-                    <xsd:restriction base="xsd:string"/>
-                </xsd:simpleType>
-                <xsd:attribute name="datatype" use="required">
-                    <xsd:simpleType>
-                        <xsd:restriction base="oval:SimpleDatatypeEnumeration">
-                            <xsd:enumeration value="evr_string"/>
-                            <xsd:enumeration value="debian_evr_string"/>
-                        </xsd:restriction>
-                    </xsd:simpleType>
-                </xsd:attribute>
-            </xsd:restriction>
-        </xsd:simpleContent>
-    </xsd:complexType>
     <xsd:complexType name="EntityStateVersionType">
         <xsd:annotation>
             <xsd:documentation>The EntityStateVersionType type is extended by the entities of an individual OVAL State. This type provides uniformity to each state entity by including the attributes found in the EntityStateSimpleBaseType. This specific type describes simple version data.</xsd:documentation>
