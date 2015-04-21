@@ -8,7 +8,7 @@
         <xsd:appinfo>
             <schema>Core Definition</schema>
             <version>5.11.1</version>
-            <date>4/20/2015 09:00:00 AM</date>
+            <date>4/22/2015 09:00:00 AM</date>
             <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
             <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
             <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -945,8 +945,9 @@
             <xsd:documentation> The glob_to_regex function takes a single string component representing shell glob pattern and produces a single value that corresponds to result of a conversion of the original glob pattern into Perl 5's regular expression pattern. The glob_noescape attribute defines the way how the backslash ('\') character should be interpreted. It defaults to 'false' meaning backslash should be interpreted as an escape character (backslash is allowed to be used as an escape character). If the glob_noescape attribute would be set to 'true' it instructs the glob_to_regex function to interpret the backslash ('\') character as a literal, rather than as an escape character (backslash is *not* allowed to be used as an escape character). Refer to table with examples below to see the difference how a different boolean value of the 'glob_noescape' attribute will impact the output form of the resulting Perl 5's regular expression produced by glob_to_regex function.</xsd:documentation>
             <xsd:documentation>Please note the glob_to_regex function will fail to perform the conversion and return an error when the provided string argument (to represent glob pattern) does not represent a syntactically correct glob pattern. For example given the 'a*b?[' as the argument to be converted, glob_to_regex would return an error since there's missing the corresponding closing bracket in the provided glob pattern argument.</xsd:documentation>
             <xsd:documentation>Also, it is necessary to mention that the glob_to_regex function respects the default behaviour for the input glob pattern and output Perl 5's regular expression spaces. Namely this means that:</xsd:documentation>
+            <xsd:documentation>     - glob_to_regex will respect the UNIX glob behavior when processing forward slashes, forward slash should be treated as a path separator and * or ? shall not match it,</xsd:documentation>
             <xsd:documentation>     - glob_to_regex will rule out matches having special meaning (for example '.' as a representation of the current working directory or '..' as a representation of the parent directory of the current working directory,</xsd:documentation>
-            <xsd:documentation>     - glob_to_regex will rule out matches starting with '.' character (e.g. dotfiles) unless the provided glob pattern itself starts with the '.' character too,</xsd:documentation>
+            <xsd:documentation>     - glob_to_regex will rule out files or folders starting with '.' character (e.g. dotfiles) unless the respective glob pattern part itself starts with the '.' character,</xsd:documentation>
             <xsd:documentation>     - glob_to_regex will not perform case-sensitivity transformation (alphabetical characters will be copied from input glob pattern space to output Perl 5's regular expression pattern space intact). It is kept as a responsibility of the OVAL content author to provide input glob pattern argument in such case so the resulting Perl 5's regular expression pattern will match the expected pathname entries according to the case of preference,</xsd:documentation>
             <xsd:documentation>     - glob_to_regex will not perform any possible brace expansion. Therefore glob patterns like '{pat,pat,pat}' would be converted into Perl 5's regular expression syntax in the original un-expanded form (kept for any potential subsequent expansion to be performed by Perl 5's regular expression engine in the moment of the use of that resulting regular expression),</xsd:documentation>
             <xsd:documentation>     - glob_to_regex will not perform tilde ('~') character substitution to user name home directory pathname. The ('~') character will be passed to Perl 5's regular expression engine intact. If user name home directory pathname glob pattern behaviour is expected, the pathname of the user name home directory needs to be specified in the original input glob pattern already,</xsd:documentation>
@@ -960,15 +961,95 @@
 --------------------------||-------------------------------||--------------------------------------
          '\*'             ||           false               ||                 ^\*$
                           ||-------------------------------||--------------------------------------
-         '\*'             ||           true                ||               ^\\.*$
+         '\*'             ||           true                ||               ^\\[^/]*$
 --------------------------||-------------------------------||--------------------------------------
          '\?'             ||           false               ||                 ^\?$
                           ||-------------------------------||--------------------------------------
-         '\?'             ||           true                ||                ^\\.$
+         '\?'             ||           true                ||              ^\\[^./]$
 --------------------------||-------------------------------||--------------------------------------
       '\[hello\]'         ||           false               ||              ^\[hello\]$
                           ||-------------------------------||--------------------------------------
       '\[hello\]'         ||           true                ||            ^\\[hello\\]$
+--------------------------||-------------------------------||--------------------------------------
+       '/root/*'          ||           false               ||        ^/root/(?=[^.])[^/]*$
+                          ||-------------------------------||--------------------------------------
+       '/root/.*'         ||           false               ||           ^/root/\.[^/]*$
+                          ||-------------------------------||--------------------------------------
+       '/root/x*'         ||           false               ||           ^/root/x[^/]*$
+                          ||-------------------------------||--------------------------------------
+       '/root/?'          ||           false               ||           ^/root/[^./]$
+                          ||-------------------------------||--------------------------------------
+       '/root/.?'         ||           false               ||           ^/root/\.[^/]$
+                          ||-------------------------------||--------------------------------------
+       '/root/x?'         ||           false               ||           ^/root/x[^/]$
+--------------------------||-------------------------------||--------------------------------------
+       'list.?'           ||           false               ||            ^list\.[^/]$
+                          ||-------------------------------||--------------------------------------
+       'list.?'           ||           true                ||            ^list\.[^/]$
+                          ||-------------------------------||--------------------------------------
+       'project.*'        ||           false               ||           ^project\.[^/]*$
+                          ||-------------------------------||--------------------------------------
+       'project.*'        ||           true                ||           ^project\.[^/]*$
+                          ||-------------------------------||--------------------------------------
+       '*old'             ||           false               ||           ^(?=[^.])[^/]*old$
+                          ||-------------------------------||--------------------------------------
+       '*old'             ||           true                ||           ^(?=[^.])[^/]*old$
+                          ||-------------------------------||--------------------------------------
+       'type*.[ch]'       ||           false               ||           ^type[^/]*\.[ch]$
+                          ||-------------------------------||--------------------------------------
+       'type*.[ch]'       ||           true                ||           ^type[^/]*\.[ch]$
+                          ||-------------------------------||--------------------------------------
+       '*.*'              ||           false               ||        ^(?=[^.])[^/]*\.[^/]*$
+                          ||-------------------------------||--------------------------------------
+       '*.*'              ||           true                ||        ^(?=[^.])[^/]*\.[^/]*$
+                          ||-------------------------------||--------------------------------------
+        '*'               ||           false               ||           ^(?=[^.])[^/]*$
+                          ||-------------------------------||--------------------------------------
+        '*'               ||           true                ||           ^(?=[^.])[^/]*$
+                          ||-------------------------------||--------------------------------------
+        '?'               ||           false               ||                ^[^./]$
+                          ||-------------------------------||--------------------------------------
+        '?'               ||           true                ||                ^[^./]$
+                          ||-------------------------------||--------------------------------------
+        '\*'              ||           false               ||                 ^\*$
+                          ||-------------------------------||--------------------------------------
+        '\*'              ||           true                ||               ^\\[^/]*$
+                          ||-------------------------------||--------------------------------------
+        '\?'              ||           false               ||                 ^\?$
+                          ||-------------------------------||--------------------------------------
+        '\?'              ||           true                ||               ^\\[^./]$
+                          ||-------------------------------||--------------------------------------
+   'x[[:digit:]]\*'       ||           false               ||           ^x[[:digit:]]\*$
+                          ||-------------------------------||--------------------------------------
+   'x[[:digit:]]\*'       ||           true                ||        ^x[[:digit:]]\\[^/]*$
+                          ||-------------------------------||--------------------------------------
+         ''               ||           false               ||                  ^$
+                          ||-------------------------------||--------------------------------------
+         ''               ||           true                ||                  ^$
+                          ||-------------------------------||--------------------------------------
+   '~/files/*.txt'        ||           false               ||    ^~/files/(?=[^.])[^/]*\.txt$
+                          ||-------------------------------||--------------------------------------
+   '~/files/*.txt'        ||           true                ||    ^~/files/(?=[^.])[^/]*\.txt$
+                          ||-------------------------------||--------------------------------------
+        '\'               ||           false               ||                 ^\\$
+                          ||-------------------------------||--------------------------------------
+        '\'               ||           true                ||                 ^\\$
+                          ||-------------------------------||--------------------------------------
+        '[ab'             ||           false               ||                INVALID
+                          ||-------------------------------||--------------------------------------
+        '[ab'             ||           true                ||                INVALID
+                          ||-------------------------------||--------------------------------------
+      '.*.conf'           ||           false               ||           ^\.[^/]*\.conf$
+                          ||-------------------------------||--------------------------------------
+      '.*.conf'           ||           true                ||           ^\.[^/]*\.conf$
+                          ||-------------------------------||--------------------------------------
+      'docs/?b'           ||           false               ||            ^docs/[^./]b$
+                          ||-------------------------------||--------------------------------------
+      'docs/?b'           ||           true                ||            ^docs/[^./]b$
+                          ||-------------------------------||--------------------------------------
+      'xy/??z'            ||           false               ||            ^xy/[^./][^/]z$
+                          ||-------------------------------||--------------------------------------
+      'xy/??z'            ||           true                ||            ^xy/[^./][^/]z$
 ---------------------------------------------------------------------------------------------------
                 </evaluation_chart>
                 <sch:pattern id="oval-def_globtoregexfunctionrules">
