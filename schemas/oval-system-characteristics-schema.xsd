@@ -7,9 +7,9 @@
         <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
         <xsd:appinfo>
             <schema>Core System Characteristics</schema>
-            <version>5.11</version>
-            <date>12/18/2014 09:00:00 AM</date>
-            <terms_of_use>Copyright (c) 2002-2014, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+            <version>5.11.1</version>
+            <date>4/22/2015 09:00:00 AM</date>
+            <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
             <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
             <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
         </xsd:appinfo>
@@ -606,7 +606,7 @@
     <xsd:complexType name="EntityItemEVRStringType">
         <xsd:annotation>
             <xsd:documentation>The EntityItemEVRStringType type is extended by the entities of an individual item. This type provides uniformity to each entity by including the attributes found in the EntityItemSimpleBaseType.
-                This type represents the epoch, version, and release fields as a single version string. It has the form "EPOCH:VERSION-RELEASE". Note that a null epoch (or '(none)' as returned by rpm) is equivalent to '0' and would hence have the form 0:VERSION-RELEASE. Comparisons involving this datatype should follow the algorithm of librpm's rpmvercmp() function.</xsd:documentation>
+                This type represents the epoch, version, and release fields, for an RPM package, as a single version string. It has the form "EPOCH:VERSION-RELEASE". Note that a null epoch (or '(none)' as returned by rpm) is equivalent to '0' and would hence have the form 0:VERSION-RELEASE. Comparisons involving this datatype should follow the algorithm of librpm's rpmvercmp() function.</xsd:documentation>
         </xsd:annotation>
         <xsd:simpleContent>
             <xsd:restriction base="oval-sc:EntityItemSimpleBaseType">
@@ -615,6 +615,20 @@
                     <!-- TODO: Should there be a pattern restriction here to enforce the pattern mentioned above? -->
                 </xsd:simpleType>
                 <xsd:attribute name="datatype" type="oval:SimpleDatatypeEnumeration" use="required" fixed="evr_string"/>
+            </xsd:restriction>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="EntityItemDebianEVRStringType">
+        <xsd:annotation>
+            <xsd:documentation>The EntityItemDebianEVRStringType type is extended by the entities of an individual item. This type provides uniformity to each entity by including the attributes found in the EntityItemSimpleBaseType. This type represents the epoch, upstream_version, and debian_revision fields, for a Debian package, as a single version string. It has the form "EPOCH:UPSTREAM_VERSION-DEBIAN_REVISION". Note that a null epoch (or '(none)' as returned by dpkg) is equivalent to '0' and would hence have the form 0:UPSTREAM_VERSION-DEBIAN_REVISION. Comparisons involving this datatype should follow the algorithm outlined in Chapter 5 of the "Debian Policy Manual" (https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Version). An implementation of this is the cmpversions() function in dpkg's enquiry.c.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:restriction base="oval-sc:EntityItemSimpleBaseType">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string"/>
+                    <!-- TODO: Should there be a pattern restriction here to enforce the pattern mentioned above? -->
+                </xsd:simpleType>
+                <xsd:attribute name="datatype" type="oval:SimpleDatatypeEnumeration" use="required" fixed="debian_evr_string"/>
             </xsd:restriction>
         </xsd:simpleContent>
     </xsd:complexType>
