@@ -36,12 +36,12 @@
                                                 <xsd:documentation>Element with the IP version of the ACL.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="use" type="asa-sc:EntityItemAccessListUseType" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="use" type="asa-sc:EntityItemAccessListUseType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the feature where the ACL is used. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
                                           </xsd:annotation>
