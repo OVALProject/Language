@@ -262,7 +262,7 @@
                                                 <xsd:documentation>Element with the inspection type of the class-map.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="parameters" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="parameters" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the parameter commands of the policy-map.</xsd:documentation>
                                           </xsd:annotation>
@@ -442,7 +442,7 @@
                                                 <xsd:documentation>Element with the tcp-map name.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="options" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="options" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the configured commends in the tcp-map. These could include TCP options, flags and other options of the tcp-map.</xsd:documentation>
                                           </xsd:annotation>
