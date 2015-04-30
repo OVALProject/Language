@@ -415,7 +415,7 @@
                                         <xsd:documentation>Element with the interface.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="protocol" type="ios-sc:EntityItemRoutingProtocolType" minOccurs="0" maxOccurs="unbounded">
+                              <xsd:element name="protocol" type="ios-sc:EntityItemRoutingProtocolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>Element with the routing protocol.</xsd:documentation>
                                    </xsd:annotation>
