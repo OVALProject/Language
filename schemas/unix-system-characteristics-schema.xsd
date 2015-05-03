@@ -983,9 +983,9 @@
                                         </xsd:simpleContent>
                                    </xsd:complexType>
                               </xsd:element>
-                              <xsd:element name="flag" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="flag" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This is a reserved field that the shadow file may use in the future.</xsd:documentation>
+                                        <xsd:documentation>This is a reserved field that the shadow file may use in the future.  A numeric value should be used for this field.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="encrypt_method" type="unix-sc:EntityItemEncryptMethodType" minOccurs="0" maxOccurs="1">
