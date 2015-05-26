@@ -261,41 +261,106 @@
                         <xsd:element name="platform" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The platform that is running the IOS-XE software. For example if could be asr1000. </xsd:documentation>
+                                <xsd:appinfo>
+                                    <oval:deprecated_info>
+                                        <oval:version>5.11.1:1.2</oval:version>
+                                        <oval:reason>This entity has been deprecated because it cannot be reliably collected.</oval:reason>
+                                    </oval:deprecated_info>
+                                    <sch:pattern id="iosxe-def_versionste_platform_dep">
+                                        <sch:rule context="iosxe-def:version_state/iosxe-def:platformrp">
+                                            <sch:report test="true()">Warning: DEPRECATED ENTITY: <sch:value-of select="name()"/>. This entity has been deprecated because it cannot be reliably collected.</sch:report>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="rp" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The routing processor running the IOS-XE software.</xsd:documentation>
+                                <xsd:appinfo>
+                                    <oval:deprecated_info>
+                                        <oval:version>5.11.1:1.2</oval:version>
+                                        <oval:reason>This entity has been deprecated because it cannot be reliably collected.</oval:reason>
+                                    </oval:deprecated_info>
+                                    <sch:pattern id="iosxe-def_versionste_rp_dep">
+                                        <sch:rule context="iosxe-def:version_state/iosxe-def:rp">
+                                            <sch:report test="true()">Warning: DEPRECATED ENTITY: <sch:value-of select="name()"/>. This entity has been deprecated because it cannot be reliably collected.</sch:report>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="pkg" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The consolidated IOS-XE packages in the image. For example it could be adventservicesk9.</xsd:documentation>
+                                <xsd:appinfo>
+                                    <oval:deprecated_info>
+                                        <oval:version>5.11.1:1.2</oval:version>
+                                        <oval:reason>This entity has been deprecated because it cannot be reliably collected.</oval:reason>
+                                    </oval:deprecated_info>
+                                    <sch:pattern id="iosxe-def_versionste_pkg_dep">
+                                        <sch:rule context="iosxe-def:version_state/iosxe-def:pkg">
+                                            <sch:report test="true()">Warning: DEPRECATED ENTITY: <sch:value-of select="name()"/>. This entity has been deprecated because it cannot be reliably collected.</sch:report>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="version_string" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The entire IOS-XE version string, for example, '03.13.02.S'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="major_release" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The major version piece of the version string. The value is an integer and in the example ASR1000rp1-ipbasek9.03.04.02.122-33.SR.bin the major_release is '03'.</xsd:documentation>
+                                <xsd:documentation>The major version piece of the version string. The value is an integer, and in the example 03.13.02.S the major_release is '3'</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="release" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The release piece of the version string. The value is an integer and in the example ASR1000rp1-ipbasek9.03.04.02.122-33.SR.bin the release version is '04'</xsd:documentation>
+                                <xsd:documentation>The minor release piece of the version string. The value is an integer, and in the example 03.13.02.S the release is '13'</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="rebuild" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The release piece of the version string. The value is an integer and in the example ASR1000rp1-ipbasek9.03.04.02.122-33.SR.bin the rebuild is '02'</xsd:documentation>
+                                <xsd:documentation>The rebuild piece of the version string. The value is an integer, and in the example 03.13.02.S the rebuild is '2'</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="train" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The train piece of the version string. The value is a string, and in the example 03.13.02.S the train is 'S'</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="ios_release" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The IOS release the IOS-XE was derived from. The value is an string and in the example ASR1000rp1-ipbasek9.03.04.02.122-33.SR.bin the ios_release version is '122-33'</xsd:documentation>
+                                <xsd:documentation>The IOS release the IOS-XE was derived from. The value is a string and in the example ASR1000rp1-ipbasek9.03.04.02.122-33.SR.bin the ios_release version is '122-33'</xsd:documentation>
+                                <xsd:appinfo>
+                                    <oval:deprecated_info>
+                                        <oval:version>5.11.1:1.2</oval:version>
+                                        <oval:reason>This entity has been deprecated because it is irrelevant to the IOS-XE version.</oval:reason>
+                                    </oval:deprecated_info>
+                                    <sch:pattern id="iosxe-def_versionste_ios_release_dep">
+                                        <sch:rule context="iosxe-def:version_state/iosxe-def:ios_release">
+                                            <sch:report test="true()">Warning: DEPRECATED ENTITY: <sch:value-of select="name()"/>. This entity has been deprecated because it is irrelevant to the IOS-XE version.</sch:report>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="ios_train" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The IOS release the IOS-XE was derived from. The value is an integer and in the example ASR1000rp1-ipbasek9.03.04.02.122-33.SR.bin the ios_release version is 'SR'</xsd:documentation>
+                                <xsd:appinfo>
+                                    <oval:deprecated_info>
+                                        <oval:version>5.11.1:1.2</oval:version>
+                                        <oval:reason>This entity has been deprecated because it is irrelevant to the IOS-XE version.</oval:reason>
+                                    </oval:deprecated_info>
+                                    <sch:pattern id="iosxe-def_versionste_ios_train_dep">
+                                        <sch:rule context="iosxe-def:version_state/iosxe-def:ios_train">
+                                            <sch:report test="true()">Warning: DEPRECATED ENTITY: <sch:value-of select="name()"/>. This entity has been deprecated because it is irrelevant to the IOS-XE version.</sch:report>
+                                        </sch:rule>
+                                    </sch:pattern>
+                                </xsd:appinfo>
                             </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>
