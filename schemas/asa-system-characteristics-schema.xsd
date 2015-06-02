@@ -7,7 +7,7 @@
             <xsd:documentation>Thanks to Omar Santos and Panos Kampanakis of Cisco for providing these tests.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Cisco ASA System Characteristics</schema>
-                  <version>5.11.1:1.1</version>
+                  <version>5.11.1:1.2</version>
                   <date>4/22/2015 09:00:00 AM</date>
                   <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
@@ -36,12 +36,12 @@
                                                 <xsd:documentation>Element with the IP version of the ACL.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="use" type="asa-sc:EntityItemAccessListUseType" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="use" type="asa-sc:EntityItemAccessListUseType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the feature where the ACL is used. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                                    <xsd:element name="used_in" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the name of where the ACL is used. For example if use is 'INTERFACE', use_in will be the name of the interface. If the same ACL is applied in more than one feature (i.e interface and crypto map), multiple items needs to be created.</xsd:documentation>
                                           </xsd:annotation>
@@ -98,12 +98,12 @@
                                                 <xsd:documentation>Element with the 'match-all' or 'match-any' type of the class-map. ASA's defaults to 'match-any'.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="match" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="match" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the match command in the class-map.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="used_in_class_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="used_in_class_map" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the name of the class-map (for nested class-maps) that this class-map is used in.</xsd:documentation>
                                           </xsd:annotation>
@@ -113,7 +113,7 @@
                                                 <xsd:documentation>Element with the name of the policy-map that this class-map is used in.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="policy_map_action" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="policy_map_action" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the command that identifies the action for the class. For example that could be 'inspect protocolX', 'drop' or 'police 1000' or 'set connection advanced-options tcpmapX'.</xsd:documentation>
                                           </xsd:annotation>
@@ -262,12 +262,12 @@
                                                 <xsd:documentation>Element with the inspection type of the class-map.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="parameters" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="parameters" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the parameter commands of the policy-map.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="match_action" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="match_action" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the in-line match command and the action in the policy-map seperated by delimeter '_-_'. For example an http inspect policy-map could have 'match body regex regexnameX' and the action be 'drop'. Then this element would be 'body regex regexnameX_-_drop'.</xsd:documentation>
                                           </xsd:annotation>
@@ -442,7 +442,7 @@
                                                 <xsd:documentation>Element with the tcp-map name.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="options" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="options" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the configured commends in the tcp-map. These could include TCP options, flags and other options of the tcp-map.</xsd:documentation>
                                           </xsd:annotation>
