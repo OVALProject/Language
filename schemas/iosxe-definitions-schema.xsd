@@ -267,7 +267,7 @@
                                         <oval:reason>This entity has been deprecated because it cannot be reliably collected.</oval:reason>
                                     </oval:deprecated_info>
                                     <sch:pattern id="iosxe-def_versionste_platform_dep">
-                                        <sch:rule context="iosxe-def:version_state/iosxe-def:platformrp">
+                                        <sch:rule context="iosxe-def:version_state/iosxe-def:platform">
                                             <sch:report test="true()">Warning: DEPRECATED ENTITY: <sch:value-of select="name()"/>. This entity has been deprecated because it cannot be reliably collected.</sch:report>
                                         </sch:rule>
                                     </sch:pattern>
@@ -384,11 +384,11 @@
             </xsd:appinfo>
             <xsd:appinfo>
                 <sch:pattern id="iosxe-def_interfacetst">
-                    <sch:rule context="iosxe-def:interface_test/ios-def:object">
-                        <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/ios-def:interface_object/@id"><sch:value-of select="../@id"/> - the object child element of an interface_test must reference an interface_object</sch:assert>
+                    <sch:rule context="iosxe-def:interface_test/iosxe-def:object">
+                        <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/iosxe-def:interface_object/@id"><sch:value-of select="../@id"/> - the object child element of an interface_test must reference an interface_object</sch:assert>
                     </sch:rule>
-                    <sch:rule context="iosxe-def:interface_test/ios-def:state">
-                        <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/ios-def:interface_state/@id"><sch:value-of select="../@id"/> - the state child element of an interface_test must reference an interface_state</sch:assert>
+                    <sch:rule context="iosxe-def:interface_test/iosxe-def:state">
+                        <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/iosxe-def:interface_state/@id"><sch:value-of select="../@id"/> - the state child element of an interface_test must reference an interface_state</sch:assert>
                     </sch:rule>
                 </sch:pattern>
             </xsd:appinfo>
@@ -1863,6 +1863,13 @@
                                     <oval:reason>The NULL authentication area type is never declared in an interface ip ospf command context.</oval:reason>
                                     <oval:comment>This RoutingAuthTypeStringType enumeration value has been deprecated and may be removed in a future version of the language.</oval:comment>
                                </oval:deprecated_info>
+                               <sch:pattern id="iosxe-def_sratst_null_value_dep">
+                                    <sch:rule context="oval-def:oval_definitions/oval-def:states/iosxe-def:routingprotocolauthintf_state/iosxe-def:auth_type">
+                                         <sch:report test=".='NULL'">
+                                               DEPRECATED ELEMENT VALUE IN: routingprotocolauthintf_state ELEMENT VALUE: <sch:value-of select="."/>
+                                         </sch:report>
+                                    </sch:rule>
+                               </sch:pattern>
                           </xsd:appinfo>
                      </xsd:annotation>
                 </xsd:enumeration>
@@ -1994,6 +2001,13 @@
                                     <oval:reason>The EntityStateSimpleBaseType check_existence attribute serves the same purpose as this enumeration value.</oval:reason>
                                     <oval:comment>This AccessListUseType enumeration value has been deprecated and may be removed in a future version of the language.</oval:comment>
                                </oval:deprecated_info>
+                               <sch:pattern id="iosxe-def_salut_none_value_dep">
+                                    <sch:rule context="oval-def:oval_definitions/oval-def:states/iosxe-def:acl_state/iosxe-def:use">
+                                         <sch:report test=".='NONE'">
+                                               DEPRECATED ELEMENT VALUE IN: acl_state ELEMENT VALUE: <sch:value-of select="."/>
+                                         </sch:report>
+                                    </sch:rule>
+                               </sch:pattern>
                           </xsd:appinfo>
                      </xsd:annotation>
                 </xsd:enumeration>

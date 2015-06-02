@@ -2168,7 +2168,7 @@
                                        <sch:pattern id="ios-def_sratst_null_value_dep">
                                             <sch:rule context="oval-def:oval_definitions/oval-def:states/ios-def:routingprotocolauthintf_state/ios-def:auth_type">
                                                  <sch:report test=".='NULL'">
-                                                       DEPRECATED ELEMENT VALUE IN: acl_state ELEMENT VALUE: <sch:value-of select="."/>
+                                                       DEPRECATED ELEMENT VALUE IN: routingprotocolauthintf_state ELEMENT VALUE: <sch:value-of select="."/>
                                                  </sch:report>
                                             </sch:rule>
                                        </sch:pattern>
