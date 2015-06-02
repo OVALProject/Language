@@ -2131,6 +2131,13 @@
                                             <oval:reason>The EntityStateSimpleBaseType check_existence attribute serves the same purpose as this enumeration value.</oval:reason>
                                             <oval:comment>This AccessListUseType enumeration value has been deprecated and may be removed in a future version of the language.</oval:comment>
                                        </oval:deprecated_info>
+                                       <sch:pattern id="ios-def_salut_none_value_dep">
+                                            <sch:rule context="oval-def:oval_definitions/oval-def:states/ios-def:acl_state/ios-def:use">
+                                                 <sch:report test=".='NONE'">
+                                                       DEPRECATED ELEMENT VALUE IN: acl_state ELEMENT VALUE: <sch:value-of select="."/>
+                                                 </sch:report>
+                                            </sch:rule>
+                                       </sch:pattern>
                                   </xsd:appinfo>
                              </xsd:annotation>
                         </xsd:enumeration>
@@ -2158,6 +2165,13 @@
                                             <oval:reason>The NULL authentication area type is never declared in an interface ip ospf command context.</oval:reason>
                                             <oval:comment>This RoutingAuthTypeStringType enumeration value has been deprecated and may be removed in a future version of the language.</oval:comment>
                                        </oval:deprecated_info>
+                                       <sch:pattern id="ios-def_sratst_null_value_dep">
+                                            <sch:rule context="oval-def:oval_definitions/oval-def:states/ios-def:routingprotocolauthintf_state/ios-def:auth_type">
+                                                 <sch:report test=".='NULL'">
+                                                       DEPRECATED ELEMENT VALUE IN: acl_state ELEMENT VALUE: <sch:value-of select="."/>
+                                                 </sch:report>
+                                            </sch:rule>
+                                       </sch:pattern>
                                   </xsd:appinfo>
                              </xsd:annotation>
                         </xsd:enumeration>

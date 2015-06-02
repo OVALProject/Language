@@ -153,7 +153,7 @@
                                 <xsd:appinfo>
                                     <oval:deprecated_info>
                                         <oval:version>5.11.1:1.2</oval:version>
-                                        <oval:reason>This entity has been deprecated because it is irrelevant to the IOS-XE version..</oval:reason>
+                                        <oval:reason>This entity has been deprecated because it is irrelevant to the IOS-XE version.</oval:reason>
                                     </oval:deprecated_info>
                                     <sch:pattern id="iosxe-sc_versionitem_ios_release">
                                         <sch:rule context="iosxe-sc:version_item/iosxe-sc:ios_release">
