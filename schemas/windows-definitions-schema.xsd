@@ -3618,7 +3618,7 @@
                                     </xsd:element>
                                     <xsd:element name="name" type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The name element describes the name of the specified metabase object.</xsd:documentation>
+                                                <xsd:documentation>The name element describes the name of the specified metabase object. This is intended to be the string name of the constant from IIScnfg.h, e.g., MD_KEY_TYPE.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="user_type" type="oval-def:EntityStateStringType" minOccurs="0">
