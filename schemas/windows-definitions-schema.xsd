@@ -7,9 +7,9 @@
             <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Windows Definition</schema>
-                  <version>5.11.1:1.1</version>
-                  <date>4/22/2015 09:00:00 AM</date>
-                  <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <version>5.11.2:1.0</version>
+                  <date>8/30/2016 09:00:00 AM</date>
+                  <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="win-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"/>
                   <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -4780,9 +4780,9 @@
                               <xsd:sequence>
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
-                                          <xsd:element name="command_line" type="oval-def:EntityObjectStringType">
+                                          <xsd:element name="command_line" type="oval-def:EntityObjectStringType" nillable="true">
                                                 <xsd:annotation>
-                                                      <xsd:documentation>The command_line entity is the string used to start the process. This includes any parameters that are part of the command line.</xsd:documentation>
+                                                      <xsd:documentation>The command_line entity is the string used to start the process. This includes any parameters that are part of the command line. To retrieve all processes (including those, such as the System process, that do not have a command_line), use xsi:nil="true".</xsd:documentation>
                                                 </xsd:annotation>
                                           </xsd:element>
                                     </xsd:choice>
