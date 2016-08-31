@@ -4492,7 +4492,7 @@
                                     </xsd:element>
                                     <xsd:element name="foreign_port" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>This is the TCP or UDP port to which the program communicates.</xsd:documentation>
+                                                <xsd:documentation>This is the TCP or UDP port to which the program communicates. In the case of a listening program accepting new connections, this is usually '0'.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
