@@ -433,7 +433,7 @@
      </xsd:simpleType>
      <xsd:simpleType name="ExistenceEnumeration">
           <xsd:annotation>
-               <xsd:documentation>The ExistenceEnumeration simple type defines acceptable existence values, which are used to determine a result based on the existence of individual components. The main use for this is for a test regarding the existence of objects on the system.</xsd:documentation>
+               <xsd:documentation>The ExistenceEnumeration simple type defines acceptable existence values, which are used to determine a result based on the existence of individual components. The main use for this is for a test regarding the existence of objects on the system. Its secondary use is for a state regarding the existence of entities in corresponding items.</xsd:documentation>
                <xsd:appinfo>
                     <evaluation_documentation>Below are some tables that outline how each ExistenceEnumeration value effects evaluation of a given test.  Note that this is related to the existence of an object(s) and not the object(s) compliance with a state.  The left column identifies the ExistenceEnumeration value in question. The middle column specifies the different combinations of individual item status values that have been found in the system characteristics file related to the given object. (EX=exists, DE=does not exist, ER=error, NC=not collected) For example, a 1+ under EX means that one or more individual item status attributes are set to exists, while a 0 under NC means that zero individual item status attributes are set to not collected.  The last column specifies what the result of the existence piece would be according to each combination of individual item status values.</evaluation_documentation>
                     <evaluation_chart xml:space="preserve">
@@ -509,7 +509,7 @@ at_least_one_exists  ||  0   |  0+  |  1+  |  0+  ||  Error
           <xsd:restriction base="xsd:string">
                <xsd:enumeration value="all_exist">
                     <xsd:annotation>
-                         <xsd:documentation>A value of 'all_exist' means that every object defined by the description exists on the system.</xsd:documentation>
+                         <xsd:documentation>When used in the context of an OVAL state entity's check_existence attribute, a value of 'all_exist' means that every item entity for an object defined by the description exists on the system. When used in the context of an OVAL test's check_existence attribute, this value is equivalent to 'at_least_one_exists' because non-existent items have no impact upon evaluation.</xsd:documentation>
                     </xsd:annotation>
                </xsd:enumeration>
                <xsd:enumeration value="any_exist">
