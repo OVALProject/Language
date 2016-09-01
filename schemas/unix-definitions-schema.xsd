@@ -1537,7 +1537,7 @@
                                     </xsd:element>
                                     <xsd:element name="exec_shield" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>A boolean that when true would indicates that ExecShield is enabled for the process.</xsd:documentation>
+                                                <xsd:documentation>A boolean that when true would indicates that ExecShield is enabled for the process. Applicable only to RedHat-based Linux distros, an example script demonstrating the collection of this entity can be found at http://people.redhat.com/sgrubb/files/lsexec</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="loginuid" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
