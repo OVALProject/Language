@@ -684,7 +684,7 @@
                                         <xsd:documentation>An effective capability associated with the process. See linux/include/linux/capability.h for more information.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="selinux_domain_label" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                              <xsd:element name="selinux_domain_label" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>An selinux domain label associated with the process.</xsd:documentation>
                                    </xsd:annotation>
