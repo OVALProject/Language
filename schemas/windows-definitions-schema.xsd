@@ -4,7 +4,7 @@
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:annotation>
             <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Windows specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
-            <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+            <xsd:documentation>The OVAL Schema is maintained and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Windows Definition</schema>
                   <version>5.11.2:1.0</version>
@@ -77,7 +77,7 @@
                               <sch:rule context="win-def:accesstoken_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="win-def_accesstoken_object_verify_filter_state">
@@ -127,7 +127,7 @@
                               <sch:rule context="win-def:accesstoken_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -377,7 +377,7 @@
                               <oval:version>5.11</oval:version>
                               <oval:reason>Replaced by the userrights_test. The AccesstokenBehaviors complex type is used by the accesstoken_test which suffers from scalability issues when run on a domain controller and should not be used. As a result, the AccesstokenBehaviors complex type is no longer needed. See the userrights_test.</oval:reason>
                               <oval:comment>This complex type has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
-                        </oval:deprecated_info>                  
+                        </oval:deprecated_info>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:attribute name="include_group" type="xsd:boolean" use="optional" default="true">
@@ -393,7 +393,7 @@
                                     <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:accesstoken_object/win-def:behaviors">
                                           <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:accesstoken_object</sch:report>
                                     </sch:rule>
-                              </sch:pattern>                        
+                              </sch:pattern>
                         </xsd:appinfo>
                   </xsd:annotation>
             </xsd:attribute>
@@ -410,7 +410,7 @@
                                     <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:accesstoken_object/win-def:behaviors">
                                           <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: win-def:accesstoken_object </sch:report>
                                     </sch:rule>
-                              </sch:pattern>                        
+                              </sch:pattern>
                         </xsd:appinfo>
                   </xsd:annotation>
             </xsd:attribute>
@@ -421,7 +421,6 @@
       <xsd:element name="activedirectory_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
                   <xsd:documentation>The active directory test is used to check information about specific entries in active directory. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an activedirectory_object and the optional state element specifies the metadata to check.</xsd:documentation>
-                  <xsd:documentation>Note that this test supports only simple (string based) value collection. For more complex values see the activedirectory57_test.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>activedirectory_test</oval:test>
@@ -456,7 +455,6 @@
             <xsd:annotation>
                   <xsd:documentation>The activedirectory_object element is used by an active directory test to define those objects to evaluated based on a specified state. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>An active directory object consists of three pieces of information, a naming context, a relative distinguished name, and an attribute. Each piece helps identify a specific active directory entry.</xsd:documentation>
-                  <xsd:documentation>Note that this object is paired with a state that supports only simple (string based) value collection. For more complex values see the activedirectory57_object.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -490,7 +488,6 @@
       <xsd:element name="activedirectory_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation>The activedirectory_state element defines the different information that can be used to evaluate the specified entries in active directory. An active directory test will reference a specific instance of this state that defines the exact settings that need to be evaluated. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
-                  <xsd:documentation>Note that this state supports only simple (string based) value collection. For more complex values see the activedirectory57_state.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -547,6 +544,18 @@
                         </oval:element_mapping>
                   </xsd:appinfo>
                   <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11.2</oval:version>
+                              <oval:reason>Use the original activedirectory_test. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_activedirectory57tst_dep">
+                              <sch:rule context="win-def:activedirectory57_test">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
                         <sch:pattern id="win-def_activedirectory57_test">
                               <sch:rule context="win-def:activedirectory57_test/win-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/win-def:activedirectory57_object/@id"><sch:value-of select="../@id"/> - the object child element of an activedirectory57_test must reference an activedirectory57_object</sch:assert>
@@ -586,6 +595,18 @@
                               </sch:rule>
                         </sch:pattern>
                   </xsd:appinfo>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11.2</oval:version>
+                              <oval:reason>Use the original activedirectory_object. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.</oval:reason>
+                              <oval:comment>This object has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_activedirectory57obj_dep">
+                              <sch:rule context="win-def:activedirectory57_object">
+                                    <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -621,6 +642,18 @@
             <xsd:annotation>
                   <xsd:documentation>The activedirectory57_state element defines the different information that can be used to evaluate the specified entries in active directory. An active directory test will reference a specific instance of this state that defines the exact settings that need to be evaluated. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
                   <xsd:documentation>Note that this state supports complex values that are in the form of a record. For simple (string based) value collection see the activedirectory_state.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11.2</oval:version>
+                              <oval:reason>Use the original activedirectory_state. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.</oval:reason>
+                              <oval:comment>This state has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="win-def_activedirectory57ste_dep">
+                              <sch:rule context="win-def:activedirectory57_state">
+                                    <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -1576,7 +1609,7 @@
                                                                         <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
                                                                         <xsd:appinfo>
                                                                               <sch:pattern id="win-def_fileobjpath">
-                                                                                    <sch:rule context="win-def:file_object/win-def:path[not(@operation='equals' or not(@operation))]">                                                                                          
+                                                                                    <sch:rule context="win-def:file_object/win-def:path[not(@operation='equals' or not(@operation))]">
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the recurse_direction behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
@@ -1740,7 +1773,7 @@
                               <xsd:minInclusive value="-1"/>
                         </xsd:restriction>
                   </xsd:simpleType>
-            </xsd:attribute>            
+            </xsd:attribute>
             <xsd:attribute name="recurse_direction" use="optional" default="none">
                   <xsd:annotation>
                         <xsd:documentation>'recurse_direction' defines the direction, either 'up' to parent directories, or 'down' into child directories to recursively search for files. When recursing up or down, one is limited by the max_depth behavior. Note that it is not an error if max_depth specifies a certain level of recursion and that level does not exist. Recursing should only go as deep as available. The default value is 'none' for no recursion.</xsd:documentation>
@@ -1868,7 +1901,7 @@
                                                                         <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
                                                                         <xsd:appinfo>
                                                                               <sch:pattern id="win-def_fap53objpath">
-                                                                                    <sch:rule context="win-def:fileauditedpermissions53_object/win-def:path[not(@operation='equals' or not(@operation))]">                                                                                          
+                                                                                    <sch:rule context="win-def:fileauditedpermissions53_object/win-def:path[not(@operation='equals' or not(@operation))]">
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the recurse_direction behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
@@ -2066,10 +2099,10 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:fileauditedpermissions53_object/win-def:behaviors">
                                                       <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:fileauditedpermissions53_object</sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
-                        </xsd:attribute>            
+                        </xsd:attribute>
                         <xsd:attribute name="resolve_group" type="xsd:boolean" use="optional" default="false">
                               <xsd:annotation>
                                     <xsd:documentation>The 'resolve_group' behavior defines whether an object set defined by a group SID should be resolved to return a set that contains all the user SIDs that are a member of that group.  Note that all child groups should also be resolved any valid domain users that are members of the group should also be included.  The intent of this behavior is to end up with a list of all individual users from that system that make up the group once everything has been resolved.</xsd:documentation>
@@ -2083,12 +2116,12 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:fileauditedpermissions53_object/win-def:behaviors">
                                                       <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: fileauditedpermissions53_object </sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
                   </xsd:extension>
-            </xsd:complexContent>            
+            </xsd:complexContent>
       </xsd:complexType>
       <!-- =============================================================================== -->
       <!-- ================  FILE AUDITED PERMISSIONS TEST (deprecated) ================== -->
@@ -2152,7 +2185,7 @@
                               <sch:rule context="win-def:fileauditedpermissions_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -2206,7 +2239,7 @@
                               <sch:rule context="win-def:fileauditedpermissions_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -2349,7 +2382,7 @@
                               <oval:version>5.3</oval:version>
                               <oval:reason>Replaced by the FileAuditPermissionsBehaviors53. The FileAuditPermissionsBehaviors complex type is used by the fileauditedpermissions_test which uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. This new test utilizes the FileAuditPermissionsBehaviors53 complex type, and as a result, the FileAuditPermissionsBehaviors complex type is no longer needed.</oval:reason>
                               <oval:comment>This complex type has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
-                        </oval:deprecated_info>                 
+                        </oval:deprecated_info>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexContent>
@@ -2367,7 +2400,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:fileauditedpermissions_object/win-def:behaviors">
                                                       <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:fileauditedpermissions_object</sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -2384,7 +2417,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:fileauditedpermissions_object/win-def:behaviors">
                                                       <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: fileauditedpermissions_object </sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -2479,7 +2512,7 @@
                                                                       <xsd:documentation>The path element specifies the directory component of the absolute path to a file on the machine.</xsd:documentation>
                                                                       <xsd:appinfo>
                                                                             <sch:pattern id="win-def_fer53objpath">
-                                                                                  <sch:rule context="win-def:fileeffectiverights53_object/win-def:path[not(@operation='equals' or not(@operation))]">                                                                                          
+                                                                                  <sch:rule context="win-def:fileeffectiverights53_object/win-def:path[not(@operation='equals' or not(@operation))]">
                                                                                         <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
                                                                                         <sch:assert test="not(preceding-sibling::win-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
                                                                                         <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the recurse_direction behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
@@ -2677,7 +2710,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:fileeffectiverights53_object/win-def:behaviors">
                                                       <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:fileeffectiverights53_object</sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -2694,7 +2727,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:fileeffectiverights53_object/win-def:behaviors">
                                                       <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: fileeffectiverights53_object </sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -2763,7 +2796,7 @@
                               <sch:rule context="win-def:fileeffectiverights_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -2817,7 +2850,7 @@
                               <sch:rule context="win-def:fileeffectiverights_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -2960,7 +2993,7 @@
                               <oval:version>5.3</oval:version>
                               <oval:reason>Replaced by the FileEffectiveRightsBehaviors53. The FileEffectiveRightsBehaviors complex type is used by the fileeffectiverights_test which uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. This new test utilizes the FileEffectiveRightsBehaviors53 complex type, and as a result, the FileEffectiveRightsBehaviors complex type is no longer needed.</oval:reason>
                               <oval:comment>This complex type has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
-                        </oval:deprecated_info>                  
+                        </oval:deprecated_info>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexContent>
@@ -2978,7 +3011,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:fileeffectiverights_object/win-def:behaviors">
                                                       <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:fileeffectiverights_object</sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -3063,7 +3096,7 @@
                               <sch:rule context="win-def:group_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="win-def_group_object_verify_filter_state">
@@ -3112,7 +3145,7 @@
                               <sch:rule context="win-def:group_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -3234,7 +3267,7 @@
                                     </xsd:element>
                                     <xsd:element name="subgroup_sid" type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The subgroup_sid entity holds a string that represents the SID of particular subgroup in the specified group. This entity can be included multiple times in a system characteristic item in order to record that a group contains a number of different subgroups. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like subgroup_sid that refer to items that can occur an unbounded number of times.</xsd:documentation>                   
+                                                <xsd:documentation>The subgroup_sid entity holds a string that represents the SID of particular subgroup in the specified group. This entity can be included multiple times in a system characteristic item in order to record that a group contains a number of different subgroups. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like subgroup_sid that refer to items that can occur an unbounded number of times.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
@@ -4045,7 +4078,7 @@
                                                                         <xsd:documentation>The path element specifies the directory component of the absolute path to a PE file on the machine.</xsd:documentation>
                                                                         <xsd:appinfo>
                                                                               <sch:pattern id="win-def_peheaderobjpath">
-                                                                                    <sch:rule context="win-def:peheader_object/win-def:filepath[not(@operation='equals' or not(@operation))]">                                                                                          
+                                                                                    <sch:rule context="win-def:peheader_object/win-def:filepath[not(@operation='equals' or not(@operation))]">
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_file_system='defined'])"><sch:value-of select="../@id"/> - the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity.</sch:assert>
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
                                                                                           <sch:assert test="not(preceding-sibling::win-def:behaviors[@recurse_direction])"><sch:value-of select="../@id"/> - the recurse_direction behavior MUST not be used when a pattern match is used with a path entity.</sch:assert>
@@ -4689,7 +4722,7 @@
                                     <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:printereffectiverights_object/win-def:behaviors">
                                           <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:printereffectiverights_object</sch:report>
                                     </sch:rule>
-                              </sch:pattern>                        
+                              </sch:pattern>
                         </xsd:appinfo>
                   </xsd:annotation>
             </xsd:attribute>
@@ -4706,7 +4739,7 @@
                                     <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:printereffectiverights_object/win-def:behaviors">
                                           <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: printereffectiverights_object </sch:report>
                                     </sch:rule>
-                              </sch:pattern>                        
+                              </sch:pattern>
                         </xsd:appinfo>
                   </xsd:annotation>
             </xsd:attribute>
@@ -5241,7 +5274,7 @@
                                                 <xsd:element name="key" type="oval-def:EntityObjectStringType" nillable="true">
                                                       <xsd:annotation>
                                                             <xsd:documentation>The key element describes a registry key to be collected. Note that the hive portion of the string should not be included, as this data should be found under the hive element. If the xsi:nil attribute is set to true, then the object being specified is the higher level hive. In this case, the key element should not be collected or used in analysis. Setting xsi:nil equal to true is different than using a .* pattern match. A .* pattern match says to collect every key under a given hive.</xsd:documentation>
-                                                            <xsd:appinfo>                                                                  
+                                                            <xsd:appinfo>
                                                                   <sch:pattern id="win-def_regkeyauditedpermissions53_objectkey">
                                                                         <sch:rule context="win-def:regkeyauditedpermissions53_object/win-def:key[not(@operation='equals' or not(@operation))]">
                                                                               <sch:assert test="not(preceding-sibling::win-def:behaviors[@max_depth])"><sch:value-of select="../@id"/> - the max_depth behavior MUST not be used when a pattern match is used with a key entity.</sch:assert>
@@ -5423,7 +5456,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:regkeyauditedpermissions53_object/win-def:behaviors">
                                                       <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:regkeyauditedpermissions53_object</sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -5440,10 +5473,10 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:regkeyauditedpermissions53_object/win-def:behaviors">
                                                       <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: regkeyauditedpermissions53_object </sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
-                        </xsd:attribute>  
+                        </xsd:attribute>
                   </xsd:extension>
             </xsd:complexContent>
       </xsd:complexType>
@@ -5473,7 +5506,7 @@
                                     </sch:rule>
                               </sch:pattern>
                   </xsd:appinfo>
-                  <xsd:appinfo>      
+                  <xsd:appinfo>
                         <sch:pattern id="win-def_raptst">
                               <sch:rule context="win-def:regkeyauditedpermissions_test/win-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/win-def:regkeyauditedpermissions_object/@id"><sch:value-of select="../@id"/> - the object child element of a regkeyauditedpermissions_test must reference a regkeyauditedpermissions_object</sch:assert>
@@ -5509,7 +5542,7 @@
                               <sch:rule context="win-def:regkeyauditedpermissions_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -5563,7 +5596,7 @@
                               <sch:rule context="win-def:regkeyauditedpermissions_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -5699,7 +5732,7 @@
                               <oval:version>5.3</oval:version>
                               <oval:reason>Replaced by the RegkeyAuditPermissionsBehaviors53. The RegkeyAuditPermissionsBehaviors complex type is used by the regkeyauditedpermissions_test which uses a trustee_name element for identifying trustees. Trustee names are not unique, and a new test was created to use trustee SIDs, which are unique. This new test utilizes the RegkeyAuditPermissionsBehaviors53 complex type, and as a result, the RegkeyAuditPermissionsBehaviors complex type is no longer needed.</oval:reason>
                               <oval:comment>This complex type has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
-                        </oval:deprecated_info>                   
+                        </oval:deprecated_info>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexContent>
@@ -5717,7 +5750,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:regkeyauditedpermissions_object/win-def:behaviors">
                                                       <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:regkeyauditedpermissions_object</sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -5734,7 +5767,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:regkeyauditedpermissions_object/win-def:behaviors">
                                                       <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: regkeyauditedpermissions_object </sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -5993,7 +6026,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:regkeyeffectiverights53_object/win-def:behaviors">
                                                       <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:regkeyeffectiverights53_object</sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -6010,7 +6043,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:regkeyeffectiverights53_object/win-def:behaviors">
                                                       <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: regkeyeffectiverights53_object </sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -6041,7 +6074,7 @@
                               <sch:rule context="win-def:regkeyeffectiverights_test">
                                     <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="win-def_rertst">
@@ -6077,7 +6110,7 @@
                               <sch:rule context="win-def:regkeyeffectiverights_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -6131,7 +6164,7 @@
                               <sch:rule context="win-def:regkeyeffectiverights_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -6285,7 +6318,7 @@
                                                 <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:regkeyeffectiverights_object/win-def:behaviors">
                                                       <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:regkeyeffectiverights_object</sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
+                                          </sch:pattern>
                                     </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:attribute>
@@ -6493,7 +6526,7 @@
       </xsd:element>
       <xsd:element name="serviceeffectiverights_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The serviceeffectiverights_object element is used by the serviceeffectiverights_test to define the objects used to evalutate against the specified state. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic.</xsd:documentation>                  
+                  <xsd:documentation>The serviceeffectiverights_object element is used by the serviceeffectiverights_test to define the objects used to evalutate against the specified state. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic.</xsd:documentation>
                   <xsd:documentation>A serviceeffectiverights_object is defined as a combination of a Windows service_name and trustee_sid. The service_name entity represents the service to be evaluated while the trustee_sid entity represents the account (SID) to check the effective rights of.  If multiple services or SIDs are matched by either reference, then each possible combination of service and SID is a matching service effective rights object.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="win-def_serviceeffectiverights_object_verify_filter_state">
@@ -6960,7 +6993,7 @@
                                     <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:sharedresourceauditedpermissions_object/win-def:behaviors">
                                           <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:sharedresourceauditedpermissions_object</sch:report>
                                     </sch:rule>
-                              </sch:pattern>                        
+                              </sch:pattern>
                         </xsd:appinfo>
                   </xsd:annotation>
             </xsd:attribute>
@@ -7135,7 +7168,7 @@
                                     <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:sharedresourceeffectiverights_object/win-def:behaviors">
                                           <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:sharedresourceeffectiverights_object</sch:report>
                                     </sch:rule>
-                              </sch:pattern>                        
+                              </sch:pattern>
                         </xsd:appinfo>
                   </xsd:annotation>
             </xsd:attribute>
@@ -7605,7 +7638,7 @@
                               <sch:rule context="win-def:user_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="win-def_user_object_verify_filter_state">
@@ -7654,7 +7687,7 @@
                               <sch:rule context="win-def:user_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -7680,7 +7713,7 @@
                                     <xsd:element name="last_logon" type="oval-def:EntityStateIntType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
-                                          </xsd:annotation>                                          
+                                          </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
                         </xsd:extension>
@@ -7786,7 +7819,7 @@
                         <xsd:element name="last_logon" type="oval-def:EntityStateIntType" minOccurs="0">
                             <xsd:annotation>
                                 <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
-                            </xsd:annotation>                                          
+                            </xsd:annotation>
                         </xsd:element>
                     </xsd:sequence>
                 </xsd:extension>
@@ -7854,7 +7887,7 @@
                             <sch:rule context="win-def:user_sid_object">
                                   <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                             </sch:rule>
-                      </sch:pattern>                        
+                      </sch:pattern>
                 </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -7887,8 +7920,8 @@
                             <sch:rule context="win-def:user_sid_state">
                                   <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                             </sch:rule>
-                      </sch:pattern>                        
-                </xsd:appinfo>  
+                      </sch:pattern>
+                </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -8288,7 +8321,7 @@
                               <sch:rule context="win-def:wmi_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -8342,7 +8375,7 @@
                               <sch:rule context="win-def:wmi_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -8591,9 +8624,9 @@
       <xsd:element name="wuaupdatesearcher_state" substitutionGroup="oval-def:state">
         <xsd:annotation>
             <xsd:documentation>The wuaupdatesearcher_state element defines entities that can be tested related to a uaupdatesearcher_object.  This includes the search criteria and updated id.  Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
-        </xsd:annotation>		
-        <xsd:complexType>			
-            <xsd:complexContent>				
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
                 <xsd:extension base="oval-def:StateType">
                   <xsd:sequence>
                       <xsd:element name="search_criteria" type="oval-def:EntityStateStringType" minOccurs="0">
@@ -8606,7 +8639,7 @@
                               <xsd:documentation>The update_id enity specifies a string that represents a revision-independent identifier of an update.  This information is part of the IUpdateIdentity interface that is part of the result of the IUpdateSearcher interface's Search method.</xsd:documentation>
                           </xsd:annotation>
                       </xsd:element>
-                    </xsd:sequence>					
+                    </xsd:sequence>
                 </xsd:extension>
             </xsd:complexContent>
         </xsd:complexType>
@@ -8855,7 +8888,7 @@
                         </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
-      </xsd:complexType>      
+      </xsd:complexType>
       <xsd:complexType name="EntityStateDriveTypeType">
             <xsd:annotation>
                   <xsd:documentation>The EntityStateDriveTypeType complex type defines the different values that are valid for the drive_type entity of a win-def:volume_state. Note that the Windows API returns a UINT value and OVAL uses the constant name that is normally defined for these return values. This is done to increase readability and maintainability of OVAL Definitions. The empty string is also allowed as a valid value to support an empty element that is found when a variable reference is used within the drive_type entity. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
@@ -8924,7 +8957,7 @@
                         <xsd:enumeration value="MIB_IF_TYPE_LOOPBACK">
                               <xsd:annotation>
                                     <xsd:documentation>The MIB_IF_TYPE_LOOPBACK type is used to describe loopback interfaces.</xsd:documentation>
-                              </xsd:annotation>                             
+                              </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="MIB_IF_TYPE_OTHER">
                               <xsd:annotation>
@@ -9180,7 +9213,7 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-      
+
       <xsd:complexType name="EntityStatePeSubsystemType">
             <xsd:annotation>
                   <xsd:documentation>The EntityStatePeSubsystemType enumeration identifies the valid subsystem types that can be specified in the PE file header. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
@@ -9787,8 +9820,8 @@
                                                             DEPRECATED ELEMENT VALUE IN: sharedresource_state ELEMENT VALUE: <sch:value-of select="."/>
                                                       </sch:report>
                                                 </sch:rule>
-                                          </sch:pattern>                        
-                                    </xsd:appinfo>      
+                                          </sch:pattern>
+                                    </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="STYPE_TEMPORARY">
@@ -9807,7 +9840,7 @@
                                                       </sch:report>
                                                 </sch:rule>
                                           </sch:pattern>
-                                    </xsd:appinfo>  
+                                    </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="">
@@ -10776,7 +10809,7 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-      
+
       <xsd:complexType name="EntityObjectGUIDType">
             <xsd:annotation>
                   <xsd:documentation>The EntityObjectGUIDType restricts a string value to a representation of a GUID, used for module ID. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the specified pattern restriction.</xsd:documentation>

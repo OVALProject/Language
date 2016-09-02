@@ -6,9 +6,9 @@
           <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Windows System Characteristics</schema>
-               <version>5.11.1:1.1</version>
-               <date>4/22/2015 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <version>5.11.2:1.0</version>
+               <date>8/30/2016 09:00:00 AM</date>
+                <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="win-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"/>
               <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -30,7 +30,7 @@
                          <sch:rule context="win-sc:accesstoken_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -279,6 +279,19 @@
           <xsd:annotation>
                <xsd:documentation>The active directory item holds information about specific entries in the Windows Active Directory. It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
                <xsd:documentation>Note that this ite supports only simple (string based) value collection. For more complex values see the activedirectory57_item.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:deprecated_info>
+                         <oval:version>5.11.2</oval:version>
+DAS
+                         <oval:reason>Use the original activedirectory_item. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.</oval:reason>
+                         <oval:comment>This object has been deprecated and may be removed in a future version of the language.</oval:comment>
+                    </oval:deprecated_info>
+                    <sch:pattern id="win-sc_activedirectory57_item_dep">
+                         <sch:rule context="win-sc:activedirectory57_item">
+                              <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                         </sch:rule>
+                    </sch:pattern>
+               </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
@@ -804,7 +817,7 @@
                                                        <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the parameters entity of a cmdlet_item must be 'record'</sch:assert>
                                                   </sch:rule>
                                              </sch:pattern>
-                                        </xsd:appinfo>                                       
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="select" type="oval-sc:EntityItemRecordType" nillable="true" minOccurs="0" maxOccurs="1">
@@ -830,7 +843,7 @@
                                              </sch:pattern>
                                         </xsd:appinfo>
                                    </xsd:annotation>
-                              </xsd:element>                              
+                              </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
@@ -1300,7 +1313,7 @@
                          <sch:rule context="win-sc:group_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -1354,7 +1367,7 @@
                                         <xsd:annotation>
                                              <xsd:documentation>A string that represents the SID of a particular subgroup. If the specified group has more than one subgroup as a member, then multiple subgroup_sid entities should exist. If the specified group does not contain a single subgroup, a single subgroup_sid entity should exist with a status of 'does not exist'. If there is an error determining the subgroups that are members of the group, then a single subgroup_sid entity should be included with a status of 'error'.</xsd:documentation>
                                         </xsd:annotation>
-                                   </xsd:element>                                   
+                                   </xsd:element>
                              </xsd:sequence>
                        </xsd:extension>
                  </xsd:complexContent>
@@ -1778,7 +1791,7 @@
                               </xsd:element>
                               <xsd:element name="image_file_32bit_machine" type="oval-sc:EntityItemBoolType" default="false" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The image_file_32bit_machine entity is a boolean value that specifies that the computer supports 32-bit words.</xsd:documentation>                                        
+                                        <xsd:documentation>The image_file_32bit_machine entity is a boolean value that specifies that the computer supports 32-bit words.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="image_file_debug_stripped" type="oval-sc:EntityItemBoolType" default="false" minOccurs="0" maxOccurs="1">
@@ -3123,7 +3136,7 @@
                          <sch:rule context="win-sc:user_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -3149,8 +3162,8 @@
                               <xsd:element name="last_logon" type="oval-sc:EntityItemIntType" minOccurs="0">
                                    <xsd:annotation>
                                         <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
-                                   </xsd:annotation>                                          
-                              </xsd:element>                              
+                                   </xsd:annotation>
+                              </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
@@ -3185,7 +3198,7 @@
                                   <xsd:element name="last_logon" type="oval-sc:EntityItemIntType" minOccurs="0">
                                        <xsd:annotation>
                                             <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
-                                       </xsd:annotation>                                          
+                                       </xsd:annotation>
                                   </xsd:element>
                              </xsd:sequence>
                        </xsd:extension>
@@ -3380,7 +3393,7 @@
                          <sch:rule context="win-sc:wmi_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>

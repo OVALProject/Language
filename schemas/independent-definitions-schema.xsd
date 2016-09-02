@@ -4,12 +4,12 @@
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:annotation>
             <xsd:documentation>The following is a description of the elements, types, and attributes that compose the tests found in Open Vulnerability and Assessment Language (OVAL) that are independent of a specific piece of software. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
-            <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+            <xsd:documentation>The OVAL Schema is maintained and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>Independent Definition</schema>
-                  <version>5.11.1:1.1</version>
-                  <date>4/22/2015 09:00:00 AM</date>
-                  <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <version>5.11.2:1.0</version>
+                  <date>8/30/2016 09:00:00 AM</date>
+                  <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="ind-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"/>
                   <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -104,7 +104,7 @@
                               <sch:rule context="ind-def:filehash_test">
                                     <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern> 
+                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ind-def_hashtst">
@@ -144,7 +144,7 @@
                               <sch:rule context="ind-def:filehash_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern> 
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -223,7 +223,7 @@
                               <sch:rule context="ind-def:filehash_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern> 
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -457,7 +457,7 @@
                               <sch:rule context="ind-def:environmentvariable_test">
                                     <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern> 
+                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ind-def_envtst">
@@ -494,7 +494,7 @@
                               <sch:rule context="ind-def:environmentvariable_object">
                                     <sch:report test="true()">DEPRECATED OBJECT: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern> 
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -527,7 +527,7 @@
                               <sch:rule context="ind-def:environmentvariable_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern> 
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -661,7 +661,6 @@
       <xsd:element name="ldap_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
                   <xsd:documentation>The LDAP test is used to check information about specific entries in an LDAP directory. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an ldap_object and the optional state element, ldap_state, specifies the metadata to check.</xsd:documentation>
-                  <xsd:documentation>Note that this test supports only simple (string based) value collection. For more complex values see the ldap57_test.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>ldap_test</oval:test>
@@ -695,7 +694,6 @@
       <xsd:element name="ldap_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
                   <xsd:documentation>The ldap_object element is used by an LDAP test to define the objects to be evaluated based on a specified state. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
-                  <xsd:documentation>Note that this object is paired with a state that supports only simple (string based) value collection. For more complex values see the ldap57_object.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -730,7 +728,6 @@
       <xsd:element name="ldap_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
                   <xsd:documentation>The ldap_state element defines the different information that can be used to evaluate the specified entries in an LDAP directory. An ldap_test will reference a specific instance of this state that defines the exact settings that need to be evaluated. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
-                  <xsd:documentation>Note that this state supports only simple (string based) value collection. For more complex values see the ldap57_state.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -750,7 +747,7 @@
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies a named value contained by the object.</xsd:documentation>
                                           </xsd:annotation>
-                                    </xsd:element>  
+                                    </xsd:element>
                                     <xsd:element name="object_class" type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The name of the class of which the object is an instance.</xsd:documentation>
@@ -803,7 +800,19 @@
                               <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent">ldap57_item</oval:item>
                         </oval:element_mapping>
                   </xsd:appinfo>
-                  <xsd:appinfo> 
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11.2</oval:version>
+                              <oval:reason>Use the original ldap_test. The ldap57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated LdaptypeTypes. Use the original ldap_test instead.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ind-def_ldap57_test_dep">
+                              <sch:rule context="ind-def:ldap57_test">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
                         <sch:pattern id="ind-def_ldap57_test">
                               <sch:rule context="ind-def:ldap57_test/ind-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/ind-def:ldap57_object/@id"><sch:value-of select="../@id"/> - the object child element of an ldap57_test must reference an ldap57_object</sch:assert>
@@ -829,6 +838,18 @@
             <xsd:annotation>
                   <xsd:documentation>The ldap57_object element is used by an LDAP test to define the objects to be evaluated based on a specified state. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:documentation>Note that this object supports complex values that are in the form of a record. For simple (string based) value collection see the ldap_object.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11.2</oval:version>
+                              <oval:reason>Use the original ldap_object. The ldap57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated LdaptypeTypes. Use the original ldap_test instead.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ind-def_ldap57_object_dep">
+                              <sch:rule context="ind-def:ldap57_object">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ind-def_ldap57_object_verify_filter_state">
                               <sch:rule context="ind-def:ldap57_object//oval-def:filter">
@@ -878,6 +899,18 @@
             <xsd:annotation>
                   <xsd:documentation>The ldap57_state element defines the different information that can be used to evaluate the specified entries in an LDAP directory. An ldap57_test will reference a specific instance of this state that defines the exact settings that need to be evaluated. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
                   <xsd:documentation>Note that this state supports complex values that are in the form of a record. For simple (string based) value collection see the ldap_state.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:deprecated_info>
+                              <oval:version>5.11.2</oval:version>
+                              <oval:reason>Use the original ldap_state. The ldap57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated LdaptypeTypes. Use the original ldap_test instead.</oval:reason>
+                              <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                        </oval:deprecated_info>
+                        <sch:pattern id="ind-def_ldap57_state_dep">
+                              <sch:rule context="ind-def:ldap57_state">
+                                    <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -897,7 +930,7 @@
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies a named value contained by the object.</xsd:documentation>
                                           </xsd:annotation>
-                                    </xsd:element>  
+                                    </xsd:element>
                                     <xsd:element name="object_class" type="oval-def:EntityStateStringType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The name of the class of which the object is an instance.</xsd:documentation>
@@ -928,7 +961,7 @@
                         </xsd:extension>
                   </xsd:complexContent>
             </xsd:complexType>
-      </xsd:element>   
+      </xsd:element>
       <!-- =============================================================================== -->
       <!-- =================================  SQL TEST  ================================== -->
       <!-- =============================================================================== -->
@@ -953,9 +986,9 @@
                               <sch:rule context="ind-def:sql_test">
                                     <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern> 
+                        </sch:pattern>
                   </xsd:appinfo>
-                  <xsd:appinfo> 
+                  <xsd:appinfo>
                         <sch:pattern id="ind-def_sqltst">
                               <sch:rule context="ind-def:sql_test/ind-def:object">
                                     <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/ind-def:sql_object/@id"><sch:value-of select="../@id"/> - the object child element of a sql_test must reference a sql_object</sch:assert>
@@ -1471,17 +1504,17 @@
                         <xsd:attribute name="ignore_case" type="xsd:boolean" use="optional" default="false">
                               <xsd:annotation>
                                     <xsd:documentation>'ignore_case' indicates whether case should be considered when matching system values against the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'i' modifier: if true, case will be ignored.  If false, case will not be ignored. The default is false.</xsd:documentation>
-                              </xsd:annotation>                  
+                              </xsd:annotation>
                         </xsd:attribute>
                         <xsd:attribute name="multiline" type="xsd:boolean" use="optional" default="true">
                               <xsd:annotation>
                                     <xsd:documentation>'multiline' enables multiple line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 'm' modifier: if true, the '^' and '$' metacharacters will match both at the beginning/end of a string, and immediately after/before newline characters.  If false, they will match only at the beginning/end of a string.  The default is true.</xsd:documentation>
-                              </xsd:annotation>                  
+                              </xsd:annotation>
                         </xsd:attribute>
                         <xsd:attribute name="singleline" type="xsd:boolean" use="optional" default="false">
                               <xsd:annotation>
                                     <xsd:documentation>'singleline' enables single line semantics in the regular expression provided by the pattern entity. This behavior is intended to align with the Perl regular expression 's' modifier: if true, the '.' metacharacter will match newlines. If false, it will not.  The default is false.</xsd:documentation>
-                              </xsd:annotation>                  
+                              </xsd:annotation>
                         </xsd:attribute>
                   </xsd:extension>
             </xsd:complexContent>
@@ -1510,7 +1543,7 @@
                               <sch:rule context="ind-def:textfilecontent_test">
                                     <sch:report test="true()">DEPRECATED TEST: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
                   <xsd:appinfo>
                         <sch:pattern id="ind-def_txttst">
@@ -1608,7 +1641,7 @@
                               <sch:rule context="ind-def:textfilecontent_state">
                                     <sch:report test="true()">DEPRECATED STATE: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                               </sch:rule>
-                        </sch:pattern>                        
+                        </sch:pattern>
                   </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
@@ -2147,7 +2180,7 @@
                               <xsd:annotation>
                                     <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
                               </xsd:annotation>
-                        </xsd:enumeration>      
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
@@ -2397,7 +2430,7 @@
                         </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
-      </xsd:complexType>      
+      </xsd:complexType>
       <xsd:complexType name="EntityStateHashTypeType">
             <xsd:annotation>
                   <xsd:documentation>The EntityStateHashTypeType complex type restricts a string value to a specific set of values that specify the different hash algorithms that are supported. The empty string is also allowed to support empty elements associated with variable references.</xsd:documentation>
@@ -2438,10 +2471,10 @@
                               <xsd:annotation>
                                     <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
                               </xsd:annotation>
-                        </xsd:enumeration> 
+                        </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
-      </xsd:complexType>      
+      </xsd:complexType>
       <xsd:complexType name="EntityObjectVariableRefType">
             <xsd:annotation>
                   <xsd:documentation>The EntityObjectVariableRefType complex type defines a string object entity that has a valid OVAL variable id as the value. The empty string is also allowed to support empty elements associated with variable references.</xsd:documentation>
@@ -2770,7 +2803,7 @@
                                     <sch:pattern id="ind-def_ldaptype_timestamp_value_dep">
                                         <sch:rule context="oval-def:oval_definitions/oval-def:states/ind-def:ldap_state/ind-def:ldaptype|oval-def:oval_definitions/oval-def:states/ind-def:ldap57_state/ind-def:ldaptype">
                                             <sch:report test=".='LDAPTYPE_TIMESTAMP'">
-                                                                    DEPRECATED ELEMENT VALUE IN: ldap_state ELEMENT VALUE: <sch:value-of select="."/> 
+                                                                    DEPRECATED ELEMENT VALUE IN: ldap_state ELEMENT VALUE: <sch:value-of select="."/>
                                                               </sch:report>
                                         </sch:rule>
                                     </sch:pattern>
@@ -2789,7 +2822,7 @@
                                     <sch:pattern id="ind-def_ldaptype_email_value_dep">
                                         <sch:rule context="oval-def:oval_definitions/oval-def:states/ind-def:ldap_state/ind-def:ldaptype|oval-def:oval_definitions/oval-def:states/ind-def:ldap57_state/ind-def:ldaptype">
                                             <sch:report test=".='LDAPTYPE_EMAIL'">
-                                                                    DEPRECATED ELEMENT VALUE IN: ldap_state ELEMENT VALUE: <sch:value-of select="."/> 
+                                                                    DEPRECATED ELEMENT VALUE IN: ldap_state ELEMENT VALUE: <sch:value-of select="."/>
                                                               </sch:report>
                                         </sch:rule>
                                     </sch:pattern>

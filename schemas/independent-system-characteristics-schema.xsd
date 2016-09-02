@@ -6,9 +6,9 @@
           <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Independent System Characteristics</schema>
-               <version>5.11.1:1.1</version>
-               <date>4/22/2015 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <version>5.11.2:1.0</version>
+               <date>8/30/2016 09:00:00 AM</date>
+                <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="ind-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent"/>
               <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -214,7 +214,6 @@
      <xsd:element name="ldap_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
                <xsd:documentation>This element holds information about specific entries in the LDAP directory. It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
-               <xsd:documentation>Note that this ite supports only simple (string based) value collection. For more complex values see the ldap57_item.</xsd:documentation>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
@@ -261,6 +260,18 @@
      <xsd:element name="ldap57_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
                <xsd:documentation>This element holds information about specific entries in the LDAP directory. It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:deprecated_info>
+                         <oval:version>5.11.2</oval:version>
+                         <oval:reason>Use the original ldap_item. The ldap57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated LdaptypeTypes. Use the original ldap_test instead.</oval:reason>
+                         <oval:comment>This test has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                    </oval:deprecated_info>
+                    <sch:pattern id="ind-sc_ldap57_item_dep">
+                         <sch:rule context="ind-sc:ldap57_item">
+                              <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                         </sch:rule>
+                    </sch:pattern>
+               </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
@@ -632,7 +643,7 @@
                          <xsd:annotation>
                               <xsd:documentation>The mysql value describes the MySQL database engine.</xsd:documentation>
                          </xsd:annotation>
-                    </xsd:enumeration>                    
+                    </xsd:enumeration>
                     <xsd:enumeration value="oracle">
                          <xsd:annotation>
                               <xsd:documentation>The oracle value describes the Oracle database engine.</xsd:documentation>
@@ -1122,7 +1133,7 @@
                                  <sch:pattern id="ind-sc_ldaptype_timestamp_value_dep">
                                      <sch:rule context="oval-sc:oval_system_characteristics/oval-sc:system_data/ind-sc:ldap_item/ind-sc:ldaptype|oval-sc:oval_system_characteristics/oval-sc:system_data/ind-sc:ldap57_item/ind-sc:ldaptype">
                                          <sch:report test=".='LDAPTYPE_TIMESTAMP'">
-                                                       DEPRECATED ELEMENT VALUE IN: ldap_item ELEMENT VALUE: <sch:value-of select="."/> 
+                                                       DEPRECATED ELEMENT VALUE IN: ldap_item ELEMENT VALUE: <sch:value-of select="."/>
                                                   </sch:report>
                                      </sch:rule>
                                  </sch:pattern>
@@ -1141,7 +1152,7 @@
                                  <sch:pattern id="ind-sc_ldaptype_email_value_dep">
                                      <sch:rule context="oval-sc:oval_system_characteristics/oval-sc:system_data/ind-sc:ldap_item/ind-sc:ldaptype|oval-sc:oval_system_characteristics/oval-sc:system_data/ind-sc:ldap57_item/ind-sc:ldaptype">
                                          <sch:report test=".='LDAPTYPE_EMAIL'">
-                                                       DEPRECATED ELEMENT VALUE IN: ldap_item ELEMENT VALUE: <sch:value-of select="."/> 
+                                                       DEPRECATED ELEMENT VALUE IN: ldap_item ELEMENT VALUE: <sch:value-of select="."/>
                                                   </sch:report>
                                      </sch:rule>
                                  </sch:pattern>
