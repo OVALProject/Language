@@ -611,7 +611,7 @@
                                           <xsd:sequence>
                                                 <xsd:element name="pid" type="oval-def:EntityObjectIntType"  nillable="true">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The process ID of the process from which the environment variable should be retrieved. If the xsi:nil attribute is set to true, the process ID shall be the tool's running process.</xsd:documentation>
+                                                            <xsd:documentation>The process ID of the process from which the environment variable should be retrieved. If the xsi:nil attribute is set to true, the process ID shall be the tool's running process; for scanners with no process ID (e.g., an agentless network scanner), no corresponding items will exist.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="name" type="oval-def:EntityObjectStringType">
