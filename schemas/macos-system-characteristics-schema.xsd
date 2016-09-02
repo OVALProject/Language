@@ -133,7 +133,7 @@
      <!-- =============================================================================== -->
      <xsd:element name="diskutil_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
-               <xsd:documentation>The diskutil_item holds verification information about an individual disk on a Mac OS system. Each diskutil_item contains a device, filepath, and how the actual permissions differ from the expected permissions. For more information, see diskutil(8).  It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
+               <xsd:documentation>The diskutil_item holds verification information about an individual disk on a Mac OS system. Each diskutil_item contains a device, filepath, and details on how the actual permissions, ownerships and link targets differ from the expected values. For more information, see diskutil(8) or repair_packages(8).  It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
@@ -192,6 +192,51 @@
                               <xsd:element name="oexec" type="macos-sc:EntityItemPermissionCompareType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>Has the actual others exec permission changed from the expected others exec permission?</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="user_differs" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Has the actual user changed from the expected user?</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element minOccurs="0" maxOccurs="1" name="actual_user" type="oval-sc:EntityItemIntType">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The actual user of the file/directory.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="expected_user" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The expected user of the file/directory.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="group_differs" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Has the actual group changed from the expected group?</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element minOccurs="0" maxOccurs="1" name="actual_group" type="oval-sc:EntityItemIntType">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The actual group of the file/directory.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="expected_group" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The expected group of the file/directory.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="symlink_differs" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Has the actual symlink changed from the expected symlink?</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element minOccurs="0" maxOccurs="1" name="actual_symlink" type="oval-sc:EntityItemStringType">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The actual symlink of the file/directory.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="expected_symlink" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The expected symlink of the file/directory.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>

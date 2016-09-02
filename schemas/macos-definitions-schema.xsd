@@ -370,7 +370,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="diskutil_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The diskutil_test is used to verify disks on a Mac OS system. The information used by this test is modeled after the diskutil command. For more information, see diskutil(8). It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a diskutil_object and the optional diskutil_state element specifies the data to check.</xsd:documentation>
+                  <xsd:documentation>The diskutil_test is used to verify packages on a Mac OS system. The information used by this test is modeled after the diskutil command's verifyPermissions option. On MacOS X 10.11 and later, this option was replaced by the repair_packages command. For more information, see diskutil(8) or repair_packages(8). It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a diskutil_object and the optional diskutil_state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>diskutil_test</oval:test>
@@ -405,7 +405,7 @@
       </xsd:element>
       <xsd:element name="diskutil_object" substitutionGroup="oval-def:object">
             <xsd:annotation>
-                  <xsd:documentation>The diskutil_object element is used by a diskutil_test to define the disks to be verified on a Mac OS system. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>The diskutil_object element is used by a diskutil_test to define the volumes containing packages to be verified on a Mac OS system. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
                   <xsd:appinfo>
                         <sch:pattern id="macos-def_diskutil_object_verify_filter_state">
                               <sch:rule context="macos-def:diskutil_object//oval-def:filter">
@@ -429,12 +429,12 @@
                                           <xsd:sequence>
                                                 <xsd:element name="device" type="oval-def:EntityObjectStringType">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The device entity is a string that represents the disk on a Mac OS system to verify. Please see diskutil(8) for instructions on how to specify the device.</xsd:documentation>
+                                                            <xsd:documentation>The device entity is a string that represents the name of a volume containing system packages that is mounted on a Mac OS system to verify. Please see diskutil(8) or repair_packages(8) for instructions on how to specify the volume.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="filepath" type="oval-def:EntityObjectStringType" minOccurs="1" maxOccurs="1">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The filepath element specifies the absolute path for a file in the specified package. A directory cannot be specified as a filepath.</xsd:documentation>
+                                                            <xsd:documentation>The filepath element specifies the absolute path for a file or directory in the specified package.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
@@ -455,7 +455,7 @@
                               <xsd:sequence>
                                     <xsd:element name="device" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The device entity is a string that represents the disk on a Mac OS system to verify. Please see diskutil(8) for instructions on how to specify the device.</xsd:documentation>
+                                                <xsd:documentation>The device entity is a string that represents the volume on a Mac OS system to verify. Please see diskutil(8) or repair_packages(8) for instructions on how to specify the device.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
@@ -506,6 +506,52 @@
                                     <xsd:element name="oexec" type="macos-def:EntityStatePermissionCompareType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Has the actual others exec permission changed from the expected others exec permission?</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="user_differs" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Has the actual user changed from the expected user?</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="actual_user" type="oval-def:EntityStateIntType">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The actual user of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="expected_user" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The expected user of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="group_differs" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Has the actual group changed from the expected group?</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="actual_group" type="oval-def:EntityStateIntType">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The actual group of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="expected_group" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The expected group of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="symlink_differs" type="oval-def:EntityStateBoolType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Has the actual symlink changed from the expected symlink?</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element minOccurs="0" maxOccurs="1" name="actual_symlink" type="oval-def:EntityStateStringType">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The actual symlink of the file/directory.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="expected_symlink" type="oval-def:EntityStateStringType" minOccurs="0"
+                                          maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The expected symlink of the file/directory.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
