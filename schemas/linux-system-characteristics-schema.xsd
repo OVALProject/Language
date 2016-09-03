@@ -7,9 +7,9 @@
           <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Linux System Characteristics</schema>
-               <version>5.11.1:1.1</version>
-               <date>4/22/2015 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <version>5.11.2:1.0</version>
+               <date>8/30/2016 09:00:00 AM</date>
+               <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="linux-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux"/>
               <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -275,17 +275,22 @@
                               </xsd:element>
                               <xsd:element name="total_space" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The total_space element contains an integer that represents the total number of blocks on a partition.</xsd:documentation>
+                                        <xsd:documentation>The total_space element contains an integer that represents the total number of physical blocks on a partition.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="space_used" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The space_used element contains an integer that represents the number of blocks used on a partition.</xsd:documentation>
+                                        <xsd:documentation>The space_used element contains an integer that represents the number of physical blocks used on a partition.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="space_left" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The space_left element contains an integer that represents the number of blocks left on a partition.</xsd:documentation>
+                                        <xsd:documentation>The space_left element contains an integer that represents the number of physical blocks left on a partition.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="block_size" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The block_size element contains an integer representing the actual byte size of each physical block on the partition's block device. This is the same block size used to compute the total_space, space_used, and space_left.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
