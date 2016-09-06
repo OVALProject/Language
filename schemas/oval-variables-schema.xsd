@@ -69,6 +69,11 @@
                     <xsd:documentation>Note that the 'record' datatype is not permitted on variables.</xsd:documentation>
                </xsd:annotation>
           </xsd:attribute>
+          <xsd:attribute name="instance" type="xsd:nonNegativeInteger" default="1">
+               <xsd:annotation>
+                    <xsd:documentation>Use to specify multiple variable instances.</xsd:documentation>
+               </xsd:annotation>
+          </xsd:attribute>
           <xsd:attribute name="comment" type="xsd:string" use="required"/>
      </xsd:complexType>
      <!-- =============================================================================== -->
