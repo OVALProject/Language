@@ -285,7 +285,12 @@
                               </xsd:element>
                               <xsd:element name="space_left" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The space_left element contains an integer that represents the number of physical blocks left on a partition.</xsd:documentation>
+                                        <xsd:documentation>The space_left element contains an integer that represents the number of physical blocks left on a partition available to be used by privileged users.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="space_left_for_unprivileged_users" type="oval-def:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The space_left_for_unprivileged_users element contains an integer that represents the number of physical blocks remaining on a partition that are available to be used by unprivileged users.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="block_size" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
