@@ -797,7 +797,6 @@ DAS
                <xsd:complexContent>
                     <xsd:extension base="oval-sc:ItemType">
                          <xsd:sequence>
-                              
                               <xsd:element name="module_name" type="oval-sc:EntityItemStringType" nillable="true" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The name of the module that contains the cmdlet.</xsd:documentation>
