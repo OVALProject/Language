@@ -1697,6 +1697,11 @@ DAS
                                         <xsd:documentation>Determines whether or not passwords are stored using reversible encryption.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
+                              <xsd:element name="anonymous_name_lookup" type="oval-def:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Determines whether or not an anonymous user may query the local LSA policy.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
