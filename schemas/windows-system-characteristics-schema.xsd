@@ -990,10 +990,24 @@ DAS
                                         <xsd:documentation>This entity defines the product name held within the version-information structure.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="product_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="product_version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This entity defines the product version held within the version-information structure.</xsd:documentation>
+                                        <xsd:documentation>This entity defines the product version held within the version-information structure. This may not necessarily be a string compatible with the OVAL version datatype, in which case the string datatype should be used.</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="version">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="version"/>
+                                                                 <xsd:enumeration value="string"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
                                    <xsd:annotation>
