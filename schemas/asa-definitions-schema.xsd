@@ -236,7 +236,7 @@
                                                 <xsd:documentation>The type of the 'class-map nameX type' command.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="type_inspect" type="asa-def:EntityStateInpsectionType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="type_inspect" type="asa-def:EntityStateInspectionType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The inspection type of the class-map ('class-map nameX type inspect').</xsd:documentation>
                                           </xsd:annotation>
@@ -618,7 +618,7 @@
                                                 <xsd:documentation>The policy-map name.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="type_inspect" type="asa-def:EntityStateInpsectionType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="type_inspect" type="asa-def:EntityStateInspectionType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The inspection type of the class-map.</xsd:documentation>
                                           </xsd:annotation>
@@ -1339,9 +1339,9 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-      <xsd:complexType name="EntityStateInpsectionType">
+      <xsd:complexType name="EntityStateInspectionType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityStateInpsectionType complex type restricts a string value to a specific set of values. These values describe the MPF inspection types of class-map and policy-map configurations in Cisco ASA MPF configurations. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+                  <xsd:documentation>The EntityStateInspectionType complex type restricts a string value to a specific set of values. These values describe the MPF inspection types of class-map and policy-map configurations in Cisco ASA MPF configurations. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
             </xsd:annotation>
             <xsd:simpleContent>
                   <xsd:restriction base="oval-def:EntityStateStringType">

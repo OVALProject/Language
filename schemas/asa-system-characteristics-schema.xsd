@@ -88,7 +88,7 @@
                                                 <xsd:documentation>Element with the type of the 'class-map nameX type' command.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="type_inspect" type="asa-sc:EntityItemInpsectionType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="type_inspect" type="asa-sc:EntityItemInspectionType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the inspection type of the class-map ('class-map type inspect' command).</xsd:documentation>
                                           </xsd:annotation>
@@ -257,7 +257,7 @@
                                                 <xsd:documentation>Element with the policy-map name.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
-                                    <xsd:element name="type_inspect" type="asa-sc:EntityItemInpsectionType" minOccurs="0" maxOccurs="1">
+                                    <xsd:element name="type_inspect" type="asa-sc:EntityItemInspectionType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Element with the inspection type of the class-map.</xsd:documentation>
                                           </xsd:annotation>
@@ -579,9 +579,9 @@
                   </xsd:restriction>
             </xsd:simpleContent>
       </xsd:complexType>
-      <xsd:complexType name="EntityItemInpsectionType">
+      <xsd:complexType name="EntityItemInspectionType">
             <xsd:annotation>
-                  <xsd:documentation>The EntityItemInpsectionType complex type restricts a string
+                  <xsd:documentation>The EntityItemInspectionType complex type restricts a string
                 value to a specific set of values. These values describe the MPF inspection types of
                 class-map and policy-map configurations in Cisco ASA MPF configurations. The empty
                 string is also allowed to support empty element associated with error
