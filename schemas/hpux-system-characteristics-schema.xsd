@@ -319,7 +319,7 @@
 								<xsd:documentation>The terminal or remote host associated with the last successful login to the account</xsd:documentation>
 							</xsd:annotation>
 						</xsd:element>
-						<xsd:element name="login_tty_u" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+						<xsd:element name="login_tty_u" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
 							<xsd:annotation>
 								<xsd:documentation>The terminal or remote hosts associated with the last unsuccessful login to the account</xsd:documentation>
 							</xsd:annotation>
