@@ -345,7 +345,7 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="uuid" type="oval-def:EntityStateStringType">
+                                    <xsd:element name="uuid" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies the UUID of the volume about which the plist information was retrieved.</xsd:documentation>
                                           </xsd:annotation>
@@ -1127,7 +1127,7 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="label" type="oval-def:EntityStateStringType" minOccurs="1" maxOccurs="1">
+                                    <xsd:element name="label" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies the name of the agent/daemon used to create the object.</xsd:documentation>
                                           </xsd:annotation>
@@ -2304,7 +2304,7 @@
                   <xsd:complexContent>
                         <xsd:extension base="oval-def:StateType">
                               <xsd:sequence>
-                                    <xsd:element name="data_type" type="macos-def:EntityStateDataTypeType">
+                                    <xsd:element name="data_type" type="macos-def:EntityStateDataTypeType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The data_type entity provides the datatype value that is desired.</xsd:documentation>
                                           </xsd:annotation>
