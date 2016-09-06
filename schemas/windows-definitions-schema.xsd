@@ -1263,7 +1263,7 @@
                                                 </xsd:element>
                                                 <xsd:element name="module_id" type="win-def:EntityObjectGUIDType" nillable="true" minOccurs="1" maxOccurs="1">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The globally unique identifier for the module.</xsd:documentation>
+                                                            <xsd:documentation>The globally unique identifier for the module. If xsi:nil='true', it does not matter which module GUID the command comes from.</xsd:documentation>
                                                             <xsd:appinfo>
                                                                   <sch:pattern id="win-def_cmdletobjmodule_id">
                                                                         <sch:rule context="win-def:cmdlet_object/win-def:module_id">
@@ -1275,7 +1275,7 @@
                                                 </xsd:element>
                                                 <xsd:element name="module_version" type="oval-def:EntityObjectVersionType" nillable="true" minOccurs="1" maxOccurs="1">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The version of the module that contains the cmdlet in the form of MAJOR.MINOR.</xsd:documentation>
+                                                            <xsd:documentation>The version of the module that contains the cmdlet in the form of MAJOR.MINOR. If xsi:nil='true', that implies it does not matter which version of the module the command refers to.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="verb" type="win-def:EntityObjectCmdletVerbType" minOccurs="1" maxOccurs="1">
@@ -1304,7 +1304,7 @@
                                                 </xsd:element>
                                                 <xsd:element name="parameters" type="oval-def:EntityObjectRecordType" nillable="true">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>A list of properties (name and value pairs) as input to invoke the cmdlet. Each property name must be unique. When xsi:nill is set to true, parameters are not provided to the cmdlet.</xsd:documentation>
+                                                            <xsd:documentation>A list of properties (name and value pairs) as input to invoke the cmdlet. Each property name must be unique. When xsi:nil='true', parameters are not provided to the cmdlet.</xsd:documentation>
                                                             <xsd:appinfo>
                                                                   <sch:pattern id="win-def_cmdletobjparameters">
                                                                         <sch:rule context="win-def:cmdlet_object/win-def:parameters">
@@ -1320,7 +1320,7 @@
                                                 </xsd:element>
                                                 <xsd:element name="select" type="oval-def:EntityObjectRecordType" nillable="true">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>A list of fields (name and value pairs) used as input to the Select-Object cmdlet to select specific output properties. Each property name must be unique.  Please note that the use of the '*' character, to select all properties, is not permitted. This is because the value record entity, in the state and item, require unique field name values to ensure that any query results can be evaluated consistently. This is equivalent to piping the output of a cmdlet to the Select-Object cmdlet. When xsi:nill is set to true, the Select-Object is not used.</xsd:documentation>
+                                                            <xsd:documentation>A list of fields (name and value pairs) used as input to the Select-Object cmdlet to select specific output properties. Each property name must be unique.  Please note that the use of the '*' character, to select all properties, is not permitted. This is because the value record entity, in the state and item, require unique field name values to ensure that any query results can be evaluated consistently. This is equivalent to piping the output of a cmdlet to the Select-Object cmdlet. When xsi:nil='true', the Select-Object is not used.</xsd:documentation>
                                                             <xsd:appinfo>
                                                                   <sch:pattern id="win-def_cmdletobjselect">
                                                                         <sch:rule context="win-def:cmdlet_object/win-def:select">
