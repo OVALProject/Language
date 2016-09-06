@@ -1276,13 +1276,6 @@
                                                 <xsd:element name="module_version" type="oval-def:EntityObjectVersionType" nillable="true" minOccurs="1" maxOccurs="1">
                                                       <xsd:annotation>
                                                             <xsd:documentation>The version of the module that contains the cmdlet in the form of MAJOR.MINOR.</xsd:documentation>
-                                                            <xsd:appinfo>
-                                                                  <sch:pattern id="win-def_cmdletobjmodule_version">
-                                                                        <sch:rule context="win-def:cmdlet_object/win-def:module_version">
-                                                                              <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the module_version entity of a cmdlet_object must be 'equals'</sch:assert>
-                                                                        </sch:rule>
-                                                                  </sch:pattern>
-                                                            </xsd:appinfo>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="verb" type="win-def:EntityObjectCmdletVerbType" minOccurs="1" maxOccurs="1">
