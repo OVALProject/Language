@@ -447,7 +447,7 @@
       </xsd:element>
       <xsd:element name="diskutil_state" substitutionGroup="oval-def:state">
             <xsd:annotation>
-                  <xsd:documentation>The package_state element defines the different verification information associated with a disk on a Mac OS system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+                  <xsd:documentation>The diskutil_state element defines the different verification information associated with a disk on a Mac OS system. Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
