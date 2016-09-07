@@ -4846,9 +4846,9 @@
                               <xsd:sequence>
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
-                                          <xsd:element name="command_line" type="oval-def:EntityObjectStringType" nillable="true">
+                                          <xsd:element name="command_line" type="oval-def:EntityObjectStringType">
                                                 <xsd:annotation>
-                                                      <xsd:documentation>The command_line entity is the string used to start the process. This includes any parameters that are part of the command line. To retrieve all processes (including those, such as the System process, that do not have a command_line), use xsi:nil="true".</xsd:documentation>
+                                                      <xsd:documentation>The command_line entity is the string used to start the process. This includes any parameters that are part of the command line.</xsd:documentation>
                                                 </xsd:annotation>
                                           </xsd:element>
                                     </xsd:choice>
@@ -4972,9 +4972,9 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="command_line" type="oval-def:EntityObjectStringType">
+                                                <xsd:element name="command_line" type="oval-def:EntityObjectStringType" nillable="true">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The command_line entity is the string used to start the process. This includes any parameters that are part of the command line.</xsd:documentation>
+                                                            <xsd:documentation>The command_line entity is the string used to start the process. This includes any parameters that are part of the command line. Use xsi:nil='true' to disregard (and permit processes with non-existent commane_lines, such as the System process).</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="pid" type="oval-def:EntityObjectIntType">
