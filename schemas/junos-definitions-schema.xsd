@@ -431,6 +431,16 @@
                         <xsd:documentation>Indicates a normal release.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:enumeration>
+                <xsd:enumeration value="I">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates an internal release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="F">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a feature release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
                 <xsd:enumeration value="S">
                     <xsd:annotation>
                         <xsd:documentation>Indicates a service release.</xsd:documentation>
@@ -443,7 +453,7 @@
                 </xsd:enumeration>
                 <xsd:enumeration value="X">
                     <xsd:annotation>
-                        <xsd:documentation>Indicates a release of the SRX branch.</xsd:documentation>
+                        <xsd:documentation>Indicates an exception release (e.g., every release of the SRX branch so far).</xsd:documentation>
                     </xsd:annotation>
                 </xsd:enumeration>
                 <xsd:enumeration value="">
