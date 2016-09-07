@@ -9162,7 +9162,7 @@
                         <xsd:enumeration value="FILE_ATTRIBUTE_COMPRESSED">
                             <xsd:annotation>
                                 <xsd:documentation>A file or directory that is compressed. For a file, all of the data in the file is compressed. For a directory, compression is the default for newly created files and subdirectories.</xsd:documentation>
-                            <xsd:annotation>
+                            </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="FILE_ATTRIBUTE_DEVICE">
                             <xsd:annotation>
