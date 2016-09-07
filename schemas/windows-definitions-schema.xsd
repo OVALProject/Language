@@ -1716,7 +1716,13 @@
                                     </xsd:element>
                                     <xsd:element name="type" type="win-def:EntityStateFileTypeType" minOccurs="0">
                                           <xsd:annotation>
-                                                <xsd:documentation>The type element marks whether the file is a directory, named pipe, standard file, etc. These types are the return values for GetFileType, with the exception of FILE_ATTRIBUTE_DIRECTORY which is obtained by looking at GetFileAttributesEx. NOTE: Should this entity be split into two in future versions of the language as there are other values associated with GetFileAttributesEx that are not represented here?</xsd:documentation>
+                                                <xsd:documentation>The type element marks whether the file is a named pipe, standard file, etc. These types are the return values for GetFileType. For directories, this element must have a status of 'does not exist'.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="attribute" type="win-def:EntityStateFileAttributeType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The attribute element marks a Windows file attribute. These types are the return values for GetFileAttribute.</xsd:documentation>
+                                                <xsd:documentation>The attribute element can be included multiple times in a system characteristic item in order to record that a file has a number of different attributes. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like the attribute entity that refer to items that can occur an unbounded number of times.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="development_class" type="oval-def:EntityStateStringType" minOccurs="0">
@@ -9093,6 +9099,20 @@
                         <xsd:enumeration value="FILE_ATTRIBUTE_DIRECTORY">
                               <xsd:annotation>
                                     <xsd:documentation>The handle identifies a directory.</xsd:documentation>
+                                    <xsd:appinfo>
+                                          <oval:deprecated_info>
+                                                <oval:version>5.11.2:1.0</oval:version>
+                                                <oval:reason>In version 5.11.2 of the OVAL Language, a file_attributes entity was added to the file_state, obviating the need to overload this attribute with the file-type enumeration.</oval:reason>
+                                                <oval:comment>This value has been deprecated and will be removed in version 6.0 of the language.</oval:comment>
+                                          </oval:deprecated_info>
+                                          <sch:pattern id="win-def_sft_file_attribute_directory_value_dep">
+                                                <sch:rule context="oval-def:oval_definitions/oval-def:states/win-def:file_state/win-def:type">
+                                                      <sch:report test=".='FILE_ATTRIBUTE_DIRECTORY'">
+                                                            DEPRECATED ELEMENT VALUE IN: file_state ELEMENT VALUE: <sch:value-of select="."/>
+                                                      </sch:report>
+                                                </sch:rule>
+                                          </sch:pattern>
+                                    </xsd:appinfo>
                               </xsd:annotation>
                         </xsd:enumeration>
                         <xsd:enumeration value="FILE_TYPE_CHAR">
@@ -9124,6 +9144,102 @@
                               <xsd:annotation>
                                     <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
                               </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:complexType name="EntityStateFileAttributeType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateFileAttributeType complex type restricts a string value to a specific set of values. These values describe the Windows file attribute being represented. For more information see the GetFileAttributes and GetFileAttributesEx functions as defined by Microsoft. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="FILE_ATTRIBUTE_ARCHIVE">
+                            <xsd:annotation>
+                                 <xsd:documentation>A file or directory that is an archive file or directory. Applications typically use this attribute to mark files for backup or removal.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_COMPRESSED">
+                            <xsd:annotation>
+                                <xsd:documentation>A file or directory that is compressed. For a file, all of the data in the file is compressed. For a directory, compression is the default for newly created files and subdirectories.</xsd:documentation>
+                            <xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_DEVICE">
+                            <xsd:annotation>
+                                <xsd:documentation>This value is reserved for system use.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_DIRECTORY">
+                            <xsd:annotation>
+                                <xsd:documentation>The handle that identifies a directory.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_ENCRYPTED">
+                            <xsd:annotation>
+                                <xsd:documentation>A file or directory that is encrypted. For a file, all data streams in the file are encrypted. For a directory, encryption is the default for newly created files and subdirectories.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_HIDDEN">
+                            <xsd:annotation>
+                                <xsd:documentation>The file or directory is hidden. It is not included in an ordinary directory listing.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_INTEGRITY_STREAM">
+                            <xsd:annotation>
+                                <xsd:documentation>The directory or user data stream is configured with integrity (only supported on ReFS volumes). It is not included in an ordinary directory listing. The integrity setting persists with the file if it's renamed. If a file is copied the destination file will have integrity set if either the source file or destination directory have integrity set.</xsd:documentation>
+                                <xsd:documentation>Windows Server 2008 R2, Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, and Windows XP: This flag is not supported until Windows Server 2012.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_NORMAL">
+                            <xsd:annotation>
+                                <xsd:documentation>A file that does not have other attributes set. This attribute is valid only when used alone.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_NOT_CONTENT_INDEXED">
+                            <xsd:annotation>
+                                <xsd:documentation>The file or directory is not to be indexed by the content indexing service.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_NO_SCRUB_DATA">
+                            <xsd:annotation>
+                                <xsd:documentation>The user data stream not to be read by the background data integrity scanner (AKA scrubber). When set on a directory it only provides inheritance. This flag is only supported on Storage Spaces and ReFS volumes. It is not included in an ordinary directory listing.</xsd:documentation>
+                                <xsd:documentation>Windows Server 2008 R2, Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, and Windows XP: This flag is not supported until Windows 8 and Windows Server 2012.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_OFFLINE">
+                            <xsd:annotation>
+                                <xsd:documentation>The data of a file is not available immediately. This attribute indicates that the file data is physically moved to offline storage. This attribute is used by Remote Storage, which is the hierarchical storage management software. Applications should not arbitrarily change this attribute.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_READONLY">
+                            <xsd:annotation>
+                                <xsd:documentation>A file that is read-only. Applications can read the file, but cannot write to it or delete it. This attribute is not honored on directories.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_REPARSE_POINT">
+                            <xsd:annotation>
+                                <xsd:documentation>A file or directory that has an associated reparse point, or a file that is a symbolic link.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_SPARSE_FILE">
+                            <xsd:annotation>
+                                <xsd:documentation>A file that is a sparse file.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_SYSTEM">
+                            <xsd:annotation>
+                                <xsd:documentation>A file or directory that the operating system uses a part of, or uses exclusively.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_TEMPORARY">
+                            <xsd:annotation>
+                                <xsd:documentation>A file that is being used for temporary storage. File systems avoid writing data back to mass storage if sufficient cache memory is available, because typically, an application deletes a temporary file after the handle is closed. In that scenario, the system can entirely avoid writing the data. Otherwise, the data is written after the handle is closed.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="FILE_ATTRIBUTE_VIRTUAL">
+                            <xsd:annotation>
+                                <xsd:documentation>This value is reserved for system use.</xsd:documentation>
+                            </xsd:annotation>
                         </xsd:enumeration>
                   </xsd:restriction>
             </xsd:simpleContent>
