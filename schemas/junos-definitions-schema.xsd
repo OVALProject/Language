@@ -279,17 +279,17 @@
                                 <xsd:documentation>The name of the JunOS component whose version should be retrieved.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="raw_release" type="oval-def:EntityStateStringType" minOccurs="1" maxOccurs="1">
+                        <xsd:element name="raw_release" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The raw release version string for the component.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="major_version" type="oval-def:EntityStateVersionType" minOccurs="1" maxOccurs="1">
+                        <xsd:element name="major_version" type="oval-def:EntityStateVersionType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The part of the release version of the component corresponding to the [year].[quarter] in which the release occurred. For example, the major_version for 12.2R6.1 would be 12.2.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="release_type" type="junos-def:EntityStateJunosReleaseTypeType" minOccurs="1" maxOccurs="1">
+                        <xsd:element name="release_type" type="junos-def:EntityStateJunosReleaseTypeType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
                                 <xsd:documentation>The release type embedded in the version of the component.</xsd:documentation>
                             </xsd:annotation>
