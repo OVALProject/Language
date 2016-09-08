@@ -1463,6 +1463,37 @@
           </xsd:complexType>
      </xsd:element>
      <!-- =============================================================================== -->
+     <!-- ===============================  JUNCTION ITEM  =============================== -->
+     <!-- =============================================================================== -->
+     <xsd:element name="junction_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>The junction_item element identifies the result generated for a junction_object.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="path" type="oval-sc:EntityItemStringType" minOccurs="1" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Specifies the path to the subject junction, specified by the junction_object.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="canonical_path" type="oval-sc:EntityItemStringType" minOccurs="1" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Specifies the canonical path for the target of the Windows junction specified by the path.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The windows view value from which this OVAL Item was collected. This is used to indicate from which view (32-bit or 64-bit), the associated Item was collected. A value of '32_bit' indicates the Item was collected from the 32-bit view.  A value of '64-bit' indicates the Item was collected from the 64-bit view. Omitting this entity removes any assertion about which view the Item was collected from, and therefore it is strongly suggested that this entity be set.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
      <!-- ===============================  LICENSE ITEM  ================================ -->
      <!-- =============================================================================== -->
      <xsd:element name="license_item" substitutionGroup="oval-sc:item">

@@ -2010,7 +2010,7 @@
             </xsd:attribute>
             <xsd:attribute name="recurse" use="optional" default="symlinks and directories">
                   <xsd:annotation>
-                        <xsd:documentation>'recurse' defines how to recurse into the path entity, in other words what to follow during recursion. Options include symlinks, directories, or both. Note that a max-depth other than 0 has to be specified for recursion to take place and for this attribute to mean anything. Also note that this behavior does not apply to Windows systems since they do not support symbolic links. On Windows systems the 'recurse' behavior is always equivalent to directories.</xsd:documentation>
+                        <xsd:documentation>'recurse' defines how to recurse into the path entity, in other words what to follow during recursion. Options include symlinks, directories, or both. Note that a max-depth other than 0 has to be specified for recursion to take place and for this attribute to mean anything. Also note that on Windows, the 'symlink' value is equivalent to the 'junction' recurse value in win-def:FileBehaviors.</xsd:documentation>
                         <xsd:documentation>Note that this behavior only applies with the equality operation on the path entity.</xsd:documentation>
                   </xsd:annotation>
                   <xsd:simpleType>

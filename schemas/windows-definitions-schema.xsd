@@ -1802,6 +1802,19 @@
                         </xsd:restriction>
                   </xsd:simpleType>
             </xsd:attribute>
+            <xsd:attribute name="recurse" use="optional" default="directories">
+                  <xsd:annotation>
+                        <xsd:documentation>'recurse' defines how to recurse into the path entity, in other words what to follow during recursion. Options include junctions, directories, or both (a junction on Windows is equivalent to a symlink on Unix). Note that a max-depth other than 0 has to be specified for recursion to take place and for this attribute to mean anything.</xsd:documentation>
+                        <xsd:documentation>Note that this behavior only applies with the equality operation on the path entity.</xsd:documentation>
+                  </xsd:annotation>
+                  <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                              <xsd:enumeration value="directories"/>
+                              <xsd:enumeration value="junctions"/>
+                              <xsd:enumeration value="junctions and directories"/>
+                        </xsd:restriction>
+                  </xsd:simpleType>
+            </xsd:attribute>
             <xsd:attribute name="recurse_direction" use="optional" default="none">
                   <xsd:annotation>
                         <xsd:documentation>'recurse_direction' defines the direction, either 'up' to parent directories, or 'down' into child directories to recursively search for files. When recursing up or down, one is limited by the max_depth behavior. Note that it is not an error if max_depth specifies a certain level of recursion and that level does not exist. Recursing should only go as deep as available. The default value is 'none' for no recursion.</xsd:documentation>
@@ -3423,6 +3436,109 @@
                                     <xsd:element name="addr_type" type="win-def:EntityStateAddrTypeType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>The addr_type element specifies the address type or state of a specific interface. Each interface can be associated with more than one value meaning the addr_type element can occur multiple times in a system characteristic item. Note that the entity_check attribute associated with EntityStateAddrTypeType guides the evaluation of unbounded entities like addr_type.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <!-- =============================================================================== -->
+      <!-- ===============================  JUNCTION TEST  =============================== -->
+      <!-- =============================================================================== -->
+      <xsd:element name="junction_test" substitutionGroup="oval-def:test">
+            <xsd:annotation>
+                  <xsd:documentation>The junction_test is used to obtain canonical path information for junctions (reparse points) on Windows filesystems.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>junction_test</oval:test>
+                              <oval:object>junction_object</oval:object>
+                              <oval:state>junction_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">junction_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
+                  <xsd:appinfo>
+                        <sch:pattern id="win-def_junctiontst">
+                              <sch:rule context="win-def:junction_test/win-def:object">
+                                    <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/win-def:junction_object/@id"><sch:value-of select="../@id"/> - the object child element of a junction_test must reference a junction_object</sch:assert>
+                              </sch:rule>
+                              <sch:rule context="win-def:junction_test/win-def:state">
+                                    <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/win-def:junction_state/@id"><sch:value-of select="../@id"/> - the state child element of a junction_test must reference a junction_state</sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:TestType">
+                              <xsd:sequence>
+                                    <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                                    <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="junction_object" substitutionGroup="oval-def:object">
+            <xsd:annotation>
+                  <xsd:documentation>The junction_object element is used by a junction_test to define the object to be evaluated. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.</xsd:documentation>
+                  <xsd:documentation>A junction_object consists of a path entity that contains the path to a symbolic link file.  The resulting item identifies the canonical path of the link target (followed to its final destination, if there are intermediate links), an error if the link target does not exist or is a circular link (e.g., a link to itself).  If the directory located at path is not a junction, or if there is no directory located at the path, then any resulting item would itself have a status of does not exist.</xsd:documentation>
+                  <xsd:appinfo>
+                        <sch:pattern id="win-def_junction_object_verify_filter_state">
+                              <sch:rule context="win-def:junction_object//oval-def:filter">
+                                    <sch:let name="parent_object" value="ancestor::win-def:junction_object"/>
+                                    <sch:let name="parent_object_id" value="$parent_object/@id"/>
+                                    <sch:let name="state_ref" value="."/>
+                                    <sch:let name="reffed_state" value="ancestor::oval-def:oval_definitions/oval-def:states/*[@id=$state_ref]"/>
+                                    <sch:let name="state_name" value="local-name($reffed_state)"/>
+                                    <sch:let name="state_namespace" value="namespace-uri($reffed_state)"/>
+                                    <sch:assert test="(($state_namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#windows') and ($state_name='junction_state'))">State referenced in filter for <sch:value-of select="name($parent_object)"/> '<sch:value-of select="$parent_object_id"/>' is of the wrong type. </sch:assert>
+                              </sch:rule>
+                        </sch:pattern>
+                  </xsd:appinfo>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:ObjectType">
+                              <xsd:sequence>
+                                    <xsd:choice>
+                                          <xsd:element ref="oval-def:set"/>
+                                          <xsd:sequence>
+                                                <xsd:element name="behaviors" type="win-def:FileBehaviors" minOccurs="0" maxOccurs="1"/>
+                                                <xsd:element name="path" type="oval-def:EntityObjectStringType">
+                                                      <xsd:annotation>
+                                                            <xsd:documentation>Specifies the path to the junction.</xsd:documentation>
+                                                      </xsd:annotation>
+                                                </xsd:element>
+                                                <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
+                                          </xsd:sequence>
+                                    </xsd:choice>
+                              </xsd:sequence>
+                        </xsd:extension>
+                  </xsd:complexContent>
+            </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="junction_state" substitutionGroup="oval-def:state">
+            <xsd:annotation>
+                  <xsd:documentation>The junction_state element defines a value used to evaluate the result of a specific junction_object item.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+                  <xsd:complexContent>
+                        <xsd:extension base="oval-def:StateType">
+                              <xsd:sequence>
+                                    <xsd:element name="path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Specifies the path used to create the object.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="canonical_path" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                                          <xsd:annotation>
+                                                <xsd:documentation>Specifies the canonical path for the target of a Windows junction specified by the path.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="windows_view" type="win-def:EntityStateWindowsViewType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
@@ -11279,481 +11395,481 @@
             </xsd:simpleContent>
       </xsd:complexType>
       <xsd:complexType name="EntityObjectUserRightType">
-		<xsd:annotation>
-		      <xsd:documentation>The EntityObjectUserRightType restricts a string value to a specific set of values that describe the different user rights/privileges. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the specified pattern restriction.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:simpleContent>
-			<xsd:restriction base="oval-def:EntityObjectStringType">
-				<xsd:enumeration value="SE_ASSIGNPRIMARYTOKEN_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to assign the primary token of a process.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_AUDIT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to generate audit-log entries.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_BACKUP_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to perform backup operations.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CHANGE_NOTIFY_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to receive notifications of changes to files or directories.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_GLOBAL_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create named file mapping objects in the global namespace during Terminal Services sessions.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_PAGEFILE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a paging file.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_PERMANENT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a permanent object.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_SYMBOLIC_LINK_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a symbolic link.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_TOKEN_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a primary token.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DEBUG_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to debug and adjust the memory of a process owned by another account.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_ENABLE_DELEGATION_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to mark user and computer accounts as trusted for delegation.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_IMPERSONATE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to impersonate.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_INC_BASE_PRIORITY_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to increase the base priority of a process.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_INCREASE_QUOTA_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to increase the quota assigned to a process.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_INC_WORKING_SET_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to allocate more memory for applications that run in the context of users.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_LOAD_DRIVER_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to load or unload a device driver.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_LOCK_MEMORY_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to lock physical pages in memory.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_MACHINE_ACCOUNT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a computer account.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_MANAGE_VOLUME_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to enable volume management privileges.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_PROF_SINGLE_PROCESS_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to gather profiling information for a single process.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_RELABEL_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to modify the mandatory integrity level of an object.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_REMOTE_SHUTDOWN_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to shut down a system using a network request.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_RESTORE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to perform restore operations.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SECURITY_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to perform a number of security-related functions, such as controlling and viewing audit messages.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SHUTDOWN_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to shut down a local system.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SYNC_AGENT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required for a domain controller to use the Lightweight Directory Access Protocol directory synchronization services.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SYSTEM_ENVIRONMENT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to modify the nonvolatile RAM of systems that use this type of memory to store configuration information.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SYSTEM_PROFILE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to gather profiling information for the entire system.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SYSTEMTIME_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to modify the system time.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_TAKE_OWNERSHIP_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to take ownership of an object without being granted discretionary access.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_TCB_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege identifies its holder as part of the trusted computer base.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_TIME_ZONE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to adjust the time zone associated with the computer's internal clock.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_TRUSTED_CREDMAN_ACCESS_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to access Credential Manager as a trusted caller.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_UNDOCK_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to undock a laptop.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_UNSOLICITED_INPUT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to read unsolicited input from a terminal device.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_BATCH_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on using the batch logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_BATCH_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on using the batch logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_INTERACTIVE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on using the interactive logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_NETWORK_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on using the network logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_REMOTE_INTERACTIVE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on remotely using the interactive logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_SERVICE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on using the service logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_INTERACTIVE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on using the interactive logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_NETWORK_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on using the network logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_REMOTE_INTERACTIVE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on remotely using the interactive logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SERVICE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on using the service logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="">
-					<xsd:annotation>
-					      <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-			</xsd:restriction>
-		</xsd:simpleContent>
-	</xsd:complexType>
-	<xsd:complexType name="EntityStateUserRightType">
-		<xsd:annotation>
-		      <xsd:documentation>The EntityStateUserRightType restricts a string value to a specific set of values that describe the different user rights/privileges. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the specified pattern restriction.</xsd:documentation>
-		</xsd:annotation>
-		<xsd:simpleContent>
-			<xsd:restriction base="oval-def:EntityStateStringType">
-				<xsd:enumeration value="SE_ASSIGNPRIMARYTOKEN_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to assign the primary token of a process.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_AUDIT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to generate audit-log entries.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_BACKUP_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to perform backup operations.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CHANGE_NOTIFY_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to receive notifications of changes to files or directories.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_GLOBAL_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create named file mapping objects in the global namespace during Terminal Services sessions.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_PAGEFILE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a paging file.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_PERMANENT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a permanent object.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_SYMBOLIC_LINK_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a symbolic link.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_CREATE_TOKEN_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a primary token.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DEBUG_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to debug and adjust the memory of a process owned by another account.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_ENABLE_DELEGATION_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to mark user and computer accounts as trusted for delegation.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_IMPERSONATE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to impersonate.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_INC_BASE_PRIORITY_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to increase the base priority of a process.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_INCREASE_QUOTA_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to increase the quota assigned to a process.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_INC_WORKING_SET_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to allocate more memory for applications that run in the context of users.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_LOAD_DRIVER_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to load or unload a device driver.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_LOCK_MEMORY_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to lock physical pages in memory.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_MACHINE_ACCOUNT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to create a computer account.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_MANAGE_VOLUME_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to enable volume management privileges.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_PROF_SINGLE_PROCESS_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to gather profiling information for a single process.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_RELABEL_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to modify the mandatory integrity level of an object.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_REMOTE_SHUTDOWN_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to shut down a system using a network request.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_RESTORE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to perform restore operations.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SECURITY_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to perform a number of security-related functions, such as controlling and viewing audit messages.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SHUTDOWN_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to shut down a local system.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SYNC_AGENT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required for a domain controller to use the Lightweight Directory Access Protocol directory synchronization services.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SYSTEM_ENVIRONMENT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to modify the nonvolatile RAM of systems that use this type of memory to store configuration information.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SYSTEM_PROFILE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to gather profiling information for the entire system.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SYSTEMTIME_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to modify the system time.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_TAKE_OWNERSHIP_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to take ownership of an object without being granted discretionary access.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_TCB_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege identifies its holder as part of the trusted computer base.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_TIME_ZONE_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to adjust the time zone associated with the computer's internal clock.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_TRUSTED_CREDMAN_ACCESS_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to access Credential Manager as a trusted caller.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_UNDOCK_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to undock a laptop.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_UNSOLICITED_INPUT_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This privilege is required to read unsolicited input from a terminal device.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_BATCH_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on using the batch logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_BATCH_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on using the batch logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_INTERACTIVE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on using the interactive logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_NETWORK_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on using the network logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_REMOTE_INTERACTIVE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on remotely using the interactive logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_DENY_SERVICE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right explicitly denies an account the right to log on using the service logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_INTERACTIVE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on using the interactive logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_NETWORK_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on using the network logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_REMOTE_INTERACTIVE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on remotely using the interactive logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="SE_SERVICE_LOGON_NAME">
-					<xsd:annotation>
-						<xsd:documentation>This account right is required for an account to log on using the service logon type.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-				<xsd:enumeration value="">
-					<xsd:annotation>
-					      <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
-					</xsd:annotation>
-				</xsd:enumeration>
-			</xsd:restriction>
-		</xsd:simpleContent>
-	</xsd:complexType>
+            <xsd:annotation>
+                  <xsd:documentation>The EntityObjectUserRightType restricts a string value to a specific set of values that describe the different user rights/privileges. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the specified pattern restriction.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityObjectStringType">
+                        <xsd:enumeration value="SE_ASSIGNPRIMARYTOKEN_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to assign the primary token of a process.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_AUDIT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to generate audit-log entries.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_BACKUP_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to perform backup operations.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CHANGE_NOTIFY_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to receive notifications of changes to files or directories.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_GLOBAL_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create named file mapping objects in the global namespace during Terminal Services sessions.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_PAGEFILE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a paging file.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_PERMANENT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a permanent object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_SYMBOLIC_LINK_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a symbolic link.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_TOKEN_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a primary token.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DEBUG_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to debug and adjust the memory of a process owned by another account.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_ENABLE_DELEGATION_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to mark user and computer accounts as trusted for delegation.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_IMPERSONATE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to impersonate.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_INC_BASE_PRIORITY_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to increase the base priority of a process.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_INCREASE_QUOTA_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to increase the quota assigned to a process.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_INC_WORKING_SET_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to allocate more memory for applications that run in the context of users.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_LOAD_DRIVER_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to load or unload a device driver.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_LOCK_MEMORY_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to lock physical pages in memory.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_MACHINE_ACCOUNT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a computer account.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_MANAGE_VOLUME_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to enable volume management privileges.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_PROF_SINGLE_PROCESS_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to gather profiling information for a single process.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_RELABEL_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to modify the mandatory integrity level of an object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_REMOTE_SHUTDOWN_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to shut down a system using a network request.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_RESTORE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to perform restore operations.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SECURITY_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to perform a number of security-related functions, such as controlling and viewing audit messages.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SHUTDOWN_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to shut down a local system.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SYNC_AGENT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required for a domain controller to use the Lightweight Directory Access Protocol directory synchronization services.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SYSTEM_ENVIRONMENT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to modify the nonvolatile RAM of systems that use this type of memory to store configuration information.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SYSTEM_PROFILE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to gather profiling information for the entire system.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SYSTEMTIME_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to modify the system time.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_TAKE_OWNERSHIP_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to take ownership of an object without being granted discretionary access.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_TCB_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege identifies its holder as part of the trusted computer base.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_TIME_ZONE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to adjust the time zone associated with the computer's internal clock.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_TRUSTED_CREDMAN_ACCESS_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to access Credential Manager as a trusted caller.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_UNDOCK_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to undock a laptop.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_UNSOLICITED_INPUT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to read unsolicited input from a terminal device.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_BATCH_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on using the batch logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_BATCH_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on using the batch logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_INTERACTIVE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on using the interactive logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_NETWORK_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on using the network logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_REMOTE_INTERACTIVE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on remotely using the interactive logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_SERVICE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on using the service logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_INTERACTIVE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on using the interactive logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_NETWORK_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on using the network logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_REMOTE_INTERACTIVE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on remotely using the interactive logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SERVICE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on using the service logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:complexType name="EntityStateUserRightType">
+            <xsd:annotation>
+                  <xsd:documentation>The EntityStateUserRightType restricts a string value to a specific set of values that describe the different user rights/privileges. The empty string is also allowed to support empty element associated with variable references. Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the specified pattern restriction.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:simpleContent>
+                  <xsd:restriction base="oval-def:EntityStateStringType">
+                        <xsd:enumeration value="SE_ASSIGNPRIMARYTOKEN_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to assign the primary token of a process.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_AUDIT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to generate audit-log entries.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_BACKUP_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to perform backup operations.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CHANGE_NOTIFY_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to receive notifications of changes to files or directories.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_GLOBAL_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create named file mapping objects in the global namespace during Terminal Services sessions.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_PAGEFILE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a paging file.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_PERMANENT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a permanent object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_SYMBOLIC_LINK_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a symbolic link.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_CREATE_TOKEN_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a primary token.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DEBUG_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to debug and adjust the memory of a process owned by another account.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_ENABLE_DELEGATION_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to mark user and computer accounts as trusted for delegation.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_IMPERSONATE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to impersonate.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_INC_BASE_PRIORITY_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to increase the base priority of a process.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_INCREASE_QUOTA_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to increase the quota assigned to a process.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_INC_WORKING_SET_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to allocate more memory for applications that run in the context of users.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_LOAD_DRIVER_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to load or unload a device driver.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_LOCK_MEMORY_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to lock physical pages in memory.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_MACHINE_ACCOUNT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to create a computer account.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_MANAGE_VOLUME_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to enable volume management privileges.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_PROF_SINGLE_PROCESS_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to gather profiling information for a single process.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_RELABEL_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to modify the mandatory integrity level of an object.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_REMOTE_SHUTDOWN_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to shut down a system using a network request.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_RESTORE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to perform restore operations.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SECURITY_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to perform a number of security-related functions, such as controlling and viewing audit messages.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SHUTDOWN_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to shut down a local system.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SYNC_AGENT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required for a domain controller to use the Lightweight Directory Access Protocol directory synchronization services.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SYSTEM_ENVIRONMENT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to modify the nonvolatile RAM of systems that use this type of memory to store configuration information.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SYSTEM_PROFILE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to gather profiling information for the entire system.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SYSTEMTIME_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to modify the system time.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_TAKE_OWNERSHIP_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to take ownership of an object without being granted discretionary access.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_TCB_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege identifies its holder as part of the trusted computer base.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_TIME_ZONE_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to adjust the time zone associated with the computer's internal clock.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_TRUSTED_CREDMAN_ACCESS_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to access Credential Manager as a trusted caller.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_UNDOCK_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to undock a laptop.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_UNSOLICITED_INPUT_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This privilege is required to read unsolicited input from a terminal device.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_BATCH_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on using the batch logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_BATCH_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on using the batch logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_INTERACTIVE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on using the interactive logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_NETWORK_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on using the network logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_REMOTE_INTERACTIVE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on remotely using the interactive logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_DENY_SERVICE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right explicitly denies an account the right to log on using the service logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_INTERACTIVE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on using the interactive logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_NETWORK_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on using the network logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_REMOTE_INTERACTIVE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on remotely using the interactive logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="SE_SERVICE_LOGON_NAME">
+                              <xsd:annotation>
+                                    <xsd:documentation>This account right is required for an account to log on using the service logon type.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                        <xsd:enumeration value="">
+                              <xsd:annotation>
+                                    <xsd:documentation>The empty string value is permitted here to allow for empty elements associated with variable references.</xsd:documentation>
+                              </xsd:annotation>
+                        </xsd:enumeration>
+                  </xsd:restriction>
+            </xsd:simpleContent>
+      </xsd:complexType>
 </xsd:schema>
