@@ -507,6 +507,17 @@
      <xsd:element name="plist_item" substitutionGroup="oval-sc:item">
           <xsd:annotation>
                <xsd:documentation>The plist_item holds information about an individual property list preference key found on a system. Each plist_item contains a preference key, application identifier or filepath, type, as well as the preference key's value. It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:deprecated_info>
+                         <oval:version>5.11.2:1.0</oval:version>
+                         <oval:reason>The plist_item has been deprecated and replaced by the plist511_item. The plist_item cannot express the context hierarchy required to differentiate between nodes with identical names. As a result, it is not possible to address a particular node when the order of their parent nodes is indeterminate. The plist511_item was added to address this deficiency. See the plist511_item.</oval:reason>
+                    </oval:deprecated_info>
+                    <sch:pattern id="macos-sc_plistitem_dep">
+                         <sch:rule context="macos-sc:plist_item">
+                              <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                         </sch:rule>
+                    </sch:pattern>
+               </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
@@ -540,6 +551,42 @@
                               <xsd:element name="value" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
                                    <xsd:annotation>
                                         <xsd:documentation>The value of the preference key.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
+     <!-- =============================  PLIST ITEM (5.11) ============================== -->
+     <!-- =============================================================================== -->
+     <xsd:element name="plist511_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>The plist511_item stores results from checking the contents of the XML representation of a plist file. It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="app_id" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The unique application identifier that specifies the application to use when looking up the preference key (e.g. com.apple.Safari).</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="filepath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The absolute path to a plist file (e.g. /Library/Preferences/com.apple.TimeMachine.plist).</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="xpath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Specifies an XPath 1.0 expression to evaluate against the XML representation of the plist file specified by the filename or app_id entity. This XPath 1.0 expression must evaluate to a list of zero or more text values which will be accessible in OVAL via instances of the value_of entity.  Any results from evaluating the XPath 1.0 expression other than a list of text strings (e.g., a nodes set) is considered an error.  The intention is that the text values be drawn from instances of a single, uniquely named element or attribute.  However, an OVAL interpreter is not required to verify this, so the author should define the XPath expression carefully.  Note that "equals" is the only valid operator for the xpath entity.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="value_of" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The value_of element checks the value(s) of the text node(s) or attribute(s) found. How this is used is entirely controlled by operator attributes.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
@@ -1124,6 +1171,13 @@
      <xsd:complexType name="EntityItemPlistTypeType">
           <xsd:annotation>
                <xsd:documentation>The EntityItemPlistTypeType complex type restricts a string value to the seven values CFString, CFNumber, CFBoolean, CFDate, CFData, CFArray, and CFDictionary that specify the type of the value associated with a property list preference key. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:deprecated_info>
+                         <oval:version>5.11.2:1.0</oval:version>
+                         <oval:reason>Used only by the deprecated plist_item.</oval:reason>
+                         <oval:comment>This enumeration has been deprecated and may be removed in a future version of the language.</oval:comment>
+                    </oval:deprecated_info>
+               </xsd:appinfo>
           </xsd:annotation>
           <xsd:simpleContent>
                <xsd:restriction base="oval-sc:EntityItemStringType">
