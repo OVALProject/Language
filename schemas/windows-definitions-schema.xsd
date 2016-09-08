@@ -4060,6 +4060,14 @@
       <xsd:element name="peheader_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
                   <xsd:documentation>The peheader_test is used to check data from a Portable Executable file header. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a peheader_object and the optional state element specifies the metadata to check.</xsd:documentation>
+                  <xsd:appinfo>
+                        <oval:element_mapping>
+                              <oval:test>peheader_test</oval:test>
+                              <oval:object>peheader_object</oval:object>
+                              <oval:state>peheader_state</oval:state>
+                              <oval:item target_namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows">peheader_item</oval:item>
+                        </oval:element_mapping>
+                  </xsd:appinfo>
             </xsd:annotation>
             <xsd:complexType>
                   <xsd:complexContent>
@@ -4432,6 +4440,11 @@
                                     <xsd:element name="real_number_of_directory_entries" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The real_number_of_directory_entries entity is the real number of data directory entries in the remainder of the optional header calculated by enumerating the directory entries.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
+                                    <xsd:element name="windows_view" type="win-def:EntityStateWindowsViewType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>The windows view value to which this was targeted. This is used to indicate which view (32-bit or 64-bit), the associated State applies to.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                               </xsd:sequence>
