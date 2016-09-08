@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" elementFormDefault="qualified" version="5.11">
      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
-     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>     
+     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
      <xsd:annotation>
           <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Linux specific system characteristic items found in Open Vulnerability and Assessment Language (OVAL). Each item is an extension of the standard item element defined in the Core System Characteristic Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL Items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core System Characteristic Schema is not outlined here.</xsd:documentation>
           <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
@@ -338,9 +338,9 @@
                                                                  <xsd:enumeration value="int"/>
                                                             </xsd:restriction>
                                                        </xsd:simpleType>
-                                                  </xsd:attribute>                                                  
+                                                  </xsd:attribute>
                                              </xsd:restriction>
-                                        </xsd:simpleContent>                                        
+                                        </xsd:simpleContent>
                                    </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="release" minOccurs="0" maxOccurs="1">
@@ -357,9 +357,9 @@
                                                                  <xsd:enumeration value="version"/>
                                                             </xsd:restriction>
                                                        </xsd:simpleType>
-                                                  </xsd:attribute>                                                  
+                                                  </xsd:attribute>
                                              </xsd:restriction>
-                                        </xsd:simpleContent>                                        
+                                        </xsd:simpleContent>
                                    </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="version" minOccurs="0" maxOccurs="1">
@@ -376,10 +376,10 @@
                                                                  <xsd:enumeration value="version"/>
                                                             </xsd:restriction>
                                                        </xsd:simpleType>
-                                                  </xsd:attribute>                                                  
+                                                  </xsd:attribute>
                                              </xsd:restriction>
-                                        </xsd:simpleContent>                                        
-                                   </xsd:complexType>                                   
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="evr" type="oval-sc:EntityItemEVRStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
@@ -422,7 +422,7 @@
                          <sch:rule context="linux-sc:rpmverify_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -798,7 +798,7 @@
                                    <xsd:annotation>
                                         <xsd:documentation>The verification_script_successful entity indicates whether or not the verification script executed successfully. If the verification script is not executed, due to the 'noscripts' behavior, this entity must not be collected.</xsd:documentation>
                                    </xsd:annotation>
-                              </xsd:element>                              
+                              </xsd:element>
                               <xsd:element name="signature_check_passed" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The signature_check_passed entity indicates whether or not the verification of the package or header signatures passed. If the signature check is not performed, due to the 'nosignature' behavior, this entity must not be collected.</xsd:documentation>
@@ -959,10 +959,24 @@
                                         <xsd:documentation>This is the pakage name to check.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="version" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>This is the version number of the pakage.</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="string">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="string"/>
+                                                                 <xsd:enumeration value="version"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="architecture" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>

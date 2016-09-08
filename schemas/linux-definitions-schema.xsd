@@ -778,7 +778,7 @@
                <xsd:annotation>
                     <xsd:documentation>'filepaths', when true, this behavior means collect all filepaths (directory and file information) from the rpm database for the package.</xsd:documentation>
                </xsd:annotation>
-          </xsd:attribute>          
+          </xsd:attribute>
      </xsd:complexType>
      <!-- =============================================================================== -->
      <!-- ==============================  RPM VERIFY TEST  ============================== -->
@@ -874,7 +874,7 @@
                                              <xsd:annotation>
                                                   <xsd:documentation>The filepath element specifies the absolute path for a file or directory in the specified package.</xsd:documentation>
                                              </xsd:annotation>
-                                        </xsd:element>                                        
+                                        </xsd:element>
                                         <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
                                    </xsd:sequence>
                               </xsd:choice>
@@ -2172,10 +2172,24 @@
                                         <xsd:documentation>This is the package name to check.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="version" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>This is the version number of the package.</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-def:EntityStateAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="string">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="string"/>
+                                                                 <xsd:enumeration value="version"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="architecture" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
@@ -2454,7 +2468,7 @@
                     </xsd:restriction>
                </xsd:simpleType>
           </xsd:attribute>
-     </xsd:complexType>     
+     </xsd:complexType>
      <xsd:complexType name="EntityStateRpmVerifyResultType">
           <xsd:annotation>
                <xsd:documentation>The EntityStateRpmVerifyResultType complex type restricts a string value to the set of possible outcomes of checking an attribute of a file included in an RPM against the actual value of that attribute in the RPM database. The empty string is also allowed to support the empty element associated with variable references.  Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>

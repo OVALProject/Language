@@ -583,7 +583,7 @@
     </xsd:complexType>
     <xsd:complexType name="RestrictionType">
         <xsd:annotation>
-            <xsd:documentation>The RestrictionType complex type outlines a restriction that is placed on expected values for an external variable. For example, a possible value may be restricted to a integer less than 10. Please refer to the operationEnumeration simple type for a description of the valid operations. The required hint attribute gives a short description of what the value means or represents.</xsd:documentation>
+            <xsd:documentation>The RestrictionType complex type outlines a restriction that is placed on expected values for an external variable. For example, a possible value may be restricted to a integer less than 10. Please refer to the operationEnumeration simple type for a description of the valid operations.</xsd:documentation>
         </xsd:annotation>
         <xsd:simpleContent>
             <xsd:extension base="xsd:anySimpleType">
