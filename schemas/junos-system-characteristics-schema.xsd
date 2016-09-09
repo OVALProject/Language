@@ -82,29 +82,39 @@
                                 <xsd:documentation>The name of the JunOS component whose version should be retrieved.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="raw_release" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="raw_value" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The raw release version string for the component.</xsd:documentation>
+                                <xsd:documentation>The raw release version string for the component, e.g., 12.2R6.1 or 12.1X44-D10.4.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="major_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="major" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The part of the release version of the component corresponding to the [year].[quarter] in which the release occurred. For example, the major_version for 12.2R6.1 would be 12.2.</xsd:documentation>
+                                <xsd:documentation>The part of the release version of the component corresponding to the year in which the release occurred. For example, the major value for 12.2R6.1 would be '12'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="release_type" type="junos-sc:EntityItemJunosReleaseTypeType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="minor" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The release type embedded in the version of the component.</xsd:documentation>
+                                <xsd:documentation>The part of the release version of the component corresponding to the quarter in which the release occurred. For example, the minor value for 12.2R6.1 would be '2'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="revision" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="type" type="junos-sc:EntityItemJunosReleaseTypeType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The revision and build number (AKA spin number) information of the component's version. For example, the revision for 12.2R6.1 would be 6.1.</xsd:documentation>
+                                <xsd:documentation>The release type embedded in the version of the component. For example, the type value for 12.2R6.1 is 'R'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="builder" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="build" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The string identifying the builder of the component.</xsd:documentation>
+                                <xsd:documentation>The build number of the component's version. For example, the revision for 12.2R6.1 has a build number of '6'; 12.1X44-D10.4 has a build number of '44'.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="maintenance_release" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>A maintenance_release value can appear in an R-type service release or an X-type release (where it takes the value of the D-number). For example, version 14.2R3-S4.5 has a maintenance_release of '4'. For version 10.4S4.2, the maintenance_release entity would have a status of 'does not exist'. For version 12.1X44-D10.4, the maintenance_release entity value would be '10'.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="spin" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The spin number of the component. For example, 12.2R6.1 has a spin value of '1'; 12.1X44-D10.4 has a spin value of '4'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="build_date" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
