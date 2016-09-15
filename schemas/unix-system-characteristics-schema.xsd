@@ -1166,9 +1166,9 @@
                                         <xsd:documentation>The socket_type entity specifies the type of socket that is used by the service.  Possible values include: stream, dgram, raw, or seqpacket.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="type" type="unix-sc:EntityItemXinetdTypeStatusType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="type" type="unix-sc:EntityItemXinetdTypeStatusType" minOccurs="0" maxOccurs="unbounded">
                                    <xsd:annotation>
-                                        <xsd:documentation>The type entity specifies the type of the service.</xsd:documentation>
+                                        <xsd:documentation>The type entity specifies the type of the service. A service may have multiple types.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="user" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">

@@ -2647,7 +2647,7 @@
                                     </xsd:element>
                                     <xsd:element name="type" type="unix-def:EntityStateXinetdTypeStatusType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>The type entity specifies the type of the service.</xsd:documentation>
+                                                <xsd:documentation>The type entity specifies the type of the service. A service may have multiple types.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="user" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
