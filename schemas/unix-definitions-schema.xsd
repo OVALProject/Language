@@ -267,6 +267,13 @@
                                     <xsd:element name="group_id" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The group_id entity represents the group owner of a file, by group number.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="unix-def_file_gid">
+                                                            <sch:rule context="unix-def:file_state/unix-def:group_id">
+                                                                  <sch:assert test="string-length(.) = 0 or number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of group_id must be greater than zero</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                           <xsd:complexType>
                                                 <xsd:simpleContent>
@@ -286,6 +293,13 @@
                                     <xsd:element name="user_id" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The numeric user id, or uid, is the third column of each user's entry in /etc/passwd. This element represents the owner of the file.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="unix-def_file_uid">
+                                                            <sch:rule context="unix-def:file_state/unix-def:user_id">
+                                                                  <sch:assert test="string-length(.) = 0 or number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of user_id must be greater than zero</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                           <xsd:complexType>
                                                 <xsd:simpleContent>
@@ -2128,7 +2142,7 @@
                                     </xsd:element>
                                     <xsd:element name="chg_req" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
-                                                <xsd:documentation>This describes how long a user can keep a password before the system forces her to change it.</xsd:documentation>
+                                                <xsd:documentation>This describes how long the user can keep a password before the system forces them to change it.</xsd:documentation>
                                           </xsd:annotation>
                                           <xsd:complexType>
                                                 <xsd:simpleContent>

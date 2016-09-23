@@ -3674,11 +3674,25 @@
                                     <xsd:element name="force_logoff" type="oval-def:EntityStateIntType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies, in seconds (from a DWORD), the amount of time between the end of the valid logon time and the time when the user is forced to log off the network.  A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the user is never forced to log off. A value of zero indicates that the user will be forced to log off immediately when the valid logon time expires. See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="win-def_lps_fl">
+                                                            <sch:rule context="win-def:lockoutpolicy_state/win-def:force_logoff">
+                                                                  <sch:assert test="string-length(.) = 0 or number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of force_logoff must be greater than or equal to zero</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="lockout_duration" type="oval-def:EntityStateIntType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies, in seconds, how long a locked account remains locked before it is automatically unlocked. See the USER_MODALS_INFO_3 structure returned by a call to NetUserModalsGet().</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="win-def_lps_ld">
+                                                            <sch:rule context="win-def:lockoutpolicy_state/win-def:lockout_duration">
+                                                                  <sch:assert test="string-length(.) = 0 or number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of lockout_duration must be greater than or equal to zero</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="lockout_observation_window" type="oval-def:EntityStateIntType" minOccurs="0">
@@ -4133,6 +4147,13 @@
                                     <xsd:element name="max_passwd_age" type="oval-def:EntityStateIntType" minOccurs="0">
                                           <xsd:annotation>
                                                 <xsd:documentation>Specifies, in seconds (from a DWORD), the maximum allowable password age.  A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the password never expires. The minimum valid value for this element is ONE_DAY (86400).  See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="win-def_pwp_mpa">
+                                                            <sch:rule context="win-def:passwordpolicy_state/win-def:max_passwd_age">
+                                                                  <sch:assert test="number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of max_passwd_age must be greater than or equal to zero</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="min_passwd_age" type="oval-def:EntityStateIntType" minOccurs="0">

@@ -1473,6 +1473,13 @@
                                     <xsd:element name="instance" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                           <xsd:annotation>
                                                 <xsd:documentation>The instance entity calls out a specific match of the pattern. This can only be a positive integer.</xsd:documentation>
+                                                <xsd:appinfo>
+                                                      <sch:pattern id="win-def_tfc54_i">
+                                                            <sch:rule context="win-def:textfilecontent54_state/win-def:instance">
+                                                                  <sch:assert test="string-length(.) = 0 or number(.) &lt; 1"><sch:value-of select="../@id"/> - the value of instance must be greater than one</sch:assert>
+                                                            </sch:rule>
+                                                      </sch:pattern>
+                                                </xsd:appinfo>
                                           </xsd:annotation>
                                     </xsd:element>
                                     <xsd:element name="text" type="oval-def:EntityStateAnySimpleType" minOccurs="0" maxOccurs="1">
