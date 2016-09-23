@@ -6711,6 +6711,7 @@
                                <xsd:choice>
                                      <xsd:element ref="oval-def:set"/>
                                      <xsd:sequence>
+                                           <xsd:element name="behaviors" type="win-def:ServiceEffectiveRightsBehaviors" minOccurs="0"/>
                                            <xsd:element name="service_name" type="oval-def:EntityObjectStringType">
                                                  <xsd:annotation>
                                                        <xsd:documentation>The service_name element describes a service to be collected. Note that the service_name element should contain the actual name of the service and not its display name that is found in Control Panel->Administrative Tools->Services.  For example, if you wanted to check the effective rights of the Automatic Updates service you would specify 'wuauserv' for the service_name element not 'Automatic Updates'.</xsd:documentation>
@@ -6832,7 +6833,46 @@
                     </xsd:extension>
               </xsd:complexContent>
         </xsd:complexType>
-  </xsd:element>
+      </xsd:element>
+      <xsd:complexType name="ServiceEffectiveRightsBehaviors">
+            <xsd:annotation>
+                  <xsd:documentation>The ServiceEffectiveRightsBehaviors complex type defines a number of behaviors that allow a more detailed definition of the serviceeffectiverights_object being specified.  Note that using these behaviors may result in some unique results.  For example, a double negative type condition might be created where an object entity says include everything except a specific item, but a behavior is used that might then add that item back in.</xsd:documentation>
+            </xsd:annotation>
+            <xsd:attribute name="include_group" type="xsd:boolean" use="optional" default="true">
+                  <xsd:annotation>
+                        <xsd:documentation>'include_group' defines whether the group trustee sid should be included in the object when the object is defined by a group trustee sid. For example, the intent of an object defined by a group trustee sid might be to retrieve all the user trustee sids that are members of the group, but not the group trustee sid itself.</xsd:documentation>
+                        <xsd:appinfo>
+                              <oval:deprecated_info>
+                                    <oval:version>5.11.2</oval:version>
+                                    <oval:reason>The 'include_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.</oval:reason>
+                                    <oval:comment>Consider using a sid_sid_object or similar to include the members of a group.</oval:comment>
+                              </oval:deprecated_info>
+                              <sch:pattern id="win-def_sef_include_group_value_dep">
+                                    <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:serviceeffectiverights_object/win-def:behaviors">
+                                          <sch:report test="@include_group">DEPRECATED BEHAVIOR IN: win-def:serviceeffectiverights_object</sch:report>
+                                    </sch:rule>
+                              </sch:pattern>
+                        </xsd:appinfo>
+                  </xsd:annotation>
+            </xsd:attribute>
+            <xsd:attribute name="resolve_group" type="xsd:boolean" use="optional" default="false">
+                  <xsd:annotation>
+                        <xsd:documentation>The 'resolve_group' behavior defines whether an object set defined by a group SID should be resolved to return a set that contains all the user SIDs that are a member of that group.  Note that all child groups should also be resolved any valid domain users that are members of the group should also be included.  The intent of this behavior is to end up with a list of all individual users from that system that make up the group once everything has been resolved.</xsd:documentation>
+                        <xsd:appinfo>
+                              <oval:deprecated_info>
+                                    <oval:version>5.11.2</oval:version>
+                                    <oval:reason>The 'resolve_group' behavior has been deprecated in favor of using variables to reference more efficient objects for expanding groups.</oval:reason>
+                                    <oval:comment>Consider using a sid_sid_object or similar to resolve the members of a group.</oval:comment>
+                              </oval:deprecated_info>
+                              <sch:pattern id="win-def_sef_resolve_group_value_dep">
+                                    <sch:rule context="oval-def:oval_definitions/oval-def:objects/win-def:serviceeffectiverights_object/win-def:behaviors">
+                                          <sch:report test="@resolve_group">DEPRECATED BEHAVIOR IN: serviceeffectiverights_object </sch:report>
+                                    </sch:rule>
+                              </sch:pattern>
+                        </xsd:appinfo>
+                  </xsd:annotation>
+            </xsd:attribute>
+      </xsd:complexType>
       <!-- =============================================================================== -->
       <!-- ===========================  SHARED RESOURCE TEST   =========================== -->
       <!-- =============================================================================== -->
