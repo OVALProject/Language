@@ -1607,7 +1607,7 @@
       <!-- =============================================================================== -->
       <xsd:element name="plist511_test" substitutionGroup="oval-def:test">
             <xsd:annotation>
-                  <xsd:documentation>The plist511_test is used to check the value(s) associated with property list preference keys. It can be used to represent any plist file in the XML plist representation (while its native format may be text, binary, or XML), permitting the use of the XPATH query language to explore its contents. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a plist511_object and the optional plist511_state element specifies the data to check.</xsd:documentation>
+                  <xsd:documentation>The plist511_test is used to check the value(s) associated with property list preference keys. It can be used to represent any plist file in XML form (whether its native format is ASCII text, binary, or XML), permitting the use of the XPATH query language to explore its contents. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references a plist511_object and the optional plist511_state element specifies the data to check.</xsd:documentation>
                   <xsd:appinfo>
                         <oval:element_mapping>
                               <oval:test>plist511_test</oval:test>
