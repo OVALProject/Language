@@ -1184,6 +1184,11 @@
                                                 <xsd:documentation>This subcategory audits the user and device claims that are present in the token of an associated logon. This state corresponds with the following GUID specified in ntsecapi.h: 0cce9247-69ae-11d9-bed3-505054503030.</xsd:documentation>
                                           </xsd:annotation>
                                     </xsd:element>
+                                    <xsd:element name="audit_detailedtracking_tokenrightadjusted" type="win-def:EntityStateAuditType" minOccurs="0">
+                                          <xsd:annotation>
+                                                <xsd:documentation>This subcategory audits when token privileges are enabled or disabled for a specific account’s token. This state corresponds with the following GUID specified in ntsecapi.h: 0cce924a-69ae-11d9-bed3-505054503030.</xsd:documentation>
+                                          </xsd:annotation>
+                                    </xsd:element>
                               </xsd:sequence>
                         </xsd:extension>
                   </xsd:complexContent>
