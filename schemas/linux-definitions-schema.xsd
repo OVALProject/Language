@@ -16,6 +16,100 @@
           </xsd:appinfo>
      </xsd:annotation>
      <!-- =============================================================================== -->
+     <!-- =========================  SUSE APPARMOR STATUS TEST  ========================= -->
+     <!-- =============================================================================== -->
+     <xsd:element name="apparmorstatus_test" substitutionGroup="oval-def:test">
+          <xsd:annotation>
+               <xsd:documentation>The AppArmor Status Test is used to check properties representing the counts of profiles and processes as per the results of the "apparmor_status" or "aa-status" command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an apparmorstatus_object and the optional state element specifies the data to check.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:element_mapping>
+                         <oval:test>apparmorstatus_test</oval:test>
+                         <oval:object>apparmorstatus_object</oval:object>
+                         <oval:state>apparmorstatus_state</oval:state>
+                         <oval:item>apparmorstatus_item</oval:item>
+                    </oval:element_mapping>
+               </xsd:appinfo>
+               <xsd:appinfo>
+                    <sch:pattern id="suse-def_apparmorstatus_tst">
+                         <sch:rule context="linux-def:apparmorstatus_test/linux-def:object">
+                              <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/linux-def:apparmorstatus_object/@id"><sch:value-of select="../@id"/> - the object child element of a apparmorstatus_test must reference a apparmorstatus_object</sch:assert>
+                         </sch:rule>
+                         <sch:rule context="linux-def:apparmorstatus_test/linux-def:state">
+                              <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/linux-def:apparmorstatus_state/@id"><sch:value-of select="../@id"/> - the state child element of a apparmorstatustest must reference a apparmorstatus_state</sch:assert>
+                         </sch:rule>
+                    </sch:pattern>
+               </xsd:appinfo>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:TestType">
+                         <xsd:sequence>
+                              <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                              <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="apparmorstatus_object" substitutionGroup="oval-def:object">
+          <xsd:annotation>
+               <xsd:documentation>The apparmorstatus_object element is used by an apparmorstatus test to define the different information about the current AppArmor polciy. There is actually only one object relating to AppArmor Status and this is the system as a whole. Therefore, there are no child entities defined. Any OVAL Test written to check AppArmor status will reference the same apparmorstatus_object which is basically an empty object element.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:ObjectType"/>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="apparmorstatus_state" substitutionGroup="oval-def:state">
+          <xsd:annotation>
+               <xsd:documentation>The AppArmor Status Item displays various information about the current AppArmor policy.  This item maps the counts of profiles and processes as per the results of the "apparmor_status" or "aa-status" command.  Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:StateType">
+                         <xsd:sequence>
+                              <xsd:element name="loaded_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of loaded profiles</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="enforce_mode_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of profiles in enforce mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="complain_mode_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of profiles in complain mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="processes_with_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes which have profiles defined</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="enforce_mode_processes_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes in enforce mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="complain_mode_processes_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes in complain mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="unconfined_processes_with_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes which are unconfined but have a profile defined</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
      <!-- ==============================  DPKG INFO TEST  =============================== -->
      <!-- =============================================================================== -->
      <xsd:element name="dpkginfo_test" substitutionGroup="oval-def:test">

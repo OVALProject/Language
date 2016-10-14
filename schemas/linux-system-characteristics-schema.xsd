@@ -16,6 +16,57 @@
           </xsd:appinfo>
      </xsd:annotation>
      <!-- =============================================================================== -->
+     <!-- =========================  SUSE APPARMOR STATUS ITEM  ========================= -->
+     <!-- =============================================================================== -->
+     <xsd:element name="apparmorstatus_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>The AppArmor Status Item displays various information about the current AppArmor policy.  This item maps the counts of profiles and processes as per the results of the "apparmor_status" or "aa-status" command.  Each item extends the standard ItemType as defined in the oval-system-characteristics-schema and one should refer to the ItemType description for more information.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="loaded_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of loaded profiles</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="enforce_mode_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of profiles in enforce mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="complain_mode_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of profiles in complain mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="processes_with_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes which have profiles defined</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="enforce_mode_processes_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes in enforce mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="complain_mode_processes_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes in complain mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="unconfined_processes_with_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes which are unconfined but have a profile defined</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
      <!-- ==============================  DPKG INFO ITEM  =============================== -->
      <!-- =============================================================================== -->
      <xsd:element name="dpkginfo_item" substitutionGroup="oval-sc:item">
