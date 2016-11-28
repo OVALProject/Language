@@ -1829,6 +1829,13 @@
                                                 <xsd:element name="username" type="oval-def:EntityObjectStringType">
                                                       <xsd:annotation>
                                                             <xsd:documentation/>
+                                                            <xsd:appinfo>
+                                                                  <sch:pattern id="macos-def_pwpobjusername">
+                                                                        <sch:rule context="macos-def:pwpolicy_object/macos-def:username">
+                                                                              <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the username entity of a pwpolicy_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
+                                                                        </sch:rule>
+                                                                  </sch:pattern>
+                                                            </xsd:appinfo>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="userpass" type="oval-def:EntityObjectStringType">
@@ -1846,6 +1853,13 @@
                                                 <xsd:element name="directory_node" type="oval-def:EntityObjectStringType">
                                                       <xsd:annotation>
                                                             <xsd:documentation/>
+                                                            <xsd:appinfo>
+                                                                  <sch:pattern id="macos-def_pwpobjdirnode">
+                                                                        <sch:rule context="macos-def:pwpolicy_object/macos-def:directory_node">
+                                                                              <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the directory_node entity of a pwpolicy_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
+                                                                        </sch:rule>
+                                                                  </sch:pattern>
+                                                            </xsd:appinfo>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
@@ -2019,6 +2033,13 @@
                                                 <xsd:element name="directory_node" type="oval-def:EntityObjectStringType" nillable="true">
                                                       <xsd:annotation>
                                                             <xsd:documentation>The directory_node element specifies the directory node that you would like to retrieve the password policy information from. If the xsi:nil attribute is set to true, the default directory node is used (i.e. the '-n' command line option will not be specified when issuing the 'pwpolicy' command).</xsd:documentation>
+                                                            <xsd:appinfo>
+                                                                  <sch:pattern id="macos-def_pwp59dirnode">
+                                                                        <sch:rule context="macos-def:pwpolicy59_object/macos-def:directory_node">
+                                                                              <sch:assert test="not(@operation) or @operation='equals'"><sch:value-of select="../@id"/> - operation attribute for the directory_node entity of a pwpolicy59_object should be 'equals', note that this overrules the general operation attribute validation (i.e. follow this one)</sch:assert>
+                                                                        </sch:rule>
+                                                                  </sch:pattern>
+                                                            </xsd:appinfo>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
