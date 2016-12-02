@@ -1,0 +1,74 @@
+# Changes from 5.11.1 to 5.11.2
+Further specify how to evaluate deprecated constructs. Issue #7.
+Clarify the name entity documentation in the win-def:metabase_test. Issue #17.
+Complete documentation of comparing objects/states and items. Issue #22.
+Make the command_line entity nillable in the Windows process tests. Issue #57.
+Fix inconsistencies between the diagrams and tables in the specification. Issue #58.
+Clarify how to handle reg_multi_sz values with no values. Issue #61.
+Fix contradictions regarding how to assign status values to items and item entities. Issue #69.
+Re-examine whether to include regular expression modifiers. Issue #72.
+Clarify the documentation of the unix-def:shadow_test/flag entity. Issue #74.
+Update the foreign_port documentation in the macos-def:inetlisteningservers510_test. Issue #77.
+Fix documentation for foreign_* entities on win-def:port_test. Issue #81.
+Fix truth table for evaluation of "at_least_one_exists" existence check. Issue #82.
+Clarify how check_existence works. Issue #83.
+Clarify exec_shield entity documentation in the unix-def:process58_test. Issue #95.
+Added support for the HKEY_CURRENT_USER_LOCAL_SETTINGS hive in the Windows registry-based tests. Issue #97.
+Change the priority entity datatype in the win-def:process_test and the win-def:process58_test to integer. Issue #98.
+Improve the documentation associated with the user and group tests in the windows. Issue #101.
+Added a sub-section on the check_existence attribute to the Evaluating OVAL State Entities section of the OVAL Language specification.
+Document not collected item entities versus not collecting item entities enhancement. Issue #105.
+Change the macos-def:diskutil_test to allow for checking if the owners, groups, or symlink status have changed. Issue #109.
+Deprecate the win-def:activedirectory57_test and the ind-def:ldap57_test. Issue #121.
+Correct spweb_object entity name. Issue #124.
+Fix Section 5.3.4.1.4 Determining the Final Result of an OVAL State Entity Evaluation. Issue #135.
+Add WIN8/WIN2012 audit subcategories. Issue #136.
+Consistently document user and group accounts and the use of a machine qualifier in Windows Definitions. Issue #157, and #165.
+Domain group memberships not returned for domain users in user_item\group values. Issue #162.
+Migrate the additional entities for the win-def:user_test. Issue #168.
+Document how bitwise ops work on integers. Issue #171.
+Document how to handle no epoch in the evr entity of the linux-def:dpkginfo_test. Issue #175.
+Update maxOccurs on the selinux_domain_label in the unix-sc:process58_item.  Issue #178.
+Document handling xsi:nil="true" in the ind-def:environmentvariable58_test with a remote scan. Issue #180.
+Investigate normalization of line endings. Issue #179.
+Fix documentation around the processing of the state_operator and check properties. Issue #181.
+Update partition_test. Issue #183.
+Fix incorrect reference in 5.3.3.5, Filter Evaluation to ArithmeticEnumeration. Issue #184.
+Determining item uniqueness. Issue #187.
+Remove operation restriction on the module_version entity in the win-def:cmdlet_object. Issue #234.
+Add support for variable instance to Variables schema. Issue #193.
+Update terms of use links. Issue #194.
+Clarification for nillable entities in win-def:cmdlet_object. Issue #246.
+asa-sc and asa-def: EntityItemInpsectionType/EntityStateInpsectionType misspelled. Issue #248.
+Implement proposed updates to Linux partition_test; clarification for linux-def:partition_state/space_left. Issue #262, and #269.
+Make ind-sc:environmentvariable58_item/pid entity nillable. Issue #264.
+Need a way to assess security policy LSAAnonymousNameLookup setting on non-Domain-connected Windows machines. Issue #267.
+Change HPUX trusted item element 'login_tty_u' datatype to string. Issue #270.
+Change the win-sc:file_item/product_version to an EntityItemAnySimpleType. Issue #272.
+Typo in macos-definitions-schema.xsd. Issue #273.
+Integrate Cisco and MacOS changes from PR258. Issue #274.
+Add junos-def/junos-sc Entity[State/Item]JunosReleaseTypeType missing types. Issue #266.
+Fix junos-def:version_state issue. Issue #265.
+Update README.md for the 5.11.2 release.
+Rpm Info Item extended_name and '(none)' architecture. Issue #261.
+Separate out Windows file attributes from type. Issue #275.
+Bug fixes for previous 5.11.2 commits.
+Additional fix to close out PR#142. Issue #98.
+Clarify how to handle reg_multi_sz values with no values (PR#156). Issue #61.
+Add the windows_view behavior to the win-def:peheader_test. Issue #59.
+Ported remaining fixes from Jasen's Tracker Items PR#134.
+Exposing filesystem links on Windows via the addition of a win:junction test, and addition of a corresponding recurse attribute for Windows FileBehaviors.
+Added XPATH-centric macos:plist511 test. Issue #276.
+Add support for negative instance values in ind-def:textfilecontent54_object. Issue #277.
+Schema documentation clarifications for issues raised by 5706e13.
+junos:version_state/item does not sufficiently describe possible JunOS versions. Issue #278.
+<xinetd_item> change. Issue #257.
+Behaviors is missing from win:serviceeffectiverights_object. Issue #279
+Use schematron to validate DWORD values (require >0). Issue #192.
+Added linux-def:apparmorstatus_test.
+Added Windows audit subcategory GUID 0cce924a-69ae-11d9-bed3-505054503030
+Add a way to retrieve the expanded value of a REG_EXPAND_SZ. Issue #280.
+Platform schema versions should use a minimum base schema version prefix. Issue #281.
+MacOS:pwpolicy59_object schematron update. Issue #282.
+Implement SPAWAR change proposal for win-def:userright_test. Issue #283.
+Added this changelog document.
