@@ -12,7 +12,7 @@
                   OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined
                   here.</xsd:documentation>
             <xsd:documentation>The SharePoint Component Schema is based on the SharePoint Object Model (Windows SharePoint Services 3.0)</xsd:documentation>
-            <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+            <xsd:documentation>The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>SharePoint Definition</schema>
                   <version>5.11.1:1.1</version>
