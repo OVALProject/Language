@@ -20,7 +20,7 @@ The port info test is used to check the properties of a component of a FreeBSD s
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -35,7 +35,7 @@ A port info object consists of a single pkginst element that identifies a specif
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | pkginst | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div></div>|  
@@ -48,7 +48,7 @@ The portinfo_state element defines the different information that can be used to
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | pkginst | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div></div>|  

@@ -18,7 +18,7 @@ Information on global restrictions in place on the device derived from Apple's p
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | allow_account_modification | [oval-sc:EntityItemBoolType](oval-system-characteristics-schema.md#EntityItemBoolType)  (0..1) |  
 ||<div>Optional. Supervised only. If set to false, account modification is disabled. Available only in iOS 7.0 and later.</div>|  
@@ -109,7 +109,7 @@ Passcode Policy Items from public Apple Configuration Profile Reference
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | allow_simple | [oval-sc:EntityItemBoolType](oval-system-characteristics-schema.md#EntityItemBoolType)  (0..1) |  
 ||<div>Optional. Default true. Determines whether a simple passcode is allowed. A simple passcode is defined as containing repeated characters, or increasing/decreasing characters (such as 123 or CBA). Setting this value to false is synonymous to setting minComplexChars to "1".</div>|  
@@ -140,7 +140,7 @@ Represents information about each configuration profile installed on the device.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | has_removal_passcode | [oval-sc:EntityItemBoolType](oval-system-characteristics-schema.md#EntityItemBoolType)  (0..1) |  
 ||<div>Optional. Set to true if there is a removal passcode.</div>|  

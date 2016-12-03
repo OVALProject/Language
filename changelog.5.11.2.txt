@@ -72,3 +72,4 @@ Platform schema versions should use a minimum base schema version prefix. Issue 
 MacOS:pwpolicy59_object schematron update. Issue #282.
 Implement SPAWAR change proposal for win-def:userright_test. Issue #283.
 Added this changelog document.
+Added schema documentation markdown and tools for generation of the same.

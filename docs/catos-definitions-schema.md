@@ -23,7 +23,7 @@ The line_test is used to check the properties of specific output lines from a SH
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -38,7 +38,7 @@ A line_object consists of a show_subcommand entity that is the name of a SHOW su
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | show_subcommand | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The name of a SHOW sub-command.</div>|  
@@ -51,7 +51,7 @@ The line_state element defines the different information that can be used to eva
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | show_subcommand | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The name of the SHOW sub-command.</div>|  
@@ -68,7 +68,7 @@ The module_test is based off the SHOW MODULE command. Having a separate module_t
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -83,7 +83,7 @@ A module object consists of a single module_number entity that identifies the mo
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | module_number | [oval-def:EntityObjectIntType](oval-definitions-schema.md#EntityObjectIntType)  (1..1) |  
 ||<div>A number that identifies the a specific module.</div>|  
@@ -96,7 +96,7 @@ The module_state element defines the module information held within a Cisco Cata
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | module_number | [oval-def:EntityStateIntType](oval-definitions-schema.md#EntityStateIntType)  (0..1) |  
 ||<div>A number that identifies the a specific module.</div>|  
@@ -129,7 +129,7 @@ The required information of version55_test can be got via a SHOW VERSION command
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -148,7 +148,7 @@ The version55_state element defines the version information held within a Cisco 
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | switch_series | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The switch_series entity defines a target Catalyst switch series to check for. Each version of CatOS traditionally has target a specific Catalyst series of switches.</div>|  
@@ -169,7 +169,7 @@ The required information of version_test can be got via a SHOW VERSION command. 
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -192,7 +192,7 @@ The version_state element defines the version information held within a Cisco Ca
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | switch_series | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>A Catalyst switch series to check for.</div>|  

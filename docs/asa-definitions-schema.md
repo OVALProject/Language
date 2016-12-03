@@ -32,7 +32,7 @@ The acl test is used to check the properties of specific output lines from an AC
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -47,7 +47,7 @@ An acl object consists of a an acl name and an IP version entity that is the nam
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The name of the ACL.</div>|  
@@ -62,7 +62,7 @@ The acl_state element defines the different information that can be used to eval
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The name of the ACL.</div>|  
@@ -87,7 +87,7 @@ The class_map test is used to check the properties of specific output lines from
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -102,7 +102,7 @@ A class_map object consists of a name entity that is the name of the ASA 'class-
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The MPF class-map name.</div>|  
@@ -115,7 +115,7 @@ The class_map_state element defines the different information that can be used t
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The name of the class-map.</div>|  
@@ -142,7 +142,7 @@ The interface test is used to check for the existence of a particular interface 
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -157,7 +157,7 @@ An interface_object consists of a name entity that is the name of the ASA interf
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The interface name.</div>|  
@@ -170,7 +170,7 @@ The interface_state element defines the different information that can be used t
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The interface name.</div>|  
@@ -207,7 +207,7 @@ The line_test is used to check the properties of specific output lines from a SH
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -222,7 +222,7 @@ A line object consists of a show_subcommand entity that is the name of a SHOW su
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | show_subcommand | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The name of a SHOW sub-command.</div>|  
@@ -235,7 +235,7 @@ The line_state element defines the different information that can be used to eva
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | show_subcommand | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The name of the SHOW sub-command.</div>|  
@@ -250,7 +250,7 @@ The policy_map test is used to check the properties of specific output lines fro
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -265,7 +265,7 @@ A policy_map object consists of a name entity that is the name of the ASA 'polic
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The MPF policy-map name.</div>|  
@@ -278,7 +278,7 @@ The policy_map_state element defines the different information that can be used 
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The policy-map name.</div>|  
@@ -299,7 +299,7 @@ The service_policy test is used to check the properties of specific output lines
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -314,7 +314,7 @@ A service_policy object consists of a name entity that is the name of the ASA 's
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The MPF service-policy name.</div>|  
@@ -327,7 +327,7 @@ The service_policy_state element defines the different information that can be u
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The service-policy name.</div>|  
@@ -344,7 +344,7 @@ The snmp_host test is used to check the properties of specific output lines from
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -359,7 +359,7 @@ A snmp_host object consists of a host entity that is the host of the 'snmp host'
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | host | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The SNMP host address or hostname.</div>|  
@@ -372,7 +372,7 @@ The snmp_host_state element defines the different information that can be used t
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | interface | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The interface configured for the host.</div>|  
@@ -397,7 +397,7 @@ The snmp_user test is used to check the properties of specific output lines from
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -412,7 +412,7 @@ A snmp_user object consists of a name entity that is the name of the SNMP user t
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The SNMP user name.</div>|  
@@ -425,7 +425,7 @@ The snmp_user_state element defines the different information that can be used t
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The SNMP user name.</div>|  
@@ -444,7 +444,7 @@ The snmp_group test is used to check the properties of specific output lines fro
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -459,7 +459,7 @@ A snmp_group object consists of a name entity that is the name of the SNMP group
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The SNMP group name.</div>|  
@@ -472,7 +472,7 @@ The snmp_group_state element defines the different information that can be used 
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The SNMP group name.</div>|  
@@ -487,7 +487,7 @@ The tcp_map test is used to check the properties of specific output lines from a
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -502,7 +502,7 @@ A service_policy object consists of a name entity that is the name of the ASA 't
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The MPF tcp-map name.</div>|  
@@ -515,7 +515,7 @@ The tcp_map_state element defines the different information that can be used to 
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The tcp-map name.</div>|  
@@ -530,7 +530,7 @@ The version test is used to check the version of the ASA operating system. It is
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -549,7 +549,7 @@ The version_state element defines the version information held within a Cisco AS
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | asa_release | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The asa_release element specifies the whole ASA version information.</div>|  

@@ -18,7 +18,7 @@ The access token item holds information about the individual privileges and righ
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | security_principle | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>Security principles include users or groups with either local or domain accounts, and computer accounts created when a computer joins a domain. In Windows, security principles are case-insensitive. As a result, it is recommended that the case-insensitive operations are used for this entity. User rights and permissions to access objects such as Active Directory objects, files, and registry settings are assigned to security principles. In a domain environment, security principles should be identified in the form: "domain\trustee name". For local security principles use: "computer name\trustee name". For built-in accounts on the system, use the trustee name without a domain.</div>|  
@@ -125,7 +125,7 @@ Note that this ite supports only simple (string based) value collection. For mor
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | naming_context | [win-sc:EntityItemNamingContextType](#EntityItemNamingContextType)  (0..1) |  
 ||<div>Each object in active directory exists under a certain naming context (also known as a partition). A naming context is defined as a single object in the Directory Information Tree (DIT) along with every object in the tree subordinate to it. There are three default naming contexts in Active Directory: domain, configuration, and schema.</div>|  
@@ -150,7 +150,7 @@ Note that this item supports complex values that are in the form of a record. Fo
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | naming_context | [win-sc:EntityItemNamingContextType](#EntityItemNamingContextType)  (0..1) |  
 ||<div>Each object in active directory exists under a certain naming context (also known as a partition). A naming context is defined as a single object in the Directory Information Tree (DIT) along with every object in the tree subordinate to it. There are three default naming contexts in Active Directory: domain, configuration, and schema.</div>|  
@@ -175,7 +175,7 @@ Note that when audinting is disabled each of the entities listed below should be
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | account_logon | [win-sc:EntityItemAuditType](#EntityItemAuditType)  (0..1) |  
 ||<div>Audit attempts to log on to or log off of the system. Also, audit attempts to make a network connection.</div>|  
@@ -206,7 +206,7 @@ Note that when audinting is disabled each of the entities listed below should be
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | credential_validation | [win-sc:EntityItemAuditType](#EntityItemAuditType)  (0..1) |  
 ||<div>Audit the events produced during the validation of a user's logon credentials. This state corresponds with the following GUID specified in ntsecapi.h: 0cce923f-69ae-11d9-bed3-505054503030. This state corresponds with the following Advanced Audit Policy: Account Logon: Audit Credential Validation</div>|  
@@ -339,7 +339,7 @@ The cmdlet_item represents a PowerShell cmdlet, the parameters supplied to it, a
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | module_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The name of the module that contains the cmdlet.</div>|  
@@ -366,7 +366,7 @@ The dnscache_item stores information retrieved from the DNS cache about a domain
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | domain_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The domain_name element contains a string that represents a domain name that was collected from the DNS cache on the local system.</div>|  
@@ -383,7 +383,7 @@ This element describes file metadata. The time information can be retrieved by t
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</div>|  
@@ -434,7 +434,7 @@ This item stores the audited access rights of a file that a system access contro
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>Specifies the absolute path to a file on the machine from which the DACL was retrieved. A directory cannot be specified as a filepath.</div>|  
@@ -495,7 +495,7 @@ This item stores the effective rights of a file that a discretionary access cont
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>Specifies the absolute path to a file on the machine from which the DACL was retrieved. A directory cannot be specified as a filepath.</div>|  
@@ -558,7 +558,7 @@ The Windows group_item allows the different users and subgroups, that directly b
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | group | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>A string the represents the name of a particular group. In Windows, group names are case-insensitive. As a result, it is recommended that the case-insensitive operations are used for this entity. In a domain environment, groups should be identified in the form: "domain\group name". For local groups use: "computer name\group name". For built-in accounts on the system, use the group name without a domain.</div>|  
@@ -575,7 +575,7 @@ The Windows group_sid_item allows the different users and subgroups, that direct
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | group_sid | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>A string the represents the SID of a particular group.</div>|  
@@ -592,7 +592,7 @@ Enumerate various attributes about the interfaces on a system.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This element specifies the name of an interface.</div>|  
@@ -619,7 +619,7 @@ The junction_item element identifies the result generated for a junction_object.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | path | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (1..1) |  
 ||<div>Specifies the path to the subject junction, specified by the junction_object.</div>|  
@@ -636,7 +636,7 @@ The license_item element stores the different information that can be found in t
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This element describes the name of a license entry.</div>|  
@@ -653,7 +653,7 @@ The lockoutpolicy item enumerates various attributes associated with lockout inf
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | force_logoff | [oval-sc:EntityItemIntType](oval-system-characteristics-schema.md#EntityItemIntType)  (0..1) |  
 ||<div>Specifies, in seconds (from a DWORD), the amount of time between the end of the valid logon time and the time when the user is forced to log off the network. A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the user is never forced to log off. A value of zero indicates that the user will be forced to log off immediately when the valid logon time expires. See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</div>|  
@@ -672,7 +672,7 @@ This item gathers information from the specified metabase keys.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | key | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This element describes a metabase key to be gathered.</div>|  
@@ -695,7 +695,7 @@ The windows ntuser_item specifies information that can be collected from a parti
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | key | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This element describes a registry key normally found in the HKCU hive to be tested.</div>|  
@@ -732,7 +732,7 @@ Specific policy items associated with passwords. It is important to note that th
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | max_passwd_age | [oval-sc:EntityItemIntType](oval-system-characteristics-schema.md#EntityItemIntType)  (0..1) |  
 ||<div>Specifies, in seconds (from a DWORD), the maximum allowable password age. A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the password never expires. The minimum valid value for this element is ONE_DAY (86400). See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</div>|  
@@ -757,7 +757,7 @@ The peheader_item describes the metadata associated with a PE file header. For m
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The filepath element specifies the absolute path for a PE file on the machine. A directory cannot be specified as a filepath.</div>|  
@@ -880,7 +880,7 @@ Information about open listening ports.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | local_address | [oval-sc:EntityItemIPAddressStringType](oval-system-characteristics-schema.md#EntityItemIPAddressStringType)  (0..1) |  
 ||<div>This element specifies the local IP address the listening port is bound to. Note that the IP address can be IPv4 or IPv6.</div>|  
@@ -903,7 +903,7 @@ This item stores the effective rights of a printer that a discretionary access c
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | printer_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The printer_name enitity specifies the name of the printer.</div>|  
@@ -946,7 +946,7 @@ Information about running processes.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | command_line | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The command_line entity is the string used to start the process. This includes any parameters that are part of the command line.</div>|  
@@ -977,7 +977,7 @@ The windows registry item specifies information that can be collected about a pa
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | hive | [win-sc:EntityItemRegistryHiveType](#EntityItemRegistryHiveType)  (0..1) |  
 ||<div>The hive that the registry key belongs to.</div>|  
@@ -1004,7 +1004,7 @@ This item stores the audited access rights of a registry key that a system acces
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | hive | [win-sc:EntityItemRegistryHiveType](#EntityItemRegistryHiveType)  (0..1) |  
 ||<div>This element specifies the hive of a registry key on the machine from which the SACL was retrieved.</div>|  
@@ -1063,7 +1063,7 @@ This item stores the effective rights of a registry key that a discretionary acc
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | hive | [win-sc:EntityItemRegistryHiveType](#EntityItemRegistryHiveType)  (0..1) |  
 ||<div>The hive that the registry key belongs to.</div>|  
@@ -1122,7 +1122,7 @@ This item stores information about Windows services that are present on the syst
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | service_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The service_name element specifies the name of the service as specified in the Service Control Manager (SCM) database.</div>|  
@@ -1157,7 +1157,7 @@ This item stores the effective rights of a service that a discretionary access c
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | service_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The service_name element specifies a service on the machine from which to retrieve the DACL. Note that the service_name element should contain the actual name of the service and not its display name that is found in Control Panel->Administrative Tools->Services. For example, if you wanted to check the effective rights of the Automatic Updates service you would specify 'wuauserv' for the service_name element not 'Automatic Updates'.</div>|  
@@ -1204,7 +1204,7 @@ ______________
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | netname | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The share name of the resource.</div>|  
@@ -1241,7 +1241,7 @@ This item stores the audited access rights of a shared resource that a system ac
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | netname | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The netname entity specifies the name associated with a particular shared resource.</div>|  
@@ -1276,7 +1276,7 @@ This item stores the effective rights of a shared resource that a discretionary 
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | netname | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The netname entity specifies the name associated with a particular shared resource.</div>|  
@@ -1311,7 +1311,7 @@ ______________
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | trustee_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This element specifies the trustee name associated with a particular SID. In Windows, trustee names are case-insensitive. As a result, it is recommended that the case-insensitive operations are used for this entity. In a domain environment, trustee names should be identified in the form: "domain\trustee name". For local trustee names use: "computer name\trustee name". For built-in accounts on the system, use the trustee name without a domain.</div>|  
@@ -1328,7 +1328,7 @@ ______________
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | trustee_sid | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The security identifier (SID) of the specified trustee name.</div>|  
@@ -1345,7 +1345,7 @@ The system metric item stores the value of a particular Windows system metric.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | index | [win-sc:EntityItemSystemMetricIndexType](#EntityItemSystemMetricIndexType)  (0..1) |  
 ||<div>This element describes the index of a system metric entry.</div>|  
@@ -1360,7 +1360,7 @@ The uac_item is used to hold information about settings related to User Access C
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | admin_approval_mode | [oval-sc:EntityItemBoolType](oval-system-characteristics-schema.md#EntityItemBoolType)  (0..1) |  
 ||<div>Admin Approval Mode for the Built-in Administrator account.</div>|  
@@ -1391,7 +1391,7 @@ The windows user_item allows the different groups (identified by name) that a us
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | user | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>A string the represents the name of a particular user. In Windows, user names are case-insensitive. As a result, it is recommended that the case-insensitive operations are used for this entity. In a domain environment, users should be identified in the form: "domain\user name". For local users use: "computer_name\user_name". For built-in accounts on the system, use the user name without a domain.</div>|  
@@ -1438,7 +1438,7 @@ The windows user_sid_item allows the different groups (identified by SID) that a
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | user_sid | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>A string the represents the SID of a particular user.</div>|  
@@ -1455,7 +1455,7 @@ ______________
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | userright | [win-sc:EntityItemUserRightType](#EntityItemUserRightType)  (0..1) |  
 ||<div>The userright entity holds a string that represents the name of a particular user right/privilege.</div>|  
@@ -1472,7 +1472,7 @@ The volume item enumerates various attributes about a particular volume mounted 
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | rootpath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>A string that contains the root directory of the volume to be described. A trailing backslash is required. For example, you would specify \\MyServer\MyShare as "\\MyServer\MyShare\", or the C drive as "C:\".</div>|  
@@ -1537,7 +1537,7 @@ The wmi_item outlines information to be checked through Microsoft's WMI interfac
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | namespace | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The WMI namespaces of the specific object.</div>|  
@@ -1554,7 +1554,7 @@ The wmi57_item outlines information to be checked through Microsoft's WMI interf
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | namespace | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The WMI namespaces of the specific object.</div>|  
@@ -1571,7 +1571,7 @@ The wuaupdatesearcher_item outlines information defined through the Search metho
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | search_criteria | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div></div>|  

@@ -339,7 +339,7 @@
 	</xsl:template>
 	
 	<xsl:template name="children">
-		<xsl:text>| Child&#60;Elements | Type (MinOccurs..MaxOccurs) |</xsl:text><xsl:value-of select="$md_br" />
+		<xsl:text>| Child&#x00A0;Elements | Type (MinOccurs..MaxOccurs) |</xsl:text><xsl:value-of select="$md_br" />
 		<xsl:text>|:-------------- |:--------------------------- |</xsl:text><xsl:value-of select="$md_br" />
 
 		<xsl:for-each select=".//xsd:element|.//xsd:group|.//xsd:any">

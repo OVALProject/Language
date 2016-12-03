@@ -16,7 +16,7 @@ This element stores high level system OS type, otherwise known as the family.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | family | [ind-sc:EntityItemFamilyType](#EntityItemFamilyType)  (0..1) |  
 ||<div>This element describes the high level system OS type, otherwise known as the family.</div>|  
@@ -31,7 +31,7 @@ This element stores the different hash values associated with a specific file.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</div>|  
@@ -54,7 +54,7 @@ This element stores a hash value associated with a specific file.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</div>|  
@@ -79,7 +79,7 @@ This item stores information about environment variables and their values.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This element describes the name of an environment variable.</div>|  
@@ -94,7 +94,7 @@ This item stores information about an environment variable, the process ID of th
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | pid | [oval-sc:EntityItemIntType](oval-system-characteristics-schema.md#EntityItemIntType)  (0..1) |  
 ||<div>The process ID of the process from which the environment variable was retrieved.</div>|  
@@ -111,7 +111,7 @@ This element holds information about specific entries in the LDAP directory. It 
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | suffix | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>Each object in an LDAP directory exists under a certain suffix (also known as a naming context). A suffix is defined as a single object in the Directory Information Tree (DIT) with every object in the tree subordinate to it.</div>|  
@@ -136,7 +136,7 @@ This element holds information about specific entries in the LDAP directory. It 
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | suffix | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>Each object in an LDAP directory exists under a certain suffix (also known as a naming context). A suffix is defined as a single object in the Directory Information Tree (DIT) with every object in the tree subordinate to it.</div>|  
@@ -161,7 +161,7 @@ The sql_item outlines information collected from a database via an SQL query.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | engine | [ind-sc:EntityItemEngineType](#EntityItemEngineType)  (0..1) |  
 ||<div>The engine entity identifies the specific database engine used to connect to the database.</div>|  
@@ -182,7 +182,7 @@ The sql57_item outlines information collected from a database via an SQL query.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | engine | [ind-sc:EntityItemEngineType](#EntityItemEngineType)  (0..1) |  
 ||<div>The engine entity identifies the specific database engine used to connect to the database.</div>|  
@@ -203,7 +203,7 @@ The textfilecontent_item looks at the contents of a text file (aka a configurati
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</div>|  
@@ -232,7 +232,7 @@ This item stores information about OVAL Variables and their values.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | var_ref | [ind-sc:EntityItemVariableRefType](#EntityItemVariableRefType)  (0..1) |  
 ||<div>The id of the variable.</div>|  
@@ -247,7 +247,7 @@ This item stores results from checking the contents of an xml file.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The filepath element specifies the absolute path for a file on the machine. A directory cannot be specified as a filepath.</div>|  

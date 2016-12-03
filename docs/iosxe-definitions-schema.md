@@ -35,7 +35,7 @@ The global test is used to check for the existence of a particular line in the I
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -48,7 +48,7 @@ The global_object element is used by a global test to define the object to be ev
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | global_command | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The global_command entity identifies a specific line in the IOS-XE config file under the global context.</div>|  
@@ -61,7 +61,7 @@ The global_state element defines the different information that can be found in 
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | global_command | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The global_command entity identifies a specific line in the IOS-XE config file under the global context.</div>|  
@@ -74,7 +74,7 @@ The line test is used to check the properties of specific output lines from a SH
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -89,7 +89,7 @@ A line object consists of a show_subcommand entity that is the name of a SHOW su
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | show_subcommand | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The name of a SHOW sub-command.</div>|  
@@ -102,7 +102,7 @@ The line_state element defines the different information that can be used to eva
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | show_subcommand | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The name of the SHOW sub-command.</div>|  
@@ -117,7 +117,7 @@ The version_test is used to check the version of the IOS-XE operating system. It
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -136,7 +136,7 @@ The version_state element defines the version information held within a Cisco IO
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | ~~platform~~ | ~~[oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1~~) |  
 ||~~<div>The platform that is running the IOS-XE software. For example if could be asr1000.</div>~~|  
@@ -167,7 +167,7 @@ The interface test is used to check for the existence of a particular interface 
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -182,7 +182,7 @@ An interface_object consists of a name entity that is the name of the IOS-XE int
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The interface name.</div>|  
@@ -195,7 +195,7 @@ The interface_state element defines the different information that can be used t
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The interface name.</div>|  
@@ -246,7 +246,7 @@ The section test is used to check the properties of specific output lines from a
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -261,7 +261,7 @@ A section object consists of a section_command entity that is the name of a sect
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | section_command | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The name of a section command.</div>|  
@@ -274,7 +274,7 @@ The section_state element defines the different information that can be used to 
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | section_command | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The name of the section command.</div>|  
@@ -291,7 +291,7 @@ The router test is used to check the properties of specific output lines from a 
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -306,7 +306,7 @@ A router object consists of a router protocol and router identifier entity.
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | protocol | [iosxe-def:EntityObjectRoutingProtocolType](#EntityObjectRoutingProtocolType)  (1..1) |  
 ||<div>The routing protocol of the router instance.</div>|  
@@ -321,7 +321,7 @@ The router_state element defines the different information that can be used to e
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | protocol | [iosxe-def:EntityStateRoutingProtocolType](#EntityStateRoutingProtocolType)  (1..1) |  
 ||<div>The routing protocol of the router instance. If there are more than one router configurations, for example ospf instances, different objects should be created for each.</div>|  
@@ -344,7 +344,7 @@ The bgpneighbor test is used to check the bgp neighbpr properties of bgp instanc
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -359,7 +359,7 @@ A bgpneighbor object consists of a neighbor entity.
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | neighbor | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The bgp neighbor.</div>|  
@@ -372,7 +372,7 @@ The bgpneighbor_state element defines the different information that can be used
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | neighbor | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The bgp neighbor.</div>|  
@@ -387,7 +387,7 @@ The routing protocol authentication interface test is used to check the properti
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -402,7 +402,7 @@ A routingprotocolauthintf object consists of an interface and the routing protoc
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | interface | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The interface name.</div>|  
@@ -417,7 +417,7 @@ The routingprotocolauthintf_state element defines the different information that
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | interface | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The interface name.</div>|  
@@ -440,7 +440,7 @@ The acl test is used to check the properties of specific output lines from an AC
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -455,7 +455,7 @@ An acl object consists of a an acl name and an IP version entity that is the nam
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The name of the ACL.</div>|  
@@ -470,7 +470,7 @@ The acl_state element defines the different information that can be used to eval
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The name of the ACL.</div>|  
@@ -495,7 +495,7 @@ The snmphost test is used to check the properties of specific output lines from 
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -510,7 +510,7 @@ A snmphost object consists of a host entity that is the host of the 'snmp host' 
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | host | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The SNMP host address or hostname.</div>|  
@@ -523,7 +523,7 @@ The snmphost_state element defines the different information that can be used to
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | host | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The SNMP host address or hostname.</div>|  
@@ -544,7 +544,7 @@ The snmpcommunity test is used to check the properties of specific output lines 
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -559,7 +559,7 @@ An snmpcommunity object consists of a community name entity to be tested.
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The SNMP community name.</div>|  
@@ -572,7 +572,7 @@ The snmpcommunity_state element defines the different information that can be us
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The SNMP community name.</div>|  
@@ -593,7 +593,7 @@ The snmpuser test is used to check the properties of specific output lines from 
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -608,7 +608,7 @@ A snmpuser object consists of a name entity that is the name of the SNMP user to
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The SNMP user name.</div>|  
@@ -621,7 +621,7 @@ The snmpuser_state element defines the different information that can be used to
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The SNMP user name.</div>|  
@@ -646,7 +646,7 @@ The snmpgroup test is used to check the properties of specific output lines from
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -661,7 +661,7 @@ A snmpgroup object consists of a name entity that is the name of the SNMP group 
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The SNMP group name.</div>|  
@@ -674,7 +674,7 @@ The snmpgroup_state element defines the different information that can be used t
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The SNMP group name.</div>|  
@@ -701,7 +701,7 @@ The snmpview test is used to check the properties of specific output lines from 
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -716,7 +716,7 @@ A snmpview object consists of a name entity that is the name of the SNMP view to
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>The SNMP view name.</div>|  
@@ -729,7 +729,7 @@ The snmpview_state element defines the different information that can be used to
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | name | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The SNMP view name.</div>|  

@@ -20,7 +20,7 @@ The config_test is used to check the properties of the XML output from a GET-CON
 
 **Extends:** [oval-def:TestType](oval-definitions-schema.md#TestType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-def:ObjectRefType](oval-definitions-schema.md#ObjectRefType)  (1..1) |  
 |||  
@@ -35,7 +35,7 @@ A config_object consists of an xpath entity that contains an XPATH 1.0 query to 
 
 **Extends:** [oval-def:ObjectType](oval-definitions-schema.md#ObjectType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | xpath | [oval-def:EntityObjectStringType](oval-definitions-schema.md#EntityObjectStringType)  (1..1) |  
 ||<div>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at. Any valid Xpath 1.0 statement is usable with one exception, at most one field may be identified in the Xpath. This is because the value_of element in the data section is only designed to work against a single field. The only valid operator for xpath is equals since there is an infinite number of possible xpaths and determinining all those that do not equal a given xpath would be impossible.</div>|  
@@ -48,7 +48,7 @@ The config_state element defines the different information that can be used to e
 
 **Extends:** [oval-def:StateType](oval-definitions-schema.md#StateType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | xpath | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>Specifies an Xpath expression describing the text node(s) or attribute(s) to look at.</div>|  

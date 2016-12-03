@@ -16,7 +16,7 @@ Stores the properties of specific lines in the catos config file.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | show_subcommand | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The name of the SHOW sub-command.</div>|  
@@ -31,7 +31,7 @@ Stores results from SHOW MODULE command.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | module_number | [oval-sc:EntityItemIntType](oval-system-characteristics-schema.md#EntityItemIntType)  (0..1) |  
 ||<div></div>|  
@@ -62,7 +62,7 @@ Stores results from SHOW VERSION command.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | switch_series | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The switch_series entity specifies the target Catalyst switch series for the given version of CatOS.</div>|  

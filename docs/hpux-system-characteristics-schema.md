@@ -16,7 +16,7 @@ These items contain getconf items.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | parameter_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This is the parameter name to check</div>|  
@@ -33,7 +33,7 @@ This item represents data collected by the ndd command.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | device | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The name of the device for which the parameter was collected.</div>|  
@@ -50,7 +50,7 @@ From /usr/sbin/swlist -l patch PHxx_yyyyy. See swlist manpage for specific field
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | patch_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This is the patch name to check.</div>|  
@@ -69,7 +69,7 @@ Output of /usr/sbin/swlist command. Note: A quick way to check for the installat
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | swlist | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This is the name of the bundle or fileset to check.</div>|  
@@ -92,7 +92,7 @@ These items contain account settings for trusted HP-UX installations.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | username | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This is the name of the user being checked</div>|  

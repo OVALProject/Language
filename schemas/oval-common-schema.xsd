@@ -441,72 +441,72 @@
                <xsd:appinfo>
                     <evaluation_documentation>Below are some tables that outline how each ExistenceEnumeration value effects evaluation of a given test.  Note that this is related to the existence of an object(s) and not the object(s) compliance with a state.  The left column identifies the ExistenceEnumeration value in question. The middle column specifies the different combinations of individual item status values that have been found in the system characteristics file related to the given object. (EX=exists, DE=does not exist, ER=error, NC=not collected) For example, a 1+ under EX means that one or more individual item status attributes are set to exists, while a 0 under NC means that zero individual item status attributes are set to not collected.  The last column specifies what the result of the existence piece would be according to each combination of individual item status values.</evaluation_documentation>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           || existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1+  |  0   |  0   |  0   ||  True
-               ||  0   |  0   |  0   |  0   ||  False
-               ||  0+  |  1+  |  0+  |  0+  ||  False  
- all_exist     ||  0+  |  0   |  1+  |  0+  ||  Error
-               ||  0+  |  0   |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           || existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1+  |  0   |  0   |  0   ||  True
+                    ||  0   |  0   |  0   |  0   ||  False
+                    ||  0+  |  1+  |  0+  |  0+  ||  False  
+        all_exist   ||  0+  |  0   |  1+  |  0+  ||  Error
+                    ||  0+  |  0   |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  0+  |  0+  |  0   |  0+  ||  True 
-               ||  1+  |  0+  |  1+  |  0+  ||  True
-               ||  --  |  --  |  --  |  --  ||  False
- any_exist     ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  --  |  --  |  --  |  --  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  0+  |  0+  |  0   |  0+  ||  True 
+                    ||  1+  |  0+  |  1+  |  0+  ||  True
+                    ||  --  |  --  |  --  |  --  ||  False
+        any_exist   ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  --  |  --  |  --  |  --  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1+  |  0+  |  0+  |  0+  ||  True 
-               ||  0   |  0+  |  0   |  0   ||  False
-at_least_one_exists  ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  0   |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1+  |  0+  |  0+  |  0+  ||  True 
+                    ||  0   |  0+  |  0   |  0   ||  False
+at_least_one_exists ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  0   |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  0   |  0+  |  0   |  0   ||  True 
-               ||  1+  |  0+  |  0+  |  0+  ||  False
- none_exist    ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  0   |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  0   |  0+  |  0   |  0   ||  True 
+                    ||  1+  |  0+  |  0+  |  0+  ||  False
+       none_exist   ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  0   |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1   |  0+  |  0   |  0   ||  True 
-               ||  2+  |  0+  |  0+  |  0+  ||  False
-               ||  0   |  0+  |  0   |  0   ||  False
- only_one_exists      ||  0,1 |  0+  |  1+  |  0+  ||  Error
-               ||  0,1 |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1   |  0+  |  0   |  0   ||  True 
+                    ||  2+  |  0+  |  0+  |  0+  ||  False
+                    ||  0   |  0+  |  0   |  0   ||  False
+  only_one_exists   ||  0,1 |  0+  |  1+  |  0+  ||  Error
+                    ||  0,1 |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                </xsd:appinfo>
           </xsd:annotation>

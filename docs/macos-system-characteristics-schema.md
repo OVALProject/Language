@@ -18,7 +18,7 @@ This item stores sser account information (username, uid, gid, etc.).
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | username | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The user associated with the information collected.</div>|  
@@ -43,7 +43,7 @@ This item stores results from checking the contents of an authorizationdb right.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | right_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>Specifies the right_name in which the item is specified.</div>|  
@@ -60,7 +60,7 @@ This item stores results from checking the contents of the CoreStorage XML plist
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | uuid | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (1..1) |  
 ||<div>Specifies the UUID of the volume about which the plist information was retrieved.</div>|  
@@ -77,7 +77,7 @@ The diskutil_item holds verification information about an individual disk on a M
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | device | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The device entity is a string that represents the disk on a Mac OS system to verify. Please see diskutil(8) for instructions on how to specify the device.</div>|  
@@ -128,7 +128,7 @@ This item stores results from checking the settings of the Gatekeeper.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | enabled | [oval-sc:EntityItemBoolType](oval-system-characteristics-schema.md#EntityItemBoolType)  (1..1) |  
 ||<div>The status of Gatekeeper assessments.</div>|  
@@ -145,7 +145,7 @@ An inet listening server item stores the results of checking for network servers
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | program_name | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This is the name of the communicating program.</div>|  
@@ -176,7 +176,7 @@ An inet listening server item stores the results of checking for network servers
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | protocol | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>This is the transport-layer protocol, in lowercase: tcp or udp.</div>|  
@@ -207,7 +207,7 @@ This item stores results from checking the settings of a keychain.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | filepath | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (1..1) |  
 ||<div>Specifies the filepath of the keychain.</div>|  
@@ -224,7 +224,7 @@ This item stores results from checking a launchd-controlled daemon/agent.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | label | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (1..1) |  
 ||<div>Specifies the name of the agent/daemon.</div>|  
@@ -241,7 +241,7 @@ Output of 'nvram -p'
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | nvram_var | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>A nvram variabl.</div>|  
@@ -258,7 +258,7 @@ The plist_item holds information about an individual property list preference ke
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | key | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The preference key to check.</div>|  
@@ -281,7 +281,7 @@ The plist511_item stores results from checking the contents of the XML represent
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | app_id | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The unique application identifier that specifies the application to use when looking up the preference key (e.g. com.apple.Safari).</div>|  
@@ -302,7 +302,7 @@ Output of 'pwpolicy -getpolicy'. Please see the 'pwpolicy' man page for addition
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | username | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div></div>|  
@@ -331,7 +331,7 @@ The pwpolicy59_item holds the password policy information for a particular user 
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | target_user | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The target_user element specifies the user whose password policy information was collected.</div>|  
@@ -396,7 +396,7 @@ For any 'unlimited' resource, the entity will have the status of 'does not exist
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | cpu_current | [oval-sc:EntityItemIntType](oval-system-characteristics-schema.md#EntityItemIntType)  (1..1) |  
 ||<div>The maximum amount of cpu time (in seconds) to be used by each process.</div>|  
@@ -443,7 +443,7 @@ This item represents automatic software update information.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | schedule | [oval-sc:EntityItemBoolType](oval-system-characteristics-schema.md#EntityItemBoolType)  (1..1) |  
 ||<div>Specifies whether automatic checking is enabled (true).</div>|  
@@ -458,7 +458,7 @@ This item stores results from performing an XPATH query on the XML result of a s
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | data_type | [macos-sc:EntityItemDataTypeType](#EntityItemDataTypeType)  (0..1) |  
 ||<div>Specifies the data type that was used in collection.</div>|  
@@ -475,7 +475,7 @@ This item represents system setup information.
 
 **Extends:** [oval-sc:ItemType](oval-system-characteristics-schema.md#ItemType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | timezone | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (1..1) |  
 ||<div>Specifies the name of the current time zone.</div>|  

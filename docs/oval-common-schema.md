@@ -32,7 +32,7 @@ Element for containing notes; can be replaced using a substitution group.
 
 The ElementMapType is used to document the association between OVAL test, object, state, and item entities.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | test | [oval:ElementMapItemType](oval-common-schema.md#ElementMapItemType)  (1..1) |  
 ||<div>The local name of an OVAL test.</div>|  
@@ -58,7 +58,7 @@ The target_namespace attributes indicates what XML namespace the element belongs
 
 The DeprecatedInfoType complex type defines a structure that will be used to flag schema-defined constructs as deprecated. It holds information related to the version of OVAL when the construct was deprecated along with a reason and comment.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | version | n/a (1..1) |  
 ||<div>The required version child element details the version of OVAL in which the construct became deprecated.</div>|  
@@ -75,7 +75,7 @@ The GeneratorType complex type defines an element that is used to hold informati
 
 Additional generator information is also allowed although it is not part of the official OVAL Schema. Individual organizations can place generator information that they feel are important and these will be skipped during the validation. All OVAL really cares about is that the stated generator information is there.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | product_name | xsd:string (0..1) |  
 ||<div>The optional product_name specifies the name of the application used to generate the file. Product names SHOULD be expressed as CPE Names according to the Common Platform Enumeration: Name Matching Specification Version 2.3.</div>|  
@@ -113,7 +113,7 @@ The MessageType complex type defines the structure for which messages are relaye
 
 The NotesType complex type is a container for one or more note child elements. Each note contains some information about the definition or tests that it references. A note may record an unresolved question about the definition or test or present the reason as to why a particular approach was taken.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | note | xsd:string (0..unbounded) |  
 |||  
@@ -251,80 +251,80 @@ The ExistenceEnumeration simple type defines acceptable existence values, which 
   
 Below are some tables that outline how each ExistenceEnumeration value effects evaluation of a given test.  Note that this is related to the existence of an object(s) and not the object(s) compliance with a state.  The left column identifies the ExistenceEnumeration value in question. The middle column specifies the different combinations of individual item status values that have been found in the system characteristics file related to the given object. (EX=exists, DE=does not exist, ER=error, NC=not collected) For example, a 1+ under EX means that one or more individual item status attributes are set to exists, while a 0 under NC means that zero individual item status attributes are set to not collected.  The last column specifies what the result of the existence piece would be according to each combination of individual item status values.  
 ```
-               ||  item status value count  ||
-  attr value   ||                           || existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1+  |  0   |  0   |  0   ||  True
-               ||  0   |  0   |  0   |  0   ||  False
-               ||  0+  |  1+  |  0+  |  0+  ||  False  
- all_exist     ||  0+  |  0   |  1+  |  0+  ||  Error
-               ||  0+  |  0   |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------  
+                    ||  item status value count  ||
+       attr value   ||                           || existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1+  |  0   |  0   |  0   ||  True
+                    ||  0   |  0   |  0   |  0   ||  False
+                    ||  0+  |  1+  |  0+  |  0+  ||  False  
+        all_exist   ||  0+  |  0   |  1+  |  0+  ||  Error
+                    ||  0+  |  0   |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------  
 ```
 
   
 ```
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  0+  |  0+  |  0   |  0+  ||  True 
-               ||  1+  |  0+  |  1+  |  0+  ||  True
-               ||  --  |  --  |  --  |  --  ||  False
- any_exist     ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  --  |  --  |  --  |  --  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------  
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  0+  |  0+  |  0   |  0+  ||  True 
+                    ||  1+  |  0+  |  1+  |  0+  ||  True
+                    ||  --  |  --  |  --  |  --  ||  False
+        any_exist   ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  --  |  --  |  --  |  --  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------  
 ```
 
   
 ```
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1+  |  0+  |  0+  |  0+  ||  True 
-               ||  0   |  0+  |  0   |  0   ||  False
-at_least_one_exists  ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  0   |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------  
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1+  |  0+  |  0+  |  0+  ||  True 
+                    ||  0   |  0+  |  0   |  0   ||  False
+at_least_one_exists ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  0   |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------  
 ```
 
   
 ```
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  0   |  0+  |  0   |  0   ||  True 
-               ||  1+  |  0+  |  0+  |  0+  ||  False
- none_exist    ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  0   |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------  
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  0   |  0+  |  0   |  0   ||  True 
+                    ||  1+  |  0+  |  0+  |  0+  ||  False
+       none_exist   ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  0   |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------  
 ```
 
   
 ```
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1   |  0+  |  0   |  0   ||  True 
-               ||  2+  |  0+  |  0+  |  0+  ||  False
-               ||  0   |  0+  |  0   |  0   ||  False
- only_one_exists      ||  0,1 |  0+  |  1+  |  0+  ||  Error
-               ||  0,1 |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------  
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1   |  0+  |  0   |  0   ||  True 
+                    ||  2+  |  0+  |  0+  |  0+  ||  False
+                    ||  0   |  0+  |  0   |  0   ||  False
+  only_one_exists   ||  0,1 |  0+  |  1+  |  0+  ||  Error
+                    ||  0,1 |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------  
 ```
 
 ## <a name="FamilyEnumeration"></a>-- FamilyEnumeration --

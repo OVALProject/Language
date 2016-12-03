@@ -16,7 +16,7 @@ ______________
 
 The oval_variables element is the root of an OVAL Variable Document. Its purpose is to bind together the different variables contained in the document. The generator section must be present and provides information about when the variable file was compiled and under what version. The optional Signature element allows an XML Signature as defined by the W3C to be attached to the document. This allows authentication and data integrity to be provided to the user. Enveloped signatures are supported. More information about the official W3C Recommendation regarding XML digital signatures can be found at http://www.w3.org/TR/xmldsig-core/.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | generator | [oval:GeneratorType](oval-common-schema.md#GeneratorType)  (1..1) |  
 |||  
@@ -31,7 +31,7 @@ ______________
 
 The VariablesType complex type is a container for one or more variable elements. Each variable element holds the value of an external variable used in an OVAL Definition. Please refer to the description of the VariableType for more information about an individual variable.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | variable | [oval-var:VariableType](oval-variables-schema.md#VariableType)  (1..unbounded) |  
 |||  
@@ -51,7 +51,7 @@ Note that the 'record' datatype is not permitted on variables.
 Use to specify multiple variable instances.  
 *	**comment** xsd:string (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | value | xsd:anySimpleType (1..unbounded) |  
 |||  

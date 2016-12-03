@@ -14,7 +14,7 @@ ______________
 
 The oval_results element is the root of an OVAL Results Document. Its purpose is to bind together the four major sections of a results document - generator, directives, oval_definitions, and results - which are the children of the root element. It must contain exactly one generator section, one directives section, and one results section.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | generator | [oval:GeneratorType](oval-common-schema.md#GeneratorType)  (1..1) |  
 ||<div>The required generator section provides information about when the results document was compiled and under what version.</div>|  
@@ -35,7 +35,7 @@ ______________
 
 The DirectivesType complex type presents a set of flags that describe what information has been included in the results document. There are six possible results (true, false, unknown, error, not evaluated, and not applicable) for the evaluation of an OVAL Definition. The directives state which of these results are being reported in the results document.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | definition_true | [oval-res:DirectiveType](oval-results-schema.md#DirectiveType)  (1..1) |  
 |||  
@@ -89,7 +89,7 @@ ______________
 
 The ResultsType complex type is a container for one or more system elements. Each system element defines the results associated with an individual system. Please refer to the description of SystemType for more information about an individual system element.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | system | [oval-res:SystemType](oval-results-schema.md#SystemType)  (1..unbounded) |  
 |||  
@@ -98,7 +98,7 @@ The ResultsType complex type is a container for one or more system elements. Eac
 
 The SystemType complex type holds the evaluation results of the definitions and tests, as well as a copy of the OVAL System Characteristics used to perform the evaluation. The definitions section holds the results of the definitions and the tests section holds the results of the tests. The oval_system_characteristics section is a copy of the System Characteristics document used to perform the evaluation of the OVAL Definitions.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | definitions | [oval-res:DefinitionsType](oval-results-schema.md#DefinitionsType)  (0..1) |  
 |||  
@@ -113,7 +113,7 @@ ______________
 
 The DefinitionsType complex type is a container for one or more definition elements. Each definition element holds the result of the evaluation of an OVAL Definition. Please refer to the description of DefinitionType for more information about an individual definition element.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | definition | [oval-res:DefinitionType](oval-results-schema.md#DefinitionType)  (1..unbounded) |  
 |||  
@@ -140,7 +140,7 @@ The required result attribute holds the result of the evaluation. Please refer t
 *	**class** [oval:ClassEnumeration](oval-common-schema.md#ClassEnumeration)  (optional)  
 *	**result** [oval-res:ResultEnumeration](oval-results-schema.md#ResultEnumeration)  (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | message | [oval:MessageType](oval-common-schema.md#MessageType)  (0..unbounded) |  
 |||  
@@ -162,7 +162,7 @@ The optional applicability_check attribute provides a Boolean flag that when tru
 *	**negate** xsd:boolean (optional -- default='false')  
 *	**result** [oval-res:ResultEnumeration](oval-results-schema.md#ResultEnumeration)  (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | criteria | [oval-res:CriteriaType](oval-results-schema.md#CriteriaType)  (1..unbounded) |  
 |||  
@@ -227,7 +227,7 @@ ______________
 
 The TestsType complex type is a container for one or more test elements. Each test element holds the result of the evaluation of an OVAL Test. Please refer to the description of TestType for more information about an individual test element.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | test | [oval-res:TestType](oval-results-schema.md#TestType)  (1..unbounded) |  
 |||  
@@ -258,7 +258,7 @@ The following section provides a more detailed description of how the result for
 *	**state_operator** [oval:OperatorEnumeration](oval-common-schema.md#OperatorEnumeration)  (optional -- default='AND')  
 *	**result** [oval-res:ResultEnumeration](oval-results-schema.md#ResultEnumeration)  (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | message | [oval:MessageType](oval-common-schema.md#MessageType)  (0..unbounded) |  
 |||  
@@ -276,7 +276,7 @@ The TestedItemType complex type holds a reference to a system characteristic ite
 *	**item_id** [oval:ItemIDPattern](oval-common-schema.md#ItemIDPattern)  (required)  
 *	**result** [oval-res:ResultEnumeration](oval-results-schema.md#ResultEnumeration)  (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | message | [oval:MessageType](oval-common-schema.md#MessageType)  (0..unbounded) |  
 |||  

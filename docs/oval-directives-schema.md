@@ -14,7 +14,7 @@ ______________
 
 The oval_directives element is the root of an OVAL Directive Document. Its purpose is to bind together the generator and the set of directives contained in the document. The generator section must be present and provides information about when the directives document was compiled and under what version. The optional Signature element allows an XML Signature as defined by the W3C to be attached to the document. This allows authentication and data integrity to be provided to the user. Enveloped signatures are supported. More information about the official W3C Recommendation regarding XML digital signatures can be found at http://www.w3.org/TR/xmldsig-core/.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | generator | [oval:GeneratorType](oval-common-schema.md#GeneratorType)  (1..1) |  
 ||<div>The required generator section provides information about when the directives document was compiled and under what version.</div>|  

@@ -14,7 +14,7 @@ ______________
 
 The oval_definitions element is the root of an OVAL Definition Document. Its purpose is to bind together the major sections of a document - generator, definitions, tests, objects, states, and variables - which are the children of the root element.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | generator | [oval:GeneratorType](oval-common-schema.md#GeneratorType)  (1..1) |  
 ||<div>The required generator section provides information about when the definition file was compiled and under what version.</div>|  
@@ -39,7 +39,7 @@ The notes element is a container for one or more note child elements. It exists 
 
 **Extends:** [oval:NotesType](oval-common-schema.md#NotesType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | note | xsd:string (0..unbounded) |  
 |||  
@@ -50,7 +50,7 @@ ______________
 
 The DefinitionsType complex type is a container for one or more definition elements. Each definition element describes a single OVAL Definition. Please refer to the description of the DefinitionType for more information about an individual definition.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:definition](oval-definitions-schema.md#definition)  | n/a (1..unbounded) |  
 |||  
@@ -76,7 +76,7 @@ When the deprecated attribute is set to true, the definition is considered to be
 *	**class** [oval:ClassEnumeration](oval-common-schema.md#ClassEnumeration)  (required)  
 *	**deprecated** xsd:boolean (optional -- default='false')  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [ds:Signature](http://www.w3.org/TR/xmldsig-core/#sec-Signature)  | n/a (0..1) |  
 |||  
@@ -93,7 +93,7 @@ The MetadataType complex type contains all the metadata available to an OVAL Def
 
 Additional metadata is also allowed although it is not part of the official OVAL Schema. Individual organizations can place metadata items that they feel are important and these will be skipped during the validation. All OVAL really cares about is that the stated metadata items are there.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | title | xsd:string (1..1) |  
 |||  
@@ -118,7 +118,7 @@ Please note that the AffectedType will change in future versions of OVAL in orde
 
 *	**family** [oval:FamilyEnumeration](oval-common-schema.md#FamilyEnumeration)  (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | platform | xsd:string (0..unbounded) |  
 |||  
@@ -152,7 +152,7 @@ The optional applicability_check attribute provides a Boolean flag that when tru
 *	**negate** xsd:boolean (optional -- default='false')  
 *	**comment** [oval:NonEmptyStringType](oval-common-schema.md#NonEmptyStringType)  (optional)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | criteria | [oval-def:CriteriaType](oval-definitions-schema.md#CriteriaType)  (1..unbounded) |  
 |||  
@@ -197,7 +197,7 @@ ______________
 
 The TestsType complex type is a container for one or more test child elements. Each test element describes a single OVAL Test. Please refer to the description of the TestType for more information about an individual test.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:test](oval-definitions-schema.md#test)  | n/a (1..unbounded) |  
 |||  
@@ -232,7 +232,7 @@ The optional state_operator attribute provides the logical operator that combine
 *	**comment** [oval:NonEmptyStringType](oval-common-schema.md#NonEmptyStringType)  (required)  
 *	**deprecated** xsd:boolean (optional -- default='false')  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [ds:Signature](http://www.w3.org/TR/xmldsig-core/#sec-Signature)  | n/a (0..1) |  
 |||  
@@ -261,7 +261,7 @@ ______________
 
 The ObjectsType complex type is a container for one or more object child elements. Each object element provides details that define a unique set of matching items to be used by an OVAL Test. Please refer to the description of the object element for more information about an individual object.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:object](oval-definitions-schema.md#object)  | n/a (1..unbounded) |  
 |||  
@@ -289,7 +289,7 @@ The required id attribute uniquely identifies each object, and must conform to t
 *	**comment** [oval:NonEmptyStringType](oval-common-schema.md#NonEmptyStringType)  (optional)  
 *	**deprecated** xsd:boolean (optional -- default='false')  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [ds:Signature](http://www.w3.org/TR/xmldsig-core/#sec-Signature)  | n/a (0..1) |  
 |||  
@@ -306,7 +306,7 @@ Each filter is applied to the items identified by each OVAL Object before the se
 
 The required set_operator attribute defines how different child sets are combined to form the overall unique set of objects. For example, does one take the union of different sets or the intersection? For a description of the valid values please refer to the SetOperatorEnumeration simple type.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object_reference | [oval:ObjectIDPattern](oval-common-schema.md#ObjectIDPattern)  (1..2) |  
 |||  
@@ -323,7 +323,7 @@ ______________
 
 The StatesType complex type is a container for one or more state child elements. Each state provides details about specific characteristics that can be used during an evaluation of an object. Please refer to the description of the state element for more information about an individual state.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:state](oval-definitions-schema.md#state)  | n/a (1..unbounded) |  
 |||  
@@ -352,7 +352,7 @@ When evaluating a particular state against an object, one should evaluate each i
 *	**comment** [oval:NonEmptyStringType](oval-common-schema.md#NonEmptyStringType)  (optional)  
 *	**deprecated** xsd:boolean (optional -- default='false')  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [ds:Signature](http://www.w3.org/TR/xmldsig-core/#sec-Signature)  | n/a (0..1) |  
 |||  
@@ -365,7 +365,7 @@ ______________
 
 The VariablesType complex type is a container for one or more variable child elements. Each variable element is a way to define one or more values to be obtained at the time a definition is evaluated.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:variable](oval-definitions-schema.md#variable)  | n/a (1..unbounded) |  
 |||  
@@ -395,7 +395,7 @@ Note that the 'record' datatype is not permitted on variables.
 *	**comment** [oval:NonEmptyStringType](oval-common-schema.md#NonEmptyStringType)  (required)  
 *	**deprecated** xsd:boolean (optional -- default='false')  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [ds:Signature](http://www.w3.org/TR/xmldsig-core/#sec-Signature)  | n/a (0..1) |  
 |||  
@@ -408,7 +408,7 @@ The external_variable element extends the VariableType and defines a variable wi
 
 **Extends:** [oval-def:VariableType](oval-definitions-schema.md#VariableType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | possible_value | [oval-def:PossibleValueType](oval-definitions-schema.md#PossibleValueType)  (0..unbounded) |  
 |||  
@@ -434,7 +434,7 @@ The PossibleRestrictionType complex type outlines a range of possible expected v
 *	**operator** [oval:OperatorEnumeration](oval-common-schema.md#OperatorEnumeration)  (optional -- default='AND')  
 *	**hint** xsd:string (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | restriction | [oval-def:RestrictionType](oval-definitions-schema.md#RestrictionType)  (1..unbounded) |  
 |||  
@@ -455,7 +455,7 @@ The constant_variable element extends the VariableType and defines a variable wi
 
 **Extends:** [oval-def:VariableType](oval-definitions-schema.md#VariableType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | value | [oval-def:ValueType](oval-definitions-schema.md#ValueType)  (1..unbounded) |  
 |||  
@@ -472,7 +472,7 @@ The local_variable element extends the VariableType and defines a variable with 
 
 **Extends:** [oval-def:VariableType](oval-definitions-schema.md#VariableType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -481,7 +481,7 @@ The local_variable element extends the VariableType and defines a variable with 
 
 Any value that is pulled directly off the local system is defined by the basic component element. For example, the name of a user or the value of a registry key. Please refer to the definition of the ObjectComponentType for more information. A value can also be obtained from another variable. The variable element identifies a variable id to pull a value(s) from. Please refer to the definition of the VariableComponentType for more information. Literal values can also be specified.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object_component | [oval-def:ObjectComponentType](oval-definitions-schema.md#ObjectComponentType)  (1..1) |  
 |||  
@@ -530,7 +530,7 @@ The VariableComponentType complex type defines a specific value obtained by look
 
 Complex functions have been defined that help determine how to manipulate specific values. These functions can be nested together to form complex statements. Each function is designed to work on a specific type of data. If the data being worked on is not of the correct type, a cast should be attempted before reporting an error. For example, if a concat function includes a registry component that returns an integer, then the integer should be cast as a string in order to work with the concat function. Note that if the operation being applied to the variable by the calling entity is "pattern match", then all the functions are performed before the regular expression is evaluated. In short, the variable would produce a value as normal and then any pattern match operation would be performed. It is also important to note that when using these functions with sub-components that return a collection of values that the operation will be performed on the Cartesian product of the components and the result is also a collection of values. For example, assume a local_variable specifies the arithmetic function with an arithmetic_operation of "add" and has two sub-components under this function: the first component returns "1" and "2", and the second component returns "3" and "4" and "5". The local_variable element would be evaluated to have a collection of six values: 1+3, 1+4, 1+5, 2+3, 2+4, and 2+5. Please refer to the description of a specific function for more details about it.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | arithmetic | [oval-def:ArithmeticFunctionType](oval-definitions-schema.md#ArithmeticFunctionType)  (1..1) |  
 |||  
@@ -567,7 +567,7 @@ Note that if both an integer and float components are used then the result is a 
 
 *	**arithmetic_operation** [oval-def:ArithmeticEnumeration](oval-definitions-schema.md#ArithmeticEnumeration)  (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -580,7 +580,7 @@ The begin function takes a single string component and defines a character (or s
 
 *	**character** xsd:string (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -589,7 +589,7 @@ The begin function takes a single string component and defines a character (or s
 
 The concat function takes two or more components and concatenates them together to form a single string. The first component makes up the beginning of the resulting string and any following components are added to the end it. If one of the components returns multiple values then the concat function would be performed multiple times and the end result would be a collection of values for the local variable. For example assume a local variable has two sub-components: a basic component element returns the values "abc" and "def", and a literal component element that has a value of "xyz". The local_variable element would evaluate to a collection of two values, "abcxyz" and "defxyz". If one of the components does not exist, then the result of the concat operation should be does not exist.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -617,7 +617,7 @@ The end function takes a single string component and defines a character (or str
 
 *	**character** xsd:string (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -628,7 +628,7 @@ The escape_regex function takes a single string component and escapes all of the
 
 Note that when using regular expressions, OVAL supports a common subset of the regular expression character classes, operations, expressions and other lexical tokens defined within Perl 5's regular expression specification. The set of Perl metacharacters which must be escaped by this function is as follows, enclosed by single quotes: '^$\.[](){}*+?|'. For more information on the supported regular expression syntax in OVAL see: http://oval.mitre.org/language/about/re_support_5.6.html.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -641,7 +641,7 @@ The split function takes a single string component and turns it into a collectio
 
 *	**delimiter** xsd:string (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -655,7 +655,7 @@ The substring function takes a single string component and produces a single val
 *	**substring_start** xsd:int (required)  
 *	**substring_length** xsd:int (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -673,7 +673,7 @@ Note that the datatype associated with the components should be 'string' or 'int
 *	**format_1** [oval-def:DateTimeFormatEnumeration](oval-definitions-schema.md#DateTimeFormatEnumeration)  (optional -- default='year_month_day')  
 *	**format_2** [oval-def:DateTimeFormatEnumeration](oval-definitions-schema.md#DateTimeFormatEnumeration)  (optional -- default='year_month_day')  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -692,7 +692,7 @@ Note that when using regular expressions, OVAL supports a common subset of the r
 
 *	**pattern** xsd:string  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -701,7 +701,7 @@ Note that when using regular expressions, OVAL supports a common subset of the r
 
 The unique function takes one or more components and removes any duplicate value from the set of components. All components used in the unique function will be treated as strings. For example, assume that three components exist, one that contains a string value of 'foo', and two of which both resolve to the string value 'bar'. Applying the unique function to these three components resolves to a local_variable with two string values, 'foo' and 'bar'. Additionally, if any of the components referenced by the unique function evaluate to a collection of values, then those values are used in the unique calculation. For example, assume that there are two components, one of which resolves to a single string value, 'foo', the other of which resolves to two string values, 'foo' and 'bar'. If the unique function is used to remove duplicates from these two components, the function will resolve to a local_variable that is a collection of two string values, 'foo' and 'bar'.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -710,7 +710,7 @@ The unique function takes one or more components and removes any duplicate value
 
 The count function takes one or more components and returns the count of all of the values represented by the components. For example, assume that two variables exist, each with a single value. By applying the count function against two variable components that resolve to the two variables, the resulting local_variable would have a value of '2'. Additionally, if any of the components referenced by the count function evaluate to a collection of values, then those values are used in the count calculation. For example, assume that there are two components, one of which resolves to a single value, the other of which resolves to two values. If the count function is used to provide a count of these two components, the function will resolve to a local_variable with the values '3'.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -741,7 +741,7 @@ Also, it is necessary to mention that the glob_to_regex function respects the de
 
 *	**glob_noescape** xsd:boolean (optional -- default='false')  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-def:ComponentGroup](oval-definitions-schema.md#ComponentGroup)  | n/a (1..1) |  
 |||  
@@ -1084,7 +1084,7 @@ Note that when the mask attribute is set to 'true', all child field elements mus
 
 **Extends:** [oval-def:EntityComplexBaseType](oval-definitions-schema.md#EntityComplexBaseType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | field | [oval-def:EntityObjectFieldType](oval-definitions-schema.md#EntityObjectFieldType)  (0..unbounded) |  
 |||  
@@ -1311,7 +1311,7 @@ Note that when the mask attribute is set to 'true', all child field elements mus
 
 **Extends:** [oval-def:EntityStateComplexBaseType](oval-definitions-schema.md#EntityStateComplexBaseType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | field | [oval-def:EntityStateFieldType](oval-definitions-schema.md#EntityStateFieldType)  (0..unbounded) |  
 |||  

@@ -12,7 +12,7 @@ ______________
 
 The evaluation-definition-ids element is the root the Document. Its purpose is to bind together the a set of definition elements.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | definition | [oval:DefinitionIDPattern](oval-common-schema.md#DefinitionIDPattern)  (1..unbounded) |  
 ||<div>Each definition represents the id of a definition to be evaluated.</div>|  

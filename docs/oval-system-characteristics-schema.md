@@ -14,7 +14,7 @@ ______________
 
 The system_characteristics element is the root of an OVAL System Characteristics Document, and must occur exactly once. Its purpose is to bind together the four major sections of a system characteristics file - generator, system_info, collected_objects, and system_data - which are the children of the oval_system_characteristics element.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | generator | [oval:GeneratorType](oval-common-schema.md#GeneratorType)  (1..1) |  
 ||<div>The generator section must be present and provides information about when the system characteristics file was compiled and under what version.</div>|  
@@ -35,7 +35,7 @@ The SystemInfoType complex type specifies general information about the system t
 
 Additional system information is also allowed although it is not part of the official OVAL Schema. Individual organizations can place system information that they feel is important and these will be skipped during the validation. All OVAL really cares about is that the required system information items are there.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | os_name | xsd:string (1..1) |  
 ||<div>The required os_name elements describes the operating system of the machine the data was collected on.</div>|  
@@ -54,7 +54,7 @@ Additional system information is also allowed although it is not part of the off
 
 The InterfacesType complex type is a container for zero or more interface elements. Each interface element is used to describe an existing network interface on the system.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | interface | [oval-sc:InterfaceType](oval-system-characteristics-schema.md#InterfaceType)  (0..unbounded) |  
 ||<div>Please refer to the description of the InterfaceType for more information.</div>|  
@@ -63,7 +63,7 @@ The InterfacesType complex type is a container for zero or more interface elemen
 
 The InterfaceType complex type is used to describe an existing network interface on the system. This information can help identify a specific system on a given network.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | interface_name | xsd:string (1..1) |  
 ||<div>The required interface_name element is the name of the interface</div>|  
@@ -78,7 +78,7 @@ ______________
 
 The CollectedObjectsType complex type states all the objects that have been collected by the system characteristics file. The details of each object are defined by the global OVAL object that is identified by the id.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | object | [oval-sc:ObjectType](oval-system-characteristics-schema.md#ObjectType)  (1..unbounded) |  
 |||  
@@ -107,7 +107,7 @@ The required flag attribute holds information regarding the outcome of the data 
 *	**comment** xsd:string (optional)  
 *	**flag** [oval-sc:FlagEnumeration](oval-system-characteristics-schema.md#FlagEnumeration)  (required)  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | message | [oval:MessageType](oval-common-schema.md#MessageType)  (0..unbounded) |  
 ||<div>The optional message element holds an error message or some other string that the data collection engine wishes to pass along.</div>|  
@@ -140,7 +140,7 @@ ______________
 
 The SystemDataType complex type is a container for one or more item elements. Each item defines a specific piece of data on the system.
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | [oval-sc:item](oval-system-characteristics-schema.md#item)  | n/a (1..unbounded) |  
 |||  
@@ -166,7 +166,7 @@ In some cases, when an item for a specified object does not exist, it may be ben
 *	**id** [oval:ItemIDPattern](oval-common-schema.md#ItemIDPattern)  (required)  
 *	**status** [oval-sc:StatusEnumeration](oval-system-characteristics-schema.md#StatusEnumeration)  (optional -- default='exists')  
   
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | message | [oval:MessageType](oval-common-schema.md#MessageType)  (0..50) |  
 |||  
@@ -341,7 +341,7 @@ Note that when the mask attribute is set to 'true', all child field elements mus
 
 **Extends:** [oval-sc:EntityItemComplexBaseType](oval-system-characteristics-schema.md#EntityItemComplexBaseType) 
 
-| Child<Elements | Type (MinOccurs..MaxOccurs) |  
+| Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | field | [oval-sc:EntityItemFieldType](oval-system-characteristics-schema.md#EntityItemFieldType)  (0..unbounded) |  
 |||  
