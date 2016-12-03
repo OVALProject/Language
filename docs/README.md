@@ -1,4 +1,4 @@
-# Schema Documentation for OVAL [5.11.2]
+# Schema Documentation for OVAL 5.11.2
 
 This is an index page for quick reference to generated schema documentation. For more information
 about the Open Vulnerability and Assessment Language (OVAL) language, or to raise an issue concerning the language
