@@ -334,7 +334,7 @@ The pwpolicy59_item holds the password policy information for a particular user 
 | Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
 | target_user | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
-||<div>The target_user element specifies the user whose password policy information was collected.</div>|  
+||<div>The target_user element specifies the user whose password policy information was collected. If xsi:nil="true", the item specifies the global policy.</div>|  
 | username | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The username element specifies the username of the authenticator.</div>|  
 | userpass | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  

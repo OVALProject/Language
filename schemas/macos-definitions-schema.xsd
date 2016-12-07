@@ -2000,9 +2000,9 @@
                                     <xsd:choice>
                                           <xsd:element ref="oval-def:set"/>
                                           <xsd:sequence>
-                                                <xsd:element name="target_user" type="oval-def:EntityObjectStringType">
+                                                <xsd:element name="target_user" type="oval-def:EntityObjectStringType" nillable="true">
                                                       <xsd:annotation>
-                                                            <xsd:documentation>The target_user element specifies the user whose password policy information should be collected. If an operation other than equals is specified, the users on the system should be enumerated and the 'pwpolicy' command should be issued for each user that matches the target_user element.</xsd:documentation>
+                                                            <xsd:documentation>The target_user element specifies the user whose password policy information should be collected. If an operation other than equals is specified, the users on the system should be enumerated and the 'pwpolicy' command should be issued for each user that matches the target_user element. If the xsi:nil attribute is set to true, the global policy should be retrieved.</xsd:documentation>
                                                       </xsd:annotation>
                                                 </xsd:element>
                                                 <xsd:element name="username" type="oval-def:EntityObjectStringType" nillable="true">

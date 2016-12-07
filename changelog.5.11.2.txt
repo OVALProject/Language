@@ -71,5 +71,8 @@ Add a way to retrieve the expanded value of a REG_EXPAND_SZ. Issue #280.
 Platform schema versions should use a minimum base schema version prefix. Issue #281.
 MacOS:pwpolicy59_object schematron update. Issue #282.
 Implement SPAWAR change proposal for win-def:userright_test. Issue #283.
+Add missing evaluation-ids.xsd schema. Issue #284.
+Replace MITRE attributions with OVAL Community attributions. Issue #285.
+Make pwpolicy59_test/target_user nillable. Issue #286.
 Added this changelog document.
 Added schema documentation markdown and tools for generation of the same.

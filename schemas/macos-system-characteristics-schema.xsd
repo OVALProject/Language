@@ -684,9 +684,9 @@
                <xsd:complexContent>
                     <xsd:extension base="oval-sc:ItemType">
                          <xsd:sequence>
-                              <xsd:element name="target_user" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="target_user" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1" nillable="true">
                                    <xsd:annotation>
-                                        <xsd:documentation>The target_user element specifies the user whose password policy information was collected.</xsd:documentation>
+                                        <xsd:documentation>The target_user element specifies the user whose password policy information was collected. If xsi:nil="true", the item specifies the global policy.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="username" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1" nillable="true">
