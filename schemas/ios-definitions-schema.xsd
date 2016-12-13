@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios" elementFormDefault="qualified" version="5.11">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+            xmlns:ios-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios"
+            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios"
+            elementFormDefault="qualified" version="5.11">
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
       <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
       <xsd:annotation>
             <xsd:documentation>The following is a description of the elements, types, and attributes that compose the IOS specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
-            <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+            <xsd:documentation>The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
             <xsd:appinfo>
                   <schema>IOS Definition</schema>
                   <version>5.11.1:1.2</version>
-                  <date>4/22/2015 09:00:00 AM</date>
-                  <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
-                   <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+                  <date>11/30/2016 09:00:00 AM</date>
+                  <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+                  <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                   <sch:ns prefix="ios-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#ios"/>
                   <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
             </xsd:appinfo>
@@ -535,7 +541,7 @@
                                                 <xsd:documentation>The uRPF command under the interface.</xsd:documentation>
                                                 <xsd:appinfo>
                                                       <oval:deprecated_info>
-                                                            <oval:version>5.11.1:1.1</oval:version>
+                                                            <oval:version>5.11.2:1.0</oval:version>
                                                             <oval:reason>This entity has been deprecated because it was replaced by the ipv4_urpf_command and ipv6_urpf_command entities.</oval:reason>
                                                       </oval:deprecated_info>
                                                       <sch:pattern id="ios-def_interfaceste_urpf_command_dep">
@@ -2127,7 +2133,7 @@
                              <xsd:annotation>
                                   <xsd:appinfo>
                                        <oval:deprecated_info>
-                                            <oval:version>5.11.1:1.2</oval:version>
+                                            <oval:version>5.11.2:1.0</oval:version>
                                             <oval:reason>The EntityStateSimpleBaseType check_existence attribute serves the same purpose as this enumeration value.</oval:reason>
                                             <oval:comment>This AccessListUseType enumeration value has been deprecated and may be removed in a future version of the language.</oval:comment>
                                        </oval:deprecated_info>
@@ -2161,7 +2167,7 @@
                              <xsd:annotation>
                                   <xsd:appinfo>
                                        <oval:deprecated_info>
-                                            <oval:version>5.11.1:1.2</oval:version>
+                                            <oval:version>5.11.2:1.0</oval:version>
                                             <oval:reason>The NULL authentication area type is never declared in an interface ip ospf command context.</oval:reason>
                                             <oval:comment>This RoutingAuthTypeStringType enumeration value has been deprecated and may be removed in a future version of the language.</oval:comment>
                                        </oval:deprecated_info>

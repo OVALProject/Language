@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix" elementFormDefault="qualified" version="5.11">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:unix-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix"
+            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix"
+            elementFormDefault="qualified" version="5.11">
      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
      <xsd:annotation>
           <xsd:documentation>The following is a description of the elements, types, and attributes that compose the UNIX specific system characteristic items found in Open Vulnerability and Assessment Language (OVAL). Each item is an extension of the standard item element defined in the Core System Characteristic Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL Items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core System Characteristic Schema is not outlined here.</xsd:documentation>
-          <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+          <xsd:documentation>The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Unix System Characteristics</schema>
-               <version>5.11.1:1.1</version>
-               <date>4/22/2015 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <version>5.11.1:1.2</version>
+               <date>11/30/2016 09:00:00 AM</date>
+                <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="unix-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#unix"/>
               <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -81,6 +87,13 @@
                               <xsd:element name="group_id" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>This is the group owner of the file, by group number.</xsd:documentation>
+                                        <xsd:appinfo>
+                                              <sch:pattern id="unix-sc_file_gid">
+                                                    <sch:rule context="unix-sc:file_item/unix-sc:group_id">
+                                                          <sch:assert test="string-length(.) = 0 or number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of group_id must be greater than zero</sch:assert>
+                                                    </sch:rule>
+                                              </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                                    <xsd:complexType>
                                         <xsd:simpleContent>
@@ -100,6 +113,13 @@
                               <xsd:element name="user_id" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The numeric user id, or uid, is the third column of each user's entry in /etc/passwd. This element represents the owner of the file.</xsd:documentation>
+                                        <xsd:appinfo>
+                                              <sch:pattern id="unix-sc_file_uid">
+                                                    <sch:rule context="unix-sc:file_item/unix-sc:user_id">
+                                                          <sch:assert test="string-length(.) = 0 or number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of user_id must be greater than zero</sch:assert>
+                                                    </sch:rule>
+                                              </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                                    <xsd:complexType>
                                         <xsd:simpleContent>
@@ -684,7 +704,7 @@
                                         <xsd:documentation>An effective capability associated with the process. See linux/include/linux/capability.h for more information.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="selinux_domain_label" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                              <xsd:element name="selinux_domain_label" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>An selinux domain label associated with the process.</xsd:documentation>
                                    </xsd:annotation>
@@ -909,7 +929,7 @@
                               </xsd:element>
                               <xsd:element name="chg_req" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This describes how long a user can keep a password before the system forces her to change it.</xsd:documentation>
+                                        <xsd:documentation>This describes how long the user can keep a password before the system forces them to change it.</xsd:documentation>
                                    </xsd:annotation>
                                    <xsd:complexType>
                                         <xsd:simpleContent>
@@ -983,10 +1003,24 @@
                                         </xsd:simpleContent>
                                    </xsd:complexType>
                               </xsd:element>
-                              <xsd:element name="flag" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="flag" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This is a reserved field that the shadow file may use in the future.</xsd:documentation>
+                                        <xsd:documentation>This is a numeric reserved field that the shadow file may use in the future.</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="string">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="string"/>
+                                                                 <xsd:enumeration value="int"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="encrypt_method" type="unix-sc:EntityItemEncryptMethodType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
@@ -1152,9 +1186,9 @@
                                         <xsd:documentation>The socket_type entity specifies the type of socket that is used by the service.  Possible values include: stream, dgram, raw, or seqpacket.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="type" type="unix-sc:EntityItemXinetdTypeStatusType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="type" type="unix-sc:EntityItemXinetdTypeStatusType" minOccurs="0" maxOccurs="unbounded">
                                    <xsd:annotation>
-                                        <xsd:documentation>The type entity specifies the type of the service.</xsd:documentation>
+                                        <xsd:documentation>The type entity specifies the type of the service. A service may have multiple types.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="user" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">

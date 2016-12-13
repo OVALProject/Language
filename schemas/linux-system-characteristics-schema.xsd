@@ -1,20 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux" elementFormDefault="qualified" version="5.11">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+            xmlns:linux-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux"
+            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux"
+            elementFormDefault="qualified" version="5.11">
      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
-     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>     
+     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
      <xsd:annotation>
           <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Linux specific system characteristic items found in Open Vulnerability and Assessment Language (OVAL). Each item is an extension of the standard item element defined in the Core System Characteristic Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL Items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core System Characteristic Schema is not outlined here.</xsd:documentation>
-          <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+          <xsd:documentation>The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Linux System Characteristics</schema>
-               <version>5.11.1:1.1</version>
-               <date>4/22/2015 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <version>5.11.1:1.2</version>
+               <date>11/30/2016 09:00:00 AM</date>
+               <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="linux-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux"/>
               <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
           </xsd:appinfo>
      </xsd:annotation>
+     <!-- =============================================================================== -->
+     <!-- =========================  SUSE APPARMOR STATUS ITEM  ========================= -->
+     <!-- =============================================================================== -->
+     <xsd:element name="apparmorstatus_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>The AppArmor Status Item displays various information about the current AppArmor policy.  This item maps the counts of profiles and processes as per the results of the "apparmor_status" or "aa-status" command.  Each item extends the standard ItemType as defined in the oval-system-characteristics-schema and one should refer to the ItemType description for more information.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="loaded_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of loaded profiles</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="enforce_mode_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of profiles in enforce mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="complain_mode_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of profiles in complain mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="processes_with_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes which have profiles defined</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="enforce_mode_processes_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes in enforce mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="complain_mode_processes_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes in complain mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="unconfined_processes_with_profiles_count" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes which are unconfined but have a profile defined</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
      <!-- =============================================================================== -->
      <!-- ==============================  DPKG INFO ITEM  =============================== -->
      <!-- =============================================================================== -->
@@ -275,17 +332,27 @@
                               </xsd:element>
                               <xsd:element name="total_space" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The total_space element contains an integer that represents the total number of blocks on a partition.</xsd:documentation>
+                                        <xsd:documentation>The total_space element contains an integer that represents the total number of physical blocks on a partition.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="space_used" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The space_used element contains an integer that represents the number of blocks used on a partition.</xsd:documentation>
+                                        <xsd:documentation>The space_used element contains an integer that represents the number of physical blocks used on a partition.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="space_left" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The space_left element contains an integer that represents the number of blocks left on a partition.</xsd:documentation>
+                                        <xsd:documentation>The space_left element contains an integer that represents the number of physical blocks left on a partition available to be used by privileged users.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="space_left_for_unprivileged_users" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The space_left_for_unprivileged_users element contains an integer that represents the number of physical blocks remaining on a partition that are available to be used by unprivileged users.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="block_size" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The block_size element contains an integer representing the actual byte size of each physical block on the partition's block device. This is the same block size used to compute the total_space, space_used, and space_left.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
@@ -328,9 +395,9 @@
                                                                  <xsd:enumeration value="int"/>
                                                             </xsd:restriction>
                                                        </xsd:simpleType>
-                                                  </xsd:attribute>                                                  
+                                                  </xsd:attribute>
                                              </xsd:restriction>
-                                        </xsd:simpleContent>                                        
+                                        </xsd:simpleContent>
                                    </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="release" minOccurs="0" maxOccurs="1">
@@ -347,9 +414,9 @@
                                                                  <xsd:enumeration value="version"/>
                                                             </xsd:restriction>
                                                        </xsd:simpleType>
-                                                  </xsd:attribute>                                                  
+                                                  </xsd:attribute>
                                              </xsd:restriction>
-                                        </xsd:simpleContent>                                        
+                                        </xsd:simpleContent>
                                    </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="version" minOccurs="0" maxOccurs="1">
@@ -366,10 +433,10 @@
                                                                  <xsd:enumeration value="version"/>
                                                             </xsd:restriction>
                                                        </xsd:simpleType>
-                                                  </xsd:attribute>                                                  
+                                                  </xsd:attribute>
                                              </xsd:restriction>
-                                        </xsd:simpleContent>                                        
-                                   </xsd:complexType>                                   
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="evr" type="oval-sc:EntityItemEVRStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
@@ -383,7 +450,7 @@
                               </xsd:element>
                               <xsd:element name="extended_name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This represents the name, epoch, version, release, and architecture fields as a single version string. It has the form "NAME-EPOCH:VERSION-RELEASE.ARCHITECTURE". Note that a null epoch (or '(none)' as returned by rpm) is equivalent to '0' and would hence have the form NAME-0:VERSION-RELEASE.ARCHITECTURE.</xsd:documentation>
+                                        <xsd:documentation>This represents the name, epoch, version, release, and architecture fields as a single version string. It has the form "NAME-EPOCH:VERSION-RELEASE.ARCHITECTURE". Note that a null epoch (or '(none)' as returned by rpm) is equivalent to '0' and would hence have the form NAME-0:VERSION-RELEASE.ARCHITECTURE. The 'gpg-pubkey' virtual package on RedHat and CentOS should use the string '(none)' for the architecture to construct the extended_name.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="filepath" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
@@ -412,7 +479,7 @@
                          <sch:rule context="linux-sc:rpmverify_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -788,7 +855,7 @@
                                    <xsd:annotation>
                                         <xsd:documentation>The verification_script_successful entity indicates whether or not the verification script executed successfully. If the verification script is not executed, due to the 'noscripts' behavior, this entity must not be collected.</xsd:documentation>
                                    </xsd:annotation>
-                              </xsd:element>                              
+                              </xsd:element>
                               <xsd:element name="signature_check_passed" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The signature_check_passed entity indicates whether or not the verification of the package or header signatures passed. If the signature check is not performed, due to the 'nosignature' behavior, this entity must not be collected.</xsd:documentation>
@@ -949,10 +1016,24 @@
                                         <xsd:documentation>This is the pakage name to check.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="version" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>This is the version number of the pakage.</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="string">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="string"/>
+                                                                 <xsd:enumeration value="version"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="architecture" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>

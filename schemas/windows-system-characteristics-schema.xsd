@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows" elementFormDefault="qualified" version="5.11">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:win-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"
+            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"
+            elementFormDefault="qualified" version="5.11">
+     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" schemaLocation="oval-system-characteristics-schema.xsd"/>
      <xsd:annotation>
           <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Windows specific system characteristic items found in Open Vulnerability and Assessment Language (OVAL). Each item is an extension of the standard item element defined in the Core System Characteristic Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL Items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core System Characteristic Schema is not outlined here.</xsd:documentation>
-          <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+          <xsd:documentation>The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Windows System Characteristics</schema>
-               <version>5.11.1:1.1</version>
-               <date>4/22/2015 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <version>5.11.1:1.2</version>
+               <date>11/30/2016 09:00:00 AM</date>
+                <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
                <sch:ns prefix="win-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows"/>
               <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -23,14 +30,14 @@
                <xsd:appinfo>
                     <oval:deprecated_info>
                          <oval:version>5.11</oval:version>
-                         <oval:reason>Replaced by the userrights_item. The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used. See the userrights_item.</oval:reason>
+                         <oval:reason>Replaced by the userright_item. The accesstoken_test suffers from scalability issues when run on a domain controller and should not be used. See the userright_item.</oval:reason>
                          <oval:comment>This object has been deprecated and may be removed in a future version of the language.</oval:comment>
                     </oval:deprecated_info>
                     <sch:pattern id="win-sc_accesstoken_item_dep">
                          <sch:rule context="win-sc:accesstoken_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -279,6 +286,18 @@
           <xsd:annotation>
                <xsd:documentation>The active directory item holds information about specific entries in the Windows Active Directory. It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.</xsd:documentation>
                <xsd:documentation>Note that this ite supports only simple (string based) value collection. For more complex values see the activedirectory57_item.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:deprecated_info>
+                         <oval:version>5.11.2</oval:version>
+                         <oval:reason>Use the original activedirectory_item. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.</oval:reason>
+                         <oval:comment>This object has been deprecated and may be removed in a future version of the language.</oval:comment>
+                    </oval:deprecated_info>
+                    <sch:pattern id="win-sc_activedirectory57_item_dep">
+                         <sch:rule context="win-sc:activedirectory57_item">
+                              <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
+                         </sch:rule>
+                    </sch:pattern>
+               </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
                <xsd:complexContent>
@@ -753,6 +772,26 @@
                                         <xsd:documentation>Audit the events that indicate that the integrity security subsystem has been violated. This state corresponds with the following GUID specified in ntsecapi.h: 0cce9212-69ae-11d9-bed3-505054503030. This state corresponds with the following Advanced Audit Policy: System: Audit System Integrity</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
+                              <xsd:element name="group_membership" type="win-sc:EntityItemAuditType" minOccurs="0">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This subcategory audits the group membership of a token for an associated log on. This state corresponds with the following GUID specified in ntsecapi.h: 0cce9249-69ae-11d9-bed3-505054503030.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="pnp_activity" type="win-sc:EntityItemAuditType" minOccurs="0">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This subcategory audits events generated by plug and play (PNP). This state corresponds with the following GUID specified in ntsecapi.h: 0cce9248-69ae-11d9-bed3-505054503030.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="user_device_claims" type="win-sc:EntityItemAuditType" minOccurs="0">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This subcategory audits the user and device claims that are present in the token of an associated logon. This state corresponds with the following GUID specified in ntsecapi.h: 0cce9247-69ae-11d9-bed3-505054503030.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="audit_detailedtracking_tokenrightadjusted" type="win-sc:EntityItemAuditType" minOccurs="0">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This subcategory audits when token privileges are enabled or disabled for a specific account’s token. This state corresponds with the following GUID specified in ntsecapi.h: 0cce924a-69ae-11d9-bed3-505054503030.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
@@ -769,7 +808,6 @@
                <xsd:complexContent>
                     <xsd:extension base="oval-sc:ItemType">
                          <xsd:sequence>
-                              
                               <xsd:element name="module_name" type="oval-sc:EntityItemStringType" nillable="true" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>The name of the module that contains the cmdlet.</xsd:documentation>
@@ -804,7 +842,7 @@
                                                        <sch:assert test="@datatype='record'"><sch:value-of select="../@id"/> - datatype attribute for the parameters entity of a cmdlet_item must be 'record'</sch:assert>
                                                   </sch:rule>
                                              </sch:pattern>
-                                        </xsd:appinfo>                                       
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="select" type="oval-sc:EntityItemRecordType" nillable="true" minOccurs="0" maxOccurs="1">
@@ -830,7 +868,7 @@
                                              </sch:pattern>
                                         </xsd:appinfo>
                                    </xsd:annotation>
-                              </xsd:element>                              
+                              </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
@@ -930,7 +968,12 @@
                               </xsd:element>
                               <xsd:element name="type" type="win-sc:EntityItemFileTypeType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The type child element marks wether the file item describes a directory, named pipe, standard file, etc. These types are the return values for GetFileType, with the exception of FILE_ATTRIBUTE_DIRECTORY which is obtained by looking at GetFileAttributesEx.</xsd:documentation>
+                                        <xsd:documentation>The type child element marks whether the file item describes a named pipe, standard file, etc. These types are the return values for GetFileType. For directories, this element must have a status of 'does not exist'.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="attribute" type="win-sc:EntityItemFileAttributeType" minOccurs="0" maxOccurs="unbounded">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The attribute child elements denote the Windows file attributes associated with the file. These types are the return values for GetFileAttributes.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="development_class" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
@@ -963,10 +1006,24 @@
                                         <xsd:documentation>This entity defines the product name held within the version-information structure.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="product_version" type="oval-sc:EntityItemVersionType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="product_version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This entity defines the product version held within the version-information structure.</xsd:documentation>
+                                        <xsd:documentation>This entity defines the product version held within the version-information structure. This may not necessarily be a string compatible with the OVAL version datatype, in which case the string datatype should be used.</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-sc:EntityItemAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="version">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="version"/>
+                                                                 <xsd:enumeration value="string"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
                                    <xsd:annotation>
@@ -1300,7 +1357,7 @@
                          <sch:rule context="win-sc:group_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -1354,7 +1411,7 @@
                                         <xsd:annotation>
                                              <xsd:documentation>A string that represents the SID of a particular subgroup. If the specified group has more than one subgroup as a member, then multiple subgroup_sid entities should exist. If the specified group does not contain a single subgroup, a single subgroup_sid entity should exist with a status of 'does not exist'. If there is an error determining the subgroups that are members of the group, then a single subgroup_sid entity should be included with a status of 'error'.</xsd:documentation>
                                         </xsd:annotation>
-                                   </xsd:element>                                   
+                                   </xsd:element>
                              </xsd:sequence>
                        </xsd:extension>
                  </xsd:complexContent>
@@ -1417,6 +1474,37 @@
           </xsd:complexType>
      </xsd:element>
      <!-- =============================================================================== -->
+     <!-- ===============================  JUNCTION ITEM  =============================== -->
+     <!-- =============================================================================== -->
+     <xsd:element name="junction_item" substitutionGroup="oval-sc:item">
+          <xsd:annotation>
+               <xsd:documentation>The junction_item element identifies the result generated for a junction_object.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-sc:ItemType">
+                         <xsd:sequence>
+                              <xsd:element name="path" type="oval-sc:EntityItemStringType" minOccurs="1" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Specifies the path to the subject junction, specified by the junction_object.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="canonical_path" type="oval-sc:EntityItemStringType" minOccurs="1" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Specifies the canonical path for the target of the Windows junction specified by the path.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The windows view value from which this OVAL Item was collected. This is used to indicate from which view (32-bit or 64-bit), the associated Item was collected. A value of '32_bit' indicates the Item was collected from the 32-bit view.  A value of '64-bit' indicates the Item was collected from the 64-bit view. Omitting this entity removes any assertion about which view the Item was collected from, and therefore it is strongly suggested that this entity be set.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <!-- =============================================================================== -->
      <!-- ===============================  LICENSE ITEM  ================================ -->
      <!-- =============================================================================== -->
      <xsd:element name="license_item" substitutionGroup="oval-sc:item">
@@ -1461,11 +1549,25 @@
                               <xsd:element name="force_logoff" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>Specifies, in seconds (from a DWORD), the amount of time between the end of the valid logon time and the time when the user is forced to log off the network.  A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the user is never forced to log off. A value of zero indicates that the user will be forced to log off immediately when the valid logon time expires. See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
+                                        <xsd:appinfo>
+                                              <sch:pattern id="win-sc_lpi_fl">
+                                                    <sch:rule context="win-sc:lockoutpolicy_item/win-sc:force_logoff">
+                                                          <sch:assert test="string-length(.) = 0 or number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of force_logoff must be greater than or equal to zero</sch:assert>
+                                                    </sch:rule>
+                                              </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="lockout_duration" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>Specifies, in seconds, how long a locked account remains locked before it is automatically unlocked. See the USER_MODALS_INFO_3 structure returned by a call to NetUserModalsGet().</xsd:documentation>
+                                        <xsd:appinfo>
+                                              <sch:pattern id="win-sc_lpi_ld">
+                                                    <sch:rule context="win-sc:lockoutpolicy_item/win-sc:lockout_duration">
+                                                          <sch:assert test="string-length(.) = 0 or number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of lockout_duration must be greater than or equal to zero</sch:assert>
+                                                    </sch:rule>
+                                              </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="lockout_observation_window" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -1643,6 +1745,13 @@
                               <xsd:element name="max_passwd_age" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>Specifies, in seconds (from a DWORD), the maximum allowable password age.  A value of TIMEQ_FOREVER (max DWORD value, 4294967295) indicates that the password never expires. The minimum valid value for this element is ONE_DAY (86400).  See the USER_MODALS_INFO_0 structure returned by a call to NetUserModalsGet().</xsd:documentation>
+                                        <xsd:appinfo>
+                                              <sch:pattern id="win-sc_pwp_mpa">
+                                                    <sch:rule context="win-sc:passwordpolicy_item/win-sc:max_passwd_age">
+                                                          <sch:assert test="number(.) &lt; 0"><sch:value-of select="../@id"/> - the value of max_passwd_age must be greater than or equal to zero</sch:assert>
+                                                    </sch:rule>
+                                              </sch:pattern>
+                                        </xsd:appinfo>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="min_passwd_age" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
@@ -1668,6 +1777,11 @@
                               <xsd:element name="reversible_encryption" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>Determines whether or not passwords are stored using reversible encryption.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="anonymous_name_lookup" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Determines whether or not an anonymous user may query the local LSA policy.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
@@ -1778,7 +1892,7 @@
                               </xsd:element>
                               <xsd:element name="image_file_32bit_machine" type="oval-sc:EntityItemBoolType" default="false" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The image_file_32bit_machine entity is a boolean value that specifies that the computer supports 32-bit words.</xsd:documentation>                                        
+                                        <xsd:documentation>The image_file_32bit_machine entity is a boolean value that specifies that the computer supports 32-bit words.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="image_file_debug_stripped" type="oval-sc:EntityItemBoolType" default="false" minOccurs="0" maxOccurs="1">
@@ -1961,6 +2075,11 @@
                                         <xsd:documentation>The real_number_of_directory_entries entity is the real number of data directory entries in the remainder of the optional header calculated by enumerating the directory entries.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
+                              <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The windows view value from which this OVAL Item was collected. This is used to indicate from which view (32-bit or 64-bit), the associated Item was collected. A value of '32_bit' indicates the Item was collected from the 32-bit view.  A value of '64-bit' indicates the Item was collected from the 64-bit view. Omitting this entity removes any assertion about which view the Item was collected from, and therefore it is strongly suggested that this entity be set.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
@@ -2134,9 +2253,9 @@
                                         <xsd:documentation>The id given to the parent of the process that is created for the specified command line</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="priority" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="priority" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The base priority of the process.</xsd:documentation>
+                                        <xsd:documentation>The base priority of the process. The priority value range is from 0 to 31.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="image_path" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
@@ -2212,7 +2331,12 @@
                               </xsd:element>
                               <xsd:element name="value" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="unbounded">
                                    <xsd:annotation>
-                                        <xsd:documentation>The value entity holds the actual value of the specified registry key. The representation of the value as well as the associated datatype attribute depends on type of data stored in the registry key. If the value being tested is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD, REG_QWORD, REG_DWORD_LITTLE_ENDIAN, REG_DWORD_BIG_ENDIAN, or REG_QWORD_LITTLE_ENDIAN then the datatype attribute should be set to 'int' and the value entity should represent the data as an unsigned integer. DWORD and QWORD values represnt unsigned 32-bit and 64-bit integers, respectively. If the value being tested is of type REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity.  If the value being tested is of type REG_MULTI_SZ, then only a single string (one of the multiple strings) should be tested using the value entity with the datatype attribute set to 'string'. In order to test multiple values, multiple OVAL registry tests should be used.  If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.  If the value being tested is of type REG_LINK, then the datatype attribute should be set to 'string' and the null-terminated Unicode string should be represented by the value entity.</xsd:documentation>
+                                        <xsd:documentation>The value entity holds the actual value of the specified registry key. The representation of the value as well as the associated datatype attribute depends on type of data stored in the registry key. If the value being tested is of type REG_BINARY, then the datatype attribute should be set to 'binary' and the data represented by the value entity should follow the xsd:hexBinary form. (each binary octet is encoded as two hex digits) If the value being tested is of type REG_DWORD, REG_QWORD, REG_DWORD_LITTLE_ENDIAN, REG_DWORD_BIG_ENDIAN, or REG_QWORD_LITTLE_ENDIAN then the datatype attribute should be set to 'int' and the value entity should represent the data as an unsigned integer. DWORD and QWORD values represnt unsigned 32-bit and 64-bit integers, respectively. If the value being tested is of type REG_EXPAND_SZ, then the datatype attribute should be set to 'string' and the pre-expanded string should be represented by the value entity.  If the value being tested is of type REG_MULTI_SZ, then only a single string (one of the multiple strings) should be tested using the value entity with the datatype attribute set to 'string'. In order to test multiple values, multiple OVAL registry tests or multiple states should be combined. Reg_multi_sz values, with no values, should be given a status of "does not exist". If the specified registry key is of type REG_SZ, then the datatype should be 'string' and the value entity should be a copy of the string.  If the value being tested is of type REG_LINK, then the datatype attribute should be set to 'string' and the null-terminated Unicode string should be represented by the value entity.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="expanded_value" type="oval-sc:EntityItemAnySimpleType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>For registry values of type REG_EXPAND_SZ, this entity contains the expanded value. Otherwise, it should not exist.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="windows_view" type="win-sc:EntityItemWindowsViewType" minOccurs="0">
@@ -3123,7 +3247,7 @@
                          <sch:rule context="win-sc:user_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -3148,9 +3272,79 @@
                               </xsd:element>
                               <xsd:element name="last_logon" type="oval-sc:EntityItemIntType" minOccurs="0">
                                    <xsd:annotation>
-                                        <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
-                                   </xsd:annotation>                                          
-                              </xsd:element>                              
+                                        <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT. If the target system is a domain controller, this data is maintained separately on each backup domain controller (BDC) in the domain. To obtain an accurate value, you must query each BDC in the domain. The last logoff occurred at the time indicated by the largest retrieved value. </xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="full_name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>A Unicode string that contains the full name of the user. This string can be a NULL string, or it can have any number of characters before the terminating null character.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="comment" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>A Unicode string that contains a comment to associate with the user account. The string can be a NULL string, or it can have any number of characters before the terminating null character.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="password_age_days" type="oval-sc:EntityItemIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The number of full days that have elapsed since the password was last changed, meaning data calulated should be truncated. Ex: 89.5 days = 89, 90.01 = 90</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="lockout" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The account is currently locked out.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="passwd_notreqd" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>No password is required.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="dont_expire_passwd" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The password should never expire on the account.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="encrypted_text_password_allowed" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The user's password is stored under reversible encryption in the Active Directory.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="not_delegated" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Marks the account as "sensitive"; other users cannot act as delegates of this user account.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="use_des_key_only" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Restrict this principal to use only Data Encryption Standard (DES) encryption types for keys.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="dont_require_preauth" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>This account does not require Kerberos preauthentication for logon.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="password_expired" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The password expiration information. Zero if the password has not expired (and nonzero if it has).</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="smartcard_required" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Requires the user to log on to the user account with a smart card.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="trusted_for_delegation" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The account is enabled for delegation. This is a security-sensitive setting; accounts with this option enabled should be tightly controlled. This setting allows a service running under the account to assume a client's identity and authenticate as that user to other remote servers on the network.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="trusted_to_authenticate_for_delegation" type="oval-sc:EntityItemBoolType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The account is trusted to authenticate a user outside of the Kerberos security package and delegate that user through constrained delegation. This is a security-sensitive setting; accounts with this option enabled should be tightly controlled. This setting allows a service running under the account to assert a client's identity and authenticate as that user to specifically configured services on the network. Windows 2000: This value is not supported.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
                          </xsd:sequence>
                     </xsd:extension>
                </xsd:complexContent>
@@ -3185,7 +3379,7 @@
                                   <xsd:element name="last_logon" type="oval-sc:EntityItemIntType" minOccurs="0">
                                        <xsd:annotation>
                                             <xsd:documentation>The date and time when the last logon occurred. This value is stored as the number of seconds that have elapsed since 00:00:00, January 1, 1970, GMT.</xsd:documentation>
-                                       </xsd:annotation>                                          
+                                       </xsd:annotation>
                                   </xsd:element>
                              </xsd:sequence>
                        </xsd:extension>
@@ -3198,7 +3392,7 @@
      <xsd:element name="userright_item" substitutionGroup="oval-sc:item">
           <xsd:complexType>
                <xsd:annotation>
-                    <xsd:documentation>The userright_item allows SIDs that have been granted a user right/privilege to be collected.</xsd:documentation>
+                    <xsd:documentation>The userright_item is used to specify a trustee name and corresponding SID that has been granted a user right/privilege.</xsd:documentation>
                </xsd:annotation>
                <xsd:complexContent>
                     <xsd:extension base="oval-sc:ItemType">
@@ -3208,9 +3402,14 @@
                                         <xsd:documentation>The userright entity holds a string that represents the name of a particular user right/privilege.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="trustee_sid" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="unbounded">
+                              <xsd:element name="trustee_name" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The trustee_sid element identifies the SID that has been granted the specified user right/privilege. The trustee_sid element can be included multiple times in a system characteristic item in order to record that a user right/privilege has been granted to a number of SIDs. Note that the entity_check attribute associated with EntityStateStringType guides the evaluation of entities like trustee_sid that refer to items that can occur an unbounded number of times.</xsd:documentation>
+                                        <xsd:documentation>The trustee_name entity is the unique name associated with the SID that has been granted the specified user right/privilege. A trustee can be a user, group, or program (such as a Windows service). In Windows, trustee names are case-insensitive. As a result, it is recommended that the case-insensitive operations are used for this entity. In a domain environment, trustee names should be identified in the form: "domain\trustee name". For local trustee names use: "computer name\trustee name". For built-in accounts on the system, use the trustee name without a domain.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="trustee_sid" type="oval-sc:EntityItemStringType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The trustee_sid entity identifies the SID that has been granted the specified user right/privilege.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
@@ -3380,7 +3579,7 @@
                          <sch:rule context="win-sc:wmi_item">
                               <sch:report test="true()">DEPRECATED ITEM: <sch:value-of select="name()"/> ID: <sch:value-of select="@id"/></sch:report>
                          </sch:rule>
-                    </sch:pattern>                        
+                    </sch:pattern>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:complexType>
@@ -3761,11 +3960,6 @@
           </xsd:annotation>
           <xsd:simpleContent>
                <xsd:restriction base="oval-sc:EntityItemStringType">
-                    <xsd:enumeration value="FILE_ATTRIBUTE_DIRECTORY">
-                         <xsd:annotation>
-                              <xsd:documentation>The handle identifies a directory.</xsd:documentation>
-                         </xsd:annotation>
-                    </xsd:enumeration>
                     <xsd:enumeration value="FILE_TYPE_CHAR">
                          <xsd:annotation>
                               <xsd:documentation>The specified file is a character file, typically an LPT device or a console.</xsd:documentation>
@@ -3795,6 +3989,102 @@
                          <xsd:annotation>
                               <xsd:documentation>The empty string value is permitted here to allow for detailed error reporting.</xsd:documentation>
                          </xsd:annotation>
+                    </xsd:enumeration>
+               </xsd:restriction>
+          </xsd:simpleContent>
+     </xsd:complexType>
+     <xsd:complexType name="EntityItemFileAttributeType">
+          <xsd:annotation>
+               <xsd:documentation>The EntityItemFileAttributeType restricts a string value to a specific set of values that describe the different Windows file attributes. The empty string is also allowed to support empty elements associated with error conditions.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:simpleContent>
+               <xsd:restriction base="oval-sc:EntityItemStringType">
+                    <xsd:enumeration value="FILE_ATTRIBUTE_ARCHIVE">
+                        <xsd:annotation>
+                             <xsd:documentation>A file or directory that is an archive file or directory. Applications typically use this attribute to mark files for backup or removal.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_COMPRESSED">
+                        <xsd:annotation>
+                            <xsd:documentation>A file or directory that is compressed. For a file, all of the data in the file is compressed. For a directory, compression is the default for newly created files and subdirectories.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_DEVICE">
+                        <xsd:annotation>
+                            <xsd:documentation>This value is reserved for system use.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_DIRECTORY">
+                        <xsd:annotation>
+                            <xsd:documentation>The handle that identifies a directory.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_ENCRYPTED">
+                        <xsd:annotation>
+                            <xsd:documentation>A file or directory that is encrypted. For a file, all data streams in the file are encrypted. For a directory, encryption is the default for newly created files and subdirectories.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_HIDDEN">
+                        <xsd:annotation>
+                            <xsd:documentation>The file or directory is hidden. It is not included in an ordinary directory listing.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_INTEGRITY_STREAM">
+                        <xsd:annotation>
+                            <xsd:documentation>The directory or user data stream is configured with integrity (only supported on ReFS volumes). It is not included in an ordinary directory listing. The integrity setting persists with the file if it's renamed. If a file is copied the destination file will have integrity set if either the source file or destination directory have integrity set.</xsd:documentation>
+                            <xsd:documentation>Windows Server 2008 R2, Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, and Windows XP: This flag is not supported until Windows Server 2012.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_NORMAL">
+                        <xsd:annotation>
+                            <xsd:documentation>A file that does not have other attributes set. This attribute is valid only when used alone.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_NOT_CONTENT_INDEXED">
+                        <xsd:annotation>
+                            <xsd:documentation>The file or directory is not to be indexed by the content indexing service.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_NO_SCRUB_DATA">
+                        <xsd:annotation>
+                            <xsd:documentation>The user data stream not to be read by the background data integrity scanner (AKA scrubber). When set on a directory it only provides inheritance. This flag is only supported on Storage Spaces and ReFS volumes. It is not included in an ordinary directory listing.</xsd:documentation>
+                            <xsd:documentation>Windows Server 2008 R2, Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003, and Windows XP: This flag is not supported until Windows 8 and Windows Server 2012.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_OFFLINE">
+                        <xsd:annotation>
+                            <xsd:documentation>The data of a file is not available immediately. This attribute indicates that the file data is physically moved to offline storage. This attribute is used by Remote Storage, which is the hierarchical storage management software. Applications should not arbitrarily change this attribute.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_READONLY">
+                        <xsd:annotation>
+                            <xsd:documentation>A file that is read-only. Applications can read the file, but cannot write to it or delete it. This attribute is not honored on directories.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_REPARSE_POINT">
+                        <xsd:annotation>
+                            <xsd:documentation>A file or directory that has an associated reparse point, or a file that is a symbolic link.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_SPARSE_FILE">
+                        <xsd:annotation>
+                            <xsd:documentation>A file that is a sparse file.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_SYSTEM">
+                        <xsd:annotation>
+                            <xsd:documentation>A file or directory that the operating system uses a part of, or uses exclusively.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_TEMPORARY">
+                        <xsd:annotation>
+                            <xsd:documentation>A file that is being used for temporary storage. File systems avoid writing data back to mass storage if sufficient cache memory is available, because typically, an application deletes a temporary file after the handle is closed. In that scenario, the system can entirely avoid writing the data. Otherwise, the data is written after the handle is closed.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="FILE_ATTRIBUTE_VIRTUAL">
+                        <xsd:annotation>
+                            <xsd:documentation>This value is reserved for system use.</xsd:documentation>
+                        </xsd:annotation>
                     </xsd:enumeration>
                </xsd:restriction>
           </xsd:simpleContent>
@@ -4124,6 +4414,11 @@
                     <xsd:enumeration value="HKEY_CURRENT_USER">
                          <xsd:annotation>
                               <xsd:documentation>This registry subtree contains the user profile of the user that is currently logged into the system.</xsd:documentation>
+                         </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="HKEY_CURRENT_USER_LOCAL_SETTINGS">
+                         <xsd:annotation>
+                              <xsd:documentation>Registry entries subordinate to this key define preferences of the current user that are local to the machine. These entries are not included in the per-user registry portion of a roaming user profile. This key is supported starting with Windows 7 and Windows Server 2008 R2.</xsd:documentation>
                          </xsd:annotation>
                     </xsd:enumeration>
                     <xsd:enumeration value="HKEY_LOCAL_MACHINE">

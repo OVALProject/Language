@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-common-5" elementFormDefault="qualified" version="5.11">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            targetNamespace="http://oval.mitre.org/XMLSchema/oval-common-5"
+            elementFormDefault="qualified" version="5.11">
      <xsd:annotation>
           <xsd:documentation>The following is a description of the common types that are shared across the different schemas within Open Vulnerability and Assessment Language (OVAL). Each type is described in detail and should provide the information necessary to understand what each represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between these type is not outlined here.</xsd:documentation>
-          <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+          <xsd:documentation>The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Core Common</schema>
-               <version>5.11.1</version>
-               <date>4/22/2015 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
-              <sch:ns prefix="oval" uri="http://oval.mitre.org/XMLSchema/oval-common-5"/>
-              <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
+               <version>5.11.2</version>
+               <date>11/30/2016 09:00:00 AM</date>
+               <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <sch:ns prefix="oval" uri="http://oval.mitre.org/XMLSchema/oval-common-5"/>
+               <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
           </xsd:appinfo>
      </xsd:annotation>
      <!-- =============================================================================== -->
@@ -344,7 +348,7 @@
                </xsd:enumeration>
                <xsd:enumeration value="debian_evr_string">
                     <xsd:annotation>
-                         <xsd:documentation>The debian_evr_string datatype represents the epoch, upstream_version, and debian_revision fields, for a Debian package, as a single version string. It has the form "EPOCH:UPSTREAM_VERSION-DEBIAN_REVISION". Comparisons involving this datatype should follow the algorithm outlined in Chapter 5 of the "Debian Policy Manual" (https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Version). An implementation of this is the cmpversions() function in dpkg's enquiry.c. Expected operations within OVAL for debian_evr_string values are 'equals', 'not equal', 'greater than', 'greater than or equal', 'less than', and 'less than or equal'.</xsd:documentation>
+                         <xsd:documentation>The debian_evr_string datatype represents the epoch, upstream_version, and debian_revision fields, for a Debian package, as a single version string. It has the form "EPOCH:UPSTREAM_VERSION-DEBIAN_REVISION". Comparisons involving this datatype should follow the algorithm outlined in Chapter 5 of the "Debian Policy Manual" (https://www.debian.org/doc/debian-policy/ch-controlfields.html#s-f-Version). Note that a null epoch is equivalent to a value of '0'. An implementation of this is the cmpversions() function in dpkg's enquiry.c. Expected operations within OVAL for debian_evr_string values are 'equals', 'not equal', 'greater than', 'greater than or equal', 'less than', and 'less than or equal'.</xsd:documentation>
                     </xsd:annotation>
                </xsd:enumeration>
                <xsd:enumeration value="fileset_revision">
@@ -433,83 +437,83 @@
      </xsd:simpleType>
      <xsd:simpleType name="ExistenceEnumeration">
           <xsd:annotation>
-               <xsd:documentation>The ExistenceEnumeration simple type defines acceptable existence values, which are used to determine a result based on the existence of individual components. The main use for this is for a test regarding the existence of objects on the system.</xsd:documentation>
+               <xsd:documentation>The ExistenceEnumeration simple type defines acceptable existence values, which are used to determine a result based on the existence of individual components. The main use for this is for a test regarding the existence of objects on the system. Its secondary use is for a state regarding the existence of entities in corresponding items.</xsd:documentation>
                <xsd:appinfo>
                     <evaluation_documentation>Below are some tables that outline how each ExistenceEnumeration value effects evaluation of a given test.  Note that this is related to the existence of an object(s) and not the object(s) compliance with a state.  The left column identifies the ExistenceEnumeration value in question. The middle column specifies the different combinations of individual item status values that have been found in the system characteristics file related to the given object. (EX=exists, DE=does not exist, ER=error, NC=not collected) For example, a 1+ under EX means that one or more individual item status attributes are set to exists, while a 0 under NC means that zero individual item status attributes are set to not collected.  The last column specifies what the result of the existence piece would be according to each combination of individual item status values.</evaluation_documentation>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           || existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1+  |  0   |  0   |  0   ||  True
-               ||  0   |  0   |  0   |  0   ||  False
-               ||  0+  |  1+  |  0+  |  0+  ||  False  
- all_exist     ||  0+  |  0   |  1+  |  0+  ||  Error
-               ||  0+  |  0   |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           || existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1+  |  0   |  0   |  0   ||  True
+                    ||  0   |  0   |  0   |  0   ||  False
+                    ||  0+  |  1+  |  0+  |  0+  ||  False  
+        all_exist   ||  0+  |  0   |  1+  |  0+  ||  Error
+                    ||  0+  |  0   |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  0+  |  0+  |  0   |  0+  ||  True 
-               ||  1+  |  0+  |  1+  |  0+  ||  True
-               ||  --  |  --  |  --  |  --  ||  False
- any_exist     ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  --  |  --  |  --  |  --  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  0+  |  0+  |  0   |  0+  ||  True 
+                    ||  1+  |  0+  |  1+  |  0+  ||  True
+                    ||  --  |  --  |  --  |  --  ||  False
+        any_exist   ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  --  |  --  |  --  |  --  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1+  |  0+  |  0+  |  0+  ||  True 
-               ||  0   |  1+  |  0   |  0   ||  False
-at_least_one_exists  ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  0   |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1+  |  0+  |  0+  |  0+  ||  True 
+                    ||  0   |  0+  |  0   |  0   ||  False
+at_least_one_exists ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  0   |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  0   |  0+  |  0   |  0   ||  True 
-               ||  1+  |  0+  |  0+  |  0+  ||  False
- none_exist    ||  0   |  0+  |  1+  |  0+  ||  Error
-               ||  0   |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  0   |  0+  |  0   |  0   ||  True 
+                    ||  1+  |  0+  |  0+  |  0+  ||  False
+       none_exist   ||  0   |  0+  |  1+  |  0+  ||  Error
+                    ||  0   |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                     <evaluation_chart xml:space="preserve">
-               ||  item status value count  ||
-  attr value   ||                           ||  existence piece is
-               ||  EX  |  DE  |  ER  |  NC  ||
----------------||---------------------------||------------------
-               ||  1   |  0+  |  0   |  0   ||  True 
-               ||  2+  |  0+  |  0+  |  0+  ||  False
-               ||  0   |  0+  |  0   |  0   ||  False
- only_one_exists      ||  0,1 |  0+  |  1+  |  0+  ||  Error
-               ||  0,1 |  0+  |  0   |  1+  ||  Unknown
-               ||  --  |  --  |  --  |  --  ||  Not Evaluated
-               ||  --  |  --  |  --  |  --  ||  Not Applicable
----------------||---------------------------||------------------
+                    ||  item status value count  ||
+       attr value   ||                           ||  existence piece is
+                    ||  EX  |  DE  |  ER  |  NC  ||
+--------------------||---------------------------||------------------
+                    ||  1   |  0+  |  0   |  0   ||  True 
+                    ||  2+  |  0+  |  0+  |  0+  ||  False
+                    ||  0   |  0+  |  0   |  0   ||  False
+  only_one_exists   ||  0,1 |  0+  |  1+  |  0+  ||  Error
+                    ||  0,1 |  0+  |  0   |  1+  ||  Unknown
+                    ||  --  |  --  |  --  |  --  ||  Not Evaluated
+                    ||  --  |  --  |  --  |  --  ||  Not Applicable
+--------------------||---------------------------||------------------
                     </evaluation_chart>
                </xsd:appinfo>
           </xsd:annotation>
           <xsd:restriction base="xsd:string">
                <xsd:enumeration value="all_exist">
                     <xsd:annotation>
-                         <xsd:documentation>A value of 'all_exist' means that every object defined by the description exists on the system.</xsd:documentation>
+                         <xsd:documentation>When used in the context of an OVAL state entity's check_existence attribute, a value of 'all_exist' means that every item entity for an object defined by the description exists on the system. When used in the context of an OVAL test's check_existence attribute, this value is equivalent to 'at_least_one_exists' because non-existent items have no impact upon evaluation.</xsd:documentation>
                     </xsd:annotation>
                </xsd:enumeration>
                <xsd:enumeration value="any_exist">

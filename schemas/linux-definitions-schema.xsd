@@ -1,20 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux" elementFormDefault="qualified" version="5.11">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+            xmlns:linux-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux"
+            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux"
+            elementFormDefault="qualified" version="5.11">
      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
      <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
      <xsd:annotation>
           <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Linux specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
-          <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+          <xsd:documentation>The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
           <xsd:appinfo>
                <schema>Linux Definition</schema>
-               <version>5.11.1:1.1</version>
-               <date>4/22/2015 09:00:00 AM</date>
-                <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+               <version>5.11.1:1.2</version>
+               <date>11/30/2016 09:00:00 AM</date>
+                <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
                <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
                <sch:ns prefix="linux-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux"/>
                <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
           </xsd:appinfo>
      </xsd:annotation>
+     <!-- =============================================================================== -->
+     <!-- =========================  SUSE APPARMOR STATUS TEST  ========================= -->
+     <!-- =============================================================================== -->
+     <xsd:element name="apparmorstatus_test" substitutionGroup="oval-def:test">
+          <xsd:annotation>
+               <xsd:documentation>The AppArmor Status Test is used to check properties representing the counts of profiles and processes as per the results of the "apparmor_status" or "aa-status" command. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an apparmorstatus_object and the optional state element specifies the data to check.</xsd:documentation>
+               <xsd:appinfo>
+                    <oval:element_mapping>
+                         <oval:test>apparmorstatus_test</oval:test>
+                         <oval:object>apparmorstatus_object</oval:object>
+                         <oval:state>apparmorstatus_state</oval:state>
+                         <oval:item>apparmorstatus_item</oval:item>
+                    </oval:element_mapping>
+               </xsd:appinfo>
+               <xsd:appinfo>
+                    <sch:pattern id="suse-def_apparmorstatus_tst">
+                         <sch:rule context="linux-def:apparmorstatus_test/linux-def:object">
+                              <sch:assert test="@object_ref=ancestor::oval-def:oval_definitions/oval-def:objects/linux-def:apparmorstatus_object/@id"><sch:value-of select="../@id"/> - the object child element of a apparmorstatus_test must reference a apparmorstatus_object</sch:assert>
+                         </sch:rule>
+                         <sch:rule context="linux-def:apparmorstatus_test/linux-def:state">
+                              <sch:assert test="@state_ref=ancestor::oval-def:oval_definitions/oval-def:states/linux-def:apparmorstatus_state/@id"><sch:value-of select="../@id"/> - the state child element of a apparmorstatustest must reference a apparmorstatus_state</sch:assert>
+                         </sch:rule>
+                    </sch:pattern>
+               </xsd:appinfo>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:TestType">
+                         <xsd:sequence>
+                              <xsd:element name="object" type="oval-def:ObjectRefType"/>
+                              <xsd:element name="state" type="oval-def:StateRefType" minOccurs="0" maxOccurs="unbounded"/>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="apparmorstatus_object" substitutionGroup="oval-def:object">
+          <xsd:annotation>
+               <xsd:documentation>The apparmorstatus_object element is used by an apparmorstatus test to define the different information about the current AppArmor polciy. There is actually only one object relating to AppArmor Status and this is the system as a whole. Therefore, there are no child entities defined. Any OVAL Test written to check AppArmor status will reference the same apparmorstatus_object which is basically an empty object element.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:ObjectType"/>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
+     <xsd:element name="apparmorstatus_state" substitutionGroup="oval-def:state">
+          <xsd:annotation>
+               <xsd:documentation>The AppArmor Status Item displays various information about the current AppArmor policy.  This item maps the counts of profiles and processes as per the results of the "apparmor_status" or "aa-status" command.  Please refer to the individual elements in the schema for more details about what each represents.</xsd:documentation>
+          </xsd:annotation>
+          <xsd:complexType>
+               <xsd:complexContent>
+                    <xsd:extension base="oval-def:StateType">
+                         <xsd:sequence>
+                              <xsd:element name="loaded_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of loaded profiles</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="enforce_mode_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of profiles in enforce mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="complain_mode_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of profiles in complain mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="processes_with_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes which have profiles defined</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="enforce_mode_processes_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes in enforce mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="complain_mode_processes_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes in complain mode</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="unconfined_processes_with_profiles_count" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>Displays the number of processes which are unconfined but have a profile defined</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                         </xsd:sequence>
+                    </xsd:extension>
+               </xsd:complexContent>
+          </xsd:complexType>
+     </xsd:element>
      <!-- =============================================================================== -->
      <!-- ==============================  DPKG INFO TEST  =============================== -->
      <!-- =============================================================================== -->
@@ -567,17 +667,27 @@
                               </xsd:element>
                               <xsd:element name="total_space" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The total_space element contains an integer that represents the total number of blocks on a partition.</xsd:documentation>
+                                        <xsd:documentation>The total_space element contains an integer that represents the total number of physical blocks on a partition.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="space_used" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The space_used element contains an integer that represents the number of blocks used on a partition.</xsd:documentation>
+                                        <xsd:documentation>The space_used element contains an integer that represents the number of physical blocks used on a partition.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="space_left" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>The space_left element contains an integer that represents the number of blocks left on a partition.</xsd:documentation>
+                                        <xsd:documentation>The space_left element contains an integer that represents the number of physical blocks left on a partition available to be used by privileged users.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="space_left_for_unprivileged_users" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The space_left_for_unprivileged_users element contains an integer that represents the number of physical blocks remaining on a partition that are available to be used by unprivileged users.</xsd:documentation>
+                                   </xsd:annotation>
+                              </xsd:element>
+                              <xsd:element name="block_size" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                                   <xsd:annotation>
+                                        <xsd:documentation>The block_size element contains an integer that represents the actual byte size of each physical block on the partition's block device. This is the same block size used to compute the total_space, space_used, and space_left.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                          </xsd:sequence>
@@ -747,7 +857,7 @@
                               </xsd:element>
                               <xsd:element name="extended_name" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
-                                        <xsd:documentation>This represents the name, epoch, version, release, and architecture fields as a single version string. It has the form "NAME-EPOCH:VERSION-RELEASE.ARCHITECTURE". Note that a null epoch (or '(none)' as returned by rpm) is equivalent to '0' and would hence have the form NAME-0:VERSION-RELEASE.ARCHITECTURE.</xsd:documentation>
+                                        <xsd:documentation>This represents the name, epoch, version, release, and architecture fields as a single version string. It has the form "NAME-EPOCH:VERSION-RELEASE.ARCHITECTURE". Note that a null epoch (or '(none)' as returned by rpm) is equivalent to '0' and would hence have the form NAME-0:VERSION-RELEASE.ARCHITECTURE. The 'gpg-pubkey' virtual package on RedHat and CentOS should use the string '(none)' for the architecture to construct the extended_name.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
                               <xsd:element name="filepath" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
@@ -768,7 +878,7 @@
                <xsd:annotation>
                     <xsd:documentation>'filepaths', when true, this behavior means collect all filepaths (directory and file information) from the rpm database for the package.</xsd:documentation>
                </xsd:annotation>
-          </xsd:attribute>          
+          </xsd:attribute>
      </xsd:complexType>
      <!-- =============================================================================== -->
      <!-- ==============================  RPM VERIFY TEST  ============================== -->
@@ -864,7 +974,7 @@
                                              <xsd:annotation>
                                                   <xsd:documentation>The filepath element specifies the absolute path for a file or directory in the specified package.</xsd:documentation>
                                              </xsd:annotation>
-                                        </xsd:element>                                        
+                                        </xsd:element>
                                         <xsd:element ref="oval-def:filter" minOccurs="0" maxOccurs="unbounded"/>
                                    </xsd:sequence>
                               </xsd:choice>
@@ -2162,10 +2272,24 @@
                                         <xsd:documentation>This is the package name to check.</xsd:documentation>
                                    </xsd:annotation>
                               </xsd:element>
-                              <xsd:element name="version" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                              <xsd:element name="version" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
                                         <xsd:documentation>This is the version number of the package.</xsd:documentation>
                                    </xsd:annotation>
+                                   <xsd:complexType>
+                                        <xsd:simpleContent>
+                                             <xsd:restriction base="oval-def:EntityStateAnySimpleType">
+                                                  <xsd:attribute name="datatype" use="optional" default="string">
+                                                       <xsd:simpleType>
+                                                            <xsd:restriction base="oval:SimpleDatatypeEnumeration">
+                                                                 <xsd:enumeration value="string"/>
+                                                                 <xsd:enumeration value="version"/>
+                                                            </xsd:restriction>
+                                                       </xsd:simpleType>
+                                                  </xsd:attribute>
+                                             </xsd:restriction>
+                                        </xsd:simpleContent>
+                                   </xsd:complexType>
                               </xsd:element>
                               <xsd:element name="architecture" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                                    <xsd:annotation>
@@ -2444,7 +2568,7 @@
                     </xsd:restriction>
                </xsd:simpleType>
           </xsd:attribute>
-     </xsd:complexType>     
+     </xsd:complexType>
      <xsd:complexType name="EntityStateRpmVerifyResultType">
           <xsd:annotation>
                <xsd:documentation>The EntityStateRpmVerifyResultType complex type restricts a string value to the set of possible outcomes of checking an attribute of a file included in an RPM against the actual value of that attribute in the RPM database. The empty string is also allowed to support the empty element associated with variable references.  Note that when using pattern matches and variables care must be taken to ensure that the regular expression and variable values align with the enumerated values.</xsd:documentation>

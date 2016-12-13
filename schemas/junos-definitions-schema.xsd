@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" xmlns:sch="http://purl.oclc.org/dsdl/schematron" targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos" elementFormDefault="qualified" version="5.11">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+            xmlns:junos-def="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos"
+            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            targetNamespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos"
+            elementFormDefault="qualified" version="5.11">
     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5" schemaLocation="oval-definitions-schema.xsd"/>
     <xsd:annotation>
         <xsd:documentation>The following is a description of the elements, types, and attributes that compose the Junos-specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.</xsd:documentation>
-        <xsd:documentation>This schema was originally developed by David Solin at jOVAL.org. The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+        <xsd:documentation>This schema was originally developed by David Solin at jOVAL.org. The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
         <xsd:appinfo>
             <schema>Junos Definition</schema>
-            <version>5.11.1:1.0</version>
-            <date>4/22/2015 09:00:00 AM</date>
-            <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+            <version>5.11.1:1.1</version>
+            <date>11/30/2016 09:00:00 AM</date>
+            <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
             <sch:ns prefix="oval-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5"/>
             <sch:ns prefix="junos-def" uri="http://oval.mitre.org/XMLSchema/oval-definitions-5#junos"/>
             <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -279,29 +285,39 @@
                                 <xsd:documentation>The name of the JunOS component whose version should be retrieved.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="raw_release" type="oval-def:EntityStateStringType" minOccurs="1" maxOccurs="1">
+                        <xsd:element name="raw_value" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The raw release version string for the component.</xsd:documentation>
+                                <xsd:documentation>The raw release version string for the component, e.g., 12.2R6.1 or 12.1X44-D10.4.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="major_version" type="oval-def:EntityStateVersionType" minOccurs="1" maxOccurs="1">
+                        <xsd:element name="major" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The part of the release version of the component corresponding to the [year].[quarter] in which the release occurred. For example, the major_version for 12.2R6.1 would be 12.2.</xsd:documentation>
+                                <xsd:documentation>The part of the release version of the component corresponding to the year in which the release occurred. For example, the major value for 12.2R6.1 would be '12'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="release_type" type="junos-def:EntityStateJunosReleaseTypeType" minOccurs="1" maxOccurs="1">
+                        <xsd:element name="minor" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The release type embedded in the version of the component.</xsd:documentation>
+                                <xsd:documentation>The part of the release version of the component corresponding to the quarter in which the release occurred. For example, the minor value for 12.2R6.1 would be '2'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="revision" type="oval-def:EntityStateVersionType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="type" type="junos-def:EntityStateJunosReleaseTypeType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The revision and build number (AKA spin number) information of the component's version. For example, the revision for 12.2R6.1 would be 6.1.</xsd:documentation>
+                                <xsd:documentation>The release type embedded in the version of the component. For example, the type value for 12.2R6.1 is 'R'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="builder" type="oval-def:EntityStateStringType" minOccurs="0" maxOccurs="1">
+                        <xsd:element name="build" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
                             <xsd:annotation>
-                                <xsd:documentation>The string identifying the builder of the component.</xsd:documentation>
+                                <xsd:documentation>The build number of the component's version. For example, the revision for 12.2R6.1 has a build number of '6'; 12.1X44-D10.4 has a build number of '44'.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="maintenance_release" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>A maintenance_release value can appear in an R-type service release or an X-type release (where it takes the value of the D-number). For example, version 14.2R3-S4.5 has a maintenance_release of '4'. For version 10.4S4.2, the maintenance_release entity would have a status of 'does not exist'. For version 12.1X44-D10.4, the maintenance_release entity value would be '10'.</xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="spin" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
+                            <xsd:annotation>
+                                <xsd:documentation>The spin number of the component. For example, 12.2R6.1 has a spin value of '1'; 12.1X44-D10.4 has a spin value of '4'.</xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
                         <xsd:element name="build_date" type="oval-def:EntityStateIntType" minOccurs="0" maxOccurs="1">
@@ -431,6 +447,16 @@
                         <xsd:documentation>Indicates a normal release.</xsd:documentation>
                     </xsd:annotation>
                 </xsd:enumeration>
+                <xsd:enumeration value="I">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates an internal release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
+                <xsd:enumeration value="F">
+                    <xsd:annotation>
+                        <xsd:documentation>Indicates a feature release.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:enumeration>
                 <xsd:enumeration value="S">
                     <xsd:annotation>
                         <xsd:documentation>Indicates a service release.</xsd:documentation>
@@ -443,7 +469,7 @@
                 </xsd:enumeration>
                 <xsd:enumeration value="X">
                     <xsd:annotation>
-                        <xsd:documentation>Indicates a release of the SRX branch.</xsd:documentation>
+                        <xsd:documentation>Indicates an exception release (e.g., every release of the SRX branch so far).</xsd:documentation>
                     </xsd:annotation>
                 </xsd:enumeration>
                 <xsd:enumeration value="">

@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5" xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:tns="http://scap.nist.gov/schema/asset-identification/1.1" targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5" elementFormDefault="qualified" version="5.11">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:oval="http://oval.mitre.org/XMLSchema/oval-common-5"
+            xmlns:oval-sc="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+            xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+            xmlns:tns="http://scap.nist.gov/schema/asset-identification/1.1"
+            targetNamespace="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"
+            elementFormDefault="qualified" version="5.11">
     <xsd:import namespace="http://oval.mitre.org/XMLSchema/oval-common-5" schemaLocation="oval-common-schema.xsd"/>
     <xsd:import namespace="http://www.w3.org/2000/09/xmldsig#" schemaLocation="xmldsig-core-schema.xsd"/>
     <xsd:annotation>
         <xsd:documentation>The following is a description of the elements, types, and attributes that compose the core schema for encoding Open Vulnerability and Assessment Language (OVAL) System Characteristics. The Core System Characteristics Schema defines all operating system independent objects. These objects are extended and enhanced by individual family schemas, which are described in separate documents. Each of the elements, types, and attributes that make up the Core System Characteristics Schema are described in detail and should provide the information necessary to understand what each object represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between these objects is not outlined here.</xsd:documentation>
-        <xsd:documentation>The OVAL Schema is maintained by The MITRE Corporation and developed by the public OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.mitre.org.</xsd:documentation>
+        <xsd:documentation>The OVAL Schema is maintained by the OVAL Community. For more information, including how to get involved in the project and how to submit change requests, please visit the OVAL website at http://oval.cisecurity.org.</xsd:documentation>
         <xsd:appinfo>
             <schema>Core System Characteristics</schema>
-            <version>5.11.1</version>
-            <date>4/22/2015 09:00:00 AM</date>
-            <terms_of_use>Copyright (c) 2002-2015, The MITRE Corporation. All rights reserved. The contents of this file are subject to the terms of the OVAL License located at http://oval.mitre.org/oval/about/termsofuse.html. See the OVAL License for the specific language governing permissions and limitations for use of this schema. When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
+            <version>5.11.2</version>
+            <date>11/30/2016 09:00:00 AM</date>
+            <terms_of_use>Copyright (c) 2016, Center for Internet Security. All rights reserved.  The contents of this file are subject to the terms of the OVAL License located at https://oval.cisecurity.org/terms. See the OVAL License for the specific language governing permissions and limitations for use of this schema.  When distributing copies of the OVAL Schema, this license header must be included.</terms_of_use>
             <sch:ns prefix="oval-sc" uri="http://oval.mitre.org/XMLSchema/oval-system-characteristics-5"/>
             <sch:ns prefix="xsi" uri="http://www.w3.org/2001/XMLSchema-instance"/>
         </xsd:appinfo>
@@ -238,7 +245,7 @@
         <xsd:annotation>
             <xsd:documentation>The ItemType complex type specifies an optional message element that is used to pass things like error messages during data collection to a tool that will utilize the information.</xsd:documentation>
             <xsd:documentation>The required id attribute is a unique (to the file) identifier that allows the specific item to be referenced.</xsd:documentation>
-            <xsd:documentation>The required status attribute holds information regarding the success of the data collection. For example, if an item exists on the system then the status would reflect this with a value of 'exists'. If there was an error collecting any information about an item that is known to exist, then the status would be 'error'. An error specific to a particular entity should be addressed at the entity level and not the item level. When creating items, any entities that can successfully be collected should be reported.</xsd:documentation>
+            <xsd:documentation>The required status attribute holds information regarding the success of the data collection. For example, if an item exists on the system then the status would reflect this with a value of 'exists'. If an error occurs which is not associated with any item entities, or if an error occurs that is associated with an item entity matching an associated object entity, then the status would be 'error'. An error specific to any particular entity should be addressed at the entity level and, for item entities not associated with an object entity, not the item level. When creating items, any entities that can successfully be collected should be reported.</xsd:documentation>
             <xsd:documentation>In some cases, when an item for a specified object does not exist, it may be beneficial to report a partial match of an item showing what entities did exist and what entities did not exist for debugging purposes. This is especially true when considering items that are collected by objects with hierarchical object entities. An example of such a case is when a file_object has a path entity equal to 'C:\' and a filename entity equal to 'test.txt' where 'test.txt' does not exist in the 'C:\' directory. This would result in the creation of a partially matching file_item with a status of 'does not exist' where the path entity equals 'C:\' and the filename entity equals 'test.txt' with a status of 'does not exist'. By showing the partial match, someone reading a system-characteristics document can quickly see that a matching file_item did not exist because the specified filename did not exist and not that the specified path did not exist. Again, please note that the implementation of partial matches, when an item for a specified object does not exist,  is completely optional.  </xsd:documentation>
         </xsd:annotation>
         <xsd:sequence>
@@ -319,7 +326,7 @@
         <xsd:restriction base="xsd:string">
             <xsd:enumeration value="error">
                 <xsd:annotation>
-                    <xsd:documentation>A status of 'error' says that there was an error collecting information associated with an item as a whole or a specific entity. An item would have a status of 'error' if a problem occurred that prevented the item from being collected. For example, a file_item would have a status of 'error' if a handle to the file could not be opened because the handle was already in use by another program. Also, if an item has entities with a status of 'error' and entities with a status of 'exists', the status of 'error' must not be propagated up to the item level as the item may still be usable.</xsd:documentation>
+                    <xsd:documentation>A status of 'error' says that there was an error collecting information associated with an item as a whole or any specific entity. An item would have a status of 'error' if a problem occurred that prevented the item from being collected. For example, a file_item would have a status of 'error' if a handle to the file could not be opened because the handle was already in use by another program. See the documentation for ItemType for information about when an item entity status of 'error' should propagate up to the item status level.</xsd:documentation>
                 </xsd:annotation>
             </xsd:enumeration>
             <xsd:enumeration value="exists">
