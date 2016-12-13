@@ -6,7 +6,7 @@ This GitHub project hosts the OVAL Language Schemas and Specifications to improv
 
 Development: [OVAL 5.11.2] (https://github.com/OVALProject/Language)<br>
 Official: [OVAL 5.11.2] (https://github.com/OVALProject/Language/wiki/Latest)<br>
-Previous: [OVAL Archives] (http://oval.mitre.org/archive)<br>
+Previous: [OVAL 5.11.1] (https://github.com/OVALProject/Language/tree/5.11.1)<br>
 
 Experimental capabilities for the OVAL Language will be developed in the [OVAL Language Sandbox] (http://oval.mitre.org/language/sandbox.html) to allow the community to fully investigate and implement new capabilities before they are included here in an official release ensuring that only mature and implementable constructs are added to the OVAL Language. 
 
