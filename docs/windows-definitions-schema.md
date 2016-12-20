@@ -1,8 +1,8 @@
 # Open Vulnerability and Assessment Language: Element Dictionary
 
 * Schema: Windows Definition  
-* Version: 5.11.1:1.2  
-* Release Date: 11/30/2016 09:00:00 AM
+* Version: 5.11.1:1.3  
+* Release Date: 12/19/2016 10:00:00 PM
 
 The following is a description of the elements, types, and attributes that compose the Windows specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.
 
@@ -268,7 +268,7 @@ ______________
   
 ## <a name="activedirectory57_test"></a><  ~~activedirectory57_test~~  >
 
-> :small_red_triangle: **Deprecated As Of Version 5.11.2** :small_red_triangle: <br />**Reason:** Use the original activedirectory_test. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.<br />**Comment:** This test has been deprecated and will be removed in version 6.0 of the language.<br />
+> :small_red_triangle: **Deprecated As Of Version 5.11.1:1.2** :small_red_triangle: <br />**Reason:** Use the original activedirectory_test. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.<br />**Comment:** This test has been deprecated and will be removed in version 6.0 of the language.<br />
 
 The active directory test is used to check information about specific entries in active directory. It extends the standard TestType as defined in the oval-definitions-schema and one should refer to the TestType description for more information. The required object element references an activedirectory57_object and the optional state element specifies the metadata to check.
 
@@ -285,7 +285,7 @@ Note that this test supports complex values that are in the form of a record. Fo
   
 ## <a name="activedirectory57_object"></a><  ~~activedirectory57_object~~  >
 
-> :small_red_triangle: **Deprecated As Of Version 5.11.2** :small_red_triangle: <br />**Reason:** Use the original activedirectory_object. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.<br />**Comment:** This object has been deprecated and will be removed in version 6.0 of the language.<br />
+> :small_red_triangle: **Deprecated As Of Version 5.11.1:1.2** :small_red_triangle: <br />**Reason:** Use the original activedirectory_object. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.<br />**Comment:** This object has been deprecated and will be removed in version 6.0 of the language.<br />
 
 The activedirectory57_object element is used by an active directory test to define those objects to evaluated based on a specified state. Each object extends the standard ObjectType as defined in the oval-definitions-schema and one should refer to the ObjectType description for more information. The common set element allows complex objects to be created using filters and set logic. Again, please refer to the description of the set element in the oval-definitions-schema.
 
@@ -308,7 +308,7 @@ Note that this object supports complex values that are in the form of a record. 
   
 ## <a name="activedirectory57_state"></a><  ~~activedirectory57_state~~  >
 
-> :small_red_triangle: **Deprecated As Of Version 5.11.2** :small_red_triangle: <br />**Reason:** Use the original activedirectory_state. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.<br />**Comment:** This state has been deprecated and will be removed in version 6.0 of the language.<br />
+> :small_red_triangle: **Deprecated As Of Version 5.11.1:1.2** :small_red_triangle: <br />**Reason:** Use the original activedirectory_state. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.<br />**Comment:** This state has been deprecated and will be removed in version 6.0 of the language.<br />
 
 The activedirectory57_state element defines the different information that can be used to evaluate the specified entries in active directory. An active directory test will reference a specific instance of this state that defines the exact settings that need to be evaluated. Please refer to the individual elements in the schema for more details about what each represents.
 
@@ -3730,7 +3730,7 @@ The EntityStateFileTypeType complex type restricts a string value to a specific 
 
 | Value | Description |  
 | ----- | ----------- |  
-| ~~FILE_ATTRIBUTE_DIRECTORY~~ | ~~<div>The handle identifies a directory.</div>~~> :small_red_triangle: **Deprecated As Of Version 5.11.2:1.0** :small_red_triangle: <br />**Reason:** In version 5.11.2 of the OVAL Language, a file_attributes entity was added to the file_state, obviating the need to overload this attribute with the file-type enumeration.<br />**Comment:** This value has been deprecated and will be removed in version 6.0 of the language.<br /> |  
+| ~~FILE_ATTRIBUTE_DIRECTORY~~ | ~~<div>The handle identifies a directory.</div>~~> :small_red_triangle: **Deprecated As Of Version 5.11.1:1.2** :small_red_triangle: <br />**Reason:** In version 5.11.1:1.2 of the OVAL Language windows schema, a file_attributes entity was added to the file_state, obviating the need to overload this attribute with the file-type enumeration.<br />**Comment:** This value has been deprecated and will be removed in version 6.0 of the language.<br /> |  
 | FILE_TYPE_CHAR | <div>The specified file is a character file, typically an LPT device or a console.</div> |  
 | FILE_TYPE_DISK | <div>The specified file is a disk file.</div> |  
 | FILE_TYPE_PIPE | <div>The specified file is a socket, a named pipe, or an anonymous pipe.</div> |  
