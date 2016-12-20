@@ -1,8 +1,8 @@
 # Open Vulnerability and Assessment Language: Element Dictionary
 
 * Schema: Windows System Characteristics  
-* Version: 5.11.1:1.2  
-* Release Date: 11/30/2016 09:00:00 AM
+* Version: 5.11.1:1.3  
+* Release Date: 12/19/2016 10:00:00 PM
 
 The following is a description of the elements, types, and attributes that compose the Windows specific system characteristic items found in Open Vulnerability and Assessment Language (OVAL). Each item is an extension of the standard item element defined in the Core System Characteristic Schema. Through extension, each item inherits a set of elements and attributes that are shared amongst all OVAL Items. Each item is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core System Characteristic Schema is not outlined here.
 
@@ -117,7 +117,7 @@ ______________
   
 ## <a name="activedirectory_item"></a><  ~~activedirectory_item~~  >
 
-> :small_red_triangle: **Deprecated As Of Version 5.11.2** :small_red_triangle: <br />**Reason:** Use the original activedirectory_item. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.<br />**Comment:** This object has been deprecated and may be removed in a future version of the language.<br />
+> :small_red_triangle: **Deprecated As Of Version 5.11.1:1.2** :small_red_triangle: <br />**Reason:** Use the original activedirectory_item. The activedirectory57_test suffers from ambiguity; it was never adequately specified, and it does not even seem possible to have structured data in the context of the enumerated AdstypeTypes. Use the original activedirectory_test instead.<br />**Comment:** This object has been deprecated and may be removed in a future version of the language.<br />
 
 The active directory item holds information about specific entries in the Windows Active Directory. It extends the standard ItemType as defined in the oval-system-characteristics schema and one should refer to the ItemType description for more information.
 
