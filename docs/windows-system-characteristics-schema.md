@@ -954,7 +954,7 @@ Information about running processes.
 ||<div>The id given to the process that is created for a specified command line.</div>|  
 | ppid | [oval-sc:EntityItemIntType](oval-system-characteristics-schema.md#EntityItemIntType)  (0..1) |  
 ||<div>The id given to the parent of the process that is created for the specified command line</div>|  
-| priority | [oval-sc:EntityItemIntType](oval-system-characteristics-schema.md#EntityItemIntType)  (0..1) |  
+| priority | Restriction of [oval-sc:EntityItemAnySimpleType](oval-system-characteristics-schema.md#EntityItemAnySimpleType) . See schema for details. (0..1) |  
 ||<div>The base priority of the process. The priority value range is from 0 to 31.</div>|  
 | image_path | [oval-sc:EntityItemStringType](oval-system-characteristics-schema.md#EntityItemStringType)  (0..1) |  
 ||<div>The image_path entity represents the name of the executable file for the process.</div>|  

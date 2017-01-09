@@ -2018,7 +2018,7 @@ The process_state element defines the different metadata associate with a Window
 ||<div>The id given to the process that is created for a specified command line.</div>|  
 | ppid | [oval-def:EntityStateIntType](oval-definitions-schema.md#EntityStateIntType)  (0..1) |  
 ||<div>The id given to the parent of the process that is created for the specified command line</div>|  
-| priority | [oval-def:EntityStateIntType](oval-definitions-schema.md#EntityStateIntType)  (0..1) |  
+| priority | Restriction of [oval-def:EntityStateAnySimpleType](oval-definitions-schema.md#EntityStateAnySimpleType) . See schema for details. (0..1) |  
 ||<div>The base priority of the process. The priority value range is from 0 to 31.</div>|  
 | image_path | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The image_path entity contains the name of the executable file in question.</div>|  
