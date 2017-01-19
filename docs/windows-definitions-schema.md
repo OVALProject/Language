@@ -1,8 +1,8 @@
 # Open Vulnerability and Assessment Language: Element Dictionary
 
 * Schema: Windows Definition  
-* Version: 5.11.1:1.3  
-* Release Date: 12/19/2016 10:00:00 PM
+* Version: 5.11.1:1.4  
+* Release Date: 01/09/2017 10:00:00 PM
 
 The following is a description of the elements, types, and attributes that compose the Windows specific tests found in Open Vulnerability and Assessment Language (OVAL). Each test is an extension of the standard test element defined in the Core Definition Schema. Through extension, each test inherits a set of elements and attributes that are shared amongst all OVAL tests. Each test is described in detail and should provide the information necessary to understand what each element and attribute represents. This document is intended for developers and assumes some familiarity with XML. A high level description of the interaction between the different tests and their relationship to the Core Definition Schema is not outlined here.
 
@@ -2018,7 +2018,7 @@ The process_state element defines the different metadata associate with a Window
 ||<div>The id given to the process that is created for a specified command line.</div>|  
 | ppid | [oval-def:EntityStateIntType](oval-definitions-schema.md#EntityStateIntType)  (0..1) |  
 ||<div>The id given to the parent of the process that is created for the specified command line</div>|  
-| priority | [oval-def:EntityStateIntType](oval-definitions-schema.md#EntityStateIntType)  (0..1) |  
+| priority | Restriction of [oval-def:EntityStateAnySimpleType](oval-definitions-schema.md#EntityStateAnySimpleType) . See schema for details. (0..1) |  
 ||<div>The base priority of the process. The priority value range is from 0 to 31.</div>|  
 | image_path | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The image_path entity contains the name of the executable file in question.</div>|  
@@ -2071,7 +2071,7 @@ The process58_state element defines the different metadata associate with a Wind
 ||<div>The id given to the process that is created for a specified command line.</div>|  
 | ppid | [oval-def:EntityStateIntType](oval-definitions-schema.md#EntityStateIntType)  (0..1) |  
 ||<div>The id given to the parent of the process that is created for the specified command line</div>|  
-| priority | [oval-def:EntityStateIntType](oval-definitions-schema.md#EntityStateIntType)  (0..1) |  
+| priority | Restriction of [oval-def:EntityStateAnySimpleType](oval-definitions-schema.md#EntityStateAnySimpleType) . See schema for details. (0..1) |  
 ||<div>The base priority of the process. The priority value range is from 0 to 31.</div>|  
 | image_path | [oval-def:EntityStateStringType](oval-definitions-schema.md#EntityStateStringType)  (0..1) |  
 ||<div>The image_path entity represents the name of the executable file for the process.</div>|  
