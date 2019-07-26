@@ -10,7 +10,7 @@ The OVAL Language operates under the [OVAL Terms of Use](http://oval.cisecurity.
 
 * [Common](oval-common-schema.md) 
 * [Definitions](oval-definitions-schema.md) 
-* [System-Characteristics](oval-system-characteristics.md)
+* [System-Characteristics](oval-system-characteristics-schema.md)
 * [Results](oval-results-schema.md)
 
 ## OVAL Interpreter Schemas
