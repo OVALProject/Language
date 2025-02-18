@@ -304,7 +304,7 @@ The set element's object_reference refers to an existing OVAL Object. The set el
 
 Each filter is applied to the items identified by each OVAL Object before the set_operator is applied. For example, if an object_reference points to an OVAL Object that identifies every file in a certain directory, a filter might be set up to limit the object set to only those files with a size less than 10 KB. If multiple filters are provided, then each filter is applied to the set of items identified by the OVAL Object. Care must be taken to ensure that conflicting filters are not applied. It is possible to exclude all items with a size of 10 KB and then include only items with a size of 10 KB. This example would result in the empty set.
 
-The required set_operator attribute defines how different child sets are combined to form the overall unique set of objects. For example, does one take the union of different sets or the intersection? For a description of the valid values please refer to the SetOperatorEnumeration simple type.
+The optional set_operator attribute defines how different child sets are combined to form the overall unique set of objects. For example, does one take the union of different sets or the intersection? For a description of the valid values please refer to the SetOperatorEnumeration simple type. The default for set_operator is UNION.
 
 | Child Elements | Type (MinOccurs..MaxOccurs) |  
 |:-------------- |:--------------------------- |  
